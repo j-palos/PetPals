@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */,
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
 				EADB9990222633F500F349CB /* ViewController.swift */,
 				EADB9992222633F500F349CB /* Main.storyboard */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
+				0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */,
 				EADB9999222633F700F349CB /* Assets.xcassets in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
 			);
