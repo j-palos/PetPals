@@ -12,3 +12,6 @@ Pods/
 
 # Ignore Carthage installed files
 Carthage/
+
+# Ignore Firebase config
+GoogleService-Info.plist
