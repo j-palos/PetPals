@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
         if Auth.auth().currentUser != nil {
             let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier) as UIViewController
