@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */; };
+		0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */; };
+		0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */; };
+		0D00AB6C2239567900F467B7 /* GradientBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6A2239567900F467B7 /* GradientBlueButton.swift */; };
+		0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6B2239567900F467B7 /* RegisterViewController.swift */; };
+		0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6E2239569D00F467B7 /* LoginViewController.swift */; };
+		0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6F2239569D00F467B7 /* HomeViewController.swift */; };
 		0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
@@ -18,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium.otf"; sourceTree = "<group>"; };
+		0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold.otf"; sourceTree = "<group>"; };
+		0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular.otf"; sourceTree = "<group>"; };
+		0D00AB6A2239567900F467B7 /* GradientBlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBlueButton.swift; sourceTree = "<group>"; };
+		0D00AB6B2239567900F467B7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0D00AB6E2239569D00F467B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0D00AB6F2239569D00F467B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
@@ -44,6 +58,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D00AB63223954B100F467B7 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */,
+				0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */,
+				0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		7C3AD876FBF1DC05A7CDE266 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,8 +106,13 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				0D00AB63223954B100F467B7 /* fonts */,
 				0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */,
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
+				0D00AB6A2239567900F467B7 /* GradientBlueButton.swift */,
+				0D00AB6F2239569D00F467B7 /* HomeViewController.swift */,
+				0D00AB6E2239569D00F467B7 /* LoginViewController.swift */,
+				0D00AB6B2239567900F467B7 /* RegisterViewController.swift */,
 				EADB9990222633F500F349CB /* ViewController.swift */,
 				EADB9992222633F500F349CB /* Main.storyboard */,
 				EADB9998222633F700F349CB /* Assets.xcassets */,
@@ -156,9 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
+				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
+				0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */,
 				0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */,
 				EADB9999222633F700F349CB /* Assets.xcassets in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
+				0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
+				0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */,
+				0D00AB6C2239567900F467B7 /* GradientBlueButton.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
+				0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */,
 				EADB998F222633F500F349CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
