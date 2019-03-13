@@ -193,24 +193,25 @@
                                     <action selector="logOutAction:" destination="iMr-Z7-VZn" eventType="touchUpInside" id="1N5-Vl-F1q"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="KY8-BY-pNh">
-                                <rect key="frame" x="26" y="20" width="321" height="34"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalSpacing" alignment="center" spacing="126" translatesAutoresizingMaskIntoConstraints="NO" id="KY8-BY-pNh">
+                                <rect key="frame" x="20" y="20" width="340" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpx-SP-MiX" customClass="ProfileViewButton" customModule="PetPals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="34"/>
-                                        <state key="normal" title="Profile">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
+                                        <state key="normal" image="profile">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <state key="selected" image="profile-colored"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-Sy-VE9" customClass="SwipeViewButton" customModule="PetPals" customModuleProvider="target">
-                                        <rect key="frame" x="140" y="0.0" width="34" height="34"/>
+                                        <rect key="frame" x="150" y="0.0" width="34" height="30"/>
                                         <state key="normal" image="paw-colored"/>
                                         <state key="selected" image="paw-colored"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1O-Xc-jyt" customClass="MatchesViewButton" customModule="PetPals" customModuleProvider="target">
-                                        <rect key="frame" x="262" y="0.0" width="59" height="34"/>
-                                        <state key="normal" title="Matches"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1O-Xc-jyt" customClass="MatchesViewButton" customModule="PetPals" customModuleProvider="target">
+                                        <rect key="frame" x="310" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="calendar"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -313,7 +314,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" width="30" height="30"/>
         <image name="paw-colored" width="34.560001373291016" height="30"/>
+        <image name="profile" width="24.239999771118164" height="30"/>
+        <image name="profile-colored" width="24.239999771118164" height="30"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

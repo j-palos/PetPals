@@ -17,5 +17,19 @@ class ProfileViewButton: UIButton {
         // Drawing code
     }
     */
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        let btnImage = UIImage(named: "paw-colored")
+        self.setImage(btnImage , for: UIControl.State.normal)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        // set myValue before super.init is called
+        
+        super.init(coder: aDecoder)
+        //        layer.cornerRadius = 25
+    }
 
 }
