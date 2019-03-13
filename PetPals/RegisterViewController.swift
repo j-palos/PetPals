@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class RegisterViewController: UIViewController {
     
@@ -52,6 +53,10 @@ class RegisterViewController: UIViewController {
             }
         }
         
+    }
+    
+    @IBAction func googleSignUp(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
