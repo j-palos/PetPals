@@ -19,15 +19,21 @@ class ProfileViewButton: UIButton {
     */
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let btnImage = UIImage(named: "paw-colored")
-        self.setImage(btnImage , for: UIControl.State.normal)
+        self.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+    }
+
+    @objc func buttonAction(_ sender:UIButton!)
+    {
+        
+        print("Button tapped")
     }
     
     required init?(coder aDecoder: NSCoder) {
         // set myValue before super.init is called
-        
+
         super.init(coder: aDecoder)
         //        layer.cornerRadius = 25
     }
