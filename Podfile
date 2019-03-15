@@ -9,5 +9,6 @@ target 'PetPals' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Parchment'
 
 end
