@@ -9,27 +9,18 @@
 import UIKit
 
 class ProfileViewButton: UIButton {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        let btnImage = UIImage(named: "paw-colored")
-        self.setImage(btnImage , for: UIControl.State.normal)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        // set myValue before super.init is called
-        
-        super.init(coder: aDecoder)
-        //        layer.cornerRadius = 25
-    }
-
 }
+
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
+}
+
+

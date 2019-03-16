@@ -70,11 +70,13 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Parchment (1.6.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - GoogleSignIn
+  - Parchment
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -90,6 +92,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
+    - Parchment
 
 SPEC CHECKSUMS:
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
@@ -104,7 +107,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
 
-PODFILE CHECKSUM: dd4ee3a9532e72046fa86c8337ea44a3fb10ee5e
+PODFILE CHECKSUM: 37ecd53fd0dd99c5142fd7b122fcb6d2e09c9541
 
 COCOAPODS: 1.6.1
