@@ -17,8 +17,8 @@
 		0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015D22397577000D594D /* ProfileViewButton.swift */; };
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
-		0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
+		CBF35529223E15B40025D51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBF35528223E15B40025D51F /* GoogleService-Info.plist */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
 		EADB9994222633F500F349CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB9992222633F500F349CB /* Main.storyboard */; };
@@ -38,9 +38,9 @@
 		0D0D015D22397577000D594D /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
 		0D0D015F2239758A000D594D /* SwipeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewButton.swift; sourceTree = "<group>"; };
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
-		0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
+		CBF35528223E15B40025D51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADB998E222633F500F349CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				0D00AB63223954B100F467B7 /* fonts */,
-				0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */,
+				CBF35528223E15B40025D51F /* GoogleService-Info.plist */,
 				0D0D015C22397530000D594D /* Buttons */,
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
 				0D00AB6A2239567900F467B7 /* GradientBlueButton.swift */,
@@ -202,9 +202,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
+				CBF35529223E15B40025D51F /* GoogleService-Info.plist in Resources */,
 				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
 				0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */,
-				0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */,
 				EADB9999222633F700F349CB /* Assets.xcassets in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
 				0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */,
@@ -222,7 +222,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -233,7 +233,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89A95BAD915B1E70B587F19F /* [CP] Check Pods Manifest.lock */ = {
@@ -266,7 +266,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -285,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
