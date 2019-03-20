@@ -648,7 +648,7 @@
         <!--ConnectedVC-->
         <scene sceneID="TqI-CM-ytg">
             <objects>
-                <viewController storyboardIdentifier="ConnectedVC" id="WuD-9T-J8c" userLabel="ConnectedVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConnectedVC" id="WuD-9T-J8c" userLabel="ConnectedVC" customClass="ConnectedViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XPm-ZX-WRb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,7 +658,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="zEd-fj-osv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectedTableViewCellIdentifier" rowHeight="80" id="zEd-fj-osv" customClass="ConnectedTableViewCell" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zEd-fj-osv" id="b7K-TM-Yel">
@@ -685,6 +685,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="meetupLabel" destination="HKf-OS-uj9" id="KFh-Hp-cP2"/>
+                                            <outlet property="userImage" destination="2D4-5A-dAR" id="CXw-Kt-UIr"/>
+                                            <outlet property="userName" destination="TtN-3H-Won" id="rbW-zI-5L0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -692,6 +697,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pgc-Ht-FdI"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="mEA-37-w3E" id="5lz-t9-sFa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="38D-Xr-f7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -700,17 +708,17 @@
         <!--InvitesVC-->
         <scene sceneID="UNP-S4-3hE">
             <objects>
-                <viewController storyboardIdentifier="InvitesVC" id="i5c-aa-EQR" userLabel="InvitesVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InvitesVC" id="i5c-aa-EQR" userLabel="InvitesVC" customClass="InvitesViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E1l-QJ-6N4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9ln-MI-AhT" customClass="lower">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9ln-MI-AhT">
                                 <rect key="frame" x="16" y="0.0" width="343" height="363"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lowerTableViewCellIdentifier" rowHeight="80" id="qK1-XD-vpQ" customClass="lowerTableViewCell" customModule="PetPals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitesTableViewCellIdentifier" rowHeight="80" id="qK1-XD-vpQ" customClass="InvitesTableViewCell" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qK1-XD-vpQ" id="uQv-8B-TfU">
@@ -757,9 +765,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="meetDate" destination="3QY-ma-n6t" id="nq5-A6-tjn"/>
+                                            <outlet property="meetLocation" destination="22k-xD-19g" id="aqL-cA-h3E"/>
                                             <outlet property="meetup" destination="3QY-ma-n6t" id="pZN-2V-ZU3"/>
                                             <outlet property="nameLabel" destination="gVu-Oc-WxC" id="8Aq-8k-XTk"/>
-                                            <outlet property="userImage" destination="Stc-vj-TGc" id="V1t-Rd-8df"/>
+                                            <outlet property="userImage" destination="Stc-vj-TGc" id="POe-wq-eCa"/>
+                                            <outlet property="userName" destination="gVu-Oc-WxC" id="0tb-Ad-Uon"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -768,6 +779,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wml-go-FoJ"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="9ln-MI-AhT" id="Ewn-UY-kJE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yse-Pk-vCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -776,17 +790,17 @@
         <!--PendingVC-->
         <scene sceneID="2PD-E1-Swr">
             <objects>
-                <viewController storyboardIdentifier="PendingVC" id="Sr7-zV-Yc3" userLabel="PendingVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PendingVC" id="Sr7-zV-Yc3" userLabel="PendingVC" customClass="PendingViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fag-Fu-F72">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-hy-zrS" customClass="lower">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-hy-zrS">
                                 <rect key="frame" x="16" y="0.0" width="343" height="363"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lowerTableViewCellIdentifier" rowHeight="80" id="Wga-7R-D9i" customClass="lowerTableViewCell" customModule="PetPals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pendingTableViewCellIdentifier" rowHeight="80" id="Wga-7R-D9i" customClass="PendingTableViewCell" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wga-7R-D9i" id="gIe-k6-oQb">
@@ -827,8 +841,8 @@
                                                     <color key="textColor" red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-wX-VLS">
-                                                    <rect key="frame" x="285" y="5" width="24" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sent 3 Days Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-wX-VLS">
+                                                    <rect key="frame" x="254" y="5" width="87" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -843,9 +857,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="meetDate" destination="h4b-Hz-mJx" id="VcS-cW-QWL"/>
+                                            <outlet property="meetLocation" destination="Lb5-4b-DEz" id="zJt-wX-wIF"/>
                                             <outlet property="meetup" destination="h4b-Hz-mJx" id="2Wa-rA-r3e"/>
                                             <outlet property="nameLabel" destination="Y16-dQ-4b5" id="eij-sJ-61h"/>
-                                            <outlet property="userImage" destination="LSr-Cv-0Ns" id="4wW-gu-a3c"/>
+                                            <outlet property="userImage" destination="LSr-Cv-0Ns" id="rRU-qt-fJ4"/>
+                                            <outlet property="userName" destination="Y16-dQ-4b5" id="beL-8M-89N"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -854,6 +871,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JpP-tQ-olo"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="h6s-hy-zrS" id="0KM-YR-5Qr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dok-6o-Xti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
