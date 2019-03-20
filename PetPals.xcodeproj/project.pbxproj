@@ -18,6 +18,7 @@
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
+		CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */; };
 		CBF35529223E15B40025D51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBF35528223E15B40025D51F /* GoogleService-Info.plist */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
+		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		CBF35528223E15B40025D51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				0D00AB6B2239567900F467B7 /* RegisterViewController.swift */,
 				EADB9990222633F500F349CB /* ViewController.swift */,
 				EADB9992222633F500F349CB /* Main.storyboard */,
+				CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */,
 				EADB9998222633F700F349CB /* Assets.xcassets */,
 				EADB999A222633F700F349CB /* LaunchScreen.storyboard */,
 				EADB999D222633F700F349CB /* Info.plist */,
@@ -300,6 +303,7 @@
 				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,
 				0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */,
 				0D00AB6C2239567900F467B7 /* GradientBlueButton.swift in Sources */,
+				CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */,
 				0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
 				0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */,
