@@ -10,5 +10,6 @@ target 'PetPals' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'Parchment'
+  pod 'JTAppleCalendar', '~> 7.0'
 
 end
