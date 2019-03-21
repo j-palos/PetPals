@@ -1295,4 +1295,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="3hk-Cu-YeB"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="PetPalDarkBlue"/>
 </document>
