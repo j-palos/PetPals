@@ -28,7 +28,9 @@
 		CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */; };
 		CB3C4BF62242057700CA629D /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BF52242057700CA629D /* CalendarCell.swift */; };
 		CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BF7224205D400CA629D /* CalendarViewController.swift */; };
-		CBF35529223E15B40025D51F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBF35528223E15B40025D51F /* GoogleService-Info.plist */; };
+		CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB945F0522480D01001F4076 /* GoogleService-Info.plist */; };
+		CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */; };
+		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
 		EADB9994222633F500F349CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB9992222633F500F349CB /* Main.storyboard */; };
@@ -60,7 +62,9 @@
 		CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTableViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BF52242057700CA629D /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		CB3C4BF7224205D400CA629D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		CBF35528223E15B40025D51F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB945F0522480D01001F4076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDatesViewController.swift; sourceTree = "<group>"; };
+		CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificUpcomingDateViewController.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADB998E222633F500F349CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 			children = (
 				CB3C4BF52242057700CA629D /* CalendarCell.swift */,
 				CB3C4BF7224205D400CA629D /* CalendarViewController.swift */,
+				CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */,
+				CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -187,8 +193,8 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				CB945F0522480D01001F4076 /* GoogleService-Info.plist */,
 				0D00AB63223954B100F467B7 /* fonts */,
-				CBF35528223E15B40025D51F /* GoogleService-Info.plist */,
 				0D0D015C22397530000D594D /* Buttons */,
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
 				0DDF92C52243897300C58A1B /* Auth */,
@@ -264,12 +270,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
-				CBF35529223E15B40025D51F /* GoogleService-Info.plist in Resources */,
 				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
 				0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */,
 				EADB9999222633F700F349CB /* Assets.xcassets in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
 				0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */,
+				CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +290,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -295,7 +301,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89A95BAD915B1E70B587F19F /* [CP] Check Pods Manifest.lock */ = {
@@ -328,7 +334,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -349,7 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -359,10 +365,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */,
 				CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */,
 				0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */,
 				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
+				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
 				CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */,
 				CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */,
 				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,

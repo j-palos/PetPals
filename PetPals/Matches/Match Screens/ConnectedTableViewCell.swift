@@ -16,6 +16,10 @@ class ConnectedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        // Make the profile pictures circles
+        userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        userImage.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
