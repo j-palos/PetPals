@@ -12,17 +12,43 @@ import JTAppleCalendar
 class CalendarViewController: UIViewController {
     
     @IBOutlet weak var month: UILabel!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
 
     let formatter = DateFormatter()
+    
+    var eventsFromTheServer: [String:String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        DispatchQueue.global().asyncAfter(deadline: .now()) {
+            let serverObjects = self.getServerEvents()
+            for (date, event) in serverObjects {
+                let stringDate = self.formatter.string(from: date)
+                self.eventsFromTheServer[stringDate] = event
+            }
+            
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func configureCell(cell: JTAppleCell?, cellState: CellState) {
+        guard let myCustomCell = cell as? CalendarCell else { return }
+        formatter.dateFormat = "yyyy MM dd"
+        
+        handleCellEvents(cell: myCustomCell, cellState: cellState)
+    }
+    
+    func handleCellEvents(cell: CalendarCell, cellState: CellState) {
+        cell.eventDotView.isHidden = !eventsFromTheServer.contains { $0.key == formatter.string(from: cellState.date) }
     }
     
 }
@@ -44,6 +70,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
+        configureCell(cell: cell, cellState: cellState)
         cell.dateLabel.text = cellState.text
         return cell
     }
@@ -59,6 +86,18 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         month.text = formatter.string(from: date)
     }
     
+}
+
+extension CalendarViewController {
+    func getServerEvents() -> [Date:String] {
+        formatter.dateFormat = "yyyy MM dd"
+        
+        return [
+            formatter.date(from: "2019 03 02")!: "Date with Emily",
+            formatter.date(from: "2019 03 11")!: "Date with Jeffery",
+            formatter.date(from: "2019 03 20")!: "Date with Leo"
+        ]
+    }
 }
 
 
