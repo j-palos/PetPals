@@ -33,6 +33,7 @@
 		CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB945F0522480D01001F4076 /* GoogleService-Info.plist */; };
 		CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */; };
 		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
+		CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
 		EADB9994222633F500F349CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB9992222633F500F349CB /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		CB945F0522480D01001F4076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDatesViewController.swift; sourceTree = "<group>"; };
 		CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificUpcomingDateViewController.swift; sourceTree = "<group>"; };
+		CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallMatchesViewController.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADB998E222633F500F349CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		CB3C4BDD2241C72400CA629D /* Matches */ = {
 			isa = PBXGroup;
 			children = (
+				CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */,
 				CB3C4BF3224204C200CA629D /* Calendar */,
 				CB3C4BF4224204CB00CA629D /* Match Screens */,
 			);
@@ -377,6 +380,7 @@
 				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
 				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
+				CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */,
 				CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */,
 				CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */,
 				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,

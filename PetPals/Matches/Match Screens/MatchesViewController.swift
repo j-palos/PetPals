@@ -27,6 +27,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     let blueColor:UIColor = UIColor(red: 0.44, green:0.78, blue:0.78, alpha: 1)
     let grayColor:UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
     
+    // Variable to connect to Overall Matches VC
+    var parentVC: OverallMatchesViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -65,11 +68,11 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         // Destination will be Meetup Screen
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
-        
+
         // Send over information about the user selected
         destination.userName = cellUser.userName
         destination.userImage = cellUser.image
-        
+
         // Present the screen
         self.present(destination, animated: false)
     }
@@ -117,6 +120,11 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         pendingButton.setTitleColor(blueColor, for: .normal)
         connectedButton.setTitleColor(grayColor, for: .normal)
         invitesButton.setTitleColor(grayColor, for: .normal)
+    }
+    
+    // If the switch is clicked, use the Overall Matches VC to switch views
+    @IBAction func switchClicked(_ sender: Any) {
+        parentVC!.switchToCalendarVC()
     }
     
 }

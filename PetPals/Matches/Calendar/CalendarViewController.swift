@@ -22,6 +22,9 @@ class CalendarViewController: UIViewController {
     // List of the current dates
     var datesGiven: [String:String] = [:]
     
+    // Variable to connect to Overall Matches VC
+    var parentVC: OverallMatchesViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +61,11 @@ class CalendarViewController: UIViewController {
     // Function to hide or show dot depending on if event will occur
     func handleCellEvents(cell: CalendarCell, cellState: CellState) {
         cell.eventDotView.isHidden = !datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
+    }
+    
+    // Change which view is being shown in Overall Matches VC
+    @IBAction func switchClicked(_ sender: Any) {
+        parentVC!.switchToMatchesVC()
     }
     
 }

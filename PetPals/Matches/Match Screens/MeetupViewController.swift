@@ -24,4 +24,30 @@ class MeetupViewController: UIViewController {
         chosenUserName.text = userName
         chosenUserImage.image = UIImage(named: userImage)
     }
+    
+    // If the switch is clicked, use the Overall Matches Screen to switch views
+    @IBAction func switchClicked(_ sender: Any) {
+        // Destination will be Meetup Screen
+        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
+        
+        // Send over information about the user selected
+        destination.startView = "Calendar"
+        
+        // Present the screen
+        self.present(destination, animated: false)
+    }
+    
+    // When the submit button is clicked, use the Overall Matches Screen to switch views
+    @IBAction func sendClicked(_ sender: Any) {
+        // Destination will be Meetup Screen
+        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
+        
+        // Send over information about the user selected
+        destination.startView = "Matches"
+        
+        // Present the screen
+        self.present(destination, animated: false)
+    }
+    
+    
 }
