@@ -18,6 +18,8 @@
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
+		CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */; };
+		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
 		CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */; };
 		CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */; };
 		CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */; };
@@ -31,6 +33,7 @@
 		CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB945F0522480D01001F4076 /* GoogleService-Info.plist */; };
 		CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */; };
 		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
+		CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
 		EADB9994222633F500F349CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB9992222633F500F349CB /* Main.storyboard */; };
@@ -52,6 +55,8 @@
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
+		CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupViewController.swift; sourceTree = "<group>"; };
+		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		CB945F0522480D01001F4076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDatesViewController.swift; sourceTree = "<group>"; };
 		CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificUpcomingDateViewController.swift; sourceTree = "<group>"; };
+		CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallMatchesViewController.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADB998E222633F500F349CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		CB3C4BDD2241C72400CA629D /* Matches */ = {
 			isa = PBXGroup;
 			children = (
+				CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */,
 				CB3C4BF3224204C200CA629D /* Calendar */,
 				CB3C4BF4224204CB00CA629D /* Match Screens */,
 			);
@@ -168,6 +175,8 @@
 				CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */,
 				CB3C4BE62241C88600CA629D /* User.swift */,
 				CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */,
+				CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */,
+				CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */,
 			);
 			path = "Match Screens";
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
 				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
+				CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */,
 				CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */,
 				CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */,
 				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,
@@ -383,6 +393,8 @@
 				CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */,
 				0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
+				CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */,
+				CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */,
 				0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */,
 				CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */,
 				0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */,

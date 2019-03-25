@@ -9,6 +9,7 @@
 import UIKit
 
 class InvitesTableViewCell: UITableViewCell {
+    // Connect necessary fields
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var meetDate: UILabel!
@@ -16,8 +17,7 @@ class InvitesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
+ 
         // Make the profile pictures circles
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         userImage.clipsToBounds = true
@@ -25,8 +25,6 @@ class InvitesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class UpcomingDatesViewController: UIViewController {
-    
+    // Connect necessary fields
     @IBOutlet weak var firstUpcoming: UIView!
     @IBOutlet weak var secondUpcoming: UIView!
     @IBOutlet weak var thirdUpcoming: UIView!
@@ -18,6 +18,7 @@ class UpcomingDatesViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    // Depending on which embedded view, send in hard-coded data
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "firstUpcomingIdentifier" {
             if let firstVC = segue.destination as? SpecificUpcomingDateViewController{
@@ -25,7 +26,6 @@ class UpcomingDatesViewController: UIViewController {
                 firstVC.date = "March 02"
                 firstVC.time = "12 pm"
             }
-        
         } else if segue.identifier == "secondUpcomingIdentifier" {
             if let secondVC = segue.destination as? SpecificUpcomingDateViewController {
                 secondVC.name = "Jeffery"
