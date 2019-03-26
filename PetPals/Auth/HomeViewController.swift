@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let firstViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileVC")
 
-        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "MatchesVC")
+        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OverallMatchesViewController")
         let thirdViewController = storyBoard.instantiateViewController(withIdentifier: "SwipeVC")
 
     
@@ -28,10 +28,6 @@ class HomeViewController: UIViewController {
             secondViewController,
             thirdViewController
             ])
-        
-        pagingViewController.menuInteraction = .none
-    
-        
         
         
         addChild(pagingViewController)
