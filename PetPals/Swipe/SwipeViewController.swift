@@ -14,18 +14,9 @@ var count = 3
 
 var images = ["One","Two","Three"]
 
-class SwipeViewController: UIViewController, KolodaViewDelegate,KolodaViewDataSource {
+class SwipeViewController: UIViewController {
    
-    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-//        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
-        
-        return
-    }
-    
-    func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return 5
-    }
-    
+ 
 
     @IBOutlet weak var kolodaView: KolodaView!
     
@@ -50,6 +41,19 @@ class SwipeViewController: UIViewController, KolodaViewDelegate,KolodaViewDataSo
 
 }
 
-//extension SwipeViewController: KolodaViewDelegate {
-//
-//}
+extension SwipeViewController: KolodaViewDataSource {
+    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+//        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
+        
+        let cardView: CardView = CardView()
+        return cardView
+    }
+    
+    func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
+        return 5
+    }
+}
+
+extension SwipeViewController : KolodaViewDelegate {
+    
+}
