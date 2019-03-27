@@ -11,5 +11,5 @@ target 'PetPals' do
   pod 'GoogleSignIn'
   pod 'Parchment'
   pod 'JTAppleCalendar', '~> 7.0'
-
+  pod 'Koloda'
 end

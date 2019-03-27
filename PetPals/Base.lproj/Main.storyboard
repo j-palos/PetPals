@@ -51,10 +51,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-Fl-956">
-                                <rect key="frame" x="145" y="149.66666666666666" width="124" height="101"/>
+                                <rect key="frame" x="145" y="150" width="124" height="101"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PETPALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odz-yD-8Sl">
-                                <rect key="frame" x="88.666666666666686" y="270.66666666666669" width="237" height="58"/>
+                                <rect key="frame" x="89.000000000000014" y="271" width="236.33333333333337" height="57.333333333333314"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="57"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1014,6 +1014,16 @@
                                     <action selector="logOutAction:" destination="iMr-Z7-VZn" eventType="touchUpInside" id="1N5-Vl-F1q"/>
                                 </connections>
                             </button>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z3Y-Tl-SQj">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Profile" image="profile-bar" selectedImage="profile-colored" id="U3J-pT-9dy" userLabel="Profile"/>
+                                    <tabBarItem image="paw-bar" id="GXu-FY-X4y"/>
+                                    <tabBarItem title="Matches" image="calandar-bar" selectedImage="MCSwitch_Calendar" id="epT-dg-zVS"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1031,17 +1041,27 @@
         <!--SwipeVC-->
         <scene sceneID="fMZ-I8-KKj">
             <objects>
-                <viewController storyboardIdentifier="SwipeVC" title="SwipeVC" id="ftX-l8-KLE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwipeVC" title="SwipeVC" id="ftX-l8-KLE" customClass="SwipeViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3xb-ey-Uhp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="20" y="20" width="374" height="537"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
                     </view>
+                    <connections>
+                        <outlet property="kolodaView" destination="aiH-pp-vij" id="0Yg-rs-Uif"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDJ-7F-d9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2924" y="529"/>
+            <point key="canvasLocation" x="3092.753623188406" y="773.64130434782612"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="j6S-4g-PN5">
@@ -1450,7 +1470,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-wX-VLS">
-                                                    <rect key="frame" x="297" y="5" width="81" height="11"/>
+                                                    <rect key="frame" x="297.33333333333331" y="5" width="80.666666666666686" height="11"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Sent 3 Days Ago">
                                                             <attributes>
@@ -1658,14 +1678,17 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="calendar" width="30" height="30"/>
+        <image name="calandar-bar" width="25" height="25"/>
+        <image name="calendar" width="125" height="125"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="logo" width="124" height="101"/>
         <image name="oval_calendar" width="6" height="6"/>
-        <image name="paw" width="34.560001373291016" height="30"/>
-        <image name="paw-colored" width="26.159999847412109" height="30"/>
-        <image name="profile" width="24.239999771118164" height="30"/>
-        <image name="profile-colored" width="24.239999771118164" height="30"/>
+        <image name="paw" width="144" height="125"/>
+        <image name="paw-bar" width="25" height="25"/>
+        <image name="paw-colored" width="109" height="125"/>
+        <image name="profile" width="101" height="125"/>
+        <image name="profile-bar" width="20" height="25"/>
+        <image name="profile-colored" width="101" height="125"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
