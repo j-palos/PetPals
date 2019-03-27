@@ -15,6 +15,9 @@
         <array key="proxima-nova-soft-bold.otf">
             <string>ProximaNovaSoft-Bold</string>
         </array>
+        <array key="proxima-nova-soft-medium.otf">
+            <string>ProximaNovaSoft-Medium</string>
+        </array>
         <array key="proxima-nova-soft-regular.otf">
             <string>ProximaNovaSoft-Regular</string>
         </array>
@@ -1073,17 +1076,110 @@
                                 <rect key="frame" x="255" y="278" width="56" height="56"/>
                                 <state key="normal" backgroundImage="edit button"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-cq-Lsm">
+                                <rect key="frame" x="43" y="403" width="64" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PET TYPE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWE-dO-BZe">
+                                <rect key="frame" x="43" y="477" width="97" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-qF-oXl">
+                                <rect key="frame" x="106" y="625" width="202" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" name="PetPalDarkBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1S-hy-Qal">
+                                <rect key="frame" x="115" y="403" width="63" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mON-eM-q8U">
+                                <rect key="frame" x="148" y="477" width="39" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3th-GA-bKl">
+                                <rect key="frame" x="335" y="396" width="37" height="37"/>
+                                <state key="normal" backgroundImage="edit button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nli-kp-McR">
+                                <rect key="frame" x="335" y="470" width="37" height="37"/>
+                                <state key="normal" backgroundImage="edit button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMO-6T-AvW">
+                                <rect key="frame" x="335" y="535" width="37" height="37"/>
+                                <state key="normal" backgroundImage="edit button"/>
+                            </button>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ck4-Me-hxU">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Profile" image="profile-bar" id="qFj-Ib-UK6" userLabel="Profile"/>
+                                    <tabBarItem title="Swipe" image="paw-bar" id="guN-DD-p0d"/>
+                                    <tabBarItem title="Matches" image="calandar-bar" id="BFu-CT-RBR"/>
+                                </items>
+                            </tabBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BIO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-kk-GCy">
+                                <rect key="frame" x="43" y="542" width="40" height="22"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="21"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the bio for the user." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAT-Ru-drs">
+                                <rect key="frame" x="91" y="545" width="198" height="17"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Medium" family="Proxima Nova Soft" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mWE-dO-BZe" firstAttribute="top" secondItem="ycK-cq-Lsm" secondAttribute="bottom" constant="52" id="03n-u4-yaU"/>
+                            <constraint firstItem="nli-kp-McR" firstAttribute="top" secondItem="3th-GA-bKl" secondAttribute="bottom" constant="37" id="0tH-RB-1g8"/>
                             <constraint firstItem="5tL-RB-bGh" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="255" id="B9O-cv-pOm"/>
+                            <constraint firstItem="3th-GA-bKl" firstAttribute="trailing" secondItem="nli-kp-McR" secondAttribute="trailing" id="Guq-14-TLv"/>
+                            <constraint firstItem="ck4-Me-hxU" firstAttribute="top" secondItem="siG-qF-oXl" secondAttribute="bottom" constant="40" id="HWk-nW-zLN"/>
                             <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="5tL-RB-bGh" secondAttribute="bottom" constant="402" id="JAK-Ue-b3T"/>
+                            <constraint firstItem="giJ-kk-GCy" firstAttribute="firstBaseline" secondItem="fAT-Ru-drs" secondAttribute="firstBaseline" id="Khz-tR-83L"/>
+                            <constraint firstItem="mWE-dO-BZe" firstAttribute="leading" secondItem="giJ-kk-GCy" secondAttribute="leading" id="Km9-J6-fFb"/>
+                            <constraint firstItem="mON-eM-q8U" firstAttribute="centerY" secondItem="nli-kp-McR" secondAttribute="centerY" id="MeG-hW-DmS"/>
+                            <constraint firstItem="ycK-cq-Lsm" firstAttribute="top" secondItem="w7Y-Yv-ier" secondAttribute="bottom" constant="73" id="Mf6-uC-0vh"/>
                             <constraint firstItem="w7Y-Yv-ier" firstAttribute="centerX" secondItem="hU2-TZ-FZY" secondAttribute="centerX" id="My6-Tp-Bhn"/>
                             <constraint firstItem="M90-1U-aDo" firstAttribute="trailing" secondItem="5tL-RB-bGh" secondAttribute="trailing" constant="103" id="Per-x1-sTv"/>
+                            <constraint firstItem="RMO-6T-AvW" firstAttribute="top" secondItem="nli-kp-McR" secondAttribute="bottom" constant="28" id="Rqv-Jt-t1a"/>
                             <constraint firstItem="5tL-RB-bGh" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="258" id="Tre-w4-kl5"/>
+                            <constraint firstItem="3th-GA-bKl" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="376" id="Uiz-ZV-clu"/>
+                            <constraint firstItem="ck4-Me-hxU" firstAttribute="leading" secondItem="hU2-TZ-FZY" secondAttribute="leading" id="Vgp-5N-egC"/>
+                            <constraint firstItem="M90-1U-aDo" firstAttribute="trailing" secondItem="3th-GA-bKl" secondAttribute="trailing" constant="42" id="XRB-WG-To6"/>
                             <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="w7Y-Yv-ier" secondAttribute="bottom" constant="406" id="aF7-AC-RLJ"/>
+                            <constraint firstItem="mWE-dO-BZe" firstAttribute="baseline" secondItem="mON-eM-q8U" secondAttribute="baseline" id="c1C-24-M2Q"/>
+                            <constraint firstItem="ck4-Me-hxU" firstAttribute="bottom" secondItem="M90-1U-aDo" secondAttribute="bottom" id="cq9-J2-uWv"/>
+                            <constraint firstItem="3th-GA-bKl" firstAttribute="leading" secondItem="nli-kp-McR" secondAttribute="leading" id="d6y-1s-Waq"/>
+                            <constraint firstItem="ycK-cq-Lsm" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="43" id="exE-oI-6Bl"/>
+                            <constraint firstItem="RMO-6T-AvW" firstAttribute="leading" secondItem="fAT-Ru-drs" secondAttribute="trailing" constant="46" id="geC-0A-xCS"/>
+                            <constraint firstItem="siG-qF-oXl" firstAttribute="centerX" secondItem="ck4-Me-hxU" secondAttribute="centerX" id="h5j-bp-qC7"/>
+                            <constraint firstItem="nli-kp-McR" firstAttribute="trailing" secondItem="RMO-6T-AvW" secondAttribute="trailing" id="hJy-ly-cXY"/>
+                            <constraint firstItem="ycK-cq-Lsm" firstAttribute="leading" secondItem="mWE-dO-BZe" secondAttribute="leading" id="jPW-k2-iLR"/>
+                            <constraint firstItem="siG-qF-oXl" firstAttribute="centerX" secondItem="w7Y-Yv-ier" secondAttribute="centerX" id="mB8-he-mnO"/>
+                            <constraint firstItem="V1S-hy-Qal" firstAttribute="centerY" secondItem="3th-GA-bKl" secondAttribute="centerY" id="oAB-b6-iyO"/>
                             <constraint firstItem="w7Y-Yv-ier" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="62" id="ogk-X5-xx1"/>
+                            <constraint firstItem="V1S-hy-Qal" firstAttribute="leading" secondItem="ycK-cq-Lsm" secondAttribute="trailing" constant="8" symbolic="YES" id="p0I-Vv-wcw"/>
+                            <constraint firstItem="mON-eM-q8U" firstAttribute="leading" secondItem="mWE-dO-BZe" secondAttribute="trailing" constant="8" symbolic="YES" id="pcF-CF-7Ma"/>
+                            <constraint firstItem="giJ-kk-GCy" firstAttribute="centerY" secondItem="fAT-Ru-drs" secondAttribute="centerY" id="piG-Fh-r9x"/>
+                            <constraint firstItem="nli-kp-McR" firstAttribute="leading" secondItem="RMO-6T-AvW" secondAttribute="leading" id="uhL-2j-Trr"/>
+                            <constraint firstItem="fAT-Ru-drs" firstAttribute="leading" secondItem="giJ-kk-GCy" secondAttribute="trailing" constant="8" symbolic="YES" id="uvX-Jh-mgh"/>
                             <constraint firstItem="w7Y-Yv-ier" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="83" id="vna-ca-cHQ"/>
+                            <constraint firstItem="fAT-Ru-drs" firstAttribute="centerY" secondItem="RMO-6T-AvW" secondAttribute="centerY" id="wHd-81-vZJ"/>
+                            <constraint firstItem="giJ-kk-GCy" firstAttribute="top" secondItem="mWE-dO-BZe" secondAttribute="bottom" constant="43" id="yfb-Ke-Tzm"/>
+                            <constraint firstItem="ycK-cq-Lsm" firstAttribute="baseline" secondItem="V1S-hy-Qal" secondAttribute="baseline" id="yye-Le-47b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M90-1U-aDo"/>
                     </view>
@@ -1093,7 +1189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ca9-M2-7kU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201.449275362319" y="-120.65217391304348"/>
+            <point key="canvasLocation" x="5000" y="-18"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="N5w-js-gN8">
