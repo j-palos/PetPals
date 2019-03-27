@@ -19,6 +19,7 @@
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
 		855C3C75224B066F00CC14F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C74224B066D00CC14F2 /* Assets.xcassets */; };
 		855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */; };
+		855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C3C79224C325D00CC14F2 /* ProfileViewController.swift */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
 		CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */; };
 		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
@@ -61,6 +62,7 @@
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
 		855C3C74224B066D00CC14F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pet Pals Logo.png"; sourceTree = "<group>"; };
+		855C3C79224C325D00CC14F2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupViewController.swift; sourceTree = "<group>"; };
 		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		855C3C78224C323800CC14F2 /* Profile Settings */ = {
+			isa = PBXGroup;
+			children = (
+				855C3C79224C325D00CC14F2 /* ProfileViewController.swift */,
+			);
+			path = "Profile Settings";
+			sourceTree = "<group>";
+		};
 		AF4A04B549E584EC50FB78C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +230,7 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				855C3C78224C323800CC14F2 /* Profile Settings */,
 				EA05C6E22249A81D00D744D0 /* Swipe */,
 				CB945F0522480D01001F4076 /* GoogleService-Info.plist */,
 				0D00AB63223954B100F467B7 /* fonts */,
@@ -418,6 +429,7 @@
 				CB3C4BF62242057700CA629D /* CalendarCell.swift in Sources */,
 				CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */,
 				CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */,
+				855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */,
 				0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
 				CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */,

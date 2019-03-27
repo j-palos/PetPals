@@ -1058,40 +1058,38 @@
         <!--ProfileVC-->
         <scene sceneID="j6S-4g-PN5">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" title="ProfileVC" id="Iv4-wA-obe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" title="ProfileVC" id="Iv4-wA-obe" customClass="ProfileViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hU2-TZ-FZY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="alan" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-Yv-ier">
-                                <rect key="frame" x="93" y="99" width="229" height="229"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuV-n2-6Gq" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
-                                <rect key="frame" x="269" y="299" width="46" height="46"/>
-                                <state key="normal" image="edit icon"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-Yv-ier">
+                                <rect key="frame" x="83" y="82" width="248" height="248"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="leftGradientColor">
-                                        <color key="value" name="PetPalDarkBlue"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="rightGradientColor">
-                                        <color key="value" name="PetPalLightBlue"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-RB-bGh">
+                                <rect key="frame" x="255" y="278" width="56" height="56"/>
+                                <state key="normal" backgroundImage="edit button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cuV-n2-6Gq" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="269" id="4N2-yU-Urd"/>
-                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="79" id="4U5-Pf-ACe"/>
-                            <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="cuV-n2-6Gq" secondAttribute="bottom" constant="391" id="LZI-bZ-iyq"/>
-                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="93" id="YJn-wu-b3M"/>
-                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="trailing" secondItem="cuV-n2-6Gq" secondAttribute="trailing" constant="7" id="aS5-F8-8Iv"/>
-                            <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="w7Y-Yv-ier" secondAttribute="bottom" constant="408" id="eMw-vk-jsZ"/>
-                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="centerX" secondItem="hU2-TZ-FZY" secondAttribute="centerX" id="ldJ-4i-yhh"/>
-                            <constraint firstItem="cuV-n2-6Gq" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="279" id="q6I-Of-ivp"/>
+                            <constraint firstItem="5tL-RB-bGh" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="255" id="B9O-cv-pOm"/>
+                            <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="5tL-RB-bGh" secondAttribute="bottom" constant="402" id="JAK-Ue-b3T"/>
+                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="centerX" secondItem="hU2-TZ-FZY" secondAttribute="centerX" id="My6-Tp-Bhn"/>
+                            <constraint firstItem="M90-1U-aDo" firstAttribute="trailing" secondItem="5tL-RB-bGh" secondAttribute="trailing" constant="103" id="Per-x1-sTv"/>
+                            <constraint firstItem="5tL-RB-bGh" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="258" id="Tre-w4-kl5"/>
+                            <constraint firstItem="M90-1U-aDo" firstAttribute="bottom" secondItem="w7Y-Yv-ier" secondAttribute="bottom" constant="406" id="aF7-AC-RLJ"/>
+                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="top" secondItem="M90-1U-aDo" secondAttribute="top" constant="62" id="ogk-X5-xx1"/>
+                            <constraint firstItem="w7Y-Yv-ier" firstAttribute="leading" secondItem="M90-1U-aDo" secondAttribute="leading" constant="83" id="vna-ca-cHQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M90-1U-aDo"/>
                     </view>
+                    <connections>
+                        <outlet property="profilePicture" destination="w7Y-Yv-ier" id="Ra9-92-ZrR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ca9-M2-7kU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1688,11 +1686,11 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="alan" width="55" height="55"/>
+        <image name="ProfilePicture" width="949" height="949"/>
         <image name="calandar-bar" width="25" height="25"/>
         <image name="calendar" width="125" height="125"/>
         <image name="date_oval" width="8" height="8"/>
-        <image name="edit icon" width="12" height="12"/>
+        <image name="edit button" width="26" height="26"/>
         <image name="logo" width="124" height="101"/>
         <image name="oval_calendar" width="6" height="6"/>
         <image name="paw-bar" width="25" height="25"/>
