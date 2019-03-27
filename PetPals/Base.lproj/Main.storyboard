@@ -1014,6 +1014,16 @@
                                     <action selector="logOutAction:" destination="iMr-Z7-VZn" eventType="touchUpInside" id="1N5-Vl-F1q"/>
                                 </connections>
                             </button>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z3Y-Tl-SQj">
+                                <rect key="frame" x="0.0" y="687" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Profile" image="profile-bar" selectedImage="profile-colored" id="U3J-pT-9dy" userLabel="Profile"/>
+                                    <tabBarItem image="paw-bar" id="GXu-FY-X4y"/>
+                                    <tabBarItem title="Matches" image="calandar-bar" selectedImage="MCSwitch_Calendar" id="epT-dg-zVS"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1668,13 +1678,16 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
+        <image name="calandar-bar" width="25" height="25"/>
         <image name="calendar" width="125" height="125"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="logo" width="124" height="101"/>
         <image name="oval_calendar" width="6" height="6"/>
         <image name="paw" width="144" height="125"/>
+        <image name="paw-bar" width="25" height="25"/>
         <image name="paw-colored" width="109" height="125"/>
         <image name="profile" width="101" height="125"/>
+        <image name="profile-bar" width="20" height="25"/>
         <image name="profile-colored" width="101" height="125"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
