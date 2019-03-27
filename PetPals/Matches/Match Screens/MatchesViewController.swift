@@ -66,13 +66,15 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Find the associated User
         let cellUser = newMatches[indexPath.row]
         
-        // Destination will be Meetup Screen
-        let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
-
+        // Destination will be Meetup Screen, child of OverallMatchesVC
+        // Need destination to be loaded first to be able to send data
+        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
+        
         // Send over information about the user selected
-        destination.userName = cellUser.userName
-        destination.userImage = cellUser.image
-
+        destination.startView = "Meetup"
+        destination.meetupUser = cellUser.userName
+        destination.meetupImage = cellUser.image
+        
         // Present the screen
         self.present(destination, animated: false)
     }

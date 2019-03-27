@@ -17,36 +17,30 @@ class MeetupViewController: UIViewController {
     var userName = String()
     var userImage = String()
     
+    // Variable to connect to Overall Matches VC
+    var parentVC: OverallMatchesViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
         chosenUserImage.image = UIImage(named: userImage)
+        
+        // Make the profile pictures circles
+        chosenUserImage.layer.cornerRadius = chosenUserImage.frame.size.width / 2
+        chosenUserImage.clipsToBounds = true
     }
+    
     
     // If the switch is clicked, use the Overall Matches Screen to switch views
     @IBAction func switchClicked(_ sender: Any) {
-        // Destination will be Meetup Screen
-        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
-        
-        // Send over information about the user selected
-        destination.startView = "Calendar"
-        
-        // Present the screen
-        self.present(destination, animated: false)
+        parentVC?.switchToCalendarVC()
     }
     
     // When the submit button is clicked, use the Overall Matches Screen to switch views
     @IBAction func sendClicked(_ sender: Any) {
-        // Destination will be Meetup Screen
-        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
-        
-        // Send over information about the user selected
-        destination.startView = "Matches"
-        
-        // Present the screen
-        self.present(destination, animated: false)
+        parentVC?.switchToMatchesVC()
     }
     
     
