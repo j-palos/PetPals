@@ -64,6 +64,8 @@ class CardView: UIView {
         self.nameLabel.text =  "name stuff"
         let cardmage = UIImageView(image : UIImage(named: "cards_1"))
         cardmage.contentMode = .scaleAspectFit
+        cardmage.layer.cornerRadius = 25
+        cardmage.clipsToBounds = true
         addSubview(view)
         self.view = view
         addSubview(cardmage)
