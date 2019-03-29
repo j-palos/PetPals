@@ -58,17 +58,18 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-        //fix this image
-//        image = UIImage(named: "cards_2")!
-        self.distanceLabel.text = "distance stuff"
-        self.nameLabel.text =  "name stuff"
-        let cardmage = UIImageView(image : UIImage(named: "cards_1"))
-        cardmage.contentMode = .scaleAspectFit
-        cardmage.layer.cornerRadius = 70
-        cardmage.clipsToBounds = true
+        self.distanceLabel.text = "Distance"
+        self.nameLabel.text =  "Name:"
+        let cardImage = UIImageView(image : UIImage(named: "parrot.png"))
+//        cardImage.contentMode = .scaleAspectFit
+        cardImage.layer.cornerRadius = 70
+        cardImage.clipsToBounds = true
+        view.layer.zPosition = -1
+        view.layer.cornerRadius = 70
+        view.layer.borderWidth = 1
         addSubview(view)
         self.view = view
-        addSubview(cardmage)
+        addSubview(cardImage)
         
 //        self.cardImage  = cardmage
 //        self.view.addSubview(self.cardImage)

@@ -17,9 +17,9 @@
 		0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015D22397577000D594D /* ProfileViewButton.swift */; };
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
-		855C3C75224B066F00CC14F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C74224B066D00CC14F2 /* Assets.xcassets */; };
 		855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */; };
 		855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C3C79224C325D00CC14F2 /* ProfileViewController.swift */; };
+		8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
 		CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */; };
 		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
@@ -60,9 +60,9 @@
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
-		855C3C74224B066D00CC14F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pet Pals Logo.png"; sourceTree = "<group>"; };
 		855C3C79224C325D00CC14F2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 23-27-45-219.xcassets"; sourceTree = "<group>"; };
 		CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupViewController.swift; sourceTree = "<group>"; };
 		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 				EADB999A222633F700F349CB /* LaunchScreen.storyboard */,
 				EADB999D222633F700F349CB /* Info.plist */,
 				855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */,
-				855C3C74224B066D00CC14F2 /* Assets.xcassets */,
 				EADB9995222633F500F349CB /* PetPals.xcdatamodeld */,
+				8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */,
 			);
 			path = PetPals;
 			sourceTree = "<group>";
@@ -310,12 +310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
+				8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */,
 				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
 				EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */,
 				0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
 				0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */,
-				855C3C75224B066F00CC14F2 /* Assets.xcassets in Resources */,
 				855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */,
 				CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */,
 			);
