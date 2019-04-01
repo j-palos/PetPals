@@ -15,7 +15,7 @@ class CardView: UIView {
     @IBOutlet  var bioLabel: UILabel!
     @IBOutlet  var nameLabel: UILabel!
     @IBOutlet  var distanceLabel: UILabel!
-    @IBOutlet  var cardImage: UIImageView!
+    @IBOutlet  var cardImage: CardImage!
     @IBOutlet  var petTypeLabel: UILabel!
     
     //vars to set up the view
@@ -67,9 +67,12 @@ class CardView: UIView {
         view.layer.zPosition = -1
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
+        self.cardImage.clipsToBounds = true
+        
+     
         addSubview(view)
         self.view = view
-        addSubview(cardImage)
+//        addSubview(cardImage)
         
 //        self.cardImage  = cardmage
 //        self.view.addSubview(self.cardImage)
@@ -79,8 +82,10 @@ class CardView: UIView {
         
     }
     
-    func CardView(){
-            self.commonInit()
+    
+    
+    func initWithName(_ name:String){
+               self.cardImage.initWithName(name)
     }
     
     override func prepareForInterfaceBuilder() {

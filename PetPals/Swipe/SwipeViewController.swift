@@ -12,7 +12,7 @@ import Koloda
 
 var count = 3
 
-var images = ["One","Two","Three"]
+var images = ["parrot.png","charles","chris"]
 
 class SwipeViewController: UIViewController {
    
@@ -46,11 +46,12 @@ extension SwipeViewController: KolodaViewDataSource {
 //        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
         
         let cardView: CardView = CardView()
+        cardView.initWithName(images[index])
         return cardView
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return 5
+        return 3
     }
 }
 
