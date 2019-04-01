@@ -7,27 +7,89 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */; };
+		0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */; };
+		0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */; };
+		0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */; };
+		0D00AB6C2239567900F467B7 /* GradientLRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6A2239567900F467B7 /* GradientLRButton.swift */; };
+		0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6B2239567900F467B7 /* RegisterViewController.swift */; };
+		0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6E2239569D00F467B7 /* LoginViewController.swift */; };
+		0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6F2239569D00F467B7 /* HomeViewController.swift */; };
+		0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015D22397577000D594D /* ProfileViewButton.swift */; };
+		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
+		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
+		855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */; };
+		855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C3C79224C325D00CC14F2 /* ProfileViewController.swift */; };
+		8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
+		CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */; };
+		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
+		CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */; };
+		CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */; };
+		CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */; };
+		CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */; };
+		CB3C4BE72241C88600CA629D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE62241C88600CA629D /* User.swift */; };
+		CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE82241CAB700CA629D /* ConnectedTableViewCell.swift */; };
+		CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */; };
+		CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */; };
+		CB3C4BF62242057700CA629D /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BF52242057700CA629D /* CalendarCell.swift */; };
+		CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BF7224205D400CA629D /* CalendarViewController.swift */; };
+		CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB945F0522480D01001F4076 /* GoogleService-Info.plist */; };
+		CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */; };
+		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
+		CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */; };
+		EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05C6E32249A85800D744D0 /* SwipeViewController.swift */; };
+		EA9CC163225290F40034E714 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9CC162225290F40034E714 /* CardImage.swift */; };
+		EAB65741224A685600D1E29A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB65740224A685600D1E29A /* CardView.swift */; };
+		EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD1003F2249CE4B007BA4D6 /* CardView.xib */; };
 		EADB998F222633F500F349CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB998E222633F500F349CB /* AppDelegate.swift */; };
 		EADB9991222633F500F349CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADB9990222633F500F349CB /* ViewController.swift */; };
 		EADB9994222633F500F349CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB9992222633F500F349CB /* Main.storyboard */; };
 		EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EADB9995222633F500F349CB /* PetPals.xcdatamodeld */; };
-		EADB9999222633F700F349CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EADB9998222633F700F349CB /* Assets.xcassets */; };
 		EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADB999A222633F700F349CB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium.otf"; sourceTree = "<group>"; };
+		0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold.otf"; sourceTree = "<group>"; };
+		0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular.otf"; sourceTree = "<group>"; };
+		0D00AB6A2239567900F467B7 /* GradientLRButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLRButton.swift; sourceTree = "<group>"; };
+		0D00AB6B2239567900F467B7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0D00AB6E2239569D00F467B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0D00AB6F2239569D00F467B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0D0D015D22397577000D594D /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
+		0D0D015F2239758A000D594D /* SwipeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewButton.swift; sourceTree = "<group>"; };
+		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
+		855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pet Pals Logo.png"; sourceTree = "<group>"; };
+		855C3C79224C325D00CC14F2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 23-27-45-219.xcassets"; sourceTree = "<group>"; };
+		CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupViewController.swift; sourceTree = "<group>"; };
+		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
+		CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
+		CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewController.swift; sourceTree = "<group>"; };
+		CB3C4BE62241C88600CA629D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CB3C4BE82241CAB700CA629D /* ConnectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedTableViewCell.swift; sourceTree = "<group>"; };
+		CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
+		CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTableViewCell.swift; sourceTree = "<group>"; };
+		CB3C4BF52242057700CA629D /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		CB3C4BF7224205D400CA629D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		CB945F0522480D01001F4076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDatesViewController.swift; sourceTree = "<group>"; };
+		CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificUpcomingDateViewController.swift; sourceTree = "<group>"; };
+		CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallMatchesViewController.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
+		EA05C6E32249A85800D744D0 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		EA9CC162225290F40034E714 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
+		EAB65740224A685600D1E29A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EAD1003F2249CE4B007BA4D6 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		EADB998B222633F500F349CB /* PetPals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADB998E222633F500F349CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EADB9990222633F500F349CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EADB9993222633F500F349CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EADB9996222633F500F349CB /* PetPals.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PetPals.xcdatamodel; sourceTree = "<group>"; };
-		EADB9998222633F700F349CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EADB999B222633F700F349CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EADB999D222633F700F349CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,6 +106,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D00AB63223954B100F467B7 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0D00AB65223954C900F467B7 /* proxima-nova-soft-bold.otf */,
+				0D00AB64223954C900F467B7 /* proxima-nova-soft-medium.otf */,
+				0D00AB66223954C900F467B7 /* proxima-nova-soft-regular.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		0D0D015C22397530000D594D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				0D00AB6A2239567900F467B7 /* GradientLRButton.swift */,
+				0D0D015D22397577000D594D /* ProfileViewButton.swift */,
+				0D0D0161223975AF000D594D /* MatchesViewButton.swift */,
+				0D0D015F2239758A000D594D /* SwipeViewButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		0DDF92C52243897300C58A1B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0D00AB6F2239569D00F467B7 /* HomeViewController.swift */,
+				0D00AB6E2239569D00F467B7 /* LoginViewController.swift */,
+				0D00AB6B2239567900F467B7 /* RegisterViewController.swift */,
+				EADB9990222633F500F349CB /* ViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		7C3AD876FBF1DC05A7CDE266 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,12 +147,69 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		855C3C78224C323800CC14F2 /* Profile Settings */ = {
+			isa = PBXGroup;
+			children = (
+				855C3C79224C325D00CC14F2 /* ProfileViewController.swift */,
+			);
+			path = "Profile Settings";
+			sourceTree = "<group>";
+		};
 		AF4A04B549E584EC50FB78C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				52341640D240445C63413174 /* Pods_PetPals.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB3C4BDD2241C72400CA629D /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */,
+				CB3C4BF3224204C200CA629D /* Calendar */,
+				CB3C4BF4224204CB00CA629D /* Match Screens */,
+			);
+			path = Matches;
+			sourceTree = "<group>";
+		};
+		CB3C4BF3224204C200CA629D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CB3C4BF52242057700CA629D /* CalendarCell.swift */,
+				CB3C4BF7224205D400CA629D /* CalendarViewController.swift */,
+				CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */,
+				CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		CB3C4BF4224204CB00CA629D /* Match Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */,
+				CB3C4BE82241CAB700CA629D /* ConnectedTableViewCell.swift */,
+				CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */,
+				CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */,
+				CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */,
+				CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */,
+				CB3C4BE62241C88600CA629D /* User.swift */,
+				CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */,
+				CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */,
+				CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */,
+			);
+			path = "Match Screens";
+			sourceTree = "<group>";
+		};
+		EA05C6E22249A81D00D744D0 /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				EA05C6E32249A85800D744D0 /* SwipeViewController.swift */,
+				EAD1003F2249CE4B007BA4D6 /* CardView.xib */,
+				EA9CC162225290F40034E714 /* CardImage.swift */,
+				EAB65740224A685600D1E29A /* CardView.swift */,
+			);
+			path = Swipe;
 			sourceTree = "<group>";
 		};
 		EADB9982222633F500F349CB = {
@@ -82,14 +233,20 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
-				0DF08C1D222F2D340011BEEB /* GoogleService-Info.plist */,
+				855C3C78224C323800CC14F2 /* Profile Settings */,
+				EA05C6E22249A81D00D744D0 /* Swipe */,
+				CB945F0522480D01001F4076 /* GoogleService-Info.plist */,
+				0D00AB63223954B100F467B7 /* fonts */,
+				0D0D015C22397530000D594D /* Buttons */,
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
-				EADB9990222633F500F349CB /* ViewController.swift */,
+				0DDF92C52243897300C58A1B /* Auth */,
 				EADB9992222633F500F349CB /* Main.storyboard */,
-				EADB9998222633F700F349CB /* Assets.xcassets */,
+				CB3C4BDD2241C72400CA629D /* Matches */,
 				EADB999A222633F700F349CB /* LaunchScreen.storyboard */,
 				EADB999D222633F700F349CB /* Info.plist */,
+				855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */,
 				EADB9995222633F500F349CB /* PetPals.xcdatamodeld */,
+				8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */,
 			);
 			path = PetPals;
 			sourceTree = "<group>";
@@ -156,9 +313,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
-				0DF08C1E222F2D340011BEEB /* GoogleService-Info.plist in Resources */,
-				EADB9999222633F700F349CB /* Assets.xcassets in Resources */,
+				8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */,
+				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
+				EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */,
+				0D00AB67223954C900F467B7 /* proxima-nova-soft-medium.otf in Resources */,
 				EADB9994222633F500F349CB /* Main.storyboard in Resources */,
+				0D00AB69223954C900F467B7 /* proxima-nova-soft-regular.otf in Resources */,
+				855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */,
+				CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +335,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -184,7 +346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89A95BAD915B1E70B587F19F /* [CP] Check Pods Manifest.lock */ = {
@@ -217,11 +379,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
+				"${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -230,11 +396,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parchment.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetPals/Pods-PetPals-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -244,8 +414,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */,
+				EAB65741224A685600D1E29A /* CardView.swift in Sources */,
+				CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */,
+				0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */,
+				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
+				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
+				CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */,
+				CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */,
+				CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */,
+				EA9CC163225290F40034E714 /* CardImage.swift in Sources */,
+				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,
+				CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */,
+				0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */,
+				0D00AB6C2239567900F467B7 /* GradientLRButton.swift in Sources */,
+				CB3C4BE72241C88600CA629D /* User.swift in Sources */,
+				CB3C4BF62242057700CA629D /* CalendarCell.swift in Sources */,
+				CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */,
+				CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */,
+				855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */,
+				0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
+				CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */,
+				CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */,
+				0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */,
+				CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */,
+				EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */,
+				0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */,
 				EADB998F222633F500F349CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
