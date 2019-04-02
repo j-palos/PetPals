@@ -13,6 +13,7 @@ import GoogleSignIn
 
 
 let mainVCAfterAuthIdentifier = "Home"
+let createProfileVCIdenfifier = "CreateProfile"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -27,10 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        if Auth.auth().currentUser != nil {
-            let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier) as UIViewController
-            self.window?.rootViewController = viewController
+        if let user = Auth.auth().currentUser {
+            UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { (error, startVC) in
+                if error == nil {
+                    self.window?.rootViewController = startVC
+                }
+            }
         }
         return true
     }
@@ -55,21 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         guard let accessToken = user.authentication.accessToken else {return}
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
-        Auth.auth().signInAndRetrieveData(with: credentials, completion: { (user, error) in
-            if let err = error {
-                print ("failed to create with google account", err)
-                return
+        UserProfile.loginUser(withCredentials: credentials) { (error, startVC) in
+            if error == nil {
+                self.window?.rootViewController = startVC
             }
-            if let user = user {
-                print("successfuly logged into Firebase with Google", user.user.uid)
-                let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                
-                let viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier) as UIViewController
-                self.window?.rootViewController = viewController
-                self.window?.makeKeyAndVisible()
-            }
-            
-        })
+        }
         
     }
     

@@ -7,6 +7,12 @@ PODS:
     - FirebaseAnalytics (= 5.6.0)
   - Firebase/CoreOnly (5.17.0):
     - FirebaseCore (= 5.3.0)
+  - Firebase/Database (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.1.0)
+  - Firebase/Storage (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (= 3.1.0)
   - FirebaseAnalytics (5.6.0):
     - FirebaseCore (~> 5.3)
     - FirebaseInstanceID (~> 3.5)
@@ -24,10 +30,20 @@ PODS:
   - FirebaseAuthInterop (1.0.0)
   - FirebaseCore (5.3.0):
     - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDatabase (5.1.0):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.2)
+    - leveldb-library (~> 1.18)
   - FirebaseInstanceID (3.5.0):
     - FirebaseCore (~> 5.3)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseStorage (3.1.0):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.2)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GeoFire (3.0.0):
+    - Firebase/Database (~> 5.0)
   - GoogleAppMeasurement (5.6.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -68,6 +84,7 @@ PODS:
   - JTAppleCalendar (7.1.7)
   - Koloda (4.6):
     - pop (~> 1.0)
+  - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -75,14 +92,19 @@ PODS:
   - nanopb/encode (0.3.901)
   - Parchment (1.6.0)
   - pop (1.0.12)
+  - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
+  - Firebase/Storage
+  - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
   - GoogleSignIn
   - JTAppleCalendar (~> 7.0)
   - Koloda
   - Parchment
+  - SwiftOverlays (~> 5.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -91,7 +113,9 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseDatabase
     - FirebaseInstanceID
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleSignIn
     - GoogleToolboxForMac
@@ -99,9 +123,20 @@ SPEC REPOS:
     - GTMSessionFetcher
     - JTAppleCalendar
     - Koloda
+    - leveldb-library
     - nanopb
     - Parchment
     - pop
+    - SwiftOverlays
+
+EXTERNAL SOURCES:
+  GeoFire:
+    :git: https://github.com/firebase/geofire-objc.git
+
+CHECKOUT OPTIONS:
+  GeoFire:
+    :commit: 95a0bf39b1bcc87685dc7aba3caf4e23d9600c30
+    :git: https://github.com/firebase/geofire-objc.git
 
 SPEC CHECKSUMS:
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
@@ -109,7 +144,10 @@ SPEC CHECKSUMS:
   FirebaseAuth: 0f61e1329237da5682c49c9abd135e8f9d07a151
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
+  FirebaseDatabase: 23acb0c53cd4d4070a427b60100b2e4aaa97c45d
   FirebaseInstanceID: 4522aad88f69297622062c0e9ffccdee3dd9b151
+  FirebaseStorage: 29075f874c2b3cf61e5221a62c4ceefc809e5412
+  GeoFire: e3ae6f4be3f2466c3467ef6c1c203db3af935c59
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
@@ -117,10 +155,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   Koloda: bcf5acded25fc49020d1447ed8ddd87e14d01e7e
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: d3df7eb0453c4dbf6f777882fa1f22ed8fbc5e22
+PODFILE CHECKSUM: 4d3701cbddb480e0bd70f320451ace37e5ee3357
 
 COCOAPODS: 1.6.1

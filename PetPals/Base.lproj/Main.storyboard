@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mrX-jd-Dwv">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,11 +27,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1S-Iq-Fi6" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
-                                <rect key="frame" x="132" y="479" width="150" height="50"/>
+                                <rect key="frame" x="132" y="513.66666666666663" width="150" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="VIC-53-UnN"/>
                                     <constraint firstAttribute="height" constant="50" id="fGg-Sd-yHQ"/>
@@ -53,16 +53,16 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-Fl-956">
-                                <rect key="frame" x="145" y="115.33333333333331" width="124" height="101"/>
+                                <rect key="frame" x="145" y="150" width="124" height="101"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PETPALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odz-yD-8Sl">
-                                <rect key="frame" x="89.000000000000014" y="236.33333333333334" width="236.33333333333337" height="57.333333333333343"/>
+                                <rect key="frame" x="89.000000000000014" y="271" width="236.33333333333337" height="57.333333333333314"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="57"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-OK-Egw" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
-                                <rect key="frame" x="132" y="549" width="150" height="50"/>
+                                <rect key="frame" x="132" y="583.66666666666663" width="150" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jng-wa-m7m"/>
                                     <constraint firstAttribute="width" constant="150" id="n7E-iW-5gx"/>
@@ -106,7 +106,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ezL-re-mvL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mrX-jd-Dwv" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EntryView" automaticallyAdjustsScrollViewInsets="NO" id="mrX-jd-Dwv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aQh-g2-LY8">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -126,11 +126,11 @@
             <objects>
                 <viewController id="c2q-ZJ-f56" customClass="LoginViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yGD-5l-fqH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-Lh-s0h">
-                                <rect key="frame" x="48" y="391.66666666666669" width="318" height="172.33333333333331"/>
+                                <rect key="frame" x="48" y="426.00000000000006" width="318" height="172.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL9-wT-oKg" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="84" y="20" width="150" height="50"/>
@@ -174,10 +174,10 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uAz-uV-HYp">
-                                <rect key="frame" x="125.66666666666669" y="91.333333333333314" width="163" height="101"/>
+                                <rect key="frame" x="125.66666666666669" y="126" width="163" height="101"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUT-Sc-fzm">
-                                <rect key="frame" x="47" y="192.33333333333331" width="320" height="189.33333333333331"/>
+                                <rect key="frame" x="47" y="227" width="320" height="189"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc8-En-Yoz">
                                         <rect key="frame" x="20" y="20" width="80" height="17"/>
@@ -186,13 +186,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKW-Go-OkZ">
-                                        <rect key="frame" x="20" y="116.66666666666666" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="116.33333333333331" width="280" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wft-Rm-b5q">
-                                        <rect key="frame" x="20" y="86.999999999999972" width="111" height="17"/>
+                                        <rect key="frame" x="20" y="87" width="111" height="17"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1000,7 +1000,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-Yv-ier">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-Yv-ier" customClass="ProfileImageView" customModule="PetPals" customModuleProvider="target">
                                 <rect key="frame" x="83" y="78" width="248" height="248"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -1136,7 +1136,7 @@
         <!--Settings-->
         <scene sceneID="kOs-nK-B6f">
             <objects>
-                <tableViewController id="Pxn-1G-Pe6" sceneMemberID="viewController">
+                <tableViewController id="Pxn-1G-Pe6" customClass="SettingsTableViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4jj-v5-SDh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1369,7 +1369,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Logout"/>
                                                     <connections>
-                                                        <segue destination="BYZ-38-t0r" kind="show" id="HVG-qZ-BV8"/>
+                                                        <action selector="logoutButtonPressed:" destination="Pxn-1G-Pe6" eventType="touchUpInside" id="DAq-I4-AZg"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1393,7 +1393,7 @@
                                                         <color key="titleColor" red="1" green="0.0041282053139999999" blue="0.094389966189999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="BYZ-38-t0r" kind="show" id="ePU-fe-7V4"/>
+                                                        <action selector="deleteAccountButtonPressed:" destination="Pxn-1G-Pe6" eventType="touchUpInside" id="fhc-XU-aT4"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1599,14 +1599,14 @@
             <objects>
                 <viewController id="YUS-l8-tOV" customClass="RegisterViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lo5-cS-Tev">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3M-Z1-9Mh">
-                                <rect key="frame" x="48" y="201.33333333333334" width="318" height="264.33333333333326"/>
+                                <rect key="frame" x="48" y="235.66666666666666" width="318" height="264.66666666666674"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nq8-ey-JIm">
-                                        <rect key="frame" x="20" y="115.99999999999997" width="279" height="30"/>
+                                        <rect key="frame" x="20" y="116.00000000000003" width="279" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -1618,25 +1618,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOG-zt-XFD">
-                                        <rect key="frame" x="20" y="49" width="279" height="30"/>
+                                        <rect key="frame" x="20" y="49.000000000000028" width="279" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-8g-pkr">
-                                        <rect key="frame" x="20" y="182.99999999999997" width="279" height="30"/>
+                                        <rect key="frame" x="20" y="183.00000000000003" width="279" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkI-1Q-5dC">
-                                        <rect key="frame" x="20" y="153.99999999999997" width="174" height="17"/>
+                                        <rect key="frame" x="20" y="154.00000000000003" width="174" height="17"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeb-DN-mbn">
-                                        <rect key="frame" x="20" y="86.999999999999972" width="111" height="17"/>
+                                        <rect key="frame" x="20" y="87.000000000000028" width="111" height="17"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1663,13 +1663,13 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-Lb-76r">
-                                <rect key="frame" x="118" y="100.33333333333331" width="163" height="101"/>
+                                <rect key="frame" x="118" y="134.66666666666666" width="163" height="101"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ur7-6k-y0B">
-                                <rect key="frame" x="48" y="475.66666666666674" width="319" height="162"/>
+                                <rect key="frame" x="48" y="510.33333333333331" width="319" height="161.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVG-nq-PVl" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
-                                        <rect key="frame" x="84.666666666666657" y="20" width="150" height="50"/>
+                                        <rect key="frame" x="84.666666666666657" y="20.000000000000057" width="150" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="5Za-Pf-9h4"/>
                                             <constraint firstAttribute="height" constant="50" id="yBL-tV-ETl"/>
@@ -2113,7 +2113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpi-Lp-hhz">
-                                <rect key="frame" x="259" y="13.666666666666664" width="36" height="17"/>
+                                <rect key="frame" x="219" y="13.666666666666664" width="36" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Date">
                                         <attributes>
@@ -2124,7 +2124,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVB-hu-fUR">
-                                <rect key="frame" x="313" y="13.666666666666664" width="37" height="17"/>
+                                <rect key="frame" x="273" y="13.666666666666664" width="37" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Time">
                                         <attributes>
@@ -2146,7 +2146,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-Ud-gTI">
-                                <rect key="frame" x="302" y="20" width="5" height="5"/>
+                                <rect key="frame" x="262" y="20" width="5" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="Tr7-de-NFc"/>
                                     <constraint firstAttribute="width" constant="5" id="kOg-Ww-tX9"/>
@@ -2196,6 +2196,100 @@
             </objects>
             <point key="canvasLocation" x="4113" y="1007"/>
         </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="egm-WF-7G5">
+            <objects>
+                <viewController storyboardIdentifier="CreateProfile" id="Puh-vC-kUz" customClass="CreateProfileViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Ed-xD-RvY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B0s-VT-lJp" customClass="ProfileImageView" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="141" y="89" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPV-hO-cH5">
+                                <rect key="frame" x="172" y="243" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="given-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ec2-LF-exj">
+                                <rect key="frame" x="171" y="298" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="family-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN1-zo-gRN">
+                                <rect key="frame" x="170" y="355" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Your Bio Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-eJ-koq">
+                                <rect key="frame" x="22" y="403" width="370" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.8948879851931506" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="PetPalDarkBlue"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aql-cv-76U">
+                                <rect key="frame" x="34" y="248" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4W-gF-07h">
+                                <rect key="frame" x="34" y="303" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pet Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-qI-wHL">
+                                <rect key="frame" x="34" y="360" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5s-fI-Wjk" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="182" y="556" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="creatProfileClicked:" destination="Puh-vC-kUz" eventType="touchUpInside" id="m3a-kK-O8Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vt-wn-YAY">
+                                <rect key="frame" x="238" y="186" width="31" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="buttonOnClick:" destination="Puh-vC-kUz" eventType="touchUpInside" id="Hri-8O-bIT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="PlY-Z8-w1W"/>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextField" destination="cLB-eJ-koq" id="8G9-Ex-Q1O"/>
+                        <outlet property="firstNameTextField" destination="aPV-hO-cH5" id="zCa-B5-xp1"/>
+                        <outlet property="lastNameTextField" destination="ec2-LF-exj" id="DHz-gj-uy3"/>
+                        <outlet property="petTypeTextField" destination="gN1-zo-gRN" id="4GB-4K-2zG"/>
+                        <outlet property="profileImage" destination="B0s-VT-lJp" id="l4H-dV-8Zr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jxv-5N-Avq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2179.7101449275365" y="244.56521739130437"/>
+        </scene>
     </scenes>
     <resources>
         <image name="MCSwitch" width="122" height="33"/>
@@ -2204,16 +2298,15 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="ProfilePicture" width="949" height="949"/>
         <image name="btn_like_normal" width="32" height="32"/>
         <image name="btn_skip_normal" width="32" height="32"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="edit button" width="26" height="26"/>
         <image name="logo" width="124" height="101"/>
         <image name="oval_calendar" width="6" height="6"/>
-        <image name="paw-bar" width="25" height="25"/>
-        <image name="profile-bar" width="20" height="25"/>
+        <image name="paw-bar" width="25.333333969116211" height="25.333333969116211"/>
+        <image name="profile-bar" width="20.333333969116211" height="25.333333969116211"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2227,7 +2320,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="eLf-fQ-dqk"/>
         <segue reference="7ol-4B-ah4"/>
-        <segue reference="HVG-qZ-BV8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
 </document>

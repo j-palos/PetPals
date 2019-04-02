@@ -14,9 +14,14 @@
 		0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6B2239567900F467B7 /* RegisterViewController.swift */; };
 		0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6E2239569D00F467B7 /* LoginViewController.swift */; };
 		0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6F2239569D00F467B7 /* HomeViewController.swift */; };
+		0D0213402253299900E3C14F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D02133F2253299900E3C14F /* SettingsTableViewController.swift */; };
 		0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015D22397577000D594D /* ProfileViewButton.swift */; };
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
+		0D5B9E8F2252E912007D0F2D /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B9E8E2252E912007D0F2D /* CreateProfileViewController.swift */; };
+		0D5B9E912252E97B007D0F2D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B9E902252E97B007D0F2D /* ProfileImageView.swift */; };
+		0D5B9E932252E9B7007D0F2D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B9E922252E9B7007D0F2D /* UserProfile.swift */; };
+		0D5B9E952252EA4A007D0F2D /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B9E942252EA4A007D0F2D /* AppConstants.swift */; };
 		855C3C77224C2BB000CC14F2 /* Pet Pals Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */; };
 		855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C3C79224C325D00CC14F2 /* ProfileViewController.swift */; };
 		8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */; };
@@ -56,9 +61,14 @@
 		0D00AB6B2239567900F467B7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0D00AB6E2239569D00F467B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0D00AB6F2239569D00F467B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0D02133F2253299900E3C14F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0D0D015D22397577000D594D /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
 		0D0D015F2239758A000D594D /* SwipeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewButton.swift; sourceTree = "<group>"; };
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
+		0D5B9E8E2252E912007D0F2D /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		0D5B9E902252E97B007D0F2D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		0D5B9E922252E9B7007D0F2D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		0D5B9E942252EA4A007D0F2D /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		52341640D240445C63413174 /* Pods_PetPals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetPals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C99C09CB3416AF2E83ECD8 /* Pods-PetPals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.release.xcconfig"; sourceTree = "<group>"; };
 		855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pet Pals Logo.png"; sourceTree = "<group>"; };
@@ -127,6 +137,16 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		0D5B9E8D2252E8F7007D0F2D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0D5B9E8E2252E912007D0F2D /* CreateProfileViewController.swift */,
+				0D5B9E902252E97B007D0F2D /* ProfileImageView.swift */,
+				0D5B9E922252E9B7007D0F2D /* UserProfile.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		0DDF92C52243897300C58A1B /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				855C3C79224C325D00CC14F2 /* ProfileViewController.swift */,
+				0D02133F2253299900E3C14F /* SettingsTableViewController.swift */,
 			);
 			path = "Profile Settings";
 			sourceTree = "<group>";
@@ -233,6 +254,7 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				0D5B9E8D2252E8F7007D0F2D /* Profile */,
 				855C3C78224C323800CC14F2 /* Profile Settings */,
 				EA05C6E22249A81D00D744D0 /* Swipe */,
 				CB945F0522480D01001F4076 /* GoogleService-Info.plist */,
@@ -247,6 +269,7 @@
 				855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */,
 				EADB9995222633F500F349CB /* PetPals.xcdatamodeld */,
 				8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */,
+				0D5B9E942252EA4A007D0F2D /* AppConstants.swift */,
 			);
 			path = PetPals;
 			sourceTree = "<group>";
@@ -386,6 +409,8 @@
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftOverlays/SwiftOverlays.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
@@ -399,6 +424,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parchment.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverlays.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
@@ -439,9 +466,14 @@
 				CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */,
 				CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */,
 				0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */,
+				0D5B9E952252EA4A007D0F2D /* AppConstants.swift in Sources */,
 				CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */,
+				0D5B9E912252E97B007D0F2D /* ProfileImageView.swift in Sources */,
 				EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */,
+				0D0213402253299900E3C14F /* SettingsTableViewController.swift in Sources */,
+				0D5B9E932252E9B7007D0F2D /* UserProfile.swift in Sources */,
 				0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */,
+				0D5B9E8F2252E912007D0F2D /* CreateProfileViewController.swift in Sources */,
 				EADB998F222633F500F349CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,7 +622,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W97U56LA2S;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PetPals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -609,7 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W97U56LA2S;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PetPals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
