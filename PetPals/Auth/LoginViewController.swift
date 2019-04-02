@@ -35,18 +35,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil{
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
-                self.present(newViewController, animated: true, completion: nil)
+        UserProfile.loginUser(withEmail: email, password: password) { (error, nextVC) in
+            
+            if error == nil {
+                self.present(nextVC!, animated: true, completion: nil)
             }
             else {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+                self.alertError(message: "Failed to login...")
             }
         }
         

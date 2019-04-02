@@ -42,14 +42,14 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password){ (user, error) in
-            if error == nil {
+        UserProfile.registerUser(email: email, password: password) { (success) in
+            if success {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: createProfileVCIdenfifier)
                 self.present(newViewController, animated: true, completion: nil)
             }
-            else{
-                self.alertError(message: error?.localizedDescription ?? "Error Creating Account")
+            else {
+                self.alertError(message: "Error Creating Account")
             }
         }
         
