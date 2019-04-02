@@ -9,7 +9,10 @@ target 'PetPals' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'Parchment'
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'Koloda'
+  pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 end
