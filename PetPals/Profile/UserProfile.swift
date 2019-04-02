@@ -135,10 +135,9 @@ class UserProfile: NSObject {
             try Auth.auth().signOut()
             
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "EntryView") as! ViewController
-            let navigationController = UINavigationController(rootViewController: newViewController)
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
-            appdelegate.window!.rootViewController = navigationController
+            appdelegate.window!.rootViewController = storyBoard.instantiateInitialViewController()
+            
             completion(nil)
         } catch let signOutError as NSError {
             completion(signOutError)
