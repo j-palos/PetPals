@@ -53,10 +53,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-Fl-956">
-                                <rect key="frame" x="145" y="115.33333333333331" width="124" height="101"/>
+                                <rect key="frame" x="145" y="110.66666666666669" width="124" height="101"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PETPALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odz-yD-8Sl">
-                                <rect key="frame" x="89.000000000000014" y="236.33333333333334" width="236.33333333333337" height="57.333333333333343"/>
+                                <rect key="frame" x="85.666666666666686" y="231.66666666666666" width="243" height="66.666666666666657"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="57"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2113,7 +2113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpi-Lp-hhz">
-                                <rect key="frame" x="259" y="13.666666666666664" width="36" height="17"/>
+                                <rect key="frame" x="219" y="13.666666666666664" width="36" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Date">
                                         <attributes>
@@ -2124,7 +2124,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVB-hu-fUR">
-                                <rect key="frame" x="313" y="13.666666666666664" width="37" height="17"/>
+                                <rect key="frame" x="273" y="13.666666666666664" width="37" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Time">
                                         <attributes>
@@ -2146,7 +2146,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-Ud-gTI">
-                                <rect key="frame" x="302" y="20" width="5" height="5"/>
+                                <rect key="frame" x="262" y="20" width="5" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="Tr7-de-NFc"/>
                                     <constraint firstAttribute="width" constant="5" id="kOg-Ww-tX9"/>
@@ -2204,16 +2204,16 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="ProfilePicture" width="949" height="949"/>
+        <image name="ProfilePicture" width="2848" height="2848"/>
         <image name="btn_like_normal" width="32" height="32"/>
         <image name="btn_skip_normal" width="32" height="32"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="edit button" width="26" height="26"/>
         <image name="logo" width="124" height="101"/>
         <image name="oval_calendar" width="6" height="6"/>
-        <image name="paw-bar" width="25" height="25"/>
-        <image name="profile-bar" width="20" height="25"/>
+        <image name="paw-bar" width="25.333333969116211" height="25.333333969116211"/>
+        <image name="profile-bar" width="20.333333969116211" height="25.333333969116211"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
