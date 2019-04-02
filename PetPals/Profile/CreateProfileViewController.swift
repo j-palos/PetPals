@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import GeoFire
 import CoreLocation
+import SwiftOverlays
 
 class CreateProfileViewController: UIViewController {
     
@@ -92,33 +93,58 @@ class CreateProfileViewController: UIViewController {
     //user is done and wants to create the profile
     @IBAction func creatProfileClicked(_ sender: UIButton) {
         //ensure all input valid
-        if let bio = bioTextField.text,
-            let image = profileImage.image,
-            let petType = petTypeTextField.text,
-            let last = lastNameTextField.text,
-            let first = firstNameTextField.text {
+        guard let image = profileImage.image else {
+            alertError(message: "Your profile picture is required")
+            return
+        }
+        
+        guard let first = firstNameTextField.text, first.count > 0 else {
+            alertError(message: "Your first name is required")
+            return
+        }
+        
+        guard let last = lastNameTextField.text, last.count > 0 else {
+            alertError(message: "Your last name is required")
+            return
+        }
+        
+        guard let bio = bioTextField.text, bio.count > 0 else {
+            alertError(message: "Your bio is required")
+            return
+        }
+        
+        guard let petType = petTypeTextField.text else {
+            alertError(message: "Your pet type is required")
+            return
+        }
+        
+        //ensure user logged in
+        guard let user = Auth.auth().currentUser else {return}
+        SwiftOverlays.showTextOverlay(self.view, text: "Creating profile...")
+        
+        //get the location data for user
+        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
+        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
+        
+        //create their profile
+        UserProfile.createProfile(forUserWithId: user.uid, withImage: image, withBio: bio, withFirstName: first, withLastName: last, withPet: petType) { (success) in
+            DispatchQueue.main.async {
+                SwiftOverlays.removeAllBlockingOverlays()
+            }
             
-            //ensure user logged in
-            guard let user = Auth.auth().currentUser else {return}
-            
-            //get the location data for user
-            let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
-            let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
-            
-            
-            //create their profile
-            UserProfile.createProfile(forUserWithId: user.uid, withImage: image, withBio: bio, withFirstName: first, withLastName: last, withPet: petType) { (success) in
+            if success {
+                //on success update firebase location info
+                let location:CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
+                self.geoFire?.setLocation(location, forKey:user.uid)
                 
-                if success {
-                    //on success update firebase location info
-                    let location:CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
-                    self.geoFire?.setLocation(location, forKey:user.uid)
-                    
-                    //go to main app 
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
-                    self.present(newViewController, animated: true, completion: nil)
-                }
+                //go to main app
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
+                self.present(newViewController, animated: true, completion: nil)
+            }
+            else {
+                //error creating profile
+                self.alertError(message: "Failed To create profile...")
             }
         }
     }
@@ -167,6 +193,14 @@ class CreateProfileViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    private func alertError(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
