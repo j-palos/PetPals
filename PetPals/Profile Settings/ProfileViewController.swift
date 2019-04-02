@@ -10,13 +10,17 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profilePicture: ProfileImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.profilePicture.layer.zPosition = -1
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.profilePicture.clipsToBounds = true
+        let usrDefaults: UserDefaults = .standard
+        if let url = usrDefaults.url(forKey: "profile_image") {
+            profilePicture.load(fromURL: url)
+        }
 
         // Do any additional setup after loading the view.
     }

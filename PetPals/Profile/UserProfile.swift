@@ -66,6 +66,8 @@ class UserProfile: NSObject {
                         
                         if err == nil {
                             completion(true)
+                            let usrDefaults:UserDefaults = UserDefaults.standard
+                            usrDefaults.set(URL(string:path), forKey: "profile_image")
                         }
                     })
                 }
@@ -85,6 +87,12 @@ class UserProfile: NSObject {
                 viewController = storyboard.instantiateViewController(withIdentifier: createProfileVCIdenfifier)
             }
             else {
+                if let data = snapshot.value as? [String: Any] {
+                    let usrDefaults: UserDefaults = .standard
+                    let url = data["profile_pic_url"] as! String
+                    usrDefaults.set(URL(string: url), forKey: "profile_image")
+                    
+                }
                 viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
             }
             
@@ -122,12 +130,18 @@ class UserProfile: NSObject {
         })
     }
     
-    class func logOutUser(completion: @escaping (Bool) -> Swift.Void) {
+    class func logOutUser(completion: @escaping (NSError?) -> Swift.Void) {
         do {
             try Auth.auth().signOut()
-            completion(true)
-        } catch _ {
-            completion(false)
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "EntryView") as! ViewController
+            let navigationController = UINavigationController(rootViewController: newViewController)
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.window!.rootViewController = navigationController
+            completion(nil)
+        } catch let signOutError as NSError {
+            completion(signOutError)
         }
     }
     

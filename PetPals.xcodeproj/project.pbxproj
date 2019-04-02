@@ -14,6 +14,7 @@
 		0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6B2239567900F467B7 /* RegisterViewController.swift */; };
 		0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6E2239569D00F467B7 /* LoginViewController.swift */; };
 		0D00AB712239569D00F467B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00AB6F2239569D00F467B7 /* HomeViewController.swift */; };
+		0D0213402253299900E3C14F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D02133F2253299900E3C14F /* SettingsTableViewController.swift */; };
 		0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015D22397577000D594D /* ProfileViewButton.swift */; };
 		0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D015F2239758A000D594D /* SwipeViewButton.swift */; };
 		0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D0161223975AF000D594D /* MatchesViewButton.swift */; };
@@ -60,6 +61,7 @@
 		0D00AB6B2239567900F467B7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0D00AB6E2239569D00F467B7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0D00AB6F2239569D00F467B7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0D02133F2253299900E3C14F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0D0D015D22397577000D594D /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
 		0D0D015F2239758A000D594D /* SwipeViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewButton.swift; sourceTree = "<group>"; };
 		0D0D0161223975AF000D594D /* MatchesViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewButton.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				855C3C79224C325D00CC14F2 /* ProfileViewController.swift */,
+				0D02133F2253299900E3C14F /* SettingsTableViewController.swift */,
 			);
 			path = "Profile Settings";
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */,
 				0D5B9E912252E97B007D0F2D /* ProfileImageView.swift in Sources */,
 				EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */,
+				0D0213402253299900E3C14F /* SettingsTableViewController.swift in Sources */,
 				0D5B9E932252E9B7007D0F2D /* UserProfile.swift in Sources */,
 				0D0D0162223975AF000D594D /* MatchesViewButton.swift in Sources */,
 				0D5B9E8F2252E912007D0F2D /* CreateProfileViewController.swift in Sources */,
