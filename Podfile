@@ -15,4 +15,5 @@ target 'PetPals' do
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'Koloda'
   pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
+  pod 'SwiftOverlays', '~> 5.0.1'
 end
