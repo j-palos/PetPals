@@ -113,7 +113,7 @@ class CreateProfileViewController: UIViewController {
             return
         }
         
-        guard let petType = petTypeTextField.text else {
+        guard let petType = petTypeTextField.text, petType.count > 0 else {
             alertError(message: "Your pet type is required")
             return
         }
