@@ -21,7 +21,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" title="ProfileVC" id="Iv4-wA-obe" customClass="ProfileViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hU2-TZ-FZY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-Yv-ier" customClass="ProfileImageView" customModule="PetPals" customModuleProvider="target">
@@ -155,7 +155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wp-5B-AZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6323" y="760"/>
+            <point key="canvasLocation" x="6599" y="832"/>
         </scene>
         <!--Settings-->
         <scene sceneID="kOs-nK-B6f">
@@ -616,7 +616,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lR6-rS-aCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7078" y="-465"/>
+            <point key="canvasLocation" x="7055" y="-27"/>
         </scene>
     </scenes>
     <resources>
