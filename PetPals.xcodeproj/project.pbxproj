@@ -44,6 +44,7 @@
 		CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */; };
 		EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05C6E32249A85800D744D0 /* SwipeViewController.swift */; };
 		EA9535512254613D00958051 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9535502254613D00958051 /* Initial.storyboard */; };
+		EA953553225461D400958051 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA953552225461D400958051 /* Profile.storyboard */; };
 		EA9CC163225290F40034E714 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9CC162225290F40034E714 /* CardImage.swift */; };
 		EAB65741224A685600D1E29A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB65740224A685600D1E29A /* CardView.swift */; };
 		EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD1003F2249CE4B007BA4D6 /* CardView.xib */; };
@@ -94,6 +95,7 @@
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EA05C6E32249A85800D744D0 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		EA9535502254613D00958051 /* Initial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
+		EA953552225461D400958051 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		EA9CC162225290F40034E714 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		EAB65740224A685600D1E29A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		EAD1003F2249CE4B007BA4D6 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		EADB998D222633F500F349CB /* PetPals */ = {
 			isa = PBXGroup;
 			children = (
+				EA953552225461D400958051 /* Profile.storyboard */,
 				EA9535502254613D00958051 /* Initial.storyboard */,
 				0D5B9E8D2252E8F7007D0F2D /* Profile */,
 				855C3C78224C323800CC14F2 /* Profile Settings */,
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADB999C222633F700F349CB /* LaunchScreen.storyboard in Resources */,
+				EA953553225461D400958051 /* Profile.storyboard in Resources */,
 				8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */,
 				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
 				EA9535512254613D00958051 /* Initial.storyboard in Resources */,
