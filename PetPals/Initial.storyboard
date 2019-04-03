@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mrX-jd-Dwv">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proxima-nova-soft-bold.otf">
+            <string>ProximaNovaSoft-Bold</string>
+        </array>
+        <array key="proxima-nova-soft-regular.otf">
+            <string>ProximaNovaSoft-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1S-Iq-Fi6" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="132" y="513.66666666666663" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="VIC-53-UnN"/>
+                                    <constraint firstAttribute="height" constant="50" id="fGg-Sd-yHQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="19"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="leftGradientColor">
+                                        <color key="value" name="PetPalDarkBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rightGradientColor">
+                                        <color key="value" name="PetPalLightBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="c2q-ZJ-f56" kind="show" id="I09-gm-Lkb"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-Fl-956">
+                                <rect key="frame" x="145" y="145.33333333333334" width="124" height="101"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PETPALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odz-yD-8Sl">
+                                <rect key="frame" x="85.666666666666686" y="266.33333333333331" width="243" height="66.666666666666686"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-OK-Egw" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="132" y="583.66666666666663" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jng-wa-m7m"/>
+                                    <constraint firstAttribute="width" constant="150" id="n7E-iW-5gx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="19"/>
+                                <state key="normal" title="SIGN UP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="leftGradientColor">
+                                        <color key="value" name="PetPalDarkBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rightGradientColor">
+                                        <color key="value" name="PetPalLightBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="YUS-l8-tOV" kind="show" id="nXS-xa-ARQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z1S-Iq-Fi6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="170.5" id="5vf-CB-x8n"/>
+                            <constraint firstItem="5Pu-Fl-956" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QNm-HD-UlU"/>
+                            <constraint firstItem="GaY-OK-Egw" firstAttribute="top" secondItem="Z1S-Iq-Fi6" secondAttribute="bottom" constant="20" id="Y6E-6J-auR"/>
+                            <constraint firstItem="Odz-yD-8Sl" firstAttribute="top" secondItem="5Pu-Fl-956" secondAttribute="bottom" constant="20" id="eqs-Be-iaD"/>
+                            <constraint firstItem="GaY-OK-Egw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eyv-Pk-x4S"/>
+                            <constraint firstItem="Z1S-Iq-Fi6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pPW-iM-CFY"/>
+                            <constraint firstItem="Odz-yD-8Sl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-68.5" id="pc9-wa-J9R"/>
+                            <constraint firstItem="Odz-yD-8Sl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yKw-el-ih3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cay-rK-bHx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="136.28185907046478"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ezL-re-mvL">
+            <objects>
+                <navigationController storyboardIdentifier="EntryView" automaticallyAdjustsScrollViewInsets="NO" id="mrX-jd-Dwv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aQh-g2-LY8">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="V0r-0K-24e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vk2-t1-CzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-290.39999999999998" y="137.18140929535232"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="K3R-V9-kIp">
+            <objects>
+                <viewController id="c2q-ZJ-f56" customClass="LoginViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yGD-5l-fqH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-Lh-s0h">
+                                <rect key="frame" x="48" y="426.00000000000006" width="318" height="172.66666666666669"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL9-wT-oKg" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                        <rect key="frame" x="84" y="20" width="150" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="YX6-fU-icD"/>
+                                            <constraint firstAttribute="height" constant="50" id="qeh-Sr-tLy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="19"/>
+                                        <state key="normal" title="LOGIN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="leftGradientColor">
+                                                <color key="value" name="PetPalDarkBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="rightGradientColor">
+                                                <color key="value" name="PetPalLightBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginAction:" destination="c2q-ZJ-f56" eventType="touchUpInside" id="bZe-fN-FuI"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTp-Vd-f2U" customClass="GIDSignInButton">
+                                        <rect key="frame" x="20" y="88" width="278" height="44"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="googleLogin:" destination="c2q-ZJ-f56" eventType="valueChanged" id="mVu-dl-K7o"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cTp-Vd-f2U" secondAttribute="trailing" constant="20" id="65i-Ib-8Dr"/>
+                                    <constraint firstItem="qL9-wT-oKg" firstAttribute="top" secondItem="L8f-Lh-s0h" secondAttribute="top" constant="20" id="A5w-FU-rwH"/>
+                                    <constraint firstItem="cTp-Vd-f2U" firstAttribute="leading" secondItem="L8f-Lh-s0h" secondAttribute="leading" constant="20" id="Tdd-hP-A6N"/>
+                                    <constraint firstItem="cTp-Vd-f2U" firstAttribute="top" secondItem="qL9-wT-oKg" secondAttribute="bottom" constant="20" id="eeG-Po-Mp3"/>
+                                    <constraint firstAttribute="width" secondItem="L8f-Lh-s0h" secondAttribute="height" multiplier="35:19" id="j2R-QB-Sqn"/>
+                                    <constraint firstItem="cTp-Vd-f2U" firstAttribute="centerX" secondItem="L8f-Lh-s0h" secondAttribute="centerX" id="nk4-52-h55"/>
+                                    <constraint firstItem="qL9-wT-oKg" firstAttribute="centerX" secondItem="L8f-Lh-s0h" secondAttribute="centerX" id="qx2-lC-1Oh"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uAz-uV-HYp">
+                                <rect key="frame" x="125.66666666666669" y="126" width="163" height="101"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUT-Sc-fzm">
+                                <rect key="frame" x="47" y="227" width="320" height="189"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc8-En-Yoz">
+                                        <rect key="frame" x="20" y="17" width="80" height="20"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKW-Go-OkZ">
+                                        <rect key="frame" x="20" y="116.33333333333331" width="280" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wft-Rm-b5q">
+                                        <rect key="frame" x="20" y="84" width="111" height="20"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5XG-IB-vaB">
+                                        <rect key="frame" x="20" y="49" width="279" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XKW-Go-OkZ" secondAttribute="trailing" constant="20" id="64f-eB-BVB"/>
+                                    <constraint firstItem="XKW-Go-OkZ" firstAttribute="top" secondItem="5XG-IB-vaB" secondAttribute="bottom" constant="37.5" id="8Fk-uN-8qw"/>
+                                    <constraint firstAttribute="width" secondItem="PUT-Sc-fzm" secondAttribute="height" multiplier="281:166" id="Erj-kU-hep"/>
+                                    <constraint firstItem="Wft-Rm-b5q" firstAttribute="leading" secondItem="PUT-Sc-fzm" secondAttribute="leading" constant="20" id="LVN-yf-fm8"/>
+                                    <constraint firstItem="5XG-IB-vaB" firstAttribute="top" secondItem="xc8-En-Yoz" secondAttribute="bottom" constant="12" id="bUt-VE-KRx"/>
+                                    <constraint firstAttribute="trailing" secondItem="xc8-En-Yoz" secondAttribute="trailing" constant="220" id="dUw-lo-muP"/>
+                                    <constraint firstItem="5XG-IB-vaB" firstAttribute="top" secondItem="PUT-Sc-fzm" secondAttribute="top" constant="49" id="fPL-rV-aHX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wft-Rm-b5q" secondAttribute="trailing" constant="189" id="lCn-dj-ZWP"/>
+                                    <constraint firstItem="XKW-Go-OkZ" firstAttribute="leading" secondItem="PUT-Sc-fzm" secondAttribute="leading" constant="20" id="sBr-NM-poa"/>
+                                    <constraint firstItem="5XG-IB-vaB" firstAttribute="leading" secondItem="PUT-Sc-fzm" secondAttribute="leading" constant="20" id="u1f-w3-MMa"/>
+                                    <constraint firstItem="XKW-Go-OkZ" firstAttribute="top" secondItem="Wft-Rm-b5q" secondAttribute="bottom" constant="12.5" id="uav-qV-Hbx"/>
+                                    <constraint firstAttribute="trailing" secondItem="5XG-IB-vaB" secondAttribute="trailing" constant="21" id="w83-xl-Wbs"/>
+                                    <constraint firstItem="xc8-En-Yoz" firstAttribute="leading" secondItem="PUT-Sc-fzm" secondAttribute="leading" constant="20" id="wb2-3O-Obn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="PetPalDarkBlue"/>
+                        <constraints>
+                            <constraint firstItem="PUT-Sc-fzm" firstAttribute="centerX" secondItem="yGD-5l-fqH" secondAttribute="centerX" id="5HY-D6-1EZ"/>
+                            <constraint firstItem="uAz-uV-HYp" firstAttribute="centerX" secondItem="yGD-5l-fqH" secondAttribute="centerX" id="F88-hq-Apa"/>
+                            <constraint firstItem="PUT-Sc-fzm" firstAttribute="leading" secondItem="HeP-IJ-CIZ" secondAttribute="leading" constant="47" id="QpR-Gq-zQi"/>
+                            <constraint firstItem="HeP-IJ-CIZ" firstAttribute="trailing" secondItem="L8f-Lh-s0h" secondAttribute="trailing" constant="48" id="SJo-SN-ZcY"/>
+                            <constraint firstItem="HeP-IJ-CIZ" firstAttribute="trailing" secondItem="PUT-Sc-fzm" secondAttribute="trailing" constant="47" id="TKX-Hw-SfZ"/>
+                            <constraint firstItem="uAz-uV-HYp" firstAttribute="leading" secondItem="HeP-IJ-CIZ" secondAttribute="leading" constant="125.5" id="UQW-Q1-jkP"/>
+                            <constraint firstItem="L8f-Lh-s0h" firstAttribute="leading" secondItem="HeP-IJ-CIZ" secondAttribute="leading" constant="48" id="VaT-J6-IdI"/>
+                            <constraint firstItem="L8f-Lh-s0h" firstAttribute="top" secondItem="PUT-Sc-fzm" secondAttribute="bottom" constant="10" id="bLN-ZO-c0V"/>
+                            <constraint firstItem="L8f-Lh-s0h" firstAttribute="centerX" secondItem="yGD-5l-fqH" secondAttribute="centerX" id="js0-QI-G8d"/>
+                            <constraint firstItem="PUT-Sc-fzm" firstAttribute="centerY" secondItem="yGD-5l-fqH" secondAttribute="centerY" constant="-46.5" id="jzz-ek-AGF"/>
+                            <constraint firstItem="PUT-Sc-fzm" firstAttribute="top" secondItem="uAz-uV-HYp" secondAttribute="bottom" id="xdK-gG-XyI"/>
+                            <constraint firstItem="HeP-IJ-CIZ" firstAttribute="trailing" secondItem="uAz-uV-HYp" secondAttribute="trailing" constant="125.5" id="y1D-mK-d3x"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HeP-IJ-CIZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="5XG-IB-vaB" id="u2f-2e-qqC"/>
+                        <outlet property="passwordTextField" destination="XKW-Go-OkZ" id="s9C-Ds-7fQ"/>
+                        <outlet property="signInButton" destination="cTp-Vd-f2U" id="MF8-Vv-bdy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07R-QH-2LV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416.8" y="-154.27286356821591"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="N5w-js-gN8">
+            <objects>
+                <viewController id="YUS-l8-tOV" customClass="RegisterViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lo5-cS-Tev">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3M-Z1-9Mh">
+                                <rect key="frame" x="48" y="235.66666666666666" width="318" height="264.66666666666674"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nq8-ey-JIm">
+                                        <rect key="frame" x="20" y="116.00000000000003" width="279" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikm-ML-24t">
+                                        <rect key="frame" x="20" y="17" width="80" height="20"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOG-zt-XFD">
+                                        <rect key="frame" x="20" y="49.000000000000028" width="279" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-8g-pkr">
+                                        <rect key="frame" x="20" y="183.00000000000003" width="279" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkI-1Q-5dC">
+                                        <rect key="frame" x="20" y="151.00000000000003" width="174" height="20"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeb-DN-mbn">
+                                        <rect key="frame" x="20" y="84.000000000000028" width="111" height="20"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="qOG-zt-XFD" firstAttribute="top" secondItem="ikm-ML-24t" secondAttribute="bottom" constant="12" id="7bp-j9-AfG"/>
+                                    <constraint firstItem="Jt9-8g-pkr" firstAttribute="top" secondItem="dkI-1Q-5dC" secondAttribute="bottom" constant="12" id="9eh-lX-deu"/>
+                                    <constraint firstItem="Jt9-8g-pkr" firstAttribute="leading" secondItem="j3M-Z1-9Mh" secondAttribute="leading" constant="20" id="A2H-hL-3OZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qeb-DN-mbn" secondAttribute="trailing" constant="187" id="B4N-O1-jaD"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jt9-8g-pkr" secondAttribute="trailing" constant="19" id="CJL-PL-sJu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nq8-ey-JIm" secondAttribute="trailing" constant="19" id="Ek7-se-Owk"/>
+                                    <constraint firstItem="Jt9-8g-pkr" firstAttribute="top" secondItem="Nq8-ey-JIm" secondAttribute="bottom" constant="37" id="ISw-FG-FFc"/>
+                                    <constraint firstItem="Nq8-ey-JIm" firstAttribute="top" secondItem="Qeb-DN-mbn" secondAttribute="bottom" constant="12" id="M1z-fX-vKn"/>
+                                    <constraint firstItem="Qeb-DN-mbn" firstAttribute="leading" secondItem="j3M-Z1-9Mh" secondAttribute="leading" constant="20" id="PQf-xZ-Q2g"/>
+                                    <constraint firstItem="qOG-zt-XFD" firstAttribute="top" secondItem="j3M-Z1-9Mh" secondAttribute="top" constant="49" id="UhN-fS-LoJ"/>
+                                    <constraint firstItem="Nq8-ey-JIm" firstAttribute="leading" secondItem="j3M-Z1-9Mh" secondAttribute="leading" constant="20" id="bKM-LL-EwF"/>
+                                    <constraint firstAttribute="width" secondItem="j3M-Z1-9Mh" secondAttribute="height" multiplier="280:233" id="czF-zo-Wae"/>
+                                    <constraint firstAttribute="trailing" secondItem="ikm-ML-24t" secondAttribute="trailing" constant="218" id="d2M-8k-HrD"/>
+                                    <constraint firstItem="Nq8-ey-JIm" firstAttribute="top" secondItem="qOG-zt-XFD" secondAttribute="bottom" constant="37" id="qCQ-T2-KNl"/>
+                                    <constraint firstItem="ikm-ML-24t" firstAttribute="leading" secondItem="j3M-Z1-9Mh" secondAttribute="leading" constant="20" id="tg2-BO-Mnp"/>
+                                    <constraint firstAttribute="trailing" secondItem="dkI-1Q-5dC" secondAttribute="trailing" constant="124" id="we1-ep-DkR"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-Lb-76r">
+                                <rect key="frame" x="118" y="134.66666666666666" width="163" height="101"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ur7-6k-y0B">
+                                <rect key="frame" x="48" y="510.33333333333331" width="319" height="161.66666666666669"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVG-nq-PVl" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                        <rect key="frame" x="84.666666666666657" y="20.000000000000057" width="150" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="5Za-Pf-9h4"/>
+                                            <constraint firstAttribute="height" constant="50" id="yBL-tV-ETl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="19"/>
+                                        <state key="normal" title="SIGN UP">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="leftGradientColor">
+                                                <color key="value" name="PetPalDarkBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="rightGradientColor">
+                                                <color key="value" name="PetPalLightBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signUpAction:" destination="YUS-l8-tOV" eventType="touchUpInside" id="pOy-lf-Nrz"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QSG-E3-5sp" customClass="GIDSignInButton">
+                                        <rect key="frame" x="20" y="90" width="279" height="44"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PVG-nq-PVl" firstAttribute="centerX" secondItem="ur7-6k-y0B" secondAttribute="centerX" id="6GY-Fq-feJ"/>
+                                    <constraint firstItem="QSG-E3-5sp" firstAttribute="top" secondItem="PVG-nq-PVl" secondAttribute="bottom" constant="20" id="KKO-XE-bAi"/>
+                                    <constraint firstAttribute="width" secondItem="ur7-6k-y0B" secondAttribute="height" multiplier="140:71" id="PC8-10-uA5"/>
+                                    <constraint firstItem="QSG-E3-5sp" firstAttribute="leading" secondItem="ur7-6k-y0B" secondAttribute="leading" constant="20" id="fuV-2G-zvJ"/>
+                                    <constraint firstItem="QSG-E3-5sp" firstAttribute="centerX" secondItem="ur7-6k-y0B" secondAttribute="centerX" id="jHJ-8a-NP4"/>
+                                    <constraint firstAttribute="trailing" secondItem="QSG-E3-5sp" secondAttribute="trailing" constant="20" id="kOd-WX-wpV"/>
+                                    <constraint firstItem="PVG-nq-PVl" firstAttribute="top" secondItem="ur7-6k-y0B" secondAttribute="top" constant="20" id="vPc-2K-to6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j3M-Z1-9Mh" firstAttribute="centerX" secondItem="lo5-cS-Tev" secondAttribute="centerX" id="32C-gB-YSm"/>
+                            <constraint firstItem="8DK-BO-KpE" firstAttribute="trailing" secondItem="ur7-6k-y0B" secondAttribute="trailing" constant="47" id="4Xv-rj-aPU"/>
+                            <constraint firstItem="8DK-BO-KpE" firstAttribute="trailing" secondItem="j3M-Z1-9Mh" secondAttribute="trailing" constant="48" id="4aA-D0-Z12"/>
+                            <constraint firstItem="ur7-6k-y0B" firstAttribute="top" secondItem="j3M-Z1-9Mh" secondAttribute="bottom" constant="10" id="Ili-TM-Ekw"/>
+                            <constraint firstItem="dkI-1Q-5dC" firstAttribute="leading" secondItem="8DK-BO-KpE" secondAttribute="leading" constant="68" id="PMi-u0-xBs"/>
+                            <constraint firstItem="j3M-Z1-9Mh" firstAttribute="top" secondItem="ffz-Lb-76r" secondAttribute="bottom" id="ZJq-z5-4Di"/>
+                            <constraint firstItem="8DK-BO-KpE" firstAttribute="trailing" secondItem="ffz-Lb-76r" secondAttribute="trailing" constant="133" id="eBh-ht-e8B"/>
+                            <constraint firstItem="8DK-BO-KpE" firstAttribute="trailing" secondItem="qOG-zt-XFD" secondAttribute="trailing" constant="67" id="foL-7J-n1a"/>
+                            <constraint firstItem="ffz-Lb-76r" firstAttribute="leading" secondItem="8DK-BO-KpE" secondAttribute="leading" constant="118" id="q6L-3w-aOB"/>
+                            <constraint firstItem="ur7-6k-y0B" firstAttribute="leading" secondItem="8DK-BO-KpE" secondAttribute="leading" constant="48" id="syn-zb-JpQ"/>
+                            <constraint firstItem="j3M-Z1-9Mh" firstAttribute="centerY" secondItem="lo5-cS-Tev" secondAttribute="centerY" id="v8r-pg-CBz"/>
+                            <constraint firstItem="qOG-zt-XFD" firstAttribute="leading" secondItem="8DK-BO-KpE" secondAttribute="leading" constant="68" id="vPX-NL-UIf"/>
+                            <constraint firstItem="j3M-Z1-9Mh" firstAttribute="leading" secondItem="8DK-BO-KpE" secondAttribute="leading" constant="48" id="wRq-Vy-hZj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8DK-BO-KpE"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="qOG-zt-XFD" id="Fc6-I8-5cc"/>
+                        <outlet property="passwordConfirmTextField" destination="Jt9-8g-pkr" id="jLx-Kl-I3p"/>
+                        <outlet property="passwordTextField" destination="Nq8-ey-JIm" id="ATH-xq-2k5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2V-aI-WYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1417" y="522"/>
+        </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="egm-WF-7G5">
+            <objects>
+                <viewController storyboardIdentifier="CreateProfile" id="Puh-vC-kUz" customClass="CreateProfileViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Ed-xD-RvY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B0s-VT-lJp" customClass="ProfileImageView" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="141" y="89" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPV-hO-cH5">
+                                <rect key="frame" x="172" y="243" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="given-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ec2-LF-exj">
+                                <rect key="frame" x="171" y="298" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="family-name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN1-zo-gRN">
+                                <rect key="frame" x="170" y="355" width="220" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter Your Bio Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-eJ-koq">
+                                <rect key="frame" x="22" y="403" width="370" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.8948879851931506" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="PetPalDarkBlue"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aql-cv-76U">
+                                <rect key="frame" x="34" y="248" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4W-gF-07h">
+                                <rect key="frame" x="34" y="303" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pet Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-qI-wHL">
+                                <rect key="frame" x="34" y="360" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5s-fI-Wjk" customClass="GradientLRButton" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="182" y="556" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="creatProfileClicked:" destination="Puh-vC-kUz" eventType="touchUpInside" id="m3a-kK-O8Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vt-wn-YAY">
+                                <rect key="frame" x="238" y="186" width="31" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="buttonOnClick:" destination="Puh-vC-kUz" eventType="touchUpInside" id="Hri-8O-bIT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="PlY-Z8-w1W"/>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextField" destination="cLB-eJ-koq" id="8G9-Ex-Q1O"/>
+                        <outlet property="firstNameTextField" destination="aPV-hO-cH5" id="zCa-B5-xp1"/>
+                        <outlet property="lastNameTextField" destination="ec2-LF-exj" id="DHz-gj-uy3"/>
+                        <outlet property="petTypeTextField" destination="gN1-zo-gRN" id="4GB-4K-2zG"/>
+                        <outlet property="profileImage" destination="B0s-VT-lJp" id="l4H-dV-8Zr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jxv-5N-Avq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2179.7101449275365" y="244.56521739130437"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="edit button" width="26" height="26"/>
+        <image name="logo" width="124" height="101"/>
+        <namedColor name="PetPalDarkBlue">
+            <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PetPalLightBlue">
+            <color red="0.67450980392156867" green="0.88235294117647056" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" name="PetPalDarkBlue"/>
+</document>
