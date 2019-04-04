@@ -26,6 +26,7 @@
 		855C3C7A224C325D00CC14F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C3C79224C325D00CC14F2 /* ProfileViewController.swift */; };
 		8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */; };
 		B9BF914ABC75370373C0568D /* Pods_PetPals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52341640D240445C63413174 /* Pods_PetPals.framework */; };
+		CB0CAA572256C10500B11F15 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0CAA562256C10500B11F15 /* OverallMatchesViewController.swift */; };
 		CB2E52AB2248ABF300217A94 /* MeetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */; };
 		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
 		CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */; };
@@ -41,7 +42,6 @@
 		CB945F0622480D01001F4076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB945F0522480D01001F4076 /* GoogleService-Info.plist */; };
 		CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */; };
 		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
-		CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */; };
 		EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05C6E32249A85800D744D0 /* SwipeViewController.swift */; };
 		EA9535512254613D00958051 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9535502254613D00958051 /* Initial.storyboard */; };
 		EA953553225461D400958051 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA953552225461D400958051 /* Profile.storyboard */; };
@@ -78,6 +78,7 @@
 		855C3C76224C2BB000CC14F2 /* Pet Pals Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pet Pals Logo.png"; sourceTree = "<group>"; };
 		855C3C79224C325D00CC14F2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8579DFE1224C84E2001319D0 /* Assets 23-27-45-219.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 23-27-45-219.xcassets"; sourceTree = "<group>"; };
+		CB0CAA562256C10500B11F15 /* OverallMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallMatchesViewController.swift; sourceTree = "<group>"; };
 		CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetupViewController.swift; sourceTree = "<group>"; };
 		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		CB945F0522480D01001F4076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDatesViewController.swift; sourceTree = "<group>"; };
 		CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificUpcomingDateViewController.swift; sourceTree = "<group>"; };
-		CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallMatchesViewController.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EA05C6E32249A85800D744D0 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		EA9535502254613D00958051 /* Initial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
@@ -195,9 +195,9 @@
 		CB3C4BDD2241C72400CA629D /* Matches */ = {
 			isa = PBXGroup;
 			children = (
-				CBEC0B4422492E1A009714D9 /* OverallMatchesViewController.swift */,
 				CB3C4BF3224204C200CA629D /* Calendar */,
 				CB3C4BF4224204CB00CA629D /* Match Screens */,
+				CB0CAA562256C10500B11F15 /* OverallMatchesViewController.swift */,
 			);
 			path = Matches;
 			sourceTree = "<group>";
@@ -464,10 +464,10 @@
 				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
 				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
-				CBEC0B4522492E1A009714D9 /* OverallMatchesViewController.swift in Sources */,
 				CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */,
 				CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */,
 				EA9CC163225290F40034E714 /* CardImage.swift in Sources */,
+				CB0CAA572256C10500B11F15 /* OverallMatchesViewController.swift in Sources */,
 				0D0D015E22397577000D594D /* ProfileViewButton.swift in Sources */,
 				CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */,
 				0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */,

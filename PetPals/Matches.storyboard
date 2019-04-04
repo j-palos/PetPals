@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,60 +24,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-oD-8Pe" userLabel="Calendar View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="O6E-lQ-xXg"/>
-                                    <constraint firstAttribute="height" constant="678" id="vdw-5T-SDl"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="dDA-8G-jpq" kind="embed" identifier="calendarEmbedSegue" id="8Mu-sX-kE4"/>
-                                </connections>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Io-pL-Luj" userLabel="Meetup View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="678" id="X1N-9d-g1O"/>
-                                    <constraint firstAttribute="width" constant="414" id="oRl-3r-95I"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="g6g-Ot-jlG" kind="embed" identifier="meetupEmbedSegue" id="xDo-tu-VrJ"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0N-Jm-M5E" userLabel="Matches View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="678"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="678" id="jkt-ZG-hBI"/>
                                     <constraint firstAttribute="width" constant="414" id="waA-g3-5Vn"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="1Ts-I7-dUI" kind="embed" identifier="matchesEmbedSegue" id="XWt-v4-Yo6"/>
+                                    <segue destination="hfR-hv-aeG" kind="embed" id="otY-wr-0uD"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WEl-oD-8Pe" firstAttribute="top" secondItem="CqC-SG-gIk" secondAttribute="top" id="0W7-mG-kyC"/>
-                            <constraint firstItem="4mx-jS-8rQ" firstAttribute="bottom" secondItem="WEl-oD-8Pe" secondAttribute="bottom" constant="9" id="61Y-5L-7Ag"/>
                             <constraint firstItem="4mx-jS-8rQ" firstAttribute="bottom" secondItem="k0N-Jm-M5E" secondAttribute="bottom" constant="9" id="8aE-cT-PvB"/>
-                            <constraint firstItem="7Io-pL-Luj" firstAttribute="top" secondItem="CqC-SG-gIk" secondAttribute="top" id="Ie9-V3-Uod"/>
-                            <constraint firstItem="WEl-oD-8Pe" firstAttribute="trailing" secondItem="4mx-jS-8rQ" secondAttribute="trailing" id="K0K-2U-d4c"/>
                             <constraint firstItem="k0N-Jm-M5E" firstAttribute="leading" secondItem="4mx-jS-8rQ" secondAttribute="leading" id="Pd5-dQ-TxH"/>
                             <constraint firstItem="k0N-Jm-M5E" firstAttribute="trailing" secondItem="4mx-jS-8rQ" secondAttribute="trailing" id="ZNk-qm-RAp"/>
-                            <constraint firstItem="7Io-pL-Luj" firstAttribute="leading" secondItem="4mx-jS-8rQ" secondAttribute="leading" id="jwQ-CS-jbA"/>
                             <constraint firstItem="k0N-Jm-M5E" firstAttribute="top" secondItem="CqC-SG-gIk" secondAttribute="top" id="mc9-bq-KK7"/>
-                            <constraint firstItem="WEl-oD-8Pe" firstAttribute="leading" secondItem="4mx-jS-8rQ" secondAttribute="leading" id="pog-eC-xzt"/>
-                            <constraint firstItem="7Io-pL-Luj" firstAttribute="trailing" secondItem="4mx-jS-8rQ" secondAttribute="trailing" id="teG-da-LxW"/>
-                            <constraint firstItem="4mx-jS-8rQ" firstAttribute="bottom" secondItem="7Io-pL-Luj" secondAttribute="bottom" constant="9" id="zeb-40-AVm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4mx-jS-8rQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="calendar-bar" selectedImage="calendar-bar" id="o5j-3S-8Jf"/>
-                    <connections>
-                        <outlet property="calendarView" destination="WEl-oD-8Pe" id="rgD-sC-fmQ"/>
-                        <outlet property="matchesView" destination="k0N-Jm-M5E" id="Y8b-ly-QxU"/>
-                        <outlet property="meetupView" destination="7Io-pL-Luj" id="DoB-uC-Vo4"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P73-wF-jRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,6 +61,7 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVJ-Qw-tQu">
                                 <rect key="frame" x="20" y="211" width="78" height="28"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="16"/>
+                                <color key="tintColor" name="PetPalDarkBlue"/>
                                 <state key="normal" title="Connected">
                                     <color key="titleColor" red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -198,12 +166,13 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="switchClicked:" destination="1Ts-I7-dUI" eventType="touchUpInside" id="5m2-rp-wmu"/>
+                                            <segue destination="dDA-8G-jpq" kind="show" animates="NO" id="58t-p3-lzk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3V-lR-Hcz" userLabel="Selected">
                                         <rect key="frame" x="57" y="0.0" width="65" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="PetPalDarkBlue"/>
                                         <state key="normal" image="MCSwitch_Selected"/>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MCSwitch_Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-gg-Qes">
@@ -219,6 +188,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
                                 <rect key="frame" x="20" y="76" width="95.666666666666671" height="16"/>
+                                <color key="tintColor" name="PetPalDarkBlue"/>
                                 <attributedString key="attributedText">
                                     <fragment content="New Matches">
                                         <attributes>
@@ -253,6 +223,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="utV-Os-8FN"/>
                     </view>
+                    <navigationItem key="navigationItem" id="oaC-fo-5et"/>
                     <connections>
                         <outlet property="connectedButton" destination="fVJ-Qw-tQu" id="BXp-PZ-GFy"/>
                         <outlet property="connectedContainerView" destination="20L-Pc-2bP" id="6Bw-gP-toD"/>
@@ -265,6 +236,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8M7-nL-TaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2050.7246376811595" y="-1595.3804347826087"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TL5-z8-SWi">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="nah-fi-5dx" sceneMemberID="viewController">
+                    <size key="freeformSize" width="414" height="678"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="swM-DF-AFo">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dDA-8G-jpq" kind="relationship" relationship="rootViewController" id="0PD-04-mFq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JAF-bF-kfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-97" y="-1579"/>
         </scene>
         <!--CalendarVC-->
         <scene sceneID="ine-yM-4ND">
@@ -407,6 +394,7 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="date_oval" translatesAutoresizingMaskIntoConstraints="NO" id="KPI-hl-tpb">
                                                             <rect key="frame" x="54" y="75.5" width="8" height="8"/>
+                                                            <color key="tintColor" name="PetPalDarkBlue"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkc-Lt-blL">
                                                             <rect key="frame" x="40" y="9" width="36" height="21"/>
@@ -451,13 +439,14 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="MCSwitch"/>
                                         <connections>
-                                            <action selector="switchClicked:" destination="dDA-8G-jpq" eventType="touchUpInside" id="atM-Go-aBa"/>
                                             <action selector="switchClicked:" destination="1q5-nP-2xA" eventType="touchUpInside" id="bVI-sN-S2o"/>
+                                            <segue destination="1Ts-I7-dUI" kind="show" animates="NO" id="z59-lB-2LK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-L6-z1q" userLabel="Selected">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="PetPalDarkBlue"/>
                                         <state key="normal" image="MCSwitch_Selected"/>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MCSwitch_Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="Fz6-7h-eNg">
@@ -493,6 +482,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D86-BQ-9IC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GAC-f8-Ncm"/>
                     <connections>
                         <outlet property="calendarView" destination="oDP-Ba-UW1" id="0cs-rx-upK"/>
                         <outlet property="month" destination="40N-2e-UuQ" id="Hcl-e9-Jqb"/>
@@ -502,6 +492,22 @@
                 <exit id="1q5-nP-2xA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="713.04347826086962" y="-1579.0760869565217"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="l4k-ov-XcD">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="puy-j1-JBf" sceneMemberID="viewController">
+                    <size key="freeformSize" width="414" height="678"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VWa-uZ-Cq3">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="g6g-Ot-jlG" kind="relationship" relationship="rootViewController" id="awt-So-WIg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hc9-fr-Q2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2317" y="-2558"/>
         </scene>
         <!--Meetup View Controller-->
         <scene sceneID="IA4-hB-WnN">
@@ -592,6 +598,7 @@
                                     <constraint firstAttribute="width" constant="150" id="LDs-ZO-DU7"/>
                                     <constraint firstAttribute="height" constant="50" id="XVy-vh-SVf"/>
                                 </constraints>
+                                <color key="tintColor" name="PetPalDarkBlue"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="SEND">
@@ -612,7 +619,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="sendClicked:" destination="g6g-Ot-jlG" eventType="touchUpInside" id="suy-bt-VVh"/>
+                                    <segue destination="1Ts-I7-dUI" kind="show" animates="NO" id="tN8-9J-ccb"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvS-HI-zxS">
@@ -623,12 +630,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="MCSwitch"/>
                                         <connections>
-                                            <action selector="switchClicked:" destination="g6g-Ot-jlG" eventType="touchUpInside" id="gtV-SQ-y6j"/>
+                                            <segue destination="dDA-8G-jpq" kind="show" animates="NO" id="R3Z-k7-V3k"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaS-at-wWU" userLabel="Selected">
                                         <rect key="frame" x="57" y="0.0" width="65" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="PetPalDarkBlue"/>
                                         <state key="normal" image="MCSwitch_Selected"/>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MCSwitch_Matches" translatesAutoresizingMaskIntoConstraints="NO" id="3wc-69-i4S">
@@ -644,6 +652,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHV-uD-cf0">
                                 <rect key="frame" x="96" y="121.66666666666669" width="222" height="35"/>
+                                <color key="tintColor" name="PetPalDarkBlue"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Suggest Meetup">
                                         <attributes>
@@ -698,6 +707,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XeG-Nb-vR4"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AFD-w8-ixu"/>
                     <connections>
                         <outlet property="chosenUserImage" destination="Axu-Jy-Vn4" id="L2v-zS-De9"/>
                         <outlet property="chosenUserName" destination="P2h-AX-fE0" id="Kdq-Z8-nJD"/>
@@ -705,7 +715,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Buc-mF-nlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824.6376811594205" y="-2443.2065217391305"/>
+            <point key="canvasLocation" x="3010" y="-2558"/>
         </scene>
         <!--Meetup Background View-->
         <scene sceneID="Tez-BL-zuh">
@@ -720,7 +730,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iT7-BM-xb9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="-2443"/>
+            <point key="canvasLocation" x="3728" y="-2558"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y3h-3i-Hui">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="hfR-hv-aeG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RBo-A4-Xnu">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1Ts-I7-dUI" kind="relationship" relationship="rootViewController" id="eo9-yh-7dk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P6o-Vc-yYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="-2420"/>
         </scene>
         <!--ConnectedVC-->
         <scene sceneID="TqI-CM-ytg">
@@ -863,6 +888,7 @@
                                                         <constraint firstAttribute="width" constant="27" id="Alt-wU-29U"/>
                                                         <constraint firstAttribute="height" constant="28" id="dxd-jZ-3Wr"/>
                                                     </constraints>
+                                                    <color key="tintColor" name="PetPalDarkBlue"/>
                                                     <state key="normal" title="Button" image="Matches_Accept"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJv-fO-bRF">
@@ -1079,6 +1105,7 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" name="PetPalDarkBlue"/>
+                        <color key="tintColor" name="PetPalDarkBlue"/>
                         <viewLayoutGuide key="safeArea" id="TbW-97-etY"/>
                     </view>
                     <connections>
@@ -1172,7 +1199,7 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="oval_calendar" width="6" height="6"/>
         <namedColor name="PetPalDarkBlue">
@@ -1187,6 +1214,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eLf-fQ-dqk"/>
+        <segue reference="R3Z-k7-V3k"/>
+        <segue reference="tN8-9J-ccb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
 </document>

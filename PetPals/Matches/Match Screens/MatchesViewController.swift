@@ -12,7 +12,7 @@ import UIKit
 var newMatches:[User] = [User(name: "Jeffery", picture: "jeffery", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""),User(name: "Alan", picture: "alan", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Leo", picture: "leo", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Charles", picture: "charles", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: "")]
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     // Connect the various views
     @IBOutlet weak var connectedContainerView: UIView!
     @IBOutlet weak var invitesContainerView: UIView!
@@ -68,15 +68,14 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         // Destination will be Meetup Screen, child of OverallMatchesVC
         // Need destination to be loaded first to be able to send data
-        let destination = self.storyboard!.instantiateViewController(withIdentifier: "OverallMatchesViewController") as! OverallMatchesViewController
+        let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
         // Send over information about the user selected
-        destination.startView = "Meetup"
-        destination.meetupUser = cellUser.userName
-        destination.meetupImage = cellUser.image
+        destination.userName = cellUser.userName
+        destination.userImage = cellUser.image
         
         // Present the screen
-        self.present(destination, animated: false)
+        self.navigationController?.pushViewController(destination, animated: false)
     }
     
     // If connected is clicked, show that view
@@ -124,9 +123,5 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         invitesButton.setTitleColor(grayColor, for: .normal)
     }
     
-    // If the switch is clicked, use the Overall Matches VC to switch views
-    @IBAction func switchClicked(_ sender: Any) {
-        parentVC!.switchToCalendarVC()
-    }
-    
 }
+

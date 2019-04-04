@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     // Connect necessary fields
     @IBOutlet weak var month: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-
+    
     // Simple formatter to use for dates
     let formatter = DateFormatter()
     
@@ -61,11 +61,6 @@ class CalendarViewController: UIViewController {
     // Function to hide or show dot depending on if event will occur
     func handleCellEvents(cell: CalendarCell, cellState: CellState) {
         cell.eventDotView.isHidden = !datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
-    }
-    
-    // Change which view is being shown in Overall Matches VC
-    @IBAction func switchClicked(_ sender: Any) {
-        parentVC!.switchToMatchesVC()
     }
     
 }

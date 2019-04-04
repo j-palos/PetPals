@@ -31,17 +31,4 @@ class MeetupViewController: UIViewController {
         chosenUserImage.layer.cornerRadius = chosenUserImage.frame.size.width / 2
         chosenUserImage.clipsToBounds = true
     }
-    
-    
-    // If the switch is clicked, use the Overall Matches Screen to switch views
-    @IBAction func switchClicked(_ sender: Any) {
-        parentVC?.switchToCalendarVC()
-    }
-    
-    // When the submit button is clicked, use the Overall Matches Screen to switch views
-    @IBAction func sendClicked(_ sender: Any) {
-        parentVC?.switchToMatchesVC()
-    }
-    
-    
 }
