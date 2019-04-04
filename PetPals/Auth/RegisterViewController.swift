@@ -44,7 +44,7 @@ class RegisterViewController: UIViewController {
         
         UserProfile.registerUser(email: email, password: password) { (success) in
             if success {
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Initial", bundle: nil)
                 let newViewController = storyBoard.instantiateViewController(withIdentifier: createProfileVCIdenfifier)
                 self.present(newViewController, animated: true, completion: nil)
             }
