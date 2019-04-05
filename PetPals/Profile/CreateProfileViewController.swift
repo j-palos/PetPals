@@ -219,7 +219,6 @@ extension CreateProfileViewController : UIImagePickerControllerDelegate, UINavig
         //the image at this point is either from camer or photos and cropped to be a square
         //set the image to be scaled and dismiss the picker
         self.profileImage.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
-        self.dismiss(animated: true, completion: nil)
     }
     
     
