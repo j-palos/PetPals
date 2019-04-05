@@ -17,15 +17,18 @@ class CardImage: UIImageView {
         // Drawing code
     }
     */
-    lazy var imageName:String = ""
+    lazy var imageName:String = String()
     lazy var contentView: UIImageView = {
+        
         let contentView = UIImageView()
+        if(imageName != "" ){
         contentView.image = UIImage(named: self.imageName)
        
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         contentView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         contentView.clipsToBounds = true
+        }
         return contentView
     }()
     
@@ -48,6 +51,11 @@ class CardImage: UIImageView {
         self.imageName = name
         addSubview(contentView)
         setupLayout()
+        //Clips the image and rounds the top only.
+        self.layer.frame = bounds
+        self.layer.cornerRadius = 70
+        self.layer.masksToBounds = true
+        self.clipsToBounds = true
     }
     
     private func setupLayout() {
