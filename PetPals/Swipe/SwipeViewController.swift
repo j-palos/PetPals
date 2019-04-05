@@ -22,8 +22,6 @@ class SwipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
         kolodaView.dataSource = self
         kolodaView.delegate = self
         // Do any additional setup after loading the view.
