@@ -31,7 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let user = Auth.auth().currentUser {
             UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { (error, startVC) in
                 if error == nil {
-                    self.window?.rootViewController = startVC
+                    // Allow the animation load screen to happen before changing the VC
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                         self.window?.rootViewController = startVC
+                    }
                 }
             }
         }

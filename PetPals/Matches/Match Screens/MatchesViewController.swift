@@ -61,7 +61,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // If a new match is selected, bring up the Meetup Screen
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get this cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
+        _ = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
         
         // Find the associated User
         let cellUser = newMatches[indexPath.row]
