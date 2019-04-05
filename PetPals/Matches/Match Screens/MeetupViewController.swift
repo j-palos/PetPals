@@ -32,16 +32,14 @@ class MeetupViewController: UIViewController {
         chosenUserImage.clipsToBounds = true
     }
     
+    // code to dismiss keyboard when user clicks on background
     
-    // If the switch is clicked, use the Overall Matches Screen to switch views
-    @IBAction func switchClicked(_ sender: Any) {
-        parentVC?.switchToCalendarVC()
+    func textFieldShouldReturn(textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    // When the submit button is clicked, use the Overall Matches Screen to switch views
-    @IBAction func sendClicked(_ sender: Any) {
-        parentVC?.switchToMatchesVC()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
-    
-    
 }
