@@ -63,7 +63,7 @@
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="16"/>
                                 <color key="tintColor" name="PetPalDarkBlue"/>
                                 <state key="normal" title="Connected">
-                                    <color key="titleColor" red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" name="PetPalDarkBlue"/>
                                 </state>
                                 <connections>
                                     <action selector="connectedButtonPressed:" destination="1Ts-I7-dUI" eventType="touchUpInside" id="Lmo-e6-egg"/>
@@ -186,17 +186,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="New Matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
                                 <rect key="frame" x="20" y="76" width="95.666666666666671" height="16"/>
                                 <color key="tintColor" name="PetPalDarkBlue"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="New Matches">
-                                        <attributes>
-                                            <color key="NSColor" red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="ProximaNovaSoft-Regular"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="16"/>
+                                <color key="textColor" name="PetPalDarkBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -224,6 +218,7 @@
                         <viewLayoutGuide key="safeArea" id="utV-Os-8FN"/>
                     </view>
                     <navigationItem key="navigationItem" id="oaC-fo-5et"/>
+                    <size key="freeformSize" width="414" height="678"/>
                     <connections>
                         <outlet property="connectedButton" destination="fVJ-Qw-tQu" id="BXp-PZ-GFy"/>
                         <outlet property="connectedContainerView" destination="20L-Pc-2bP" id="6Bw-gP-toD"/>
@@ -375,6 +370,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oDP-Ba-UW1" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
                                         <rect key="frame" x="0.0" y="27.333333333333314" width="414" height="285"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="PetPalDarkBlue"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="285" id="vac-Al-aeT"/>
                                         </constraints>
@@ -483,6 +479,7 @@
                         <viewLayoutGuide key="safeArea" id="D86-BQ-9IC"/>
                     </view>
                     <navigationItem key="navigationItem" id="GAC-f8-Ncm"/>
+                    <size key="freeformSize" width="414" height="678"/>
                     <connections>
                         <outlet property="calendarView" destination="oDP-Ba-UW1" id="0cs-rx-upK"/>
                         <outlet property="month" destination="40N-2e-UuQ" id="Hcl-e9-Jqb"/>
@@ -708,6 +705,7 @@
                         <viewLayoutGuide key="safeArea" id="XeG-Nb-vR4"/>
                     </view>
                     <navigationItem key="navigationItem" id="AFD-w8-ixu"/>
+                    <size key="freeformSize" width="414" height="678"/>
                     <connections>
                         <outlet property="chosenUserImage" destination="Axu-Jy-Vn4" id="L2v-zS-De9"/>
                         <outlet property="chosenUserName" destination="P2h-AX-fE0" id="Kdq-Z8-nJD"/>
@@ -782,7 +780,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-OS-uj9">
-                                                    <rect key="frame" x="88" y="39" width="150" height="17"/>
+                                                    <rect key="frame" x="88" y="39" width="150" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -848,7 +846,7 @@
                                                     <rect key="frame" x="15" y="11.000000000000004" width="55" height="55.333333333333343"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVu-Oc-WxC">
-                                                    <rect key="frame" x="88" y="10.999999999999998" width="130" height="21.333333333333329"/>
+                                                    <rect key="frame" x="88" y="11.000000000000002" width="130" height="24.666666666666671"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Name">
                                                             <attributes>
@@ -859,7 +857,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QY-ma-n6t">
-                                                    <rect key="frame" x="88" y="31.333333333333329" width="150" height="17"/>
+                                                    <rect key="frame" x="88" y="34.666666666666664" width="150" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -871,7 +869,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22k-xD-19g">
-                                                    <rect key="frame" x="88" y="49.333333333333336" width="66" height="17.000000000000007"/>
+                                                    <rect key="frame" x="88" y="55.666666666666657" width="66" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Location">
                                                             <attributes>
@@ -961,7 +959,7 @@
                                                     <rect key="frame" x="15" y="11.000000000000004" width="55" height="55.333333333333343"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-dQ-4b5">
-                                                    <rect key="frame" x="88" y="11.000000000000002" width="130" height="21.666666666666671"/>
+                                                    <rect key="frame" x="88" y="11.000000000000002" width="130" height="24.666666666666671"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Name">
                                                             <attributes>
@@ -972,7 +970,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4b-Hz-mJx">
-                                                    <rect key="frame" x="88" y="31.666666666666671" width="150" height="17"/>
+                                                    <rect key="frame" x="88" y="34.666666666666664" width="150" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -984,13 +982,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-4b-DEz">
-                                                    <rect key="frame" x="88" y="49.666666666666664" width="66" height="16.999999999999993"/>
+                                                    <rect key="frame" x="88" y="55.666666666666657" width="66" height="20"/>
                                                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                                     <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-wX-VLS">
-                                                    <rect key="frame" x="297.66666666666669" y="5" width="80.333333333333314" height="11"/>
+                                                    <rect key="frame" x="295.66666666666669" y="5" width="82.333333333333314" height="13"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Sent 3 Days Ago">
                                                             <attributes>
@@ -1002,7 +1000,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCo-1J-UbO">
-                                                    <rect key="frame" x="322.66666666666669" y="60" width="30.333333333333314" height="10"/>
+                                                    <rect key="frame" x="321.66666666666669" y="61.999999999999993" width="31.333333333333314" height="11.666666666666664"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Cancel">
                                                             <attributes>
@@ -1014,7 +1012,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fa5-sb-N1D">
-                                                    <rect key="frame" x="325" y="21" width="30" height="31"/>
+                                                    <rect key="frame" x="325" y="23" width="30" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Zhz-4Z-zB0"/>
                                                         <constraint firstAttribute="height" constant="31" id="e1H-L9-OoW"/>
