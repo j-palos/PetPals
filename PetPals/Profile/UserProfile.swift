@@ -133,8 +133,7 @@ class UserProfile: NSObject {
     class func logOutUser(completion: @escaping (NSError?) -> Swift.Void) {
         do {
             try Auth.auth().signOut()
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Initial", bundle:nil)
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.window!.rootViewController = storyBoard.instantiateInitialViewController()
             
