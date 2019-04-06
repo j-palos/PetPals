@@ -8,12 +8,14 @@
 
 import UIKit
 import Koloda
-
+import pop
 
 var count = 3
 
 var images = ["parrot.png","charles","chris"]
-
+private let frameAnimationSpringBounciness: CGFloat = 9
+private let frameAnimationSpringSpeed: CGFloat = 16
+private let kolodaCountOfVisibleCards = 2
 class SwipeViewController: UIViewController {
    
  
@@ -22,6 +24,7 @@ class SwipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
         // Do any additional setup after loading the view.
@@ -37,7 +40,15 @@ class SwipeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func noButtonTapped(_ sender: Any) {
+        kolodaView.swipe(.left)
+        
+    }
+    
+    @IBAction func yesButtonTapped(_ sender: Any) {
+        kolodaView.swipe(.right)
+    }
+    
 }
 
 extension SwipeViewController: KolodaViewDataSource {
@@ -56,4 +67,15 @@ extension SwipeViewController: KolodaViewDataSource {
 
 extension SwipeViewController : KolodaViewDelegate {
     
+    
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        kolodaView.resetCurrentCardIndex()
+    }
+    
+    func koloda(kolodaBackgroundCardAnimation koloda: KolodaView) -> POPPropertyAnimation? {
+        let animation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
+        animation?.springBounciness = frameAnimationSpringBounciness
+        animation?.springSpeed = frameAnimationSpringSpeed
+        return animation
+    }
 }

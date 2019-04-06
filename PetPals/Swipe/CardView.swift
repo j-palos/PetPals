@@ -23,17 +23,14 @@ class CardView: UIView {
     var petType = String()
     var bio = String()
     var distance = String()
-//    var image: UIImage
     
     var view: UIView!
     override init(frame: CGRect) {
-//        self.image = UIImage(named: "cards_1")!
         super.init(frame: frame)
         loadViewFromNib()
     }
     
     required init?(coder aDecoder: NSCoder) {
-//        self.image = UIImage(named: "cards_1")!
         super.init(coder: aDecoder)
         loadViewFromNib()
         
@@ -56,14 +53,9 @@ class CardView: UIView {
         ]
         self.distanceLabel.text = "Distance"
         self.nameLabel.text =  "Name:"
-//        let cardImage = UIImageView(image : UIImage(named: "parrot.png"))
-//        cardImage.contentMode = .scaleAspectFit
         self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-//        view.layer.zPosition = -1
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
-//        self.cardImage.clipsToBounds = true
         addSubview(view)
         self.view = view
     }
