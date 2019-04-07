@@ -13,7 +13,7 @@
         <!--Loading View Controller-->
         <scene sceneID="xnb-gE-VPx">
             <objects>
-                <viewController id="gfy-xN-Olx" customClass="LoadingViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="gfy-xN-Olx" customClass="LoadingViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmM-4h-uP8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
