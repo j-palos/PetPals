@@ -38,8 +38,6 @@ class CardView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
-//        contentView.fixInView(self)
-//        image = UIImage(named: "cards_1")!
     }
     
     func loadViewFromNib() {
@@ -51,8 +49,6 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-        self.distanceLabel.text = "Distance"
-        self.nameLabel.text =  "Name:"
         self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
@@ -60,7 +56,23 @@ class CardView: UIView {
         self.view = view
     }
     
+    func setBio(bio : String){
+        bioLabel.text = "Bio: \(bio)"
+    }
     
+    func setName(_ first:String, _ second:String){
+        nameLabel.text = "\(first) \(second)"
+    }
+    
+    func setDistance (_ distance:String){
+        distanceLabel.text = "Distance: \(distance)"
+    }
+    
+    func setPetType(_ type:String){
+        petTypeLabel.text = "\(type)"
+    }
+    
+
     
     func initWithName(_ name:String){
                self.cardImage.initWithName(name)
@@ -117,3 +129,4 @@ extension UIView
         NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
     }
 }
+

@@ -169,8 +169,9 @@ class UserProfile: NSObject {
     class func getAllUsers(exceptID: String, completion: @escaping (UserProfile) -> Swift.Void) {
         Database.database().reference().child("Users").observe(.childAdded, with: { (snapshot) in
             let id = snapshot.key
-            let data = snapshot.value as! [String: Any]
-            
+            let snap = snapshot.value as! [String: Any]
+            let data = snap["user_details"] as! [String: Any]
+//            print(data)
             if id != exceptID && data["is_active"] as! Bool == true {
                 let bio = data["bio"] as! String
                 let firstname = data["first_name"] as! String

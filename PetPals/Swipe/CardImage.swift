@@ -17,24 +17,25 @@ class CardImage: UIImageView {
         // Drawing code
     }
     */
-    lazy var imageName:String = String()
+    lazy var imageName:URL = URL(string: "")!
     lazy var contentView: UIImageView = {
         
         let contentView = UIImageView()
-        if(imageName != "" ){
-        contentView.image = UIImage(named: self.imageName)
-       
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        contentView.clipsToBounds = true
-        }
+//        if(imageName != "" ){
+//        contentView.image = contentView.image!.scaleToSize(aSize: CGSize(width: 150.0, height: 150.0))
+//        contentView.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+//        contentView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+//        contentView.clipsToBounds = true
+        load(url: self.imageName)
+//        contentView.image = contentView.image?.scaleToSize(aSize: CGSize(width: 150.0, height: 150.0))
+        load(url: imageName)
         return contentView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        setupView()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,20 +43,21 @@ class CardImage: UIImageView {
 //        setupView()
     }
     
-    func initWithName(_ name: String){
-        setupView(name)
+    func initWithName(_ url: String){
+        setupView(URL(string: url)!)
     }
     
-    private func setupView(_ name:String) {
-//        backgroundColor = .white
-        self.imageName = name
+    private func setupView(_ url:URL) {
+        self.imageName = url
+        
         addSubview(contentView)
-        setupLayout()
+        
+//        setupLayout()
         //Clips the image and rounds the top only.
-        self.layer.frame = bounds
-        self.layer.cornerRadius = 70
-        self.layer.masksToBounds = true
-        self.clipsToBounds = true
+//        self.layer.frame = bounds
+//        self.layer.cornerRadius = 70
+//        self.layer.masksToBounds = true
+//        self.clipsToBounds = true
     }
     
     private func setupLayout() {
@@ -69,7 +71,21 @@ class CardImage: UIImageView {
             ])
     }
 
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
+//    override class var requiresConstraintBasedLayout: Bool {
+//        return true
+//    }
+}
+
+extension CardImage {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.contentView.image = image
+                    }
+                }
+            }
+        }
     }
 }

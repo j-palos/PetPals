@@ -9,17 +9,22 @@
 import UIKit
 import Koloda
 import pop
+import FirebaseAuth
 
 var count = 3
 
 var images = ["parrot.png","charles","chris"]
+
+
+class user {
+    
+}
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
-class SwipeViewController: UIViewController {
-   
- 
 
+class SwipeViewController: UIViewController {
+    
     @IBOutlet weak var kolodaView: KolodaView!
     
     override func viewDidLoad() {
@@ -27,10 +32,14 @@ class SwipeViewController: UIViewController {
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        getUsers()
         // Do any additional setup after loading the view.
     }
     
-
+    var users:[UserProfile] = []
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -49,19 +58,36 @@ class SwipeViewController: UIViewController {
         kolodaView.swipe(.right)
     }
     
+    func getUsers()  {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getAllUsers(exceptID: id, completion: { (user) in
+                DispatchQueue.main.async {
+                    self.users.append(user)
+//                    print(user)
+                    self.kolodaView.reloadData()
+                }
+            })
+        }
+        
+    }
+    
 }
 
 extension SwipeViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-//        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
-        
         let cardView: CardView = CardView()
-        cardView.initWithName(images[index])
+//        cardView.initWithName(images[index])
+        let user = users[index]
+        cardView.initWithName(user.imageURL.absoluteString)
+        cardView.setName(user.firstName, user.lastName)
+        cardView.setBio(bio: user.bio)
+        cardView.setPetType(user.petType)
+        cardView.setDistance("3 miles")
         return cardView
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return 3
+        return users.count
     }
 }
 
