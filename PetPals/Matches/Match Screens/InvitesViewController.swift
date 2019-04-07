@@ -42,7 +42,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Update the cell information with this user's info
         cell.userName.text = user.userName
-        cell.userImage.image = UIImage(named: "\(user.image)")
+        cell.userImage.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
         cell.meetDate.text = "\(user.date) at \(user.time)"
         cell.meetLocation.text = user.location
         

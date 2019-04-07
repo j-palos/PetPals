@@ -25,7 +25,7 @@ class MeetupViewController: UIViewController {
         
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
-        chosenUserImage.image = UIImage(named: userImage)
+        chosenUserImage.image = UIImage(named: userImage)!.scaleToSize(aSize: CGSize(width: 75.0, height: 75.0))
         
         // Make the profile pictures circles
         chosenUserImage.layer.cornerRadius = chosenUserImage.frame.size.width / 2
