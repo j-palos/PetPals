@@ -23,19 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
         
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        
-        if let user = Auth.auth().currentUser {
-            UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { (error, startVC) in
-                if error == nil {
-                    // Allow the animation load screen to happen before changing the VC
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-                         self.window?.rootViewController = startVC
+        // Give time for the load animation to occur, then set up firebase & check if user logged in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+            FirebaseApp.configure()
+            
+            GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+            GIDSignIn.sharedInstance().delegate = self
+            
+            if let user = Auth.auth().currentUser {
+                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { (error, startVC) in
+                    if error == nil {
+                        self.window?.rootViewController = startVC
                     }
                 }
+            } else {
+                // Go to login screen if not logged in (prevents from staying on animation)
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Initial", bundle:nil)
+                self.window?.rootViewController = storyBoard.instantiateInitialViewController()
             }
         }
         return true
