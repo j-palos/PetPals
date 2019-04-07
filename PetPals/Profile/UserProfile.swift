@@ -216,7 +216,7 @@ class UserProfile: NSObject {
         })
     }
     
-    class func getAllUsers(exceptID: String, withinRadius radius: Double,  completion: @escaping (UserProfile) -> Swift.Void) {
+    class func getAllUsers(exceptID: String, withinMileRadius radius: Double,  completion: @escaping (UserProfile) -> Swift.Void) {
         
         //where user geolocations are stored
         let geoFireRef = Database.database().reference().child("Geolocations")
@@ -233,7 +233,8 @@ class UserProfile: NSObject {
         let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
         
         //We want users within the specified radius
-        geoQuery = geoFire.query(at: location, withRadius: radius)
+        let radiusInKM = radius * 1.60934
+        geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
         geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
             
             if key != Auth.auth().currentUser?.uid {
