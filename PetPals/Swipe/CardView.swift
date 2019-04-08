@@ -50,7 +50,6 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleHeight
         ]
         self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
         addSubview(view)

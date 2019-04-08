@@ -92,7 +92,7 @@ extension SwipeViewController: KolodaViewDataSource {
 extension SwipeViewController : KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
-        print("\(images[index]) in the \(direction)")
+//        print("\(images[index]) in the \(direction)")
     }
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {

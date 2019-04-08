@@ -24,11 +24,17 @@ class CardImage: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        //These values must be hardcoded
+        self.image = self.image?.scaleToSize(aSize: CGSize(width: 350, height: 350))
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+//        self.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.clipsToBounds = true
+        self.layer.frame = bounds
+        self.layer.cornerRadius = 70
         self.layer.masksToBounds = true
-        self.layer.borderWidth = 0.50
-        self.layer.borderColor = UIColor.black.cgColor
-        self.image = self.image?.scaleToSize(aSize: CGSize(width: 300, height: 300))
+        self.clipsToBounds = true
     }
     
     func load(fromURL url: URL) {
@@ -36,17 +42,14 @@ class CardImage: UIImageView {
         let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         activityIndicator.startAnimating()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
         let leftSpaceConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
-        
-        let topSpaceConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
         
         let widthConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
         
         let heightConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
         
         self.addSubview(activityIndicator)
-        self.addConstraints([leftSpaceConstraint, topSpaceConstraint, widthConstraint, heightConstraint])
+        self.addConstraints([leftSpaceConstraint,  widthConstraint, heightConstraint])
         //download image in a new async thread
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
