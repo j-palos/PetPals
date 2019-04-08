@@ -30,7 +30,7 @@ class SwipeViewController: UIViewController {
         kolodaView.delegate = self
         getUsers()
     }
-   
+    
     func createGradientLayer() {
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -54,8 +54,8 @@ class SwipeViewController: UIViewController {
     
     func getUsers() {
         if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getAllUsers(exceptID: id, completion: { user in
-                DispatchQueue.main.async {
+            UserProfile.getAllUsersWithinRadius(exceptID: id, withinMileRadius: 20, completion: {
+                user in DispatchQueue.main.async {
                     self.users.append(user)
                     self.kolodaView.reloadData()
                 }
@@ -72,7 +72,7 @@ extension SwipeViewController: KolodaViewDataSource {
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
-        card.setDistance("3 miles")
+        card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
         return card
     }
     
