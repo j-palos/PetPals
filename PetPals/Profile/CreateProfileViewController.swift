@@ -152,7 +152,7 @@ class CreateProfileViewController: UIViewController {
     //user wants to edit the photo
     @IBAction func buttonOnClick(_ sender: UIButton) {
         let alert = UIAlertController(title: "", message: "Photo Selection", preferredStyle: UIAlertController.Style.actionSheet)
-        let cancel = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(UIAlertAction(title: "Browse", style: .default, handler: { (action: UIAlertAction!) in
             self.uploadFromFiles()
         }))

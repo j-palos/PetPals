@@ -161,13 +161,13 @@ class UserProfile: NSObject {
     class func getProfile(forUserID uid: String, completion: @escaping (UserProfile) -> Swift.Void) {
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(uid).child("user_details").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let data = snapshot.value as? [String: String] {
+            if let data = snapshot.value as? [String: Any] {
                 
-                let bio = data["bio"]!
-                let firstname = data["first_name"]!
-                let lastname = data["last_name"]!
-                let link = URL(string: data["profile_pic_url"]!)!
-                let pettype = data["pet_type"]!
+                let bio = data["bio"] as! String
+                let firstname = data["first_name"] as! String
+                let lastname = data["last_name"] as! String
+                let link = URL(string: data["profile_pic_url"] as! String)!
+                let pettype = data["pet_type"] as! String
                 
                 URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
                     if error == nil {
