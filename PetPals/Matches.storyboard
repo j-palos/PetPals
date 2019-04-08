@@ -1153,11 +1153,11 @@
             <objects>
                 <viewController id="beN-tL-w2Q" userLabel="Specific Upcoming Date" customClass="SpecificUpcomingDateViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kdF-Cr-JK2">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpi-Lp-hhz">
-                                <rect key="frame" x="259" y="13.666666666666664" width="36" height="17"/>
+                                <rect key="frame" x="219" y="13.666666666666664" width="36" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Date">
                                         <attributes>
@@ -1168,7 +1168,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVB-hu-fUR">
-                                <rect key="frame" x="313" y="13.666666666666664" width="37" height="17"/>
+                                <rect key="frame" x="273" y="13.666666666666664" width="37" height="17"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Time">
                                         <attributes>
@@ -1190,7 +1190,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-Ud-gTI">
-                                <rect key="frame" x="302" y="20" width="5" height="5"/>
+                                <rect key="frame" x="262" y="20" width="5" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="Tr7-de-NFc"/>
                                     <constraint firstAttribute="width" constant="5" id="kOg-Ww-tX9"/>
