@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +26,6 @@
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHJ-1d-cS6" customClass="CardImage" customModule="PetPals" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="358" height="331"/>
-                    <color key="backgroundColor" name="PetPalLightBlue"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1of-71-LHu">
                     <rect key="frame" x="16" y="368" width="105" height="21"/>
@@ -58,7 +56,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.99495317972715669" green="1" blue="0.97098069692362932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="nHJ-1d-cS6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9Le-Nf-Z9M"/>
                 <constraint firstItem="nHJ-1d-cS6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Nlp-n1-qRN"/>
@@ -70,9 +68,4 @@
             <point key="canvasLocation" x="156.80000000000001" y="169.56521739130437"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="PetPalLightBlue">
-            <color red="0.67450980392156867" green="0.88235294117647056" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

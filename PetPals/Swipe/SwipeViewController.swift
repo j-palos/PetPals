@@ -6,21 +6,22 @@
 //  Copyright © 2019 PetPals.inc. All rights reserved.
 //
 
-import UIKit
+import FirebaseAuth
 import Koloda
 import pop
-import FirebaseAuth
+import UIKit
 
-class user {
-    
-}
+class user {}
+
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 4
 
 class SwipeViewController: UIViewController {
+    @IBOutlet var kolodaView: KolodaView!
     
-    @IBOutlet weak var kolodaView: KolodaView!
+    var gradientLayer: CAGradientLayer!
+    var users: [UserProfile] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,41 +30,38 @@ class SwipeViewController: UIViewController {
         kolodaView.delegate = self
         getUsers()
     }
-    
-    var users:[UserProfile] = []
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor(red: 243 / 255, green: 244 / 255, blue: 248 / 255, alpha: 1.0).cgColor]
+        gradientLayer.zPosition = -1
+        view.layer.addSublayer(gradientLayer)
     }
-    */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        createGradientLayer()
+    }
+    
     @IBAction func noButtonTapped(_ sender: Any) {
         kolodaView.swipe(.left)
-        
     }
     
     @IBAction func yesButtonTapped(_ sender: Any) {
         kolodaView.swipe(.right)
     }
     
-    func getUsers()  {
+    func getUsers() {
         if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getAllUsers(exceptID: id, completion: { (user) in
+            UserProfile.getAllUsers(exceptID: id, completion: { user in
                 DispatchQueue.main.async {
                     self.users.append(user)
                     self.kolodaView.reloadData()
                 }
             })
         }
-        
     }
-    
 }
 
 extension SwipeViewController: KolodaViewDataSource {
@@ -83,9 +81,8 @@ extension SwipeViewController: KolodaViewDataSource {
     }
 }
 
-extension SwipeViewController : KolodaViewDelegate {
-    
-    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
+extension SwipeViewController: KolodaViewDelegate {
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
 //        print("\(images[index]) in the \(direction)")
     }
     

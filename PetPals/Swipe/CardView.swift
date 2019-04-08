@@ -16,6 +16,7 @@ class CardView: UIView {
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var cardImage: CardImage!
     @IBOutlet var petTypeLabel: UILabel!
+   
     
     //vars to set up the view
     var name = String()
@@ -38,6 +39,7 @@ class CardView: UIView {
         Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
     }
     
+
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
@@ -48,8 +50,16 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleHeight
         ]
         cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        view.layer.cornerRadius = 70
-        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10.0
+        // set the corner radius
+//        layer.cornerRadius = 6.0
+//        layer.masksToBounds = true
+        // set the shadow properties
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 1, height: 2.0)
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 10.0
+        
         addSubview(view)
         self.view = view
     }

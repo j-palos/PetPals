@@ -32,7 +32,7 @@ class CardImage: UIImageView {
 //        self.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         self.clipsToBounds = true
         self.layer.frame = bounds
-        self.layer.cornerRadius = 70
+        self.layer.cornerRadius = 10.0
         self.layer.masksToBounds = true
         self.clipsToBounds = true
     }
