@@ -49,7 +49,8 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-        self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
         addSubview(view)
@@ -72,10 +73,8 @@ class CardView: UIView {
         petTypeLabel.text = "\(type)"
     }
     
-
-    
     func initWithName(_ name:String){
-               self.cardImage.initWithName(name)
+        self.cardImage.load(fromURL: URL(string: name)!)
     }
     
     override func prepareForInterfaceBuilder() {
