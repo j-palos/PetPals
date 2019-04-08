@@ -70,7 +70,7 @@ class CardView: UIView {
         petTypeLabel.text = "\(type)"
     }
     
-    func initWithName(_ name: String) {
+    func initWithURL(_ name: String) {
         cardImage.load(fromURL: URL(string: name)!)
     }
     

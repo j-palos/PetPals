@@ -11,17 +11,12 @@ import Koloda
 import pop
 import FirebaseAuth
 
-var count = 3
-
-var images = ["parrot.png","charles","chris"]
-
-
 class user {
     
 }
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 2
+private let kolodaCountOfVisibleCards = 4
 
 class SwipeViewController: UIViewController {
     
@@ -73,15 +68,14 @@ class SwipeViewController: UIViewController {
 
 extension SwipeViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let cardView: CardView = CardView()
-//        cardView.initWithName(images[index])
+        let card: CardView = CardView()
         let user = users[index]
-        cardView.initWithName(user.imageURL.absoluteString)
-        cardView.setName(user.firstName, user.lastName)
-        cardView.setBio(bio: user.bio)
-        cardView.setPetType(user.petType)
-        cardView.setDistance("3 miles")
-        return cardView
+        card.initWithURL(user.imageURL.absoluteString)
+        card.setName(user.firstName, user.lastName)
+        card.setBio(bio: user.bio)
+        card.setPetType(user.petType)
+        card.setDistance("3 miles")
+        return card
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
