@@ -31,10 +31,13 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-RB-bGh">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-RB-bGh" userLabel="Edit Picture">
                                 <rect key="frame" x="235" y="270" width="56" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="pictureButtonClicked:" destination="Iv4-wA-obe" eventType="touchUpInside" id="wFT-l9-juS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-cq-Lsm">
                                 <rect key="frame" x="43" y="391" width="57" height="18"/>
@@ -57,15 +60,21 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3th-GA-bKl">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3th-GA-bKl" userLabel="Edit Name">
                                 <rect key="frame" x="308" y="380" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="nameButtonClicked:" destination="Iv4-wA-obe" eventType="touchUpInside" id="f4o-Qi-O1Y"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nli-kp-McR">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nli-kp-McR" userLabel="Edit Pet Type">
                                 <rect key="frame" x="308" y="460" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="typeButtonClicked:" destination="Iv4-wA-obe" eventType="touchUpInside" id="EUt-Nx-cjI"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BIO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-kk-GCy">
                                 <rect key="frame" x="43" y="541" width="57" height="22"/>
@@ -81,10 +90,13 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMO-6T-AvW">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMO-6T-AvW" userLabel="Edit Bio">
                                 <rect key="frame" x="308" y="532" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="edit button"/>
+                                <connections>
+                                    <action selector="bioButtonClicked:" destination="Iv4-wA-obe" eventType="touchUpInside" id="vkl-Oh-Nv3"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1S-hy-Qal">
                                 <rect key="frame" x="114" y="389" width="63" height="21"/>
@@ -102,6 +114,31 @@
                                     <segue destination="Pxn-1G-Pe6" kind="show" id="7ol-4B-ah4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tE-nB-Gle" userLabel="Name Field">
+                                <rect key="frame" x="114" y="384" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameEditEnd:" destination="Iv4-wA-obe" eventType="editingDidEnd" id="c6f-gz-e5i"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kl-D4-yYA" userLabel="Bio Field">
+                                <rect key="frame" x="91" y="532" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="bioEditEnd:" destination="Iv4-wA-obe" eventType="editingDidEnd" id="xXb-ID-JYt"/>
+                                </connections>
+                            </textField>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnN-QM-FbU">
+                                <rect key="frame" x="138" y="428" width="153" height="96"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="M90-1U-aDo"/>
@@ -109,15 +146,18 @@
                     <tabBarItem key="tabBarItem" title="" image="profile-bar" selectedImage="profile-bar" id="7fo-6R-5UM"/>
                     <navigationItem key="navigationItem" title="Profile" id="64y-7z-AMw"/>
                     <connections>
+                        <outlet property="bioField" destination="3kl-D4-yYA" id="GCU-kM-MQl"/>
+                        <outlet property="nameField" destination="1tE-nB-Gle" id="ifG-7i-9FR"/>
                         <outlet property="profileBio" destination="fAT-Ru-drs" id="fA5-RS-zu2"/>
                         <outlet property="profileName" destination="V1S-hy-Qal" id="rCy-ta-fS1"/>
                         <outlet property="profilePetType" destination="mON-eM-q8U" id="AJV-sU-SPz"/>
                         <outlet property="profilePicture" destination="w7Y-Yv-ier" id="Ra9-92-ZrR"/>
+                        <outlet property="typePicker" destination="cnN-QM-FbU" id="64G-ti-PNw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ca9-M2-7kU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6304" y="-465"/>
+            <point key="canvasLocation" x="6302.898550724638" y="-465.08152173913049"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9re-Ve-kye">
