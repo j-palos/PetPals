@@ -33,7 +33,6 @@ class SwipeViewController: UIViewController {
         kolodaView.dataSource = self
         kolodaView.delegate = self
         getUsers()
-        // Do any additional setup after loading the view.
     }
     
     var users:[UserProfile] = []
@@ -63,7 +62,6 @@ class SwipeViewController: UIViewController {
             UserProfile.getAllUsers(exceptID: id, completion: { (user) in
                 DispatchQueue.main.async {
                     self.users.append(user)
-//                    print(user)
                     self.kolodaView.reloadData()
                 }
             })

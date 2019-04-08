@@ -24,11 +24,11 @@ class CardImage: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.layer.cornerRadius = self.frame.size.height / 2
         self.clipsToBounds = true
         self.layer.masksToBounds = true
         self.layer.borderWidth = 0.50
         self.layer.borderColor = UIColor.black.cgColor
+        self.image = self.image?.scaleToSize(aSize: CGSize(width: 300, height: 300))
     }
     
     func load(fromURL url: URL) {
@@ -46,7 +46,6 @@ class CardImage: UIImageView {
         let heightConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
         
         self.addSubview(activityIndicator)
-        
         self.addConstraints([leftSpaceConstraint, topSpaceConstraint, widthConstraint, heightConstraint])
         //download image in a new async thread
         DispatchQueue.global().async { [weak self] in
