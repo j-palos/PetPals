@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var profilePicture: ProfileImageView!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profilePetType: UILabel!
+    @IBOutlet weak var profileBio: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,18 +27,14 @@ class ProfileViewController: UIViewController {
             profilePicture.load(fromURL: url)
         }
 
-        // Do any additional setup after loading the view.
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                DispatchQueue.main.async {
+                    self.profileName.text = user.firstName
+                    self.profilePetType.text = user.petType
+                    self.profileBio.text = user.bio
+                }
+            })
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
