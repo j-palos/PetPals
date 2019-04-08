@@ -10,13 +10,12 @@ import UIKit
 
 @IBDesignable
 class CardView: UIView {
-
     let kCONTENT_XIB_NAME = "CardView"
-    @IBOutlet  var bioLabel: UILabel!
-    @IBOutlet  var nameLabel: UILabel!
-    @IBOutlet  var distanceLabel: UILabel!
-    @IBOutlet  var cardImage: CardImage!
-    @IBOutlet  var petTypeLabel: UILabel!
+    @IBOutlet var bioLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var cardImage: CardImage!
+    @IBOutlet var petTypeLabel: UILabel!
     
     //vars to set up the view
     var name = String()
@@ -33,7 +32,6 @@ class CardView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        
     }
     
     func commonInit() {
@@ -49,31 +47,31 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-        self.cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = 70
         view.layer.borderWidth = 1
         addSubview(view)
         self.view = view
     }
     
-    func setBio(bio : String){
+    func setBio(bio: String) {
         bioLabel.text = "Bio: \(bio)"
     }
     
-    func setName(_ first:String, _ second:String){
+    func setName(_ first: String, _ second: String) {
         nameLabel.text = "\(first) \(second)"
     }
     
-    func setDistance (_ distance:String){
+    func setDistance(_ distance: String) {
         distanceLabel.text = "Distance: \(distance)"
     }
     
-    func setPetType(_ type:String){
+    func setPetType(_ type: String) {
         petTypeLabel.text = "\(type)"
     }
     
-    func initWithName(_ name:String){
-        self.cardImage.load(fromURL: URL(string: name)!)
+    func initWithName(_ name: String) {
+        cardImage.load(fromURL: URL(string: name)!)
     }
     
     override func prepareForInterfaceBuilder() {
@@ -104,7 +102,6 @@ class CardView: UIView {
         }
     }
     
-    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -112,19 +109,16 @@ class CardView: UIView {
         // Drawing code
     }
     */
-
 }
 
-extension UIView
-{
-    func fixInView(_ container: UIView!) -> Void{
-        self.translatesAutoresizingMaskIntoConstraints = false;
-        self.frame = container.frame;
-        container.addSubview(self);
+extension UIView {
+    func fixInView(_ container: UIView!) {
+        translatesAutoresizingMaskIntoConstraints = false
+        frame = container.frame
+        container.addSubview(self)
         NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
     }
 }
-
