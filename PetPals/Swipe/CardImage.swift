@@ -10,66 +10,57 @@ import UIKit
 
 class CardImage: UIImageView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(image: UIImage?) {
+        super.init(image: image)
     }
-    */
-    lazy var imageName:String = String()
-    lazy var contentView: UIImageView = {
-        
-        let contentView = UIImageView()
-        if(imageName != "" ){
-        contentView.image = UIImage(named: self.imageName)
-       
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        contentView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        contentView.clipsToBounds = true
-        }
-        return contentView
-    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        setupView()
     }
     
-    func initWithName(_ name: String){
-        setupView(name)
-    }
-    
-    private func setupView(_ name:String) {
-//        backgroundColor = .white
-        self.imageName = name
-        addSubview(contentView)
-        setupLayout()
-        //Clips the image and rounds the top only.
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //These values must be hardcoded
+        self.image = self.image?.scaleToSize(aSize: CGSize(width: 350, height: 350))
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+//        self.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        self.clipsToBounds = true
         self.layer.frame = bounds
-        self.layer.cornerRadius = 70
+        self.layer.cornerRadius = 10.0
         self.layer.masksToBounds = true
         self.clipsToBounds = true
     }
     
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            
-            //layout contentView
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
-            ])
-    }
-
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
+    func load(fromURL url: URL) {
+        //shows a loading animation while image is downloaded from url
+        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        let leftSpaceConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
+        
+        let widthConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
+        
+        let heightConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
+        
+        self.addSubview(activityIndicator)
+        self.addConstraints([leftSpaceConstraint,  widthConstraint, heightConstraint])
+        //download image in a new async thread
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        activityIndicator.stopAnimating()
+                        self?.image = image
+                        
+                    }
+                }
+            }
+        }
     }
 }

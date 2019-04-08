@@ -6,67 +6,85 @@
 //  Copyright © 2019 PetPals.inc. All rights reserved.
 //
 
-import UIKit
+import FirebaseAuth
 import Koloda
 import pop
+import UIKit
 
-var count = 3
+class user {}
 
-var images = ["parrot.png","charles","chris"]
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 2
-class SwipeViewController: UIViewController {
-   
- 
+private let kolodaCountOfVisibleCards = 4
 
-    @IBOutlet weak var kolodaView: KolodaView!
+class SwipeViewController: UIViewController {
+    @IBOutlet var kolodaView: KolodaView!
+    
+    var gradientLayer: CAGradientLayer!
+    var users: [UserProfile] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        // Do any additional setup after loading the view.
+        getUsers()
+    }
+   
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor(red: 243 / 255, green: 244 / 255, blue: 248 / 255, alpha: 1.0).cgColor]
+        gradientLayer.zPosition = -1
+        view.layer.addSublayer(gradientLayer)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        createGradientLayer()
     }
-    */
+    
     @IBAction func noButtonTapped(_ sender: Any) {
         kolodaView.swipe(.left)
-        
     }
     
     @IBAction func yesButtonTapped(_ sender: Any) {
         kolodaView.swipe(.right)
     }
     
+    func getUsers() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getAllUsers(exceptID: id, completion: { user in
+                DispatchQueue.main.async {
+                    self.users.append(user)
+                    self.kolodaView.reloadData()
+                }
+            })
+        }
+    }
 }
 
 extension SwipeViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-//        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
-        
-        let cardView: CardView = CardView()
-        cardView.initWithName(images[index])
-        return cardView
+        let card: CardView = CardView()
+        let user = users[index]
+        card.initWithURL(user.imageURL.absoluteString)
+        card.setName(user.firstName, user.lastName)
+        card.setBio(bio: user.bio)
+        card.setPetType(user.petType)
+        card.setDistance("3 miles")
+        return card
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return 3
+        return users.count
     }
 }
 
-extension SwipeViewController : KolodaViewDelegate {
-    
+extension SwipeViewController: KolodaViewDelegate {
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+//        print("\(images[index]) in the \(direction)")
+    }
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         kolodaView.resetCurrentCardIndex()

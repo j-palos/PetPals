@@ -18,15 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="20" y="20" width="374" height="547"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7Z-nc-fLE">
                                 <rect key="frame" x="249" y="612" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="btn_like_normal"/>
+                                <state key="normal" backgroundImage="Like"/>
                                 <connections>
                                     <action selector="yesButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="Vl9-nm-g5B"/>
                                 </connections>
@@ -34,11 +29,16 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
                                 <rect key="frame" x="108" y="612" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="btn_skip_normal"/>
+                                <state key="normal" backgroundImage="Nope"/>
                                 <connections>
                                     <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="20" y="41" width="374" height="526"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
@@ -54,8 +54,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_like_normal" width="32" height="32"/>
-        <image name="btn_skip_normal" width="32" height="32"/>
+        <image name="Like" width="108" height="108"/>
+        <image name="Nope" width="108" height="108"/>
         <image name="paw-bar" width="25" height="25"/>
     </resources>
     <color key="tintColor" name="PetPalDarkBlue"/>
