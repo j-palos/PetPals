@@ -188,7 +188,7 @@ class UserProfile: NSObject {
         let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
         let myLocation:CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
         
-        
+        //What is this?
         let distance = myLocation.distance(from: userLocation) * 0.000621371
         return Int(round(distance))
     }
@@ -217,7 +217,7 @@ class UserProfile: NSObject {
         })
     }
     
-    class func getAllUsers(exceptID: String, withinMileRadius radius: Double,  completion: @escaping (UserProfile) -> Swift.Void) {
+    class func getAllUsersWithinRadius(exceptID: String, withinMileRadius radius: Double,  completion: @escaping (UserProfile) -> Swift.Void) {
         
         //where user geolocations are stored
         let geoFireRef = Database.database().reference().child("Geolocations")

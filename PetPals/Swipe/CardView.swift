@@ -73,7 +73,7 @@ class CardView: UIView {
     }
     
     func setDistance(_ distance: String) {
-        distanceLabel.text = "Distance: \(distance)"
+        distanceLabel.text = "Distance: \(distance) miles"
     }
     
     func setPetType(_ type: String) {
