@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import GeoFire
 
 class UserProfile: NSObject {
     
@@ -19,6 +20,7 @@ class UserProfile: NSObject {
     var bio:String
     var imageURL:URL
     var petType:String
+    var location: CLLocation?
     
     init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String) {
         self.bio = bio
@@ -27,7 +29,20 @@ class UserProfile: NSObject {
         self.petType = petType
         self.lastName = lastName
         self.firstName = firstName
+        self.location = nil
     }
+    
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation) {
+        self.bio = bio
+        self.id = id
+        self.imageURL = profilePic
+        self.petType = petType
+        self.lastName = lastName
+        self.firstName = firstName
+        self.location = location
+    }
+    
+    
     
     class func registerUser(email: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -166,6 +181,18 @@ class UserProfile: NSObject {
         })
     }
     
+    
+    class func getDistanceInMiles(fromUsersLocation userLocation: CLLocation) -> Int {
+        
+        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
+        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
+        let myLocation:CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
+        
+        
+        let distance = myLocation.distance(from: userLocation) * 0.000621371
+        return Int(round(distance))
+    }
+    
     class func getAllUsers(exceptID: String, completion: @escaping (UserProfile) -> Swift.Void) {
         Database.database().reference().child("Users").observe(.childAdded, with: { (snapshot) in
             let id = snapshot.key
@@ -188,4 +215,56 @@ class UserProfile: NSObject {
             }
         })
     }
+    
+    class func getAllUsers(exceptID: String, withinMileRadius radius: Double,  completion: @escaping (UserProfile) -> Swift.Void) {
+        
+        //where user geolocations are stored
+        let geoFireRef = Database.database().reference().child("Geolocations")
+        let geoFire = GeoFire(firebaseRef: geoFireRef)
+        var geoQuery: GFQuery?
+
+        
+        //get our location
+        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
+        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
+        
+        let lat = CLLocationDegrees(Double(userLat)!)
+        let lon = CLLocationDegrees(Double(userLong)!)
+        let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
+        
+        //We want users within the specified radius
+        let radiusInKM = radius * 1.60934
+        geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
+        geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
+            
+            if key != Auth.auth().currentUser?.uid {
+                let ref = Database.database().reference().child("Users").child(key!)
+                
+                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    let id = snapshot.key
+                    let snap = snapshot.value as! [String: Any]
+                    let data = snap["user_details"] as! [String: Any]
+                    
+                    let bio = data["bio"] as! String
+                    let firstname = data["first_name"] as! String
+                    let lastname = data["last_name"] as! String
+                    let link = URL(string: data["profile_pic_url"] as! String)!
+                    let pettype = data["pet_type"] as! String
+                    
+                    URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
+                        if error == nil {
+                            _ = UIImage.init(data: data!)
+                            let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                                   id: id, profilePic: link, petType: pettype, location: location)
+                            completion(user)
+                        }
+                    }).resume()
+                    
+                })
+            }
+        })
+    }
+    
+    
+    
 }
