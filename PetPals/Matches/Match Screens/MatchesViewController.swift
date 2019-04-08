@@ -49,7 +49,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         // Update the cell information with this user's info
         cell.nameLabel.text = user.userName
-        cell.image.image = UIImage(named: "\(user.image)")
+        cell.image.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
         
         // Make the profile pictures circles
         cell.image.layer.cornerRadius =  cell.image.frame.size.width / 2
