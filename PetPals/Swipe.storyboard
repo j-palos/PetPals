@@ -21,6 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7Z-nc-fLE">
                                 <rect key="frame" x="242" y="575" width="85" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" backgroundImage="Like"/>
                                 <connections>
                                     <action selector="yesButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="Vl9-nm-g5B"/>
@@ -34,6 +35,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
                                 <rect key="frame" x="94" y="575" width="85" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" backgroundImage="Nope"/>
                                 <connections>
                                     <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
@@ -46,6 +48,8 @@
                     <tabBarItem key="tabBarItem" title="" image="paw-bar" selectedImage="paw-bar" id="YQE-Gj-D3S"/>
                     <connections>
                         <outlet property="kolodaView" destination="aiH-pp-vij" id="0Yg-rs-Uif"/>
+                        <outlet property="noButton" destination="RM2-1I-oKq" id="BJk-pq-UCa"/>
+                        <outlet property="yesButton" destination="B7Z-nc-fLE" id="ymj-Sm-7Jn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDJ-7F-d9B" userLabel="First Responder" sceneMemberID="firstResponder"/>

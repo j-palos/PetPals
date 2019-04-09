@@ -22,7 +22,9 @@ class SwipeViewController: UIViewController {
 
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
-
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -36,7 +38,10 @@ class SwipeViewController: UIViewController {
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor(red: 243 / 255, green: 244 / 255, blue: 248 / 255, alpha: 1.0).cgColor]
-        gradientLayer.zPosition = -1
+        gradientLayer.zPosition = -2
+        //let cards slide over the buttons
+        yesButton.layer.zPosition = -1
+        noButton.layer.zPosition = -1
         view.layer.addSublayer(gradientLayer)
     }
 
