@@ -9,22 +9,24 @@
 import UIKit
 
 @IBDesignable
+// Custom UIView class that handles making our actual swipe cards
 class CardView: UIView {
     let kCONTENT_XIB_NAME = "CardView"
+    
+    // Outlet Variables
     @IBOutlet var bioLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var cardImage: CardImage!
     @IBOutlet var petTypeLabel: UILabel!
-   
     
-    //vars to set up the view
+    // vars to set up the view
     var name = String()
     var petType = String()
     var bio = String()
     var distance = String()
-    
     var view: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
@@ -39,7 +41,7 @@ class CardView: UIView {
         Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
     }
     
-
+    // loads a new instance of our CardView xib
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
@@ -50,14 +52,13 @@ class CardView: UIView {
             UIView.AutoresizingMask.flexibleHeight
         ]
         cardImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        // set corner radius
         view.layer.cornerRadius = 10.0
-        // set the corner radius
-//        layer.cornerRadius = 6.0
-//        layer.masksToBounds = true
         // set the shadow properties
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 1, height: 2.0)
         layer.shadowOpacity = 0.5
+        // shadow radius should be same as corner radius
         layer.shadowRadius = 10.0
         
         addSubview(view)
@@ -84,6 +85,7 @@ class CardView: UIView {
         cardImage.load(fromURL: URL(string: name)!)
     }
     
+    // I think I can take these out
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         layer.borderColor = borderColor?.cgColor
@@ -110,25 +112,5 @@ class CardView: UIView {
             layer.cornerRadius = cornerRadius
             setNeedsLayout()
         }
-    }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-}
-
-extension UIView {
-    func fixInView(_ container: UIView!) {
-        translatesAutoresizingMaskIntoConstraints = false
-        frame = container.frame
-        container.addSubview(self)
-        NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
     }
 }
