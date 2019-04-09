@@ -6,20 +6,32 @@
 //  Copyright © 2019 PetPals.inc. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import CoreLocation
 import Firebase
 import GoogleSignIn
-
+import UIKit
 
 let mainVCAfterAuthIdentifier = "Home"
 let createProfileVCIdenfifier = "CreateProfile"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    
     var window: UIWindow?
+    private let manager = CLLocationManager()
     
+    private func configureLocationManager() {
+        if #available(iOS 9.0, *) {
+            manager.allowsBackgroundLocationUpdates = true
+        } else {
+            // Fallback on earlier versions
+        }
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.pausesLocationUpdatesAutomatically = false
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,48 +42,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
             GIDSignIn.sharedInstance().delegate = self
-            
             if let user = Auth.auth().currentUser {
-                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { (error, startVC) in
+                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, startVC in
                     if error == nil {
                         self.window?.rootViewController = startVC
                     }
                 }
             } else {
                 // Go to login screen if not logged in (prevents from staying on animation)
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Initial", bundle:nil)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Initial", bundle: nil)
                 self.window?.rootViewController = storyBoard.instantiateInitialViewController()
             }
         }
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url,
-                                                 //added exclamation mark
-            sourceApplication: String(describing: options[UIApplication.OpenURLOptionsKey.sourceApplication]!),
-            annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+                                                 // added exclamation mark
+                                                 sourceApplication: String(describing: options[UIApplication.OpenURLOptionsKey.sourceApplication]!),
+                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
-        
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
-            print ("failed to log into Google: ", err.localizedDescription)
+            print("failed to log into Google: ", err.localizedDescription)
             return
         }
         
         print("successfully logged into Google", user)
-        guard let idToken = user.authentication.idToken else {return}
-        guard let accessToken = user.authentication.accessToken else {return}
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
-        UserProfile.loginUser(withCredentials: credentials) { (error, startVC) in
+        UserProfile.loginUser(withCredentials: credentials) { error, startVC in
             if error == nil {
                 self.window?.rootViewController = startVC
             }
         }
-        
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -93,13 +101,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        configureLocationManager()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+        saveContext()
     }
     
     // MARK: - Core Data stack
@@ -112,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "PetPals")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -133,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -146,6 +155,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
         }
     }
-    
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    // if the user changed the authorization for getting location get it
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways) || (status == .authorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location Error:\(error.localizedDescription)")
+    }
+    
+    // when location is updated, store it in user defaults
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let updatedLocation: CLLocation = locations.first!
+        let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
+        let usrDefaults: UserDefaults = UserDefaults.standard
+        
+        usrDefaults.set("\(newCoordinate.latitude)", forKey: "current_latitude")
+        usrDefaults.set("\(newCoordinate.longitude)", forKey: "current_longitude")
+        usrDefaults.synchronize()
+    }
+}
