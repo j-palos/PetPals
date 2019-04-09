@@ -19,19 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7Z-nc-fLE">
-                                <rect key="frame" x="249" y="612" width="60" height="60"/>
+                                <rect key="frame" x="242" y="575" width="85" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" backgroundImage="Like"/>
                                 <connections>
                                     <action selector="yesButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="Vl9-nm-g5B"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
-                                <rect key="frame" x="108" y="612" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Nope"/>
-                                <connections>
-                                    <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
@@ -39,6 +32,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
+                                <rect key="frame" x="94" y="575" width="85" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
+                                <state key="normal" backgroundImage="Nope"/>
+                                <connections>
+                                    <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
@@ -46,6 +48,8 @@
                     <tabBarItem key="tabBarItem" title="" image="paw-bar" selectedImage="paw-bar" id="YQE-Gj-D3S"/>
                     <connections>
                         <outlet property="kolodaView" destination="aiH-pp-vij" id="0Yg-rs-Uif"/>
+                        <outlet property="noButton" destination="RM2-1I-oKq" id="BJk-pq-UCa"/>
+                        <outlet property="yesButton" destination="B7Z-nc-fLE" id="ymj-Sm-7Jn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDJ-7F-d9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
