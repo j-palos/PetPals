@@ -226,6 +226,8 @@ class UserProfile: NSObject {
 
         
         //get our location
+        //clearing phone removes
+        //todo: move storing location to login and not signup
         let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
         let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
         
