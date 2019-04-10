@@ -101,7 +101,8 @@ class SwipeViewController: UIViewController {
             //search radius is in miles but geofire takes in KM so convert from miles to KM
             let radiusInKM = searchRadius * 1.60934
             geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
-            users.removeAll() //to ensure that not readding cards and data reset
+            users.removeAll()
+            kolodaView.reloadData()
             UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
