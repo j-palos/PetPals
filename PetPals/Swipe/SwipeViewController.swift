@@ -25,11 +25,19 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var yesButton: UIButton!
     
+    var profile: UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
+
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { user in
+                self.profile = user
+            })
+        }        
         getUsers()
     }
 
@@ -96,7 +104,20 @@ extension SwipeViewController: KolodaViewDataSource {
 extension SwipeViewController: KolodaViewDelegate {
     // This function will handle the swiping/network interaction
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-    //        print("\(images[index]) in the \(direction)")
+        //  print("\(images[index]) in the \(direction)")
+        
+        let user = users[index]
+        if let profile = profile {
+            switch direction {
+            case .left:
+                profile.swipeLeft(onUserProfile: user)
+            case .right:
+                profile.swipeRight(onUserProfile: user)
+            default:
+                print("User swiped neither left or right")
+            }
+        }
+        
     }
 
     // for now, we reset the cards so we can tests better
