@@ -86,25 +86,32 @@ class SwipeViewController: UIViewController {
     // Retrieve users within the desired radius of the user
     //todo: need to add withinMileRadius from userDefaults
    @objc func getUsers() {
-        //if user hasn't specified a dearch radius set to 5 initially?
-        let searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
-        // get our location
-        // clearing phone removes
-        //todo: move storing location to login and not signup
-        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
-        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
-        let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
-        //We want users within the specified radius
-        let radiusInKM = searchRadius * 1.60934
-        geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
-        users.removeAll()
-        UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
-            user in DispatchQueue.main.async {
-                self.users.append(user)
-                //todo: change this to in completion
-                self.kolodaView.reloadData()
-            }
-        })
+    
+        //Make sure that user location saved first before getting users
+        if  let lat = UserDefaults.standard.value(forKey: "current_latitude") as? String,
+            let lon = UserDefaults.standard.value(forKey: "current_longitude") as? String {
+        
+            // get our location
+            // clearing phone removes
+            //todo: move storing location to login and not signup
+            let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lon)!))
+            //We want users within the specified radius
+            //if user hasn't specified a dearch radius set to 5 initially?
+            let searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
+            //search radius is in miles but geofire takes in KM so convert from miles to KM
+            let radiusInKM = searchRadius * 1.60934
+            geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
+            users.removeAll() //to ensure that not readding cards and data reset
+            UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
+                user in DispatchQueue.main.async {
+                    self.users.append(user)
+                    //todo: change this to in completion
+                    self.kolodaView.reloadData()
+                }
+            })
+            
+        }
+    
     }
 }
 
