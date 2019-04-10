@@ -10,6 +10,8 @@ import FirebaseAuth
 import Koloda
 import pop
 import UIKit
+import GeoFire
+import FirebaseDatabase
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
@@ -25,18 +27,34 @@ class SwipeViewController: UIViewController {
     
     var profile: UserProfile?
     
+    //for getting users locations
+    var geoFireRef: DatabaseReference?
+    var geoFire: GeoFire?
+    var geoQuery: GFQuery?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        geoFireRef = Database.database().reference().child("Geolocations")
+        geoFire = GeoFire(firebaseRef: geoFireRef!)
 
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { user in
                 self.profile = user
             })
-        }        
+        }
+        
         getUsers()
+        
+        //If the user defaults changed, then reload the users data to mactch the changes
+        NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        geoQuery?.removeAllObservers()
     }
 
     // Create the gradient we want for our background
@@ -67,16 +85,26 @@ class SwipeViewController: UIViewController {
 
     // Retrieve users within the desired radius of the user
     //todo: need to add withinMileRadius from userDefaults
-    func getUsers() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getAllUsersWithinRadius(exceptID: id, withinMileRadius: 20, completion: {
-                user in DispatchQueue.main.async {
-                    self.users.append(user)
-                    //todo: change this to in completion
-                    self.kolodaView.reloadData()
-                }
-            })
-        }
+   @objc func getUsers() {
+        //if user hasn't specified a dearch radius set to 5 initially?
+        let searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
+        // get our location
+        // clearing phone removes
+        //todo: move storing location to login and not signup
+        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
+        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
+        let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
+        //We want users within the specified radius
+        let radiusInKM = searchRadius * 1.60934
+        geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
+        users.removeAll()
+        UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
+            user in DispatchQueue.main.async {
+                self.users.append(user)
+                //todo: change this to in completion
+                self.kolodaView.reloadData()
+            }
+        })
     }
 }
 

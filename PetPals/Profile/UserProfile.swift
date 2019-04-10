@@ -199,25 +199,10 @@ class UserProfile: NSObject {
         })
     }
     
-    class func getAllUsersWithinRadius(exceptID: String, withinMileRadius radius: Double, completion: @escaping (UserProfile) -> Swift.Void) {
-        // where user geolocations are stored
-        let geoFireRef = Database.database().reference().child("Geolocations")
-        let geoFire = GeoFire(firebaseRef: geoFireRef)
-        var geoQuery: GFQuery?
-        
-        // get our location
-        // clearing phone removes
-        //todo: move storing location to login and not signup
-        let userLat = UserDefaults.standard.value(forKey: "current_latitude") as! String
-        let userLong = UserDefaults.standard.value(forKey: "current_longitude") as! String
-        
-        let lat = CLLocationDegrees(Double(userLat)!)
-        let lon = CLLocationDegrees(Double(userLong)!)
-        let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
+    class func getAllUsersWithinRadius(geoQuery: GFQuery?, withinMileRadius radius: Double, completion: @escaping (UserProfile) -> Swift.Void) {
         
         let userid = Auth.auth().currentUser!.uid
         let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? AppConstants.petOptions
-        
         var swipedAlready = [String]()
         let ref = Database.database().reference().child("Swipes").child(userid)
         ref.observeSingleEvent(of: .value, with: { snapshot in
@@ -235,12 +220,8 @@ class UserProfile: NSObject {
                     print("Disliked user \(uid) already")
                 }
             }
-            
-            //We want users within the specified radius
-            let radiusInKM = radius * 1.60934
-            geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
             geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
-                if (key != userid && key != exceptID) && !swipedAlready.contains(key) {
+                if key != userid && !swipedAlready.contains(key) {
                     let ref = Database.database().reference().child("Users").child(key!).child("user_details")
                     
                     ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -258,7 +239,6 @@ class UserProfile: NSObject {
                                                    id: key!, profilePic: link, petType: pettype, location: location)
                             completion(user)
                         }
-                        
                     })
                 }
             })
