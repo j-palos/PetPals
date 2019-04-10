@@ -85,6 +85,10 @@ class CardView: UIView {
         cardImage.load(fromURL: URL(string: name)!)
     }
     
+    func setImage(_ pic :UIImage){
+        cardImage.image = pic
+    }
+    
     // I think I can take these out
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
