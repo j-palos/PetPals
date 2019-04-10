@@ -266,7 +266,7 @@ class UserProfile: NSObject {
         })
     }
     
-    func swipeRight(onUserProfile profile: UserProfile) {
+    func swipeRight(onUserProfile profile: UserProfile, completion: @escaping (Bool) -> Swift.Void) {
         let swipeRef = Database.database().reference().child("Swipes")
         let values = ["timestamp": NSDate().timeIntervalSince1970]
         swipeRef.child(self.id).child("Likes").child(profile.id).updateChildValues(values, withCompletionBlock: { (err, _) in
@@ -282,6 +282,12 @@ class UserProfile: NSObject {
                     matchesRef.child(profile.id).child("users").child(self.id).updateChildValues(match_values, withCompletionBlock: { (err, _) in
                         
                     })
+                    
+                    completion(true)
+                }
+                else {
+                    //no match exists yet between the users
+                    completion(false)
                 }
             })
         })

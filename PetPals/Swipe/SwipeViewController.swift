@@ -110,7 +110,11 @@ extension SwipeViewController: KolodaViewDelegate {
             case .left:
                 profile.swipeLeft(onUserProfile: user)
             case .right:
-                profile.swipeRight(onUserProfile: user)
+                profile.swipeRight(onUserProfile: user) { (matchMade) in
+                    if matchMade {
+                        //a match was made
+                    }
+                }
             default:
                 print("User swiped neither left or right")
             }
