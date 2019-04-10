@@ -10,11 +10,45 @@ import UIKit
 import SwiftOverlays
 
 class SettingsTableViewController: UITableViewController {
-
+    
+    @IBOutlet weak var distanceValueLabel: UILabel!
+    @IBOutlet weak var distanceSlider: UISlider!
+    @IBOutlet weak var discoverableSwitch: UISwitch!
+    @IBOutlet weak var newMatchSwitch: UISwitch!
+    @IBOutlet weak var meetupSuggestSwitch: UISwitch!
+    @IBOutlet weak var meetupAcceptSwitch: UISwitch!
+    @IBOutlet weak var meetupRemindSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Update all switches based on userDefaults
+    }
+    
+    @IBAction func discovarableSwitched(_ sender: Any) {
+        //Update database
+    }
+    
+    @IBAction func notifyNewMatchSwitch(_ sender: Any) {
+        //Update database
+    }
+    
+    @IBAction func meetupSuggestSwitch(_ sender: Any) {
+        //Update database
+    }
+    
+    @IBAction func meetupAcceptSwitch(_ sender: Any) {
+        //Update database
+    }
+    
+    @IBAction func meetupRemindSwitch(_ sender: Any) {
+        //Update database
+    }
+    
+    @IBAction func distanceSliderUpdate(_ sender: Any) {
+        let newDistance = Int(distanceSlider.value)
+        distanceValueLabel.text = "\(newDistance)mi."
+        //update in database
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
@@ -40,14 +74,5 @@ class SettingsTableViewController: UITableViewController {
             }
         })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
