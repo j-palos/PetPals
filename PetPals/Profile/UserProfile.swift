@@ -161,14 +161,9 @@ class UserProfile: NSObject {
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
                 
-                URLSession.shared.dataTask(with: link, completionHandler: { data, _, error in
-                    if error == nil {
-                        _ = UIImage(data: data!)
-                        let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                               id: uid, profilePic: link, petType: pettype)
-                        completion(user)
-                    }
-                }).resume()
+                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                       id: uid, profilePic: link, petType: pettype)
+                completion(user)
             }
         })
     }
@@ -188,20 +183,18 @@ class UserProfile: NSObject {
             let id = snapshot.key
             let snap = snapshot.value as! [String: Any]
             let data = snap["user_details"] as! [String: Any]
-            if id != exceptID, data["is_active"] as! Bool == true {
+
+            if id != exceptID && data["is_active"] as! Bool == true {
+
                 let bio = data["bio"] as! String
                 let firstname = data["first_name"] as! String
                 let lastname = data["last_name"] as! String
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
-                URLSession.shared.dataTask(with: link, completionHandler: { data, _, error in
-                    if error == nil {
-                        _ = UIImage(data: data!)
-                        let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                               id: id, profilePic: link, petType: pettype)
-                        completion(user)
-                    }
-                }).resume()
+            
+                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                       id: id, profilePic: link, petType: pettype)
+                completion(user)
             }
         })
     }
@@ -222,36 +215,104 @@ class UserProfile: NSObject {
         let lon = CLLocationDegrees(Double(userLong)!)
         let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
         
-        // We want users within the specified radius
-        let radiusInKM = radius * 1.60934
-        geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
-        geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+        let userid = Auth.auth().currentUser!.uid
+        let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? [String]()
+        
+        var swipedAlready = [String]()
+        let ref = Database.database().reference().child("Swipes").child(userid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                for swipe in snapshot.childSnapshot(forPath: "Likes").children {
+                    
+                    let uid = (swipe as! DataSnapshot).key
+                    swipedAlready.append(uid)
+                    print("Liked user \(uid) already")
+                }
+                for swipe in snapshot.childSnapshot(forPath: "DisLikes").children {
+                    
+                    let uid = (swipe as! DataSnapshot).key
+                    swipedAlready.append(uid)
+                    print("Disliked user \(uid) already")
+                }
+            }
             
-            if key != Auth.auth().currentUser?.uid {
-                let ref = Database.database().reference().child("Users").child(key!)
-                
-                ref.observeSingleEvent(of: .value, with: { snapshot in
-                    let id = snapshot.key
-                    let snap = snapshot.value as! [String: Any]
-                    let data = snap["user_details"] as! [String: Any]
+            //We want users within the specified radius
+            let radiusInKM = radius * 1.60934
+            geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
+            geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
+                if (key != userid && key != exceptID) && !swipedAlready.contains(key) {
+                    let ref = Database.database().reference().child("Users").child(key!).child("user_details")
                     
-                    let bio = data["bio"] as! String
-                    let firstname = data["first_name"] as! String
-                    let lastname = data["last_name"] as! String
-                    let link = URL(string: data["profile_pic_url"] as! String)!
-                    let pettype = data["pet_type"] as! String
-                    
-                    URLSession.shared.dataTask(with: link, completionHandler: { data, _, error in
-                        if error == nil {
-                            _ = UIImage(data: data!)
+                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                        let data = snapshot.value as! [String: Any]
+                        
+                        let bio = data["bio"] as! String
+                        let firstname = data["first_name"] as! String
+                        let lastname = data["last_name"] as! String
+                        let link = URL(string: data["profile_pic_url"] as! String)!
+                        let pettype = data["pet_type"] as! String
+                        let active = data["is_active"] as! Bool
+                        
+                        if petTypes.contains(pettype) && active == true {
                             let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                   id: id, profilePic: link, petType: pettype, location: location)
+                                                   id: key!, profilePic: link, petType: pettype, location: location)
                             completion(user)
                         }
-                    }).resume()
+                        
+                    })
+                }
+            })
+            
+        })
+    }
+    
+    func swipeRight(onUserProfile profile: UserProfile) {
+        let swipeRef = Database.database().reference().child("Swipes")
+        let values = ["timestamp": NSDate().timeIntervalSince1970]
+        swipeRef.child(self.id).child("Likes").child(profile.id).updateChildValues(values, withCompletionBlock: { (err, _) in
+            print("Liked user \(profile.id)")
+            swipeRef.child(profile.id).child("Likes").child(self.id).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    print("Match made between users \(self.id) and \(profile.id)")
+                    let match_values = ["timestamp": NSDate().timeIntervalSince1970]
+                    let matchesRef = Database.database().reference().child("Matches")
+                    matchesRef.child(self.id).child("users").child(profile.id).updateChildValues(match_values,withCompletionBlock: { (err, _) in
+                        
+                    })
+                    matchesRef.child(profile.id).child("users").child(self.id).updateChildValues(match_values, withCompletionBlock: { (err, _) in
+                        
+                    })
+                }
+            })
+        })
+    }
+    
+    func swipeLeft(onUserProfile profile: UserProfile) {
+        let swipeRef = Database.database().reference().child("Swipes")
+        
+        let datetime = NSDate().timeIntervalSince1970
+        swipeRef.child(self.id).child("DisLikes").child(profile.id).updateChildValues(["timestamp": datetime], withCompletionBlock: { (err, _) in
+             print("DisLiked user \(profile.id)")
+        })
+    }
+    
+    func getMatches() -> [UserProfile] {
+        var matches = [UserProfile]()
+        let ref = Database.database().reference().child("Matches").child(self.id)
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                for match in snapshot.childSnapshot(forPath: "users").children {
                     
-                })
+                    let uid = (match as! DataSnapshot).key
+
+                    UserProfile.getProfile(forUserID: uid, completion: {userProfile in
+                        matches.append(userProfile)
+                    })
+                }
             }
         })
+        
+        return matches
     }
 }
