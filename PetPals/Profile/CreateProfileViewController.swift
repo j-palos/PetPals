@@ -147,6 +147,10 @@ class CreateProfileViewController: UIViewController {
                 self.alertError(message: "Failed To create profile...")
             }
         }
+        
+        let usrDefaults:UserDefaults = UserDefaults.standard
+        usrDefaults.set(petOptions, forKey: "petTypes")
+        usrDefaults.synchronize()
     }
     
     //user wants to edit the photo
