@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -130,7 +130,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-dB-zrs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-dB-zrs" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                                     <rect key="frame" x="12.666666666666664" y="0.0" width="54.999999999999993" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="mhf-Rj-9lv"/>
@@ -1235,7 +1235,7 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="oval_calendar" width="6" height="6"/>
         <namedColor name="PetPalDarkBlue">

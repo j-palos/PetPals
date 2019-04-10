@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
-// Hard coded data for new match users
-var newMatches:[User] = [User(name: "Jeffery", picture: "jeffery", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""),User(name: "Alan", picture: "alan", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Leo", picture: "leo", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Charles", picture: "charles", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: "")]
+import FirebaseAuth
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -30,12 +28,22 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
     
+    // List to contain all new matches for this user
+    var newMatches = [UserProfile]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.newMatches = user.getMatches()
+            })
+        }
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("NUMBER OF MATCHES: \(newMatches.count)")
         return newMatches.count
     }
     
@@ -45,15 +53,13 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
         
         // Find the associated User
-        let user:User = newMatches[indexPath.row]
+        let user:UserProfile = newMatches[indexPath.row]
         
         // Update the cell information with this user's info
-        cell.nameLabel.text = user.userName
-        cell.image.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
-        
-        // Make the profile pictures circles
-        cell.image.layer.cornerRadius =  cell.image.frame.size.width / 2
-        cell.image.clipsToBounds = true
+        cell.nameLabel.text = user.firstName
+        let imageUrl = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
+        cell.image.load(fromURL: imageUrl)
+        cell.image.image = cell.image.image!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
         
         return cell as UICollectionViewCell
     }
@@ -61,18 +67,15 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // If a new match is selected, bring up the Meetup Screen
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get this cell
-        _ = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
-        
-        // Find the associated User
-        let cellUser = newMatches[indexPath.row]
+        let cell:NewMatchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
         
         // Destination will be Meetup Screen, child of OverallMatchesVC
         // Need destination to be loaded first to be able to send data
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
         // Send over information about the user selected
-        destination.userName = cellUser.userName
-        destination.userImage = cellUser.image
+        destination.userName = cell.nameLabel.text!
+        destination.userImage = cell.image.image!
         
         // Present the screen
         self.navigationController?.pushViewController(destination, animated: false)
