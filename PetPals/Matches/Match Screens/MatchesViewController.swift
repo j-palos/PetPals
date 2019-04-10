@@ -21,6 +21,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var invitesButton: UIButton!
     @IBOutlet weak var pendingButton: UIButton!
     
+    // Connect the collection view for New Matches
+    @IBOutlet weak var newMatchesCollectionView: UICollectionView!
+    
     // Set colors for text
     let blueColor:UIColor = UIColor(red: 0.44, green:0.78, blue:0.78, alpha: 1)
     let grayColor:UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
@@ -34,11 +37,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                self.newMatches = user.getMatches()
-            })
-        }
+        getMatches()
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
@@ -51,15 +50,14 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Get this cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
-        
+    
         // Find the associated User
         let user:UserProfile = newMatches[indexPath.row]
         
         // Update the cell information with this user's info
         cell.nameLabel.text = user.firstName
-        let imageUrl = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
+        let imageUrl = user.imageURL
         cell.image.load(fromURL: imageUrl)
-        cell.image.image = cell.image.image!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
         
         return cell as UICollectionViewCell
     }
@@ -124,6 +122,20 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         pendingButton.setTitleColor(blueColor, for: .normal)
         connectedButton.setTitleColor(grayColor, for: .normal)
         invitesButton.setTitleColor(grayColor, for: .normal)
+    }
+    
+    func getMatches() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                user.getMatches(completion: { (match) in
+                    DispatchQueue.main.async {
+                        self.newMatches.append(match)
+                        //reload data
+                        self.newMatchesCollectionView.reloadData()
+                    }
+                })
+            })
+        }
     }
     
 }

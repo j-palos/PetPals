@@ -240,6 +240,7 @@
                         <outlet property="connectedContainerView" destination="20L-Pc-2bP" id="6Bw-gP-toD"/>
                         <outlet property="invitesButton" destination="rPj-Jb-N9m" id="1tV-J1-duq"/>
                         <outlet property="invitesContainerView" destination="tLC-G7-Iu2" id="w8Z-6G-gye"/>
+                        <outlet property="newMatchesCollectionView" destination="WpO-cb-1Ug" id="BFJ-kV-qdG"/>
                         <outlet property="pendingButton" destination="DSf-zd-HWf" id="hRs-5Y-Nnn"/>
                         <outlet property="pendingContainerView" destination="Zer-TS-Dfz" id="W8n-VH-izA"/>
                     </connections>
@@ -529,7 +530,7 @@
             <objects>
                 <viewController storyboardIdentifier="meetupVCIdentifier" id="g6g-Ot-jlG" customClass="MeetupViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p8-ki-uWy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Lo-kZ-6LP">
