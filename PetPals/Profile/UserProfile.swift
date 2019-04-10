@@ -216,7 +216,7 @@ class UserProfile: NSObject {
         let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
         
         let userid = Auth.auth().currentUser!.uid
-        let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? [String]()
+        let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? AppConstants.petOptions
         
         var swipedAlready = [String]()
         let ref = Database.database().reference().child("Swipes").child(userid)
