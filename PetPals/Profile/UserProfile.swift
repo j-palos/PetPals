@@ -282,24 +282,16 @@ class UserProfile: NSObject {
         })
     }
     
-    func getMatches() -> [UserProfile] {
-        var matches = [UserProfile]()
-        let ref = Database.database().reference().child("Matches").child(self.id)
-        
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+    //gets matches and calls completion handler every time a new match is added
+    func getMatches(completion: @escaping (UserProfile) -> Swift.Void) {
+        let ref = Database.database().reference().child("Matches").child("\(self.id)/users")
+        ref.observe(.childAdded) { (snapshot) in
             if snapshot.exists() {
-                for match in snapshot.childSnapshot(forPath: "users").children {
-                    
-                    let uid = (match as! DataSnapshot).key
-
-                    UserProfile.getProfile(forUserID: uid, completion: {userProfile in
-                        matches.append(userProfile)
-                    })
-                }
+                UserProfile.getProfile(forUserID: snapshot.key, completion: { (match) in
+                    completion(match)
+                })
             }
-        })
-        
-        return matches
+        }
     }
     
     
