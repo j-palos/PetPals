@@ -511,7 +511,6 @@
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
                                                     <connections>
                                                         <action selector="catSwitched:" destination="Ma1-ET-uB7" eventType="valueChanged" id="1Yx-V2-kBl"/>
-                                                        <action selector="catSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="GSR-Um-1TC"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -535,9 +534,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="dogSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="dRb-zN-A0w"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -560,9 +556,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="reptileSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="Yrt-Ay-ltj"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -585,9 +578,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="birdSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="q6m-z4-ZFp"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -610,9 +600,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="fishSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="a9k-3C-g0j"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -635,9 +622,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="rodentSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="3Gj-Gn-FiB"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -660,9 +644,6 @@
                                                     <rect key="frame" x="333" y="12" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" name="PetPalDarkBlue"/>
-                                                    <connections>
-                                                        <action selector="otherSwitched:" destination="3ut-2J-OwO" eventType="valueChanged" id="PWM-84-Nu0"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -676,13 +657,13 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="birdSwitch" destination="PpO-wd-zlO" id="AKc-N5-9bd"/>
-                        <outlet property="catSwitch" destination="ihy-Qs-WJW" id="sKV-Li-IiK"/>
-                        <outlet property="dogSwitch" destination="tNc-vR-Xf1" id="wvU-up-jUS"/>
-                        <outlet property="fishSwitch" destination="6jW-Yh-Mml" id="ahi-uT-7cO"/>
-                        <outlet property="otherSwitch" destination="76C-J6-cBI" id="hl0-qn-oha"/>
-                        <outlet property="reptileSwitch" destination="pyH-Na-tkF" id="7eM-Q3-pai"/>
-                        <outlet property="rodentSwitch" destination="Uwh-a3-2Gm" id="pHY-ra-YdX"/>
+                        <outletCollection property="switches" destination="ihy-Qs-WJW" collectionClass="NSMutableArray" id="hi2-ON-A70"/>
+                        <outletCollection property="switches" destination="tNc-vR-Xf1" collectionClass="NSMutableArray" id="M1V-KY-H0V"/>
+                        <outletCollection property="switches" destination="pyH-Na-tkF" collectionClass="NSMutableArray" id="iHm-4p-uy1"/>
+                        <outletCollection property="switches" destination="PpO-wd-zlO" collectionClass="NSMutableArray" id="GoO-pp-cM2"/>
+                        <outletCollection property="switches" destination="6jW-Yh-Mml" collectionClass="NSMutableArray" id="FaT-ih-OME"/>
+                        <outletCollection property="switches" destination="Uwh-a3-2Gm" collectionClass="NSMutableArray" id="nhr-oj-XZg"/>
+                        <outletCollection property="switches" destination="76C-J6-cBI" collectionClass="NSMutableArray" id="eC6-NB-gIf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJ2-hj-Rgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
