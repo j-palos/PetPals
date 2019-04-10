@@ -27,6 +27,8 @@ class ProfileViewController: UIViewController {
     var imagePicker: UIImagePickerController!
     var count = 0
     
+    var profile : UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,18 +36,16 @@ class ProfileViewController: UIViewController {
         self.profilePicture.layer.zPosition = -1
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.profilePicture.clipsToBounds = true
-        let usrDefaults: UserDefaults = .standard
-        if let url = usrDefaults.url(forKey: "profile_image") {
-            profilePicture.load(fromURL: url)
-        }
 
         // Display this user's information
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.profile = user
                 DispatchQueue.main.async {
                     self.profileName.text = user.firstName
                     self.profilePetType.text = user.petType
                     self.profileBio.text = user.bio
+                    self.profilePicture.load(fromURL: user.imageURL)
                 }
             })
         }
@@ -102,12 +102,34 @@ class ProfileViewController: UIViewController {
 
     @IBAction func nameEditEnd(_ sender: Any) {
         nameField.alpha = 0
-        profileName.text = nameField.text
+        
+        if let name = nameField.text {
+            profile?.firstName = name
+            profile?.update(completion: { success in
+                if success {
+                    self.profileName.text = self.nameField.text
+                }
+                else {
+                    print("ERROR UPDATING")
+                }
+            })
+        }
     }
     
     @IBAction func bioEditEnd(_ sender: Any) {
         bioField.alpha = 0
-        profileBio.text = bioField.text
+       
+        if let bio = bioField.text {
+            profile?.bio = bio
+            profile?.update(completion: { success in
+                if success {
+                    self.profileBio.text = self.bioField.text
+                }
+                else {
+                    print("ERROR UPDATING")
+                }
+            })
+        }
     }
     
     //user wants to choose an image from their photos
@@ -166,9 +188,18 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
             return
         }
         
-        //the image at this point is either from camer or photos and cropped to be a square
-        //set the image to be scaled and dismiss the picker
-        self.profilePicture.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        profile?.update(withImage: image, completion: { (success) in
+            if success {
+                //the image at this point is either from camer or photos and cropped to be a square
+                //set the image to be scaled and dismiss the picker
+                self.profilePicture.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+            }
+            else {
+                print("ERROR UPDATING")
+            }
+        })
+        
+
     }
     
     
@@ -191,7 +222,15 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        profilePetType.text = petOptions[row]
+        profile?.petType = petOptions[row]
+        profile?.update(completion: { success in
+            if success {
+               self.profilePetType.text = self.petOptions[row]
+            }
+            else {
+                print("ERROR UPDATING")
+            }
+        })
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

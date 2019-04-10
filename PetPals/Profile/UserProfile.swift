@@ -315,4 +315,68 @@ class UserProfile: NSObject {
         
         return matches
     }
+    
+    
+    
+    func update(completion: @escaping (Bool) -> Swift.Void) {
+        let values = ["bio": self.bio,
+                      "first_name": self.firstName,
+                      "last_name": self.lastName,
+                      "profile_pic_url": self.imageURL.absoluteString,
+                      "pet_type": self.petType,
+                      "is_active": true] as [String : Any]
+        let usersRef = Database.database().reference().child("Users")
+        usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
+            
+            if err == nil {
+                completion(true)
+                let usrDefaults:UserDefaults = UserDefaults.standard
+                usrDefaults.set(self.imageURL, forKey: "profile_image")
+            }
+            else {
+                completion(false)
+            }
+        })
+    }
+    
+    
+    func update(withImage profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
+        let storageRef = Storage.storage().reference().child("usersPics").child(self.id)
+        let imageData = profilePic.pngData()
+        storageRef.putData(imageData!, metadata: nil) { (metadata, err) in
+            if err == nil {
+                
+                storageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        // Uh-oh, an error occurred!
+                        completion(false)
+                        return
+                    }
+                    let path = downloadURL.absoluteString
+                    let values = ["bio": self.bio,
+                                  "first_name": self.firstName,
+                                  "last_name": self.lastName,
+                                  "profile_pic_url": self.imageURL.absoluteString,
+                                  "pet_type": self.petType,
+                                  "is_active": true] as [String : Any]
+                    let usersRef = Database.database().reference().child("Users")
+                    usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
+                        
+                        if err == nil {
+                            completion(true)
+                            let usrDefaults:UserDefaults = UserDefaults.standard
+                            usrDefaults.set(URL(string:path), forKey: "profile_image")
+                        }
+                        else {
+                            completion(false)
+                        }
+                    })
+                }
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
+    
 }
