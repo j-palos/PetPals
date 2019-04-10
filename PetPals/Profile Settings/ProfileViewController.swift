@@ -27,6 +27,8 @@ class ProfileViewController: UIViewController {
     var imagePicker: UIImagePickerController!
     var count = 0
     
+    var profile : UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,18 +36,18 @@ class ProfileViewController: UIViewController {
         self.profilePicture.layer.zPosition = -1
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.profilePicture.clipsToBounds = true
-        let usrDefaults: UserDefaults = .standard
-        if let url = usrDefaults.url(forKey: "profile_image") {
-            profilePicture.load(fromURL: url)
-        }
 
         // Display this user's information
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.profile = user
                 DispatchQueue.main.async {
                     self.profileName.text = user.firstName
                     self.profilePetType.text = user.petType
                     self.profileBio.text = user.bio
+                    
+                    let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
+                    self.profilePicture.load(fromURL: url)
                 }
             })
         }
@@ -102,12 +104,40 @@ class ProfileViewController: UIViewController {
 
     @IBAction func nameEditEnd(_ sender: Any) {
         nameField.alpha = 0
-        profileName.text = nameField.text
+        
+        if let name = nameField.text {
+            //update the profile name then propogate the changes to the database
+            profile?.firstName = name
+            profile?.update(completion: { success in
+                if success {
+                    //update text to reflect changed data
+                    self.profileName.text = name
+                }
+                else {
+                    //error occured
+                    self.alertError(message: "We were unable to update your name")
+                }
+            })
+        }
     }
     
     @IBAction func bioEditEnd(_ sender: Any) {
         bioField.alpha = 0
-        profileBio.text = bioField.text
+       
+        if let bio = bioField.text {
+            //update the profile bio then propogate the changes to the database
+            profile?.bio = bio
+            profile?.update(completion: { success in
+                if success {
+                    //update text to reflect changed data
+                    self.profileBio.text = bio
+                }
+                else {
+                    //error occured
+                    self.alertError(message: "We were unable to update your bio")
+                }
+            })
+        }
     }
     
     //user wants to choose an image from their photos
@@ -154,6 +184,14 @@ class ProfileViewController: UIViewController {
             typePicker.isHidden = true
         }
     }
+    
+    private func alertError(message: String) {
+        let alertController = UIAlertController(title: "An Error Occured", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 ///Image upload picker view
 extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -166,9 +204,19 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
             return
         }
         
-        //the image at this point is either from camer or photos and cropped to be a square
-        //set the image to be scaled and dismiss the picker
-        self.profilePicture.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        profile?.update(toHaveImage: image, completion: { (success) in
+            if success {
+                //the image at this point is either from camer or photos and cropped to be a square
+                //set the image to be scaled and dismiss the picker
+                self.profilePicture.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+            }
+            else {
+                //an error occured
+                self.alertError(message: "We were unable to update your profile picture")
+            }
+        })
+        
+
     }
     
     
@@ -191,7 +239,19 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        profilePetType.text = petOptions[row]
+        //change our profiles pet type
+        profile?.petType = petOptions[row]
+        //update profile in database to reflect changes
+        profile?.update(completion: { success in
+            if success {
+               //if succeeded, update the text
+               self.profilePetType.text = self.petOptions[row]
+            }
+            else {
+                //error occured
+                self.alertError(message: "We were unable to update your pet type")
+            }
+        })
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
