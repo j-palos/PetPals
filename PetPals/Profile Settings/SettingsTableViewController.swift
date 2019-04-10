@@ -29,23 +29,35 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Update all settings from the User Defaults
-        let distance = UserDefaults.standard.value(forKey: "distance") as! Int
-        distanceValueLabel.text = "\(distance)mi."
+        if usrDefaults.object(forKey: "distance") as? Int != nil {
+            let distance = UserDefaults.standard.value(forKey: "distance") as! Int
+            distanceValueLabel.text = "\(distance)mi."
+        }
         
-        let discoverable = UserDefaults.standard.value(forKey: "discoverable") as! Bool
-        discoverableSwitch.setOn(discoverable, animated: false)
+        if usrDefaults.object(forKey: "discoverable") as? Bool != nil {
+            let discoverable = UserDefaults.standard.value(forKey: "discoverable") as! Bool
+            discoverableSwitch.setOn(discoverable, animated: false)
+        }
         
-        let notifyNewMatch = UserDefaults.standard.value(forKey: "notifyNewMatch") as! Bool
-        newMatchSwitch.setOn(notifyNewMatch, animated: false)
+        if usrDefaults.object(forKey: "notifyNewMatch") as? Bool != nil {
+            let notifyNewMatch = UserDefaults.standard.value(forKey: "notifyNewMatch") as! Bool
+            newMatchSwitch.setOn(notifyNewMatch, animated: false)
+        }
         
-        let meetupSuggested = UserDefaults.standard.value(forKey: "meetupSuggest") as! Bool
-        meetupSuggestSwitch.setOn(meetupSuggested, animated: false)
+        if usrDefaults.object(forKey: "meetupSuggest") as? Bool != nil {
+            let meetupSuggested = UserDefaults.standard.value(forKey: "meetupSuggest") as! Bool
+            meetupSuggestSwitch.setOn(meetupSuggested, animated: false)
+        }
         
-        let meetupAccept = UserDefaults.standard.value(forKey: "meetupAccept") as! Bool
-        meetupAcceptSwitch.setOn(meetupAccept, animated: false)
+        if usrDefaults.object(forKey: "meetupAccept") as? Bool != nil {
+            let meetupAccept = UserDefaults.standard.value(forKey: "meetupAccept") as! Bool
+            meetupAcceptSwitch.setOn(meetupAccept, animated: false)
+        }
         
-        let meetupRemind = UserDefaults.standard.value(forKey: "meetupRemind") as! Bool
-        meetupRemindSwitch.setOn(meetupRemind, animated: false)
+        if usrDefaults.object(forKey: "meetupRemind") as? Bool != nil {
+            let meetupRemind = UserDefaults.standard.value(forKey: "meetupRemind") as! Bool
+            meetupRemindSwitch.setOn(meetupRemind, animated: false)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

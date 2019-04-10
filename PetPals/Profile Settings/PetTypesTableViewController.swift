@@ -23,14 +23,16 @@ class PetTypesTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Set original values of switches based on user information
-        let chosenPetTypes = UserDefaults.standard.value(forKey: "petTypes") as! [String]
-        
-        // Loop through switches
-        // If user has it as pet type, turn on
-        for i in 0...(switches.count-1) {
-            let currSwitch = switches[i]
-            if chosenPetTypes.contains(switchOrder[i]) {
-                currSwitch.setOn(true, animated: false)
+        if usrDefaults.object(forKey: "petTypes") as? [String] != nil {
+            let chosenPetTypes = UserDefaults.standard.value(forKey: "petTypes") as! [String]
+            
+            // Loop through switches
+            // If user has it as pet type, turn on
+            for i in 0...(switches.count-1) {
+                let currSwitch = switches[i]
+                if chosenPetTypes.contains(switchOrder[i]) {
+                    currSwitch.setOn(true, animated: false)
+                }
             }
         }
     }
