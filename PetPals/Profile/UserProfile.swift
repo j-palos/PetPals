@@ -169,14 +169,9 @@ class UserProfile: NSObject {
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
                 
-                URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
-                    if error == nil {
-                        _ = UIImage.init(data: data!)
-                        let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                               id: uid, profilePic: link, petType: pettype)
-                        completion(user)
-                    }
-                }).resume()
+                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                       id: uid, profilePic: link, petType: pettype)
+                completion(user)
             }
         })
     }
@@ -204,14 +199,9 @@ class UserProfile: NSObject {
                 let lastname = data["last_name"] as! String
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
-                URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
-                    if error == nil {
-                        _ = UIImage.init(data: data!)
-                        let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                               id: id, profilePic: link, petType: pettype)
-                        completion(user)
-                    }
-                }).resume()
+                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                       id: id, profilePic: link, petType: pettype)
+                completion(user)
             }
         })
     }
@@ -235,6 +225,7 @@ class UserProfile: NSObject {
         let location: CLLocation = CLLocation(latitude: lat, longitude: lon)
         
         let userid = Auth.auth().currentUser!.uid
+        let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? [String]()
         
         var swipedAlready = [String]()
         let ref = Database.database().reference().child("Swipes").child(userid)
@@ -258,9 +249,7 @@ class UserProfile: NSObject {
             let radiusInKM = radius * 1.60934
             geoQuery = geoFire.query(at: location, withRadius: radiusInKM)
             geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
-                
-                
-                if key != userid && !swipedAlready.contains(key) {
+                if (key != userid && key != exceptID) && !swipedAlready.contains(key) {
                     let ref = Database.database().reference().child("Users").child(key!).child("user_details")
                     
                     ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -271,15 +260,13 @@ class UserProfile: NSObject {
                         let lastname = data["last_name"] as! String
                         let link = URL(string: data["profile_pic_url"] as! String)!
                         let pettype = data["pet_type"] as! String
+                        let active = data["is_active"] as! Bool
                         
-                        URLSession.shared.dataTask(with: link, completionHandler: { (data, response, error) in
-                            if error == nil {
-                                _ = UIImage.init(data: data!)
-                                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                       id: key!, profilePic: link, petType: pettype, location: location)
-                                completion(user)
-                            }
-                        }).resume()
+                        if petTypes.contains(pettype) && active == true {
+                            let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                                   id: key!, profilePic: link, petType: pettype, location: location)
+                            completion(user)
+                        }
                         
                     })
                 }
