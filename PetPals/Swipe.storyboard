@@ -41,6 +41,10 @@
                                     <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="out_of_profiles" translatesAutoresizingMaskIntoConstraints="NO" id="UGV-58-7Xn">
+                                <rect key="frame" x="9" y="29" width="396" height="622"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
@@ -49,6 +53,7 @@
                     <connections>
                         <outlet property="kolodaView" destination="aiH-pp-vij" id="0Yg-rs-Uif"/>
                         <outlet property="noButton" destination="RM2-1I-oKq" id="BJk-pq-UCa"/>
+                        <outlet property="outOfProfilesImageView" destination="UGV-58-7Xn" id="lJV-u4-3VX"/>
                         <outlet property="yesButton" destination="B7Z-nc-fLE" id="ymj-Sm-7Jn"/>
                     </connections>
                 </viewController>
@@ -60,6 +65,7 @@
     <resources>
         <image name="Like" width="108" height="108"/>
         <image name="Nope" width="108" height="108"/>
+        <image name="out_of_profiles" width="221" height="450"/>
         <image name="paw-bar" width="25" height="25"/>
     </resources>
     <color key="tintColor" name="PetPalDarkBlue"/>
