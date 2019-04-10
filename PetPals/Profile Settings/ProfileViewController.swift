@@ -11,14 +11,18 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    // Elements on screen
     @IBOutlet weak var profilePicture: ProfileImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profilePetType: UILabel!
     @IBOutlet weak var profileBio: UILabel!
+    
+    // Initially will be hidden elements on screen
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var bioField: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
     
+    // Get options for pet types
     let petOptions = AppConstants.petOptions
     var imagePicker: UIImagePickerController!
     var count = 0
@@ -26,6 +30,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Display this user's profile picture
         self.profilePicture.layer.zPosition = -1
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.profilePicture.clipsToBounds = true
@@ -34,6 +39,7 @@ class ProfileViewController: UIViewController {
             profilePicture.load(fromURL: url)
         }
 
+        // Display this user's information
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { (user) in
                 DispatchQueue.main.async {
@@ -44,6 +50,7 @@ class ProfileViewController: UIViewController {
             })
         }
         
+        // Set up picker
         let picker: UIPickerView
         picker = UIPickerView(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: 300))
         
@@ -58,6 +65,8 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func pictureButtonClicked(_ sender: Any) {
+        // If a user wants to edit their profile picture
+        // let them select from their pictures or take one with camera
         let alert = UIAlertController(title: "", message: "Photo Selection", preferredStyle: UIAlertController.Style.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(UIAlertAction(title: "Browse", style: .default, handler: { (action: UIAlertAction!) in
@@ -73,11 +82,15 @@ class ProfileViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Want to edit name, so show name field
     @IBAction func nameButtonClicked(_ sender: Any) {
         nameField.alpha = 1
+        
+        // Initially name field has current profile name
         nameField.text = profileName.text
     }
     
+    // Want to edit pet type, so show pet type picker
     @IBAction func typeButtonClicked(_ sender: Any) {
         typePicker.isHidden = false
     }
