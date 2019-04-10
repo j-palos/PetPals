@@ -45,7 +45,9 @@ class ProfileViewController: UIViewController {
                     self.profileName.text = user.firstName
                     self.profilePetType.text = user.petType
                     self.profileBio.text = user.bio
-                    self.profilePicture.load(fromURL: user.imageURL)
+                    
+                    let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
+                    self.profilePicture.load(fromURL: url)
                 }
             })
         }
@@ -104,13 +106,16 @@ class ProfileViewController: UIViewController {
         nameField.alpha = 0
         
         if let name = nameField.text {
+            //update the profile name then propogate the changes to the database
             profile?.firstName = name
             profile?.update(completion: { success in
                 if success {
+                    //update text to reflect changed data
                     self.profileName.text = self.nameField.text
                 }
                 else {
-                    print("ERROR UPDATING")
+                    //error occured
+                    self.alertError(message: "We were unable to update your name")
                 }
             })
         }
@@ -120,13 +125,16 @@ class ProfileViewController: UIViewController {
         bioField.alpha = 0
        
         if let bio = bioField.text {
+            //update the profile bio then propogate the changes to the database
             profile?.bio = bio
             profile?.update(completion: { success in
                 if success {
+                    //update text to reflect changed data
                     self.profileBio.text = self.bioField.text
                 }
                 else {
-                    print("ERROR UPDATING")
+                    //error occured
+                    self.alertError(message: "We were unable to update your bio")
                 }
             })
         }
@@ -176,6 +184,14 @@ class ProfileViewController: UIViewController {
             typePicker.isHidden = true
         }
     }
+    
+    private func alertError(message: String) {
+        let alertController = UIAlertController(title: "An Error Occured", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 ///Image upload picker view
 extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -188,14 +204,15 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
             return
         }
         
-        profile?.update(withImage: image, completion: { (success) in
+        profile?.update(toHaveImage: image, completion: { (success) in
             if success {
                 //the image at this point is either from camer or photos and cropped to be a square
                 //set the image to be scaled and dismiss the picker
                 self.profilePicture.image = image.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
             }
             else {
-                print("ERROR UPDATING")
+                //an error occured
+                self.alertError(message: "We were unable to update your profile picture")
             }
         })
         
@@ -222,13 +239,17 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //change our profiles pet type
         profile?.petType = petOptions[row]
+        //update profile in database to reflect changes
         profile?.update(completion: { success in
             if success {
+               //if succeeded, update the text
                self.profilePetType.text = self.petOptions[row]
             }
             else {
-                print("ERROR UPDATING")
+                //error occured
+                self.alertError(message: "We were unable to update your pet type")
             }
         })
     }

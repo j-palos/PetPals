@@ -318,6 +318,7 @@ class UserProfile: NSObject {
     
     
     
+    //updates the profiles data in database when called
     func update(completion: @escaping (Bool) -> Swift.Void) {
         let values = ["bio": self.bio,
                       "first_name": self.firstName,
@@ -339,8 +340,8 @@ class UserProfile: NSObject {
         })
     }
     
-    
-    func update(withImage profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
+     //updates the profiles data in database when called, including image
+    func update(toHaveImage profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
         let storageRef = Storage.storage().reference().child("usersPics").child(self.id)
         let imageData = profilePic.pngData()
         storageRef.putData(imageData!, metadata: nil) { (metadata, err) in
@@ -356,7 +357,7 @@ class UserProfile: NSObject {
                     let values = ["bio": self.bio,
                                   "first_name": self.firstName,
                                   "last_name": self.lastName,
-                                  "profile_pic_url": self.imageURL.absoluteString,
+                                  "profile_pic_url": path,
                                   "pet_type": self.petType,
                                   "is_active": true] as [String : Any]
                     let usersRef = Database.database().reference().child("Users")
