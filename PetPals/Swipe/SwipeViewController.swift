@@ -43,15 +43,14 @@ class SwipeViewController: UIViewController {
 
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
-
+        
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { user in
                 self.profile = user
             })
         }
-
+        //startup the user gathering
         getUsers()
-
         // If the user defaults changed, then reload the users data to mactch the changes
         NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
     }
@@ -118,13 +117,17 @@ class SwipeViewController: UIViewController {
 }
 
 extension SwipeViewController: KolodaViewDataSource {
+    
     // Generates a stack of user cards
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let card: CardView = CardView()
         initCard(index: index, card: card)
         return card
     }
-
+    
+    //wrapper function to init our card
+    //the point of using promises here is
+    //so that our card comes into view with an image already loaded
     func initCard(index: Int, card: CardView) {
         let user = users[index]
         card.setName(user.firstName, user.lastName)
@@ -133,11 +136,13 @@ extension SwipeViewController: KolodaViewDataSource {
         card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
         avatar(url: user.imageURL, user: user).done {
             card.setImage($0)
+            return
         }.catch { _ in
             print("error in network")
         }
     }
 
+    //promise function for obtaining our card avatage image
     func avatar(url: URL, user: UserProfile) -> Promise<UIImage> {
         return firstly {
             URLSession.shared.dataTask(.promise, with: url)
@@ -145,23 +150,6 @@ extension SwipeViewController: KolodaViewDataSource {
             UIImage(data: $0.data)
         }
     }
-
-//
-//    func makeCard(index: Int) -> Promise<CardView> {
-//        let user = users[index]
-//
-//         var card: CardView
-//
-//        firstly{
-//                card.initWithURL(user.imageURL.absoluteString)
-//            }
-//        .then { card in
-//            card.setName(user.firstName, user.lastName)
-//            card.setBio(bio: user.bio)
-//            card.setPetType(user.petType)
-//            card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
-//            return card }
-//    }
 
     // set number of cards to the number of users
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
