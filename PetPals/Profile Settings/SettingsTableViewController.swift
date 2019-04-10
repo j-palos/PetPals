@@ -32,6 +32,7 @@ class SettingsTableViewController: UITableViewController {
         if usrDefaults.object(forKey: "distance") as? Int != nil {
             let distance = UserDefaults.standard.value(forKey: "distance") as! Int
             distanceValueLabel.text = "\(distance)mi."
+            distanceSlider.setValue(Float(distance), animated: false)
         }
         
         if usrDefaults.object(forKey: "discoverable") as? Bool != nil {
