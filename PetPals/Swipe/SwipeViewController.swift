@@ -107,6 +107,7 @@ class SwipeViewController: UIViewController {
             UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
+                    self.outOfProfilesImageView.layer.zPosition = -10
                     //todo: change this to in completion
                     self.kolodaView.reloadData()
                 }
@@ -124,7 +125,8 @@ extension SwipeViewController: KolodaViewDataSource {
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
-        card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
+    card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
+        
         return card
     }
 

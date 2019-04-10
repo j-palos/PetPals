@@ -51,7 +51,7 @@ class CardImage: UIImageView {
         self.addConstraints([leftSpaceConstraint, widthConstraint, heightConstraint])
         
         // download image in a new async thread
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
