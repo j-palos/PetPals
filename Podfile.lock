@@ -90,7 +90,6 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Parchment (1.6.0)
   - pop (1.0.12)
   - SwiftOverlays (5.0.1)
 
@@ -103,7 +102,6 @@ DEPENDENCIES:
   - GoogleSignIn
   - JTAppleCalendar (~> 7.0)
   - Koloda
-  - Parchment
   - SwiftOverlays (~> 5.0.1)
 
 SPEC REPOS:
@@ -125,7 +123,6 @@ SPEC REPOS:
     - Koloda
     - leveldb-library
     - nanopb
-    - Parchment
     - pop
     - SwiftOverlays
 
@@ -157,10 +154,9 @@ SPEC CHECKSUMS:
   Koloda: bcf5acded25fc49020d1447ed8ddd87e14d01e7e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: 4d3701cbddb480e0bd70f320451ace37e5ee3357
+PODFILE CHECKSUM: 93942935c896e50ac216d48e5835b6ae59a2f75e
 
 COCOAPODS: 1.6.1

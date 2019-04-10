@@ -11,8 +11,6 @@ import Koloda
 import pop
 import UIKit
 
-class user {}
-
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 4
