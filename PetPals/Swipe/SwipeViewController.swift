@@ -7,6 +7,8 @@
 //
 
 import FirebaseAuth
+import FirebaseDatabase
+import GeoFire
 import Koloda
 import pop
 import UIKit
@@ -20,23 +22,41 @@ class SwipeViewController: UIViewController {
 
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
-    @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet var noButton: UIButton!
+    @IBOutlet var yesButton: UIButton!
+  
+    @IBOutlet weak var outOfProfilesImageView: UIImageView!
     
     var profile: UserProfile?
-    
+
+    // for getting users locations
+    var geoFireRef: DatabaseReference?
+    var geoFire: GeoFire?
+    var geoQuery: GFQuery?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
 
+        geoFireRef = Database.database().reference().child("Geolocations")
+        geoFire = GeoFire(firebaseRef: geoFireRef!)
+
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { user in
                 self.profile = user
             })
-        }        
+        }
+
         getUsers()
+
+        // If the user defaults changed, then reload the users data to mactch the changes
+        NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        geoQuery?.removeAllObservers()
     }
 
     // Create the gradient we want for our background
@@ -45,7 +65,7 @@ class SwipeViewController: UIViewController {
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor(red: 243 / 255, green: 244 / 255, blue: 248 / 255, alpha: 1.0).cgColor]
         gradientLayer.zPosition = -2
-        //let cards slide over the buttons
+        // let cards slide over the buttons
         yesButton.layer.zPosition = -1
         noButton.layer.zPosition = -1
         view.layer.addSublayer(gradientLayer)
@@ -55,6 +75,7 @@ class SwipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createGradientLayer()
+        outOfProfilesImageView.layer.zPosition = -10
     }
 
     @IBAction func noButtonTapped(_ sender: Any) {
@@ -67,11 +88,26 @@ class SwipeViewController: UIViewController {
 
     // Retrieve users within the desired radius of the user
     //todo: need to add withinMileRadius from userDefaults
-    func getUsers() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getAllUsersWithinRadius(exceptID: id, withinMileRadius: 20, completion: {
+    @objc func getUsers() {
+        // Make sure that user location saved first before getting users
+        if let lat = UserDefaults.standard.value(forKey: "current_latitude") as? String,
+            let lon = UserDefaults.standard.value(forKey: "current_longitude") as? String {
+            // get our location
+            // clearing phone removes
+            //todo: move storing location to login and not signup
+            let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lon)!))
+            // We want users within the specified radius
+            // if user hasn't specified a dearch radius set to 5 initially?
+            let searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
+            // search radius is in miles but geofire takes in KM so convert from miles to KM
+            let radiusInKM = searchRadius * 1.60934
+            geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
+            users.removeAll()
+            kolodaView.reloadData()
+            UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
+                    self.outOfProfilesImageView.layer.zPosition = -10
                     //todo: change this to in completion
                     self.kolodaView.reloadData()
                 }
@@ -89,7 +125,8 @@ extension SwipeViewController: KolodaViewDataSource {
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
-        card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
+    card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
+        
         return card
     }
 
@@ -103,7 +140,7 @@ extension SwipeViewController: KolodaViewDelegate {
     // This function will handle the swiping/network interaction
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         //  print("\(images[index]) in the \(direction)")
-        
+
         let user = users[index]
         if let profile = profile {
             switch direction {
@@ -119,12 +156,12 @@ extension SwipeViewController: KolodaViewDelegate {
                 print("User swiped neither left or right")
             }
         }
-        
     }
 
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        getUsers()
+//        getUsers()
+        outOfProfilesImageView.layer.zPosition = 10
     }
 
     // This is just the animation for background card
