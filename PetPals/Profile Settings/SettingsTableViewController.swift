@@ -11,46 +11,91 @@ import SwiftOverlays
 
 class SettingsTableViewController: UITableViewController {
     
+    // Distance related elements on screen
     @IBOutlet weak var distanceValueLabel: UILabel!
     @IBOutlet weak var distanceSlider: UISlider!
+    
+    // Switches on this screen
     @IBOutlet weak var discoverableSwitch: UISwitch!
     @IBOutlet weak var newMatchSwitch: UISwitch!
     @IBOutlet weak var meetupSuggestSwitch: UISwitch!
     @IBOutlet weak var meetupAcceptSwitch: UISwitch!
     @IBOutlet weak var meetupRemindSwitch: UISwitch!
     
+    // Connect to User Defaults
+    let usrDefaults:UserDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Update all switches based on userDefaults
+        // Update all settings from the User Defaults
+        let distance = UserDefaults.standard.value(forKey: "distance") as! Int
+        distanceValueLabel.text = "\(distance)mi."
+        
+        let discoverable = UserDefaults.standard.value(forKey: "discoverable") as! Bool
+        discoverableSwitch.setOn(discoverable, animated: false)
+        
+        let notifyNewMatch = UserDefaults.standard.value(forKey: "notifyNewMatch") as! Bool
+        newMatchSwitch.setOn(notifyNewMatch, animated: false)
+        
+        let meetupSuggested = UserDefaults.standard.value(forKey: "meetupSuggest") as! Bool
+        meetupSuggestSwitch.setOn(meetupSuggested, animated: false)
+        
+        let meetupAccept = UserDefaults.standard.value(forKey: "meetupAccept") as! Bool
+        meetupAcceptSwitch.setOn(meetupAccept, animated: false)
+        
+        let meetupRemind = UserDefaults.standard.value(forKey: "meetupRemind") as! Bool
+        meetupRemindSwitch.setOn(meetupRemind, animated: false)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // Update user defaults when leave screen
+        usrDefaults.synchronize()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // If select a row, automatically deselect it
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // Update User Default of discoverable depending on value of switch
     @IBAction func discovarableSwitched(_ sender: Any) {
-        //Update database
+        let result = discoverableSwitch.isOn
+        usrDefaults.set(result, forKey: "discoverable")
     }
     
+    // Update User Default of notification for new match depending on value of switch
     @IBAction func notifyNewMatchSwitch(_ sender: Any) {
-        //Update database
+        let result = newMatchSwitch.isOn
+        usrDefaults.set(result, forKey: "notifyNewMatch")
     }
     
-    @IBAction func meetupSuggestSwitch(_ sender: Any) {
-        //Update database
+    // Update User Default of notification for a meetup suggestion depending on value of switch
+    @IBAction func meetupSuggestSwitched(_ sender: Any) {
+        let result = meetupSuggestSwitch.isOn
+        usrDefaults.set(result, forKey: "meetupSuggest")
     }
     
-    @IBAction func meetupAcceptSwitch(_ sender: Any) {
-        //Update database
+    // Update User Default of notificaiton for a meetup acceptance depending on value of switch
+    @IBAction func meetupAcceptSwitched(_ sender: Any) {
+        let result = meetupAcceptSwitch.isOn
+        usrDefaults.set(result, forKey: "meetupAccept")
     }
     
-    @IBAction func meetupRemindSwitch(_ sender: Any) {
-        //Update database
+    // Update User Default of notification for a meetup reminder depending on value of switch
+    @IBAction func meetupRemindSwitched(_ sender: Any) {
+        let result = meetupRemindSwitch.isOn
+        usrDefaults.set(result, forKey: "meetupRemind")
     }
     
+    // If the distance slider updates, update label at same time
     @IBAction func distanceSliderUpdate(_ sender: Any) {
         let newDistance = Int(distanceSlider.value)
         distanceValueLabel.text = "\(newDistance)mi."
-        //update in database
+        usrDefaults.set(newDistance, forKey: "distance")
     }
     
+    // Logout user
     @IBAction func logoutButtonPressed(_ sender: Any) {
         UserProfile.logOutUser(completion: { (error) in
             if error != nil {
@@ -63,6 +108,7 @@ class SettingsTableViewController: UITableViewController {
         })
     }
     
+    // Delete this user's account
     @IBAction func deleteAccountButtonPressed(_ sender: Any) {
         UserProfile.logOutUser(completion: { (error) in
             if error != nil {
