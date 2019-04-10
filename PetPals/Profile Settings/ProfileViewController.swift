@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
             profile?.update(completion: { success in
                 if success {
                     //update text to reflect changed data
-                    self.profileName.text = self.nameField.text
+                    self.profileName.text = name
                 }
                 else {
                     //error occured
@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController {
             profile?.update(completion: { success in
                 if success {
                     //update text to reflect changed data
-                    self.profileBio.text = self.bioField.text
+                    self.profileBio.text = bio
                 }
                 else {
                     //error occured
