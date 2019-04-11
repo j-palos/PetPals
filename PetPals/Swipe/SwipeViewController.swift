@@ -69,23 +69,13 @@ class SwipeViewController: UIViewController {
                 
             case "current_latitude", "current_longitude":
                 //users location updated so refresh the users based on that
-                users.removeAll()
-                kolodaView.reloadData()
-                let lat = UserDefaults.standard.value(forKey: "current_latitude") as! String
-                let lon = UserDefaults.standard.value(forKey: "current_longitude") as! String
-                let location = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lon)!))
-                
-                geoQuery?.center = location
-                geoQuery?.searchCriteriaDidChange()
+                geoQuery?.removeAllObservers()
+                getUsers()
             
             case "distance":
                 //updated the search radius so refresh the users based on that
-                users.removeAll()
-                kolodaView.reloadData()
-                let searchRadius = UserDefaults.standard.value(forKey: "distance") as! Double
-                // search radius is in miles but geofire takes in KM so convert from miles to KM
-                geoQuery?.radius = searchRadius * 1.60934
-                geoQuery?.searchCriteriaDidChange()
+                geoQuery?.removeAllObservers()
+                getUsers()
             case "petTypes":
                 //pet type was changed so we need to kill all observers and create new one with updated pets
                 geoQuery?.removeAllObservers()
