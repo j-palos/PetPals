@@ -6,7 +6,8 @@ target 'PetPals' do
   use_frameworks!
 
   # Pods for PetPals
-  pod 'Firebase/Core'
+pod 'PopupDialog', '~> 1.1'
+pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'Firebase/Database'
