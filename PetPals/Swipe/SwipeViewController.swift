@@ -24,9 +24,9 @@ class SwipeViewController: UIViewController {
     var users: [UserProfile] = []
     @IBOutlet var noButton: UIButton!
     @IBOutlet var yesButton: UIButton!
-  
-    @IBOutlet weak var outOfProfilesImageView: UIImageView!
-    
+
+    @IBOutlet var outOfProfilesImageView: UIImageView!
+
     var profile: UserProfile?
 
     // for getting users locations
@@ -75,7 +75,7 @@ class SwipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createGradientLayer()
-        outOfProfilesImageView.layer.zPosition = -10
+        outOfProfilesImageView.alpha = 0.0
     }
 
     @IBAction func noButtonTapped(_ sender: Any) {
@@ -107,13 +107,37 @@ class SwipeViewController: UIViewController {
             UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
-                    self.outOfProfilesImageView.layer.zPosition = -10
+                   self.removeOutOfCards()
+//                    self.outOfProfilesImageView.layer.zPosition = -10
                     //todo: change this to in completion
                     self.kolodaView.reloadData()
                 }
             })
         }
     }
+
+
+private func displayOutOfCards(){
+    UIView.animate(
+        withDuration: 2.0,
+        delay: 0.0,
+        options: .curveEaseIn,
+        animations: {
+            self.outOfProfilesImageView.alpha = 1.0
+        }
+    )
+}
+
+private func removeOutOfCards(){
+    UIView.animate(
+        withDuration: 0.3,
+        delay: 0.0,
+        options: .curveEaseOut,
+        animations: {
+            self.outOfProfilesImageView.alpha = 0.0
+    }
+    )
+}
 }
 
 extension SwipeViewController: KolodaViewDataSource {
@@ -125,8 +149,7 @@ extension SwipeViewController: KolodaViewDataSource {
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
-    card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
-        
+        card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
         return card
     }
 
@@ -141,15 +164,16 @@ extension SwipeViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         //  print("\(images[index]) in the \(direction)")
 
+        
         let user = users[index]
         if let profile = profile {
             switch direction {
             case .left:
                 profile.swipeLeft(onUserProfile: user)
             case .right:
-                profile.swipeRight(onUserProfile: user) { (matchMade) in
+                profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
-                        //a match was made
+                        self.popMatchUp()
                     }
                 }
             default:
@@ -157,11 +181,18 @@ extension SwipeViewController: KolodaViewDelegate {
             }
         }
     }
+    
+ 
+    //pops up the view for our new match
+    private func popMatchUp(){
+        
+    }
 
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
 //        getUsers()
-        outOfProfilesImageView.layer.zPosition = 10
+//        outOfProfilesImageView.layer.zPosition = 10
+        self.displayOutOfCards()
     }
 
     // This is just the animation for background card
