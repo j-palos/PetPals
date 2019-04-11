@@ -6,6 +6,7 @@ target 'PetPals' do
   use_frameworks!
 
   # Pods for PetPals
+  pod "PromiseKit", "~> 6.8"
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'

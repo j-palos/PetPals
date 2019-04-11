@@ -91,6 +91,15 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - pop (1.0.12)
+  - PromiseKit (6.8.3):
+    - PromiseKit/CorePromise (= 6.8.3)
+    - PromiseKit/Foundation (= 6.8.3)
+    - PromiseKit/UIKit (= 6.8.3)
+  - PromiseKit/CorePromise (6.8.3)
+  - PromiseKit/Foundation (6.8.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.8.3):
+    - PromiseKit/CorePromise
   - SwiftOverlays (5.0.1)
 
 DEPENDENCIES:
@@ -102,6 +111,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - JTAppleCalendar (~> 7.0)
   - Koloda
+  - PromiseKit (~> 6.8)
   - SwiftOverlays (~> 5.0.1)
 
 SPEC REPOS:
@@ -124,6 +134,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - pop
+    - PromiseKit
     - SwiftOverlays
 
 EXTERNAL SOURCES:
@@ -155,8 +166,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
 
-PODFILE CHECKSUM: 93942935c896e50ac216d48e5835b6ae59a2f75e
+PODFILE CHECKSUM: 4abfabd376e0b701cc60c4c11c88df14d05a66d1
 
 COCOAPODS: 1.6.1
