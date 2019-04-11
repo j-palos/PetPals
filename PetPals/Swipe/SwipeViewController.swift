@@ -33,7 +33,7 @@ class SwipeViewController: UIViewController {
     // for getting users locations
     var geoFireRef: DatabaseReference?
     var geoFire: GeoFire?
-    var geoQuery: GFQuery?
+    var geoQuery: GFCircleQuery?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +57,44 @@ class SwipeViewController: UIViewController {
         //startup the user gathering
 
         getUsers()
-        // If the user defaults changed, then reload the users data to mactch the changes
-        NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
-    }
 
+        // set self as observer for user defaults needed for getting users
+        UserDefaults.standard.addObserver(self, forKeyPath: "current_latitude", options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: "current_longitude", options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: "distance", options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: "petTypes", options: .new, context: nil)
+
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if object is UserDefaults {
+            // Here you can grab the values or just respond to it with an action.
+            switch keyPath {
+                
+            case "current_latitude", "current_longitude":
+                //users location updated so refresh the users based on that
+                geoQuery?.removeAllObservers()
+                getUsers()
+            
+            case "distance":
+                //updated the search radius so refresh the users based on that
+                geoQuery?.removeAllObservers()
+                getUsers()
+            case "petTypes":
+                //pet type was changed so we need to kill all observers and create new one with updated pets
+                geoQuery?.removeAllObservers()
+                getUsers()
+            default: break
+
+            }
+        }
+        
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
-        geoQuery?.removeAllObservers()
+        //geoQuery?.removeAllObservers()
     }
 
     // Create the gradient we want for our background
@@ -119,7 +151,7 @@ class SwipeViewController: UIViewController {
             geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
             users.removeAll()
             kolodaView.reloadData()
-            UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
+            UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
                     //todo: change this to in completion
