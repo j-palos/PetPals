@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -130,7 +130,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-dB-zrs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-dB-zrs" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                                     <rect key="frame" x="12.666666666666664" y="0.0" width="54.999999999999993" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="mhf-Rj-9lv"/>
@@ -240,6 +240,7 @@
                         <outlet property="connectedContainerView" destination="20L-Pc-2bP" id="6Bw-gP-toD"/>
                         <outlet property="invitesButton" destination="rPj-Jb-N9m" id="1tV-J1-duq"/>
                         <outlet property="invitesContainerView" destination="tLC-G7-Iu2" id="w8Z-6G-gye"/>
+                        <outlet property="newMatchesCollectionView" destination="WpO-cb-1Ug" id="BFJ-kV-qdG"/>
                         <outlet property="pendingButton" destination="DSf-zd-HWf" id="hRs-5Y-Nnn"/>
                         <outlet property="pendingContainerView" destination="Zer-TS-Dfz" id="W8n-VH-izA"/>
                     </connections>
@@ -539,7 +540,7 @@
                                     <segue destination="xvG-xl-Q4D" kind="embed" id="LPE-bL-sA5"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-Jy-Vn4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-Jy-Vn4" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                 <rect key="frame" x="117" y="191.66666666666666" width="75" height="74.999999999999972"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="4d2-4y-eE0"/>
@@ -1235,7 +1236,7 @@
         <image name="MCSwitch_Selected" width="65" height="33"/>
         <image name="Matches_Accept" width="27" height="28"/>
         <image name="Matches_Cancel" width="27" height="28"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <image name="oval_calendar" width="6" height="6"/>
         <namedColor name="PetPalDarkBlue">
@@ -1250,7 +1251,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eLf-fQ-dqk"/>
-        <segue reference="58t-p3-lzk"/>
+        <segue reference="R3Z-k7-V3k"/>
         <segue reference="tN8-9J-ccb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>

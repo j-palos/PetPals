@@ -10,12 +10,12 @@ import UIKit
 
 class MeetupViewController: UIViewController {
     // Connect necessary fields
-    @IBOutlet weak var chosenUserImage: UIImageView!
+    @IBOutlet weak var chosenUserImage: MatchesImage!
     @IBOutlet weak var chosenUserName: UILabel!
     
     // Variables so this information can be passed in
     var userName = String()
-    var userImage = String()
+    var userImage = NSURL(fileURLWithPath: "")
     
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
@@ -25,11 +25,7 @@ class MeetupViewController: UIViewController {
         
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
-        chosenUserImage.image = UIImage(named: userImage)!.scaleToSize(aSize: CGSize(width: 75.0, height: 75.0))
-        
-        // Make the profile pictures circles
-        chosenUserImage.layer.cornerRadius = chosenUserImage.frame.size.width / 2
-        chosenUserImage.clipsToBounds = true
+        chosenUserImage.load(fromURL: userImage as URL)
     }
     
     // code to dismiss keyboard when user clicks on background

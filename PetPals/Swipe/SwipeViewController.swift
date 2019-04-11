@@ -11,6 +11,7 @@ import FirebaseDatabase
 import GeoFire
 import Koloda
 import pop
+import PromiseKit
 import UIKit
 
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -42,17 +43,20 @@ class SwipeViewController: UIViewController {
 
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
-
+        
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { user in
                 self.profile = user
             })
         }
+
         
         //initially don't show that
         removeOutOfCards()
-        getUsers()
 
+        //startup the user gathering
+
+        getUsers()
         // If the user defaults changed, then reload the users data to mactch the changes
         NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
     }
@@ -147,17 +151,38 @@ class SwipeViewController: UIViewController {
 }
 
 extension SwipeViewController: KolodaViewDataSource {
+    
     // Generates a stack of user cards
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let card: CardView = CardView()
+        initCard(index: index, card: card)
+        return card
+    }
+    
+    //wrapper function to init our card
+    //the point of using promises here is
+    //so that our card comes into view with an image already loaded
+    func initCard(index: Int, card: CardView) {
         let user = users[index]
-        card.initWithURL(user.imageURL.absoluteString)
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
         card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
+        avatar(url: user.imageURL, user: user).done {
+            card.setImage($0)
+            return
+        }.catch { _ in
+            print("error in network")
+        }
+    }
 
-        return card
+    //promise function for obtaining our card avatage image
+    func avatar(url: URL, user: UserProfile) -> Promise<UIImage> {
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: url)
+        }.compactMap {
+            UIImage(data: $0.data)
+        }
     }
 
     // set number of cards to the number of users
@@ -177,7 +202,10 @@ extension SwipeViewController: KolodaViewDelegate {
             case .right:
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
+
                         self.popMatchUp()
+                        // a match was made
+
                     }
                 }
             default:
