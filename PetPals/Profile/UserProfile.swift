@@ -130,6 +130,7 @@ class UserProfile: NSObject {
                 completion(err, nil)
             }
             if let user = user?.user {
+                UserDefaults.standard.set(user.uid, forKey: "user_uid")
                 UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, nextVC in
                     completion(error, nextVC)
                 }

@@ -10,6 +10,7 @@ import CoreData
 import CoreLocation
 import Firebase
 import GoogleSignIn
+import GeoFire
 import UIKit
 
 let mainVCAfterAuthIdentifier = "Home"
@@ -35,10 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        FirebaseApp.configure()
+        configureLocationManager()
         // Give time for the load animation to occur, then set up firebase & check if user logged in
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            FirebaseApp.configure()
             
             GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
             GIDSignIn.sharedInstance().delegate = self
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, startVC in
                     if error == nil {
                         self.window?.rootViewController = startVC
+                        UserDefaults.standard.set(user.uid, forKey: "user_uid")
                     }
                 }
             } else {
@@ -174,6 +176,14 @@ extension AppDelegate: CLLocationManagerDelegate {
         let updatedLocation: CLLocation = locations.first!
         let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
         let usrDefaults: UserDefaults = UserDefaults.standard
+        
+        //location has changed so we should update geofire
+        let geoFire = GeoFire(firebaseRef: Database.database().reference().child("Geolocations"))
+        if let uid = UserDefaults.standard.string(forKey: "user_uid") {
+            //make sure we have users uid to update
+            let location = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
+            geoFire.setLocation(location, forKey: uid)
+        }
         
         usrDefaults.set("\(newCoordinate.latitude)", forKey: "current_latitude")
         usrDefaults.set("\(newCoordinate.longitude)", forKey: "current_longitude")
