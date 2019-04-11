@@ -200,7 +200,7 @@ class UserProfile: NSObject {
         })
     }
     
-    class func getAllUsersWithinRadius(geoQuery: GFQuery?, withinMileRadius radius: Double, completion: @escaping (UserProfile) -> Swift.Void) {
+    class func getAllUsersWithinRadius(geoQuery: GFQuery?, completion: @escaping (UserProfile) -> Swift.Void) {
         
         let userid = Auth.auth().currentUser!.uid
         let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? AppConstants.petOptions
