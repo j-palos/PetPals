@@ -201,49 +201,42 @@ class UserProfile: NSObject {
     }
     
     class func getAllUsersWithinRadius(geoQuery: GFQuery?, completion: @escaping (UserProfile) -> Swift.Void) {
-        
         let userid = Auth.auth().currentUser!.uid
+        let swipesRef = Database.database().reference().child("Swipes").child(userid)
+        
         let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? AppConstants.petOptions
-        var swipedAlready = [String]()
-        let ref = Database.database().reference().child("Swipes").child(userid)
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            if snapshot.exists() {
-                for swipe in snapshot.childSnapshot(forPath: "Likes").children {
-                    
-                    let uid = (swipe as! DataSnapshot).key
-                    swipedAlready.append(uid)
-                    print("Liked user \(uid) already")
-                }
-                for swipe in snapshot.childSnapshot(forPath: "DisLikes").children {
-                    
-                    let uid = (swipe as! DataSnapshot).key
-                    swipedAlready.append(uid)
-                    print("Disliked user \(uid) already")
-                }
-            }
-            geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
-                if key != userid && !swipedAlready.contains(key) {
-                    let ref = Database.database().reference().child("Users").child(key!).child("user_details")
-                    
-                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                        let data = snapshot.value as! [String: Any]
-                        
-                        let bio = data["bio"] as! String
-                        let firstname = data["first_name"] as! String
-                        let lastname = data["last_name"] as! String
-                        let link = URL(string: data["profile_pic_url"] as! String)!
-                        let pettype = data["pet_type"] as! String
-                        let active = data["is_active"] as! Bool
-                        
-                        if petTypes.contains(pettype) && active == true {
-                            let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                   id: key!, profilePic: link, petType: pettype, location: location)
-                            completion(user)
+        
+        geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
+            if key != userid {
+                let ref = Database.database().reference().child("Users").child(key!).child("user_details")
+                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    swipesRef.observeSingleEvent(of: .value, with: { swipesSnapshot in
+                        //we only want this user if we havent swiped on them already
+                        if !(swipesSnapshot.hasChild("Likes/\(key!)") ||
+                            swipesSnapshot.hasChild("DisLikes/\(key!)")) {
+                            
+                            let data = snapshot.value as! [String: Any]
+                            
+                            let pettype = data["pet_type"] as! String
+                            let active = data["is_active"] as! Bool
+                            
+                            //check if they have desired pet type and are active
+                            if petTypes.contains(pettype) && active == true {
+                                //get the rest of the profile info
+                                let bio = data["bio"] as! String
+                                let firstname = data["first_name"] as! String
+                                let lastname = data["last_name"] as! String
+                                let link = URL(string: data["profile_pic_url"] as! String)!
+                                
+                                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                                       id: key!, profilePic: link, petType: pettype, location: location)
+                                completion(user)
+                            }
+                            
                         }
                     })
-                }
-            })
-            
+                })
+            }
         })
     }
     

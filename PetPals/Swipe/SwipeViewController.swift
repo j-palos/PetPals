@@ -51,15 +51,10 @@ class SwipeViewController: UIViewController {
 
         getUsers()
 
-//        // If the user defaults changed, then reload the users data to mactch the changes
-//        NotificationCenter.default.addObserver(self, selector: #selector(locUpdate), name: UserDefaults.didChangeNotification, object: nil)
-        
-        
+        // set self as observer for user defaults needed for getting users
         UserDefaults.standard.addObserver(self, forKeyPath: "current_latitude", options: .new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: "current_longitude", options: .new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: "distance", options: .new, context: nil)
-        
-        
         UserDefaults.standard.addObserver(self, forKeyPath: "petTypes", options: .new, context: nil)
     }
     
@@ -90,9 +85,11 @@ class SwipeViewController: UIViewController {
                 geoQuery?.radius = searchRadius * 1.60934
                 geoQuery?.searchCriteriaDidChange()
             case "petTypes":
-                print("PETS CHANGED")
-            default:
-                print("OTHER")
+                //pet type was changed so we need to kill all observers and create new one with updated pets
+                geoQuery?.removeAllObservers()
+                getUsers()
+            default: break
+
             }
         }
         
@@ -147,6 +144,7 @@ class SwipeViewController: UIViewController {
             geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
             users.removeAll()
             kolodaView.reloadData()
+            outOfProfilesImageView.layer.zPosition = 10
             UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
