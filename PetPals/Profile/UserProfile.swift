@@ -282,6 +282,7 @@ class UserProfile: NSObject {
         ref.observe(.childAdded) { (snapshot) in
             if snapshot.exists() {
                 UserProfile.getProfile(forUserID: snapshot.key, completion: { (match) in
+                    print("I found another match")
                     completion(match)
                 })
             }
