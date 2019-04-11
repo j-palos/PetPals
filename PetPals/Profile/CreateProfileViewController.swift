@@ -136,6 +136,7 @@ class CreateProfileViewController: UIViewController {
                 //on success update firebase location info
                 let location:CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
                 self.geoFire?.setLocation(location, forKey:user.uid)
+                UserDefaults.standard.set(user.uid, forKey: "user_uid")
                 
                 //go to main app
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
