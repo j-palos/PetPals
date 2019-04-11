@@ -12,6 +12,7 @@ import GeoFire
 import Koloda
 import pop
 import UIKit
+import UserNotifications
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
@@ -48,8 +49,18 @@ class SwipeViewController: UIViewController {
                 self.profile = user
             })
         }
-        
-        //initially don't show that
+
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) {
+            granted, _ in
+            if granted {
+                print("yes")
+            } else {
+                print("No")
+            }
+        }
+
+        // initially don't show that
         removeOutOfCards()
         getUsers()
 
@@ -77,7 +88,7 @@ class SwipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createGradientLayer()
-        //wait for a second, if we don't have potentials show out of cards
+        // wait for a second, if we don't have potentials show out of cards
         queue.async {
             sleep(1)
             if self.users.isEmpty {
@@ -88,7 +99,6 @@ class SwipeViewController: UIViewController {
         }
     }
 
-    
     @IBAction func noButtonTapped(_ sender: Any) {
         kolodaView.swipe(.left)
     }
@@ -128,7 +138,7 @@ class SwipeViewController: UIViewController {
         }
     }
 
-    //show the out of cards image
+    // show the out of cards image
     private func displayOutOfCards() {
         UIView.animate(
             withDuration: 2.0,
@@ -140,7 +150,7 @@ class SwipeViewController: UIViewController {
         )
     }
 
-    //remove the out of cards image from view
+    // remove the out of cards image from view
     private func removeOutOfCards() {
         outOfProfilesImageView.alpha = 0.0
     }
@@ -166,7 +176,7 @@ extension SwipeViewController: KolodaViewDataSource {
     }
 }
 
-extension SwipeViewController: KolodaViewDelegate {
+extension SwipeViewController: KolodaViewDelegate, UNUserNotificationCenterDelegate {
     // This function will handle the swiping/network interaction
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         let user = users[index]
@@ -177,7 +187,8 @@ extension SwipeViewController: KolodaViewDelegate {
             case .right:
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
-                        self.popMatchUp()
+                        self.popMatchUp(name: user.firstName)
+                        print("matchmade")
                     }
                 }
             default:
@@ -187,7 +198,25 @@ extension SwipeViewController: KolodaViewDelegate {
     }
 
     // pops up the view for our new match
-    private func popMatchUp() {}
+    //currently not working
+    private func popMatchUp(name: String) {
+        let notification = UNMutableNotificationContent()
+        notification.title = "New Match!"
+        notification.subtitle = "Congratulations on your new Match"
+        notification.body = "You and \(name) have both swiped right"
+        // set up the notification to trigger after a 1/2-second delay
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        // set up a request to tell iOS to submit the notification with that trigger
+        let request = UNNotificationRequest(identifier: "matchNotifier",
+                                            content: notification,
+                                            trigger: notificationTrigger)
+
+        // submit the request to iOS
+        UNUserNotificationCenter.current().add(request) { error in
+            print("Request error: ", error as Any)
+        }
+    }
 
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
