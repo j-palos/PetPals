@@ -65,15 +65,19 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // If a new match is selected, bring up the Meetup Screen
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get this cell
-        let cell:NewMatchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
+        let _:NewMatchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
         
         // Destination will be Meetup Screen, child of OverallMatchesVC
         // Need destination to be loaded first to be able to send data
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
+        // Find the associated User
+        let user:UserProfile = newMatches[indexPath.row]
+        
         // Send over information about the user selected
-        destination.userName = cell.nameLabel.text!
-        destination.userImage = cell.image.image!
+        destination.userName = user.firstName
+        // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
+        destination.userImage = user.imageURL as NSURL
         
         // Present the screen
         self.navigationController?.pushViewController(destination, animated: false)

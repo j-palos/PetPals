@@ -530,7 +530,7 @@
             <objects>
                 <viewController storyboardIdentifier="meetupVCIdentifier" id="g6g-Ot-jlG" customClass="MeetupViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p8-ki-uWy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Lo-kZ-6LP">
@@ -540,7 +540,7 @@
                                     <segue destination="xvG-xl-Q4D" kind="embed" id="LPE-bL-sA5"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-Jy-Vn4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-Jy-Vn4" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                 <rect key="frame" x="117" y="191.66666666666666" width="75" height="74.999999999999972"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="4d2-4y-eE0"/>
@@ -1251,7 +1251,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eLf-fQ-dqk"/>
-        <segue reference="58t-p3-lzk"/>
+        <segue reference="R3Z-k7-V3k"/>
         <segue reference="tN8-9J-ccb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
