@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
-// Hard coded data for new match users
-var newMatches:[User] = [User(name: "Jeffery", picture: "jeffery", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""),User(name: "Alan", picture: "alan", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Leo", picture: "leo", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: ""), User(name: "Charles", picture: "charles", meetPrior: false, meetup: "", meetupTime: "", meetupLoc: "")]
+import FirebaseAuth
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -23,6 +21,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var invitesButton: UIButton!
     @IBOutlet weak var pendingButton: UIButton!
     
+    // Connect the collection view for New Matches
+    @IBOutlet weak var newMatchesCollectionView: UICollectionView!
+    
     // Set colors for text
     let blueColor:UIColor = UIColor(red: 0.44, green:0.78, blue:0.78, alpha: 1)
     let grayColor:UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
@@ -30,12 +31,18 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
     
+    // List to contain all new matches for this user
+    var newMatches = [UserProfile]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getMatches()
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("NUMBER OF MATCHES: \(newMatches.count)")
         return newMatches.count
     }
     
@@ -43,17 +50,14 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Get this cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
-        
+    
         // Find the associated User
-        let user:User = newMatches[indexPath.row]
+        let user:UserProfile = newMatches[indexPath.row]
         
         // Update the cell information with this user's info
-        cell.nameLabel.text = user.userName
-        cell.image.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
-        
-        // Make the profile pictures circles
-        cell.image.layer.cornerRadius =  cell.image.frame.size.width / 2
-        cell.image.clipsToBounds = true
+        cell.nameLabel.text = user.firstName
+        let imageUrl = user.imageURL
+        cell.image.load(fromURL: imageUrl)
         
         return cell as UICollectionViewCell
     }
@@ -61,18 +65,19 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // If a new match is selected, bring up the Meetup Screen
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get this cell
-        _ = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
-        
-        // Find the associated User
-        let cellUser = newMatches[indexPath.row]
+        let _:NewMatchCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
         
         // Destination will be Meetup Screen, child of OverallMatchesVC
         // Need destination to be loaded first to be able to send data
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
+        // Find the associated User
+        let user:UserProfile = newMatches[indexPath.row]
+        
         // Send over information about the user selected
-        destination.userName = cellUser.userName
-        destination.userImage = cellUser.image
+        destination.userName = user.firstName
+        // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
+        destination.userImage = user.imageURL as NSURL
         
         // Present the screen
         self.navigationController?.pushViewController(destination, animated: false)
@@ -121,6 +126,20 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         pendingButton.setTitleColor(blueColor, for: .normal)
         connectedButton.setTitleColor(grayColor, for: .normal)
         invitesButton.setTitleColor(grayColor, for: .normal)
+    }
+    
+    func getMatches() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                user.getMatches(completion: { (match) in
+                    DispatchQueue.main.async {
+                        self.newMatches.append(match)
+                        //reload data
+                        self.newMatchesCollectionView.reloadData()
+                    }
+                })
+            })
+        }
     }
     
 }

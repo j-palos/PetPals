@@ -10,6 +10,6 @@ import UIKit
 
 class NewMatchCollectionViewCell: UICollectionViewCell {
     // Connect Necessary Fields
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var image: MatchesImage!
     @IBOutlet weak var nameLabel: UILabel!
 }
