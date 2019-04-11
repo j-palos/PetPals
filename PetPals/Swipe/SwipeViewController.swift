@@ -29,7 +29,7 @@ class SwipeViewController: UIViewController {
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
     var profile: UserProfile?
-
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
     // for getting users locations
     var geoFireRef: DatabaseReference?
     var geoFire: GeoFire?
@@ -49,7 +49,13 @@ class SwipeViewController: UIViewController {
                 self.profile = user
             })
         }
+
+        
+        //initially don't show that
+        removeOutOfCards()
+
         //startup the user gathering
+
         getUsers()
         // If the user defaults changed, then reload the users data to mactch the changes
         NotificationCenter.default.addObserver(self, selector: #selector(getUsers), name: UserDefaults.didChangeNotification, object: nil)
@@ -75,9 +81,18 @@ class SwipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createGradientLayer()
-        outOfProfilesImageView.layer.zPosition = -10
+        //wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if self.users.isEmpty {
+                DispatchQueue.main.async {
+                    self.displayOutOfCards()
+                }
+            }
+        }
     }
 
+    
     @IBAction func noButtonTapped(_ sender: Any) {
         kolodaView.swipe(.left)
     }
@@ -107,12 +122,31 @@ class SwipeViewController: UIViewController {
             UserProfile.getAllUsersWithinRadius(geoQuery: geoQuery, withinMileRadius: searchRadius, completion: {
                 user in DispatchQueue.main.async {
                     self.users.append(user)
-                    self.outOfProfilesImageView.layer.zPosition = -10
                     //todo: change this to in completion
+                    if self.outOfProfilesImageView.alpha > 0 {
+                        self.removeOutOfCards()
+                    }
                     self.kolodaView.reloadData()
                 }
             })
         }
+    }
+
+    //show the out of cards image
+    private func displayOutOfCards() {
+        UIView.animate(
+            withDuration: 2.0,
+            delay: 0.0,
+            options: .curveEaseIn,
+            animations: {
+                self.outOfProfilesImageView.alpha = 1.0
+            }
+        )
+    }
+
+    //remove the out of cards image from view
+    private func removeOutOfCards() {
+        outOfProfilesImageView.alpha = 0.0
     }
 }
 
@@ -160,8 +194,6 @@ extension SwipeViewController: KolodaViewDataSource {
 extension SwipeViewController: KolodaViewDelegate {
     // This function will handle the swiping/network interaction
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        //  print("\(images[index]) in the \(direction)")
-
         let user = users[index]
         if let profile = profile {
             switch direction {
@@ -170,7 +202,10 @@ extension SwipeViewController: KolodaViewDelegate {
             case .right:
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
+
+                        self.popMatchUp()
                         // a match was made
+
                     }
                 }
             default:
@@ -179,10 +214,12 @@ extension SwipeViewController: KolodaViewDelegate {
         }
     }
 
+    // pops up the view for our new match
+    private func popMatchUp() {}
+
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-//        getUsers()
-        outOfProfilesImageView.layer.zPosition = 10
+        displayOutOfCards()
     }
 
     // This is just the animation for background card
