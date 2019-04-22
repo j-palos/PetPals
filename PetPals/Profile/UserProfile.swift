@@ -436,6 +436,8 @@ class UserProfile: NSObject {
                     
                     let data = meetupSnapshot.value as! [String: Any]
                     
+                    
+                    let id = meetupSnapshot.key
                     let date = data["date"] as! String
                     let time =  data["time"] as! String
                     let location = data["location"] as! String
@@ -444,7 +446,7 @@ class UserProfile: NSObject {
                     
                     if status == .pending {
                         UserProfile.getProfile(forUserID: toId, completion: { (toUser: UserProfile) in
-                            completion(Meetup(location: location, date: date, time: time, from: self, with: toUser, status: status))
+                            completion(Meetup(id: id, location: location, date: date, time: time, from: self, with: toUser, status: status))
                         })
                     }
                 })

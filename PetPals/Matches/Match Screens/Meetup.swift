@@ -23,6 +23,7 @@ enum MeetupType {
 
 class Meetup {
     
+    var id: String?
     var location: String
     var date: String
     var time: String
@@ -42,6 +43,16 @@ class Meetup {
     
     init(location: String, date: String, time: String, from: UserProfile, with: UserProfile, status: MeetupStatus) {
         
+        self.fromUser = from
+        self.toUser = with
+        self.location = location
+        self.date = date
+        self.time = time
+        self.status = status
+    }
+    
+    init(id: String, location: String, date: String, time: String, from: UserProfile, with: UserProfile, status: MeetupStatus) {
+        self.id = id
         self.fromUser = from
         self.toUser = with
         self.location = location
@@ -90,5 +101,25 @@ class Meetup {
         }
         
         
+    }
+    
+    func accept(completion: @escaping (Error?) -> Swift.Void) {
+        if let meetupId  = id {
+            let meetupRef = Database.database().reference().child("Meetups").child(meetupId)
+            meetupRef.updateChildValues(["status": MeetupStatus.accepted.rawValue]) { (err: Error?, _) in
+                completion(err)
+            }
+            
+        }
+    }
+    
+    func cancel(completion: @escaping (Error?) -> Swift.Void) {
+        if let meetupId = id {
+            let meetupRef = Database.database().reference().child("Meetups").child(meetupId)
+            meetupRef.updateChildValues(["status": MeetupStatus.canceled.rawValue]) { (err: Error?, _) in
+                completion(err)
+            }
+            
+        }
     }
 }
