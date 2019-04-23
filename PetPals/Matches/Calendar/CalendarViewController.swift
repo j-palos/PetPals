@@ -34,6 +34,7 @@ class CalendarViewController: UIViewController {
             for (date, event) in dateObjects {
                 let stringDate = self.formatter.string(from: date)
                 self.datesGiven[stringDate] = event
+                print("\(self.datesGiven)")
             }
             
             DispatchQueue.main.async {
@@ -72,6 +73,19 @@ class CalendarViewController: UIViewController {
         let chosenDay = formatter.string(from: date)
             
         print("I clicked the day \(chosenDay)!")
+        
+        let dayDates = datesGiven[chosenDay]!
+        
+        print("\(dayDates)")
+        
+        let controller = PopoverTableViewController([dayDates])
+        controller.preferredContentSize = CGSize(width: 300, height: 200)
+        
+        let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
+        presentationController.sourceView = cell
+        presentationController.sourceRect = cell!.bounds
+        presentationController.permittedArrowDirections = [.up]
+        self.present(controller, animated: true)
     }
     
     // Function to say whether user should be able to select this date or not
@@ -159,9 +173,9 @@ extension CalendarViewController {
         
         // Return hardcoded data for now
         return [
-            formatter.date(from: "2019 04 02")!: "Date with Emily",
-            formatter.date(from: "2019 04 11")!: "Date with Jeffery",
-            formatter.date(from: "2019 04 20")!: "Date with Leo"
+            formatter.date(from: "2019 04 02")!: "Date with Emily at 12pm",
+            formatter.date(from: "2019 04 11")!: "Date with Jeffery at 12pm",
+            formatter.date(from: "2019 04 20")!: "Date with Leo at 12pm"
         ]
     }
 }
