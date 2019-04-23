@@ -210,6 +210,7 @@ class UserProfile: NSObject {
             if key != userid {
                 let ref = Database.database().reference().child("Users").child(key!).child("user_details")
                 ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
                     swipesRef.observeSingleEvent(of: .value, with: { swipesSnapshot in
                         //we only want this user if we havent swiped on them already
                         if !(swipesSnapshot.hasChild("Likes/\(key!)") ||
@@ -235,6 +236,7 @@ class UserProfile: NSObject {
                             
                         }
                     })
+                    }
                 })
             }
         })
