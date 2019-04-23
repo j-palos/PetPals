@@ -24,6 +24,7 @@ class PopoverTableViewController<T>: UITableViewController {
         super.init(style: .plain)
         self.tableView.tableFooterView = UIView()
         self.tableView.frame.size.height = 50
+        self.tableView.separatorInset = UIEdgeInsets.zero
     }
     
     required init?(coder aDecoder: NSCoder) {

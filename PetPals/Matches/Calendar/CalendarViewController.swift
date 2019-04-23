@@ -69,28 +69,36 @@ class CalendarViewController: UIViewController {
         // Set way want to format date
         formatter.dateFormat = "yyyy MM dd"
         
+        // Get this day
         let chosenDay = formatter.string(from: date)
         
-        let dayDates = datesGiven[chosenDay]!
-        
-        let controller = PopoverTableViewController([dayDates])
-        controller.preferredContentSize = CGSize(width: 300, height: 50)
-        
-        let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
-        presentationController.sourceView = cell
-        presentationController.sourceRect = cell!.bounds
-        presentationController.permittedArrowDirections = [.up]
-        self.present(controller, animated: true)
+        // Find the dates on this day
+        // In hard code is just one string, but will be list in future
+        if let dayDatesString = datesGiven[chosenDay] {
+            let dayDates = [dayDatesString]
+            
+            // Control heigh of popover; Only want to show 4 max at a time
+            var popoverHeight = 50
+            if dayDates.count <= 4 {
+                popoverHeight = popoverHeight * dayDates.count
+            } else {
+                popoverHeight = 200
+            }
+            
+            // Create the table view
+            let controller = PopoverTableViewController(dayDates)
+            controller.preferredContentSize = CGSize(width: 300, height: popoverHeight)
+            
+            // Create the popover and present it
+            let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
+            presentationController.sourceView = cell
+            presentationController.sourceRect = cell!.bounds
+            presentationController.permittedArrowDirections = [.up]
+            self.present(controller, animated: true)
+        }
     }
     
-    // Function to say whether user should be able to select this date or not
-    // Only allow a user to select a day if it has an event on it
-    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-        // *** Issue: when scroll to next month and come back, won't let it be clicked?
-        // *** tried doing a if on didselect instead and that didn't work either
-        return datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
-    }
-    
+    // If left arrow clicked, go to previous month
     @IBAction func leftArrowClicked(_ sender: Any) {
         let currDate = calendarView.visibleDates().monthDates.first!.date
         let nextDate = Calendar.current.date(byAdding: .month, value: -1, to: currDate)!
@@ -119,7 +127,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         
         // Set start & end for the calendar
         let startDate = formatter.date(from: "2019 04 01")!
-        let endDate = formatter.date(from: "2019 12 31")!
+        let endDate = formatter.date(from: "2020 04 30")!
         
         // Send in information to be configured for calendar
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
