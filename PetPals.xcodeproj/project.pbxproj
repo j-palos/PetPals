@@ -209,6 +209,7 @@
 				CB3C4BF3224204C200CA629D /* Calendar */,
 				CB3C4BF4224204CB00CA629D /* Match Screens */,
 				CB0CAA562256C10500B11F15 /* OverallMatchesViewController.swift */,
+				0D3B8487226A6C0C008B0A1B /* Meetup.swift */,
 			);
 			path = Matches;
 			sourceTree = "<group>";
@@ -238,7 +239,6 @@
 				CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */,
 				CBF295CD225E20E000EAAC5E /* MatchesImage.swift */,
 				CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */,
-				0D3B8487226A6C0C008B0A1B /* Meetup.swift */,
 			);
 			path = "Match Screens";
 			sourceTree = "<group>";

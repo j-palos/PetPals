@@ -84,19 +84,16 @@ class Meetup {
             }
             
             guard let meetupId = ref.key else {
-                let error = NSError(domain:"", code:401, userInfo:[ NSLocalizedDescriptionKey: "Invaild access token"]) as Error
-                completion(error)
                 return
             }
+            
+            self.id = meetupId
             
             let userMeetupsRef = Database.database().reference().child("UserMeetups")
             
             let timeValues = ["timestamp": timestamp]
-            
             userMeetupsRef.child(self.fromUser.id).child("sent").child(meetupId).updateChildValues(timeValues)
-
             userMeetupsRef.child(self.toUser.id).child("received").child(meetupId).updateChildValues(timeValues)
-        
             
         }
         
