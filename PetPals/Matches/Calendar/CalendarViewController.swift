@@ -63,6 +63,36 @@ class CalendarViewController: UIViewController {
         cell.eventDotView.isHidden = !datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
     }
     
+    // Function to display popup of dates for the user on the day selected
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        
+        // Set way want to format date
+        formatter.dateFormat = "yyyy MM dd"
+        
+        let chosenDay = formatter.string(from: date)
+            
+        print("I clicked the day \(chosenDay)!")
+    }
+    
+    // Function to say whether user should be able to select this date or not
+    // Only allow a user to select a day if it has an event on it
+    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        return datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
+    }
+    
+    @IBAction func leftArrowClicked(_ sender: Any) {
+        let currDate = calendarView.visibleDates().monthDates.first!.date
+        let nextDate = Calendar.current.date(byAdding: .month, value: -1, to: currDate)!
+        calendarView.scrollToDate(nextDate)
+    }
+    
+    // If the user clicks the right arrow, send the calendar ahead by a month
+    @IBAction func rightArrowClicked(_ sender: Any) {
+        let currDate = calendarView.visibleDates().monthDates.first!.date
+        let nextDate = Calendar.current.date(byAdding: .month, value: 1, to: currDate)!
+        calendarView.scrollToDate(nextDate)
+    }
+    
 }
 
 extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
@@ -77,7 +107,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         formatter.locale = Calendar.current.locale
         
         // Set start & end for the calendar
-        let startDate = formatter.date(from: "2019 03 01")!
+        let startDate = formatter.date(from: "2019 04 01")!
         let endDate = formatter.date(from: "2019 12 31")!
         
         // Send in information to be configured for calendar
@@ -129,9 +159,9 @@ extension CalendarViewController {
         
         // Return hardcoded data for now
         return [
-            formatter.date(from: "2019 03 02")!: "Date with Emily",
-            formatter.date(from: "2019 03 11")!: "Date with Jeffery",
-            formatter.date(from: "2019 03 20")!: "Date with Leo"
+            formatter.date(from: "2019 04 02")!: "Date with Emily",
+            formatter.date(from: "2019 04 11")!: "Date with Jeffery",
+            formatter.date(from: "2019 04 20")!: "Date with Leo"
         ]
     }
 }

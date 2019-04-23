@@ -23,19 +23,19 @@ class UpcomingDatesViewController: UIViewController {
          if segue.identifier == "firstUpcomingIdentifier" {
             if let firstVC = segue.destination as? SpecificUpcomingDateViewController{
                 firstVC.name = "Emily"
-                firstVC.date = "March 02"
+                firstVC.date = "April 02"
                 firstVC.time = "12 pm"
             }
         } else if segue.identifier == "secondUpcomingIdentifier" {
             if let secondVC = segue.destination as? SpecificUpcomingDateViewController {
                 secondVC.name = "Jeffery"
-                secondVC.date = "March 11"
+                secondVC.date = "April 11"
                 secondVC.time = "12 pm"
             }
          } else if segue.identifier == "thirdUpcomingIdentifier" {
             if let thirdVC = segue.destination as? SpecificUpcomingDateViewController {
                 thirdVC.name = "Leo"
-                thirdVC.date = "March 20"
+                thirdVC.date = "April 20"
                 thirdVC.time = "12 pm"
             }
         }
