@@ -34,7 +34,6 @@ class CalendarViewController: UIViewController {
             for (date, event) in dateObjects {
                 let stringDate = self.formatter.string(from: date)
                 self.datesGiven[stringDate] = event
-                print("\(self.datesGiven)")
             }
             
             DispatchQueue.main.async {
@@ -71,15 +70,11 @@ class CalendarViewController: UIViewController {
         formatter.dateFormat = "yyyy MM dd"
         
         let chosenDay = formatter.string(from: date)
-            
-        print("I clicked the day \(chosenDay)!")
         
         let dayDates = datesGiven[chosenDay]!
         
-        print("\(dayDates)")
-        
         let controller = PopoverTableViewController([dayDates])
-        controller.preferredContentSize = CGSize(width: 300, height: 200)
+        controller.preferredContentSize = CGSize(width: 300, height: 50)
         
         let presentationController = AlwaysPresentAsPopover.configurePresentation(forController: controller)
         presentationController.sourceView = cell
@@ -91,6 +86,8 @@ class CalendarViewController: UIViewController {
     // Function to say whether user should be able to select this date or not
     // Only allow a user to select a day if it has an event on it
     func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        // *** Issue: when scroll to next month and come back, won't let it be clicked?
+        // *** tried doing a if on didselect instead and that didn't work either
         return datesGiven.contains { $0.key == formatter.string(from: cellState.date) }
     }
     

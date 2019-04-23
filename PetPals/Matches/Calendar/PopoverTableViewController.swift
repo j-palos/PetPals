@@ -23,10 +23,17 @@ class PopoverTableViewController<T>: UITableViewController {
         self.labels = labels
         super.init(style: .plain)
         self.tableView.tableFooterView = UIView()
+        self.tableView.frame.size.height = 50
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var cellHeight:CGFloat = CGFloat()
+        cellHeight = 50
+        return cellHeight
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

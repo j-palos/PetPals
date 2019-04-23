@@ -32,6 +32,7 @@
 		CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */; };
 		CB348689226EBA8F001BD500 /* AlwaysPresentAsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB348688226EBA8F001BD500 /* AlwaysPresentAsPopover.swift */; };
 		CB34868B226EBB27001BD500 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34868A226EBB27001BD500 /* PopoverTableViewController.swift */; };
+		CB34868D226ED339001BD500 /* UpcomingDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34868C226ED339001BD500 /* UpcomingDateTableViewCell.swift */; };
 		CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */; };
 		CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */; };
 		CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */; };
@@ -90,6 +91,7 @@
 		CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB348688226EBA8F001BD500 /* AlwaysPresentAsPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysPresentAsPopover.swift; sourceTree = "<group>"; };
 		CB34868A226EBB27001BD500 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
+		CB34868C226ED339001BD500 /* UpcomingDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDateTableViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				CB348688226EBA8F001BD500 /* AlwaysPresentAsPopover.swift */,
 				CB34868A226EBB27001BD500 /* PopoverTableViewController.swift */,
 				CB945F0722482535001F4076 /* UpcomingDatesViewController.swift */,
+				CB34868C226ED339001BD500 /* UpcomingDateTableViewCell.swift */,
 				CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */,
 			);
 			path = Calendar;
@@ -490,6 +493,7 @@
 				CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */,
 				0D00AB702239569D00F467B7 /* LoginViewController.swift in Sources */,
 				CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */,
+				CB34868D226ED339001BD500 /* UpcomingDateTableViewCell.swift in Sources */,
 				EADB9997222633F500F349CB /* PetPals.xcdatamodeld in Sources */,
 				CB945F0822482535001F4076 /* UpcomingDatesViewController.swift in Sources */,
 				CB876E932257C6DE005B646C /* LoadingViewController.swift in Sources */,
