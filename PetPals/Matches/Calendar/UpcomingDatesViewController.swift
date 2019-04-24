@@ -8,37 +8,35 @@
 
 import UIKit
 
-class UpcomingDatesViewController: UIViewController {
-    // Connect necessary fields
-    @IBOutlet weak var firstUpcoming: UIView!
-    @IBOutlet weak var secondUpcoming: UIView!
-    @IBOutlet weak var thirdUpcoming: UIView!
+let dates = [["Emily", "April 02", "12 pm"], ["Jeffery", "April 11", "12 pm"], ["Leo", "April 20", "12 pm"]]
 
+class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    // Connect necessary fields
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
     }
     
-    // Depending on which embedded view, send in hard-coded data
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "firstUpcomingIdentifier" {
-            if let firstVC = segue.destination as? SpecificUpcomingDateViewController{
-                firstVC.name = "Emily"
-                firstVC.date = "March 02"
-                firstVC.time = "12 pm"
-            }
-        } else if segue.identifier == "secondUpcomingIdentifier" {
-            if let secondVC = segue.destination as? SpecificUpcomingDateViewController {
-                secondVC.name = "Jeffery"
-                secondVC.date = "March 11"
-                secondVC.time = "12 pm"
-            }
-         } else if segue.identifier == "thirdUpcomingIdentifier" {
-            if let thirdVC = segue.destination as? SpecificUpcomingDateViewController {
-                thirdVC.name = "Leo"
-                thirdVC.date = "March 20"
-                thirdVC.time = "12 pm"
-            }
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dates.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UpcomingDateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "upcomingDateTableViewCellIdentifier", for: indexPath as IndexPath) as! UpcomingDateTableViewCell
+        
+        let currDate = dates[indexPath.row]
+        
+        cell.nameLabel.text = currDate[0]
+        cell.dateLabel.text = currDate[1]
+        cell.timeLabel.text = currDate[2]
+        
+        return cell
     }
 
 }
