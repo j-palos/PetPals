@@ -210,6 +210,7 @@ class UserProfile: NSObject {
             if key != userid {
                 let ref = Database.database().reference().child("Users").child(key!).child("user_details")
                 ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
                     swipesRef.observeSingleEvent(of: .value, with: { swipesSnapshot in
                         //we only want this user if we havent swiped on them already
                         if !(swipesSnapshot.hasChild("Likes/\(key!)") ||
@@ -235,6 +236,7 @@ class UserProfile: NSObject {
                             
                         }
                     })
+                    }
                 })
             }
         })
@@ -350,6 +352,115 @@ class UserProfile: NSObject {
             else {
                 completion(false)
             }
+        }
+    }
+    
+    
+    func getMeetups(withType meetupType: MeetupType, completion: @escaping (Meetup) -> Swift.Void) {
+        
+        let userMeetupRef = Database.database().reference().child("UserMeetups").child(self.id)
+        let meetupRef = Database.database().reference().child("Meetups")
+        
+        switch meetupType {
+        case .connected:
+            userMeetupRef.child("received").observe(.childAdded, with: { (snapshot: DataSnapshot) in
+                
+                let meetupId = snapshot.key
+                
+                meetupRef.child(meetupId).observeSingleEvent(of: .value, with: { (meetupSnapshot: DataSnapshot) in
+                    
+                    let data = meetupSnapshot.value as! [String: Any]
+                    
+                    let date = data["date"] as! String
+                    let time =  data["time"] as! String
+                    let location =  data["location"] as! String
+                    let fromId =  data["from"] as! String
+                    let status = MeetupStatus(rawValue: data["status"] as! String)!
+                    
+                    if status == .accepted || status == .past {
+                        UserProfile.getProfile(forUserID: fromId, completion: { (fromUser: UserProfile) in
+                            completion(Meetup(location: location, date: date, time: time, from: fromUser, with: self, status: status))
+                        })
+                    }
+                })
+            })
+            
+            userMeetupRef.child("sent").observe(.childAdded, with: { (snapshot: DataSnapshot) in
+                let meetupId = snapshot.key
+                meetupRef.child(meetupId).observeSingleEvent(of: .value, with: { (meetupSnapshot: DataSnapshot) in
+                    
+                    let data = meetupSnapshot.value as! [String: Any]
+                    
+                    let date = data["date"] as! String
+                    let time =  data["time"] as! String
+                    let location = data["location"] as! String
+                    let toId =  data["to"] as! String
+                    let status = MeetupStatus(rawValue: data["status"] as! String)!
+                    
+                    if status == .accepted || status == .past {
+                        UserProfile.getProfile(forUserID: toId, completion: { (toUser: UserProfile) in
+                            completion(Meetup(location: location, date: date, time: time, from: self, with: toUser, status: status))
+                        })
+                    }
+                })
+            })
+        case .invites:
+            //sent from other to you
+            
+            userMeetupRef.child("received").observe(.childAdded, with: { (snapshot: DataSnapshot) in
+                
+                let meetupId = snapshot.key
+                
+                meetupRef.child(meetupId).observeSingleEvent(of: .value, with: { (meetupSnapshot: DataSnapshot) in
+                
+                    let data = meetupSnapshot.value as! [String: Any]
+                    
+                    let date = data["date"] as! String
+                    let time =  data["time"] as! String
+                    let location =  data["location"] as! String
+                    let fromId =  data["from"] as! String
+                    let status = MeetupStatus(rawValue: data["status"] as! String)!
+
+                    if status == .pending {
+                        UserProfile.getProfile(forUserID: fromId, completion: { (fromUser: UserProfile) in
+                            completion(Meetup(location: location, date: date, time: time, from: fromUser, with: self, status: status))
+                        })
+                    }
+                })
+            })
+        case .pending:
+            //sent from you to other
+            userMeetupRef.child("sent").observe(.childAdded, with: { (snapshot: DataSnapshot) in
+                let meetupId = snapshot.key
+                meetupRef.child(meetupId).observeSingleEvent(of: .value, with: { (meetupSnapshot: DataSnapshot) in
+                    
+                    let data = meetupSnapshot.value as! [String: Any]
+                    
+                    
+                    let id = meetupSnapshot.key
+                    let date = data["date"] as! String
+                    let time =  data["time"] as! String
+                    let location = data["location"] as! String
+                    let toId =  data["to"] as! String
+                    let status = MeetupStatus(rawValue: data["status"] as! String)!
+                    
+                    if status == .pending {
+                        UserProfile.getProfile(forUserID: toId, completion: { (toUser: UserProfile) in
+                            completion(Meetup(id: id, location: location, date: date, time: time, from: self, with: toUser, status: status))
+                        })
+                    }
+                })
+            })
+        }
+        
+    }
+    
+    
+    func suggestMeetup(withUser user: UserProfile, onDate date: String, atTime time: String, atLocation loc: String,
+                       completion: @escaping (Error?) -> Swift.Void) {
+        
+        Meetup(location: loc, date: date, time: time, from: self, with: user).suggest { (error) in
+            completion(error)
         }
     }
     
