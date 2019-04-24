@@ -247,7 +247,9 @@ extension SwipeViewController: KolodaViewDelegate {
     }
 
     // pops up the view for our new match
-    private func popMatchUp() {}
+    private func popMatchUp() {
+        Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
 
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {

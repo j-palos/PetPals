@@ -47,6 +47,8 @@
 		CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB945F0922482548001F4076 /* SpecificUpcomingDateViewController.swift */; };
 		CBF295CE225E20E000EAAC5E /* MatchesImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF295CD225E20E000EAAC5E /* MatchesImage.swift */; };
 		EA05C6E42249A85800D744D0 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05C6E32249A85800D744D0 /* SwipeViewController.swift */; };
+		EA2A5039226F908B0011DA88 /* MatchOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A5037226F908B0011DA88 /* MatchOverlay.swift */; };
+		EA2A503A226F908B0011DA88 /* MatchOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A5038226F908B0011DA88 /* MatchOverlay.xib */; };
 		EA9535512254613D00958051 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9535502254613D00958051 /* Initial.storyboard */; };
 		EA953553225461D400958051 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA953552225461D400958051 /* Profile.storyboard */; };
 		EA9535552254629D00958051 /* Matches.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9535542254629D00958051 /* Matches.storyboard */; };
@@ -104,6 +106,8 @@
 		CBF295CD225E20E000EAAC5E /* MatchesImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesImage.swift; sourceTree = "<group>"; };
 		D58AD3563189E7458D11FC15 /* Pods-PetPals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetPals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetPals/Pods-PetPals.debug.xcconfig"; sourceTree = "<group>"; };
 		EA05C6E32249A85800D744D0 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		EA2A5037226F908B0011DA88 /* MatchOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchOverlay.swift; sourceTree = "<group>"; };
+		EA2A5038226F908B0011DA88 /* MatchOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchOverlay.xib; sourceTree = "<group>"; };
 		EA9535502254613D00958051 /* Initial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
 		EA953552225461D400958051 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		EA9535542254629D00958051 /* Matches.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Matches.storyboard; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 			children = (
 				EA05C6E32249A85800D744D0 /* SwipeViewController.swift */,
 				EAD1003F2249CE4B007BA4D6 /* CardView.xib */,
+				EA2A5037226F908B0011DA88 /* MatchOverlay.swift */,
+				EA2A5038226F908B0011DA88 /* MatchOverlay.xib */,
 				EA9CC162225290F40034E714 /* CardImage.swift */,
 				EAB65740224A685600D1E29A /* CardView.swift */,
 			);
@@ -373,6 +379,7 @@
 				EA9535552254629D00958051 /* Matches.storyboard in Resources */,
 				CB876E912257C67E005B646C /* Loading.storyboard in Resources */,
 				8579DFE2224C84E2001319D0 /* Assets 23-27-45-219.xcassets in Resources */,
+				EA2A503A226F908B0011DA88 /* MatchOverlay.xib in Resources */,
 				0D00AB68223954C900F467B7 /* proxima-nova-soft-bold.otf in Resources */,
 				EA9535512254613D00958051 /* Initial.storyboard in Resources */,
 				EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */,
@@ -479,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2A5039226F908B0011DA88 /* MatchOverlay.swift in Sources */,
 				CB945F0A22482548001F4076 /* SpecificUpcomingDateViewController.swift in Sources */,
 				EAB65741224A685600D1E29A /* CardView.swift in Sources */,
 				CB3C4BF8224205D400CA629D /* CalendarViewController.swift in Sources */,
