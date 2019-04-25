@@ -14,6 +14,9 @@ class ConnectedTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var meetupLabel: UILabel!
     
+    // Know what meetup this is
+    var meetup: Meetup!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 

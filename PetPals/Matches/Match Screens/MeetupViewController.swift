@@ -102,10 +102,10 @@ class MeetupViewController: UIViewController {
         
         suggestMeetup(otherUser: userProfile, dateGiven: date, timeGiven: time, locationGiven: location)
         
-//        // Destination will be back to Matches Screen, Present it
-//        // Can't just do automatic storyboard segue as must make sure information valid & sent
-//        let destination = self.storyboard!.instantiateViewController(withIdentifier: "MatchesVC") as! MatchesViewController
-//        self.navigationController?.pushViewController(destination, animated: false)
+        // Destination will be back to Matches Screen, Present it
+        // Can't just do automatic storyboard segue as must make sure information valid & sent
+        let destination = self.storyboard!.instantiateViewController(withIdentifier: "MatchesVC") as! MatchesViewController
+        self.navigationController?.pushViewController(destination, animated: false)
     }
     
     // Send the sugggested meetup to the database, and then go back to main Matches view

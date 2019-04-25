@@ -15,6 +15,12 @@ class InvitesTableViewCell: UITableViewCell {
     @IBOutlet weak var meetDate: UILabel!
     @IBOutlet weak var meetLocation: UILabel!
     
+    // Know what meetup this is
+    var meetup: Meetup!
+    
+    // Parent for reload
+    var parent: InvitesViewController!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
  
@@ -26,5 +32,22 @@ class InvitesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
+    // ***ISSUE: None of the following methods worked in relation to DB? But no error?
+    
+    // User wants to accept this meetup
+    @IBAction func acceptClicked(_ sender: Any) {
+        meetup.accept(completion: { (error) in
+            print("There was an error accepting this meetup.")
+        })
+        parent.reloadMeetups(meetupToDelete: meetup)
+    }
+    
+    // User wants to decline this meetup
+    @IBAction func declineClicked(_ sender: Any) {
+        meetup.cancel(completion: { (error) in
+            print("There was an error declining this meetup.")
+        })
+        parent.reloadMeetups(meetupToDelete: meetup)
+    }
 }

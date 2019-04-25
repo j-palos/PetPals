@@ -959,6 +959,9 @@
                                                     </constraints>
                                                     <color key="tintColor" name="PetPalDarkBlue"/>
                                                     <state key="normal" title="Button" image="Matches_Accept"/>
+                                                    <connections>
+                                                        <action selector="acceptClicked:" destination="qK1-XD-vpQ" eventType="touchUpInside" id="kn1-ZK-PQv"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJv-fO-bRF">
                                                     <rect key="frame" x="343" y="26" width="27" height="28"/>
@@ -967,6 +970,9 @@
                                                         <constraint firstAttribute="height" constant="28" id="yId-xX-Lz2"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="Matches_Cancel"/>
+                                                    <connections>
+                                                        <action selector="declineClicked:" destination="qK1-XD-vpQ" eventType="touchUpInside" id="bjg-Ns-Lvf"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1062,20 +1068,8 @@
                                                     <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hz5-wX-VLS">
-                                                    <rect key="frame" x="297.33333333333331" y="5" width="80.666666666666686" height="11"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Sent 3 Days Ago">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="11" name="ProximaNovaSoft-Regular"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCo-1J-UbO">
-                                                    <rect key="frame" x="321.66666666666669" y="60" width="31.333333333333314" height="10"/>
+                                                    <rect key="frame" x="321.66666666666669" y="54" width="31.333333333333314" height="10"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Cancel">
                                                             <attributes>
@@ -1087,22 +1081,23 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fa5-sb-N1D">
-                                                    <rect key="frame" x="325" y="21" width="30" height="31"/>
+                                                    <rect key="frame" x="325" y="15" width="30" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Zhz-4Z-zB0"/>
                                                         <constraint firstAttribute="height" constant="31" id="e1H-L9-OoW"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="Matches_Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelClicked:" destination="Wga-7R-D9i" eventType="touchUpInside" id="4mw-4O-xQd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="h4b-Hz-mJx" firstAttribute="leading" secondItem="LSr-Cv-0Ns" secondAttribute="trailing" constant="18" id="8Qz-Dd-Cr2"/>
                                                 <constraint firstItem="h4b-Hz-mJx" firstAttribute="top" secondItem="Y16-dQ-4b5" secondAttribute="bottom" id="92D-dx-I5c"/>
                                                 <constraint firstItem="Lb5-4b-DEz" firstAttribute="top" secondItem="h4b-Hz-mJx" secondAttribute="bottom" constant="1" id="9gb-cZ-xd3"/>
-                                                <constraint firstItem="hz5-wX-VLS" firstAttribute="top" secondItem="gIe-k6-oQb" secondAttribute="top" constant="5" id="DrL-wG-THk"/>
                                                 <constraint firstItem="LSr-Cv-0Ns" firstAttribute="leading" secondItem="gIe-k6-oQb" secondAttribute="leading" constant="15" id="IbC-6U-nhI"/>
                                                 <constraint firstItem="yCo-1J-UbO" firstAttribute="top" secondItem="Fa5-sb-N1D" secondAttribute="bottom" constant="8" id="MSs-3V-fsn"/>
-                                                <constraint firstAttribute="trailing" secondItem="hz5-wX-VLS" secondAttribute="trailing" id="PQE-L8-Ytu"/>
                                                 <constraint firstAttribute="bottom" secondItem="LSr-Cv-0Ns" secondAttribute="bottom" constant="13.5" id="c7o-VX-HJM"/>
                                                 <constraint firstItem="Y16-dQ-4b5" firstAttribute="top" secondItem="gIe-k6-oQb" secondAttribute="top" constant="11" id="g8T-tV-RdP"/>
                                                 <constraint firstItem="LSr-Cv-0Ns" firstAttribute="top" secondItem="gIe-k6-oQb" secondAttribute="top" constant="11" id="hrn-t0-ejE"/>
@@ -1110,7 +1105,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Fa5-sb-N1D" secondAttribute="trailing" constant="23" id="mYG-NY-nr8"/>
                                                 <constraint firstAttribute="trailing" secondItem="yCo-1J-UbO" secondAttribute="trailing" constant="25" id="nry-d8-Xxx"/>
                                                 <constraint firstItem="Lb5-4b-DEz" firstAttribute="leading" secondItem="LSr-Cv-0Ns" secondAttribute="trailing" constant="18" id="udG-bg-HWG"/>
-                                                <constraint firstItem="Fa5-sb-N1D" firstAttribute="top" secondItem="hz5-wX-VLS" secondAttribute="bottom" constant="5" id="zoI-eq-fOd"/>
+                                                <constraint firstItem="Fa5-sb-N1D" firstAttribute="top" secondItem="gIe-k6-oQb" secondAttribute="top" constant="15" id="vVE-7b-dXR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

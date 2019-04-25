@@ -45,6 +45,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let meetup:Meetup = inviteMeetups[indexPath.row]
         
         // Update the cell information with this meetup's info
+        cell.meetup = meetup
         let otherUser = meetup.fromUser
         cell.userName.text = otherUser.firstName
         let imageUrl = otherUser.imageURL
@@ -52,7 +53,15 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
         cell.meetLocation.text = meetup.location
         
+        // Let cell know that this is parent table View for reload purposes
+        cell.parent = self
+        
         return cell as UITableViewCell
+    }
+    
+    // Don't allow users to click on cells
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
     // Call database and update list of invite meetups
@@ -62,12 +71,19 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
                 user.getMeetups(withType: .invites, completion: { (meetup) in
                     DispatchQueue.main.async {
                         self.inviteMeetups.append(meetup)
-                        print("I found an invite")
                         self.tableView.reloadData()
                     }
                 })
             })
         }
+    }
+    
+    // Reload when a meetup is declined or accepted
+    func reloadMeetups(meetupToDelete: Meetup) {
+        if let idx = inviteMeetups.firstIndex(where: { $0 === meetupToDelete }) {
+            inviteMeetups.remove(at: idx)
+        }
+        tableView.reloadData()
     }
     
 }

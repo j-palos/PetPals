@@ -45,6 +45,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         let meetup:Meetup = connectedMeetups[indexPath.row]
         
         // Update the cell information with this meetup's info
+        cell.meetup = meetup
         let otherUser = meetup.fromUser
         cell.userName.text = otherUser.firstName
         let imageUrl = otherUser.imageURL
@@ -53,6 +54,11 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.meetupLabel.text = "Meetup on \(meetup.date)"        
         
         return cell as UITableViewCell
+    }
+    
+    // Don't allow users to click on cells
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
     // Call database and update list of connected meetups

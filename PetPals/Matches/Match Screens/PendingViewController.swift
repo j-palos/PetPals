@@ -45,6 +45,7 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         let meetup:Meetup = pendingMeetups[indexPath.row]
         
         // Update the cell information with this meetup's info
+        cell.meetup = meetup
         let otherUser = meetup.toUser
         cell.userName.text = otherUser.firstName
         let imageUrl = otherUser.imageURL
@@ -52,7 +53,15 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
         cell.meetLocation.text = meetup.location
         
+        // Let cell know that this is parent table View for reload purposes
+        cell.parent = self
+        
         return cell as UITableViewCell
+    }
+    
+    // Don't allow users to click on cells
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
     // Call database and update list of pending meetups
@@ -69,4 +78,12 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    // Reload when a meetup is canceled
+    func reloadMeetups(meetupToDelete: Meetup) {
+        if let idx = pendingMeetups.firstIndex(where: { $0 === meetupToDelete }) {
+            pendingMeetups.remove(at: idx)
+        }
+        tableView.reloadData()
+    }
+
 }
