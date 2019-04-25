@@ -14,6 +14,9 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Connect to tableView
     @IBOutlet weak var tableView: UITableView!
     
+    // Label for when there are no pending meetups
+    @IBOutlet weak var noAvailPendLabel: UILabel!
+    
     // Identifier for tableView
     var pendingTableViewCellIdentifier = "pendingTableViewCellIdentifier"
     
@@ -33,6 +36,7 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Required function for tableView; Number of Rows equals number of Pending Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        checkIfNoMeetups()
         return pendingMeetups.count
     }
     
@@ -84,6 +88,18 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
             pendingMeetups.remove(at: idx)
         }
         tableView.reloadData()
+    }
+    
+    // If there are no meetups pending, do not show table view but instead label
+    // If there are now meetups, show table view and hide label
+    func checkIfNoMeetups() {
+        if pendingMeetups.count == 0 {
+            tableView.alpha = 0
+            noAvailPendLabel.alpha = 1
+        } else {
+            tableView.alpha = 1
+            noAvailPendLabel.alpha = 0
+        }
     }
 
 }

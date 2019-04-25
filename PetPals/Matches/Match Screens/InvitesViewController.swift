@@ -14,6 +14,9 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Connect to tableView
     @IBOutlet weak var tableView: UITableView!
     
+    // Label for when no invite meetups
+    @IBOutlet weak var noAvailInvLabel: UILabel!
+    
     // Identifier for tableView
     var invitesTableViewCellIdentifier = "invitesTableViewCellIdentifier"
     
@@ -33,6 +36,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Required function for tableView; Number of Rows equals number of Invites Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        checkIfNoMeetups()
         return inviteMeetups.count
     }
     
@@ -84,6 +88,18 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
             inviteMeetups.remove(at: idx)
         }
         tableView.reloadData()
+    }
+    
+    // If there are no meetups pending, do not show table view but instead label
+    // If there are now meetups, show table view and hide label
+    func checkIfNoMeetups() {
+        if inviteMeetups.count == 0 {
+            tableView.alpha = 0
+            noAvailInvLabel.alpha = 1
+        } else {
+            tableView.alpha = 1
+            noAvailInvLabel.alpha = 0
+        }
     }
     
 }

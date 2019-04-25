@@ -166,9 +166,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0VW-in-68d">
                                 <rect key="frame" x="146" y="34" width="122" height="33"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTD-E7-l4j" userLabel="Switch">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTD-E7-l4j" userLabel="Switch">
                                         <rect key="frame" x="0.0" y="0.0" width="122" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="MCSwitch">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -176,28 +175,49 @@
                                             <segue destination="dDA-8G-jpq" kind="show" animates="NO" id="58t-p3-lzk"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3V-lR-Hcz" userLabel="Selected">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3V-lR-Hcz" userLabel="Selected">
                                         <rect key="frame" x="57" y="0.0" width="65" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" name="PetPalDarkBlue"/>
                                         <state key="normal" image="MCSwitch_Selected"/>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MCSwitch_Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-gg-Qes">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MCSwitch_Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-gg-Qes">
                                         <rect key="frame" x="22" y="6" width="21" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MCSwitch_Matches" translatesAutoresizingMaskIntoConstraints="NO" id="Cju-fN-6z5">
-                                        <rect key="frame" x="76" y="8" width="27" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MCSwitch_Matches" translatesAutoresizingMaskIntoConstraints="NO" id="Cju-fN-6z5">
+                                        <rect key="frame" x="76" y="8" width="27" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="27" id="bGv-OI-UNN"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="top" secondItem="N3V-lR-Hcz" secondAttribute="top" id="2KY-OK-xSK"/>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="top" secondItem="0VW-in-68d" secondAttribute="top" id="6hP-gI-3h2"/>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="trailing" secondItem="N3V-lR-Hcz" secondAttribute="trailing" id="9ZL-B0-lqk"/>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="leading" secondItem="0VW-in-68d" secondAttribute="leading" id="NuG-eS-UKG"/>
+                                    <constraint firstItem="N3V-lR-Hcz" firstAttribute="leading" secondItem="jHM-gg-Qes" secondAttribute="trailing" constant="14" id="SfH-tm-yTi"/>
+                                    <constraint firstItem="Cju-fN-6z5" firstAttribute="centerX" secondItem="N3V-lR-Hcz" secondAttribute="centerX" id="eAo-DX-Ixr"/>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="centerY" secondItem="Cju-fN-6z5" secondAttribute="centerY" id="tCH-aq-NTj"/>
+                                    <constraint firstItem="lTD-E7-l4j" firstAttribute="centerY" secondItem="jHM-gg-Qes" secondAttribute="centerY" id="tzF-KI-nWb"/>
+                                    <constraint firstItem="Cju-fN-6z5" firstAttribute="top" secondItem="0VW-in-68d" secondAttribute="topMargin" id="wVL-Ic-yFt"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
-                                <rect key="frame" x="16" y="77" width="95.666666666666671" height="16"/>
+                                <rect key="frame" x="16" y="77" width="96" height="16"/>
                                 <color key="tintColor" name="PetPalDarkBlue"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="16"/>
                                 <color key="textColor" name="PetPalDarkBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No New Matches Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-Rc-zUy">
+                                <rect key="frame" x="106.66666666666669" y="117" width="201" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="qRs-ak-s3w"/>
+                                    <constraint firstAttribute="width" constant="201" id="qvR-Ic-cbt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -207,6 +227,7 @@
                             <constraint firstItem="20L-Pc-2bP" firstAttribute="bottom" secondItem="utV-Os-8FN" secondAttribute="bottom" id="1Yj-ca-fO4"/>
                             <constraint firstItem="20L-Pc-2bP" firstAttribute="top" secondItem="fVJ-Qw-tQu" secondAttribute="bottom" constant="-5" id="1Z0-Rt-aRN"/>
                             <constraint firstItem="Zer-TS-Dfz" firstAttribute="leading" secondItem="utV-Os-8FN" secondAttribute="leading" id="3kJ-sf-OQ0"/>
+                            <constraint firstItem="BMC-Rc-zUy" firstAttribute="centerX" secondItem="iDb-eh-KcK" secondAttribute="centerX" id="4Vj-YQ-wWi"/>
                             <constraint firstItem="NRQ-8Y-aeZ" firstAttribute="leading" secondItem="utV-Os-8FN" secondAttribute="leading" constant="16" id="4sx-Bf-Rln"/>
                             <constraint firstItem="tLC-G7-Iu2" firstAttribute="trailing" secondItem="utV-Os-8FN" secondAttribute="trailing" id="B3d-Bn-p6x"/>
                             <constraint firstItem="tLC-G7-Iu2" firstAttribute="top" secondItem="fVJ-Qw-tQu" secondAttribute="bottom" constant="-5" id="BIV-e4-jV9"/>
@@ -227,6 +248,7 @@
                             <constraint firstItem="utV-Os-8FN" firstAttribute="bottom" secondItem="0VW-in-68d" secondAttribute="bottom" constant="611" id="VRx-Zg-WhQ"/>
                             <constraint firstItem="DSf-zd-HWf" firstAttribute="leading" secondItem="rPj-Jb-N9m" secondAttribute="trailing" constant="25" id="XTq-pZ-dch"/>
                             <constraint firstItem="NRQ-8Y-aeZ" firstAttribute="top" secondItem="0VW-in-68d" secondAttribute="bottom" constant="10" id="awb-xi-kgl"/>
+                            <constraint firstItem="BMC-Rc-zUy" firstAttribute="top" secondItem="lTD-E7-l4j" secondAttribute="bottom" constant="50" id="cXU-YM-ex4"/>
                             <constraint firstItem="fVJ-Qw-tQu" firstAttribute="top" secondItem="WpO-cb-1Ug" secondAttribute="bottom" constant="8" id="l9i-jb-R5i"/>
                             <constraint firstItem="0VW-in-68d" firstAttribute="leading" secondItem="utV-Os-8FN" secondAttribute="leading" constant="146" id="pxw-17-Rjp"/>
                             <constraint firstItem="WpO-cb-1Ug" firstAttribute="top" secondItem="NRQ-8Y-aeZ" secondAttribute="bottom" constant="7.6666666666666714" id="yjP-9B-t9Y"/>
@@ -241,6 +263,7 @@
                         <outlet property="invitesButton" destination="rPj-Jb-N9m" id="1tV-J1-duq"/>
                         <outlet property="invitesContainerView" destination="tLC-G7-Iu2" id="w8Z-6G-gye"/>
                         <outlet property="newMatchesCollectionView" destination="WpO-cb-1Ug" id="BFJ-kV-qdG"/>
+                        <outlet property="noMatchAvailLabel" destination="BMC-Rc-zUy" id="hZJ-YY-fEy"/>
                         <outlet property="pendingButton" destination="DSf-zd-HWf" id="hRs-5Y-Nnn"/>
                         <outlet property="pendingContainerView" destination="Zer-TS-Dfz" id="W8n-VH-izA"/>
                     </connections>
@@ -874,11 +897,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Connected Meetups Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-FI-LEL">
+                                <rect key="frame" x="30.666666666666657" y="211.33333333333334" width="353" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="DHf-FL-27o"/>
+                                    <constraint firstAttribute="width" constant="353" id="sfg-I4-3MQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZKD-FI-LEL" firstAttribute="centerY" secondItem="XPm-ZX-WRb" secondAttribute="centerY" id="YLR-eb-hRi"/>
+                            <constraint firstItem="ZKD-FI-LEL" firstAttribute="centerX" secondItem="XPm-ZX-WRb" secondAttribute="centerX" id="hQ8-cN-8Sm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pgc-Ht-FdI"/>
                     </view>
                     <connections>
+                        <outlet property="noAvailConLabel" destination="ZKD-FI-LEL" id="v4a-nP-Bb9"/>
                         <outlet property="tableView" destination="mEA-37-w3E" id="5lz-t9-sFa"/>
                     </connections>
                 </viewController>
@@ -1000,11 +1038,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Invites for Meetups Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwu-Xj-Q4D">
+                                <rect key="frame" x="37" y="211.33333333333334" width="340" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="5jJ-qr-29a"/>
+                                    <constraint firstAttribute="height" constant="24" id="xLx-Q6-efb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jwu-Xj-Q4D" firstAttribute="centerY" secondItem="E1l-QJ-6N4" secondAttribute="centerY" id="8qV-rh-88m"/>
+                            <constraint firstItem="Jwu-Xj-Q4D" firstAttribute="centerX" secondItem="E1l-QJ-6N4" secondAttribute="centerX" id="vLY-Mm-2Nj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Wml-go-FoJ"/>
                     </view>
                     <connections>
+                        <outlet property="noAvailInvLabel" destination="Jwu-Xj-Q4D" id="nLa-aN-pOZ"/>
                         <outlet property="tableView" destination="9ln-MI-AhT" id="Ewn-UY-kJE"/>
                     </connections>
                 </viewController>
@@ -1117,11 +1170,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Pending Meetups Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRQ-gd-RqF">
+                                <rect key="frame" x="45" y="211.33333333333334" width="324" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="cen-O9-huW"/>
+                                    <constraint firstAttribute="width" constant="324" id="ihq-ka-zqZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vRQ-gd-RqF" firstAttribute="centerX" secondItem="fag-Fu-F72" secondAttribute="centerX" id="4ws-IT-qSC"/>
+                            <constraint firstItem="vRQ-gd-RqF" firstAttribute="centerY" secondItem="fag-Fu-F72" secondAttribute="centerY" id="bMe-bO-z6k"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JpP-tQ-olo"/>
                     </view>
                     <connections>
+                        <outlet property="noAvailPendLabel" destination="vRQ-gd-RqF" id="uKE-O5-RA6"/>
                         <outlet property="tableView" destination="h6s-hy-zrS" id="0KM-YR-5Qr"/>
                     </connections>
                 </viewController>
@@ -1269,7 +1337,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R3Z-k7-V3k"/>
+        <segue reference="58t-p3-lzk"/>
         <segue reference="z59-lB-2LK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>

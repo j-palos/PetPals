@@ -14,6 +14,9 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // Connect to tableView
     @IBOutlet weak var tableView: UITableView!
     
+    // Label for when no connected meetups
+    @IBOutlet weak var noAvailConLabel: UILabel!
+    
     // Identifier for tableView
     var connectedTableViewCellIdentifier = "connectedTableViewCellIdentifier"
     
@@ -33,6 +36,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // Required function for tableView; Number of Rows equals number of Connected Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        checkIfNoMeetups()
         return connectedMeetups.count
     }
     
@@ -73,6 +77,18 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 })
             })
+        }
+    }
+    
+    // If there are no meetups pending, do not show table view but instead label
+    // If there are now meetups, show table view and hide label
+    func checkIfNoMeetups() {
+        if connectedMeetups.count == 0 {
+            tableView.alpha = 0
+            noAvailConLabel.alpha = 1
+        } else {
+            tableView.alpha = 1
+            noAvailConLabel.alpha = 0
         }
     }
 
