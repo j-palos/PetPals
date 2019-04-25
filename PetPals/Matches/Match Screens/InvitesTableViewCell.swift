@@ -38,7 +38,7 @@ class InvitesTableViewCell: UITableViewCell {
     // User wants to accept this meetup
     @IBAction func acceptClicked(_ sender: Any) {
         meetup.accept(completion: { (error) in
-            print("There was an error accepting this meetup.")
+            print("There was an error accepting this meetup \(String(describing: error)).")
         })
         parent.reloadMeetups(meetupToDelete: meetup)
     }
@@ -46,7 +46,7 @@ class InvitesTableViewCell: UITableViewCell {
     // User wants to decline this meetup
     @IBAction func declineClicked(_ sender: Any) {
         meetup.cancel(completion: { (error) in
-            print("There was an error declining this meetup.")
+            print("There was an error declining this meetup \(String(describing: error)).")
         })
         parent.reloadMeetups(meetupToDelete: meetup)
     }

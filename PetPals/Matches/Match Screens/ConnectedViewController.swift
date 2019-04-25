@@ -23,6 +23,9 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // List to contain all connected meetups for this user
     var connectedMeetups = [Meetup]()
     
+    // This user's ID to know which user the date is with
+    var thisUser: UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,7 +53,13 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Update the cell information with this meetup's info
         cell.meetup = meetup
-        let otherUser = meetup.fromUser
+        let otherUser: UserProfile!
+        // Determine who the other user is
+        if meetup.fromUser != thisUser {
+            otherUser = meetup.fromUser
+        } else {
+            otherUser = meetup.toUser
+        }
         cell.userName.text = otherUser.firstName
         let imageUrl = otherUser.imageURL
         cell.userImage.load(fromURL: imageUrl)
@@ -69,6 +78,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     func getConnected() {
         if let id = Auth.auth().currentUser?.uid {
             UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.thisUser = user
                 user.getMeetups(withType: .connected, completion: { (meetup) in
                     DispatchQueue.main.async {
                         self.connectedMeetups.append(meetup)

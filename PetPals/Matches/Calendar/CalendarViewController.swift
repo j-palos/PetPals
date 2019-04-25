@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import FirebaseAuth
 
 // Much of the code in this file was taken from & adapted from JTAppleCalendar
 class CalendarViewController: UIViewController {
@@ -25,17 +26,18 @@ class CalendarViewController: UIViewController {
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
     
+    // List to contain all connected meetups for this user
+    var connectedMeetups = [Meetup]()
+    
+    // This user's ID to know which user the date is with
+    var thisUser: UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Find the dates given, and show a dot on those dates
         DispatchQueue.global().asyncAfter(deadline: .now()) {
-            let dateObjects = self.getDates()
-            for (date, event) in dateObjects {
-                let stringDate = self.formatter.string(from: date)
-                self.datesGiven[stringDate] = event
-            }
-            
+            self.getDates()
             DispatchQueue.main.async {
                 self.calendarView.reloadData()
             }
@@ -172,16 +174,50 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
 extension CalendarViewController {
     
     // Grab dates that are set for this user
-    func getDates() -> [Date:String] {
+    func getDates(){
         // Set way want to format date
         formatter.dateFormat = "MM/dd/yyyy"
         
-        // Return hardcoded data for now
-        return [
-            formatter.date(from: "04/02/2019")!: "Date with Emily at 12pm",
-            formatter.date(from: "04/11/2019")!: "Date with Jeffery at 12pm",
-            formatter.date(from: "04/20/2019")!: "Date with Leo at 12pm"
-        ]
+        getMeetups()
+        
+        updateDatesGiven()
+    }
+    
+    func updateDatesGiven() {
+        var resultingDates: Dictionary<Date, String> = [:]
+        
+        for meetup in connectedMeetups {
+            let meetupDate = meetup.date
+            let meetupTime = meetup.time
+            let otherUser: UserProfile!
+            if meetup.fromUser != thisUser {
+                otherUser = meetup.fromUser
+            } else {
+                otherUser = meetup.toUser
+            }
+            resultingDates[formatter.date(from: meetupDate)!] = "Date with \(otherUser.firstName) at \(meetupTime)"
+        }
+        
+        for (date, event) in resultingDates {
+            let stringDate = self.formatter.string(from: date)
+            self.datesGiven[stringDate] = event
+        }
+    }
+
+    // Call database and update list of connected meetups
+    func getMeetups() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.thisUser = user
+                user.getMeetups(withType: .connected, completion: { (meetup) in
+                    DispatchQueue.main.async {
+                        self.connectedMeetups.append(meetup)
+                        self.updateDatesGiven()
+                        self.calendarView.reloadData()
+                    }
+                })
+            })
+        }
     }
 }
 

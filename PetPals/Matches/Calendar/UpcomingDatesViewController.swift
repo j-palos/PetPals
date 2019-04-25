@@ -7,13 +7,18 @@
 //
 
 import UIKit
-
-let dates = [["Emily", "April 02", "12 pm"], ["Jeffery", "April 11", "12 pm"], ["Leo", "April 20", "12 pm"]]
+import FirebaseAuth
 
 class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Connect necessary fields
     @IBOutlet weak var tableView: UITableView!
+    
+    // List to contain all connected meetups for this user
+    var connectedMeetups = [Meetup]()
+    
+    // This user's ID to know which user the date is with
+    var thisUser: UserProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,22 +26,45 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        
+        getMeetups()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dates.count
+        return connectedMeetups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UpcomingDateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "upcomingDateTableViewCellIdentifier", for: indexPath as IndexPath) as! UpcomingDateTableViewCell
+        let currDate = connectedMeetups[indexPath.row]
         
-        let currDate = dates[indexPath.row]
+        let otherUser: UserProfile!
+        if currDate.fromUser != thisUser {
+            otherUser = currDate.fromUser
+        } else {
+            otherUser = currDate.toUser
+        }
         
-        cell.nameLabel.text = currDate[0]
-        cell.dateLabel.text = currDate[1]
-        cell.timeLabel.text = currDate[2]
+        cell.nameLabel.text = otherUser.firstName
+        cell.dateLabel.text = currDate.date
+        cell.timeLabel.text = currDate.time
         
         return cell
+    }
+    
+    // Call database and update list of connected meetups
+    func getMeetups() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.thisUser = user
+                user.getMeetups(withType: .connected, completion: { (meetup) in
+                    DispatchQueue.main.async {
+                        self.connectedMeetups.append(meetup)
+                        self.tableView.reloadData()
+                    }
+                })
+            })
+        }
     }
 
 }
