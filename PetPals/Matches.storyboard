@@ -670,7 +670,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="submitClicked:" destination="g6g-Ot-jlG" eventType="touchUpInside" id="QUU-bc-emj"/>
-                                    <segue destination="1Ts-I7-dUI" kind="show" animates="NO" id="tN8-9J-ccb"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvS-HI-zxS">
@@ -818,12 +817,16 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectedTableViewCellIdentifier" rowHeight="80" id="zEd-fj-osv" customClass="ConnectedTableViewCell" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="378" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zEd-fj-osv" id="b7K-TM-Yel">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zEd-fj-osv" id="b7K-TM-Yel">
                                             <rect key="frame" x="0.0" y="0.0" width="378" height="79.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2D4-5A-dAR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2D4-5A-dAR" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="11.000000000000004" width="55" height="55.333333333333343"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="55" id="CdA-GC-YEf"/>
+                                                        <constraint firstAttribute="height" constant="55.329999999999998" id="Ryz-fo-0Bt"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtN-3H-Won">
                                                     <rect key="frame" x="88" y="11" width="211" height="25"/>
@@ -899,12 +902,16 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitesTableViewCellIdentifier" rowHeight="80" id="qK1-XD-vpQ" customClass="InvitesTableViewCell" customModule="PetPals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="378" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qK1-XD-vpQ" id="uQv-8B-TfU">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qK1-XD-vpQ" id="uQv-8B-TfU">
                                             <rect key="frame" x="0.0" y="0.0" width="378" height="79.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Stc-vj-TGc">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Stc-vj-TGc" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="11.000000000000004" width="55" height="55.333333333333343"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55.329999999999998" id="8PS-dO-VIH"/>
+                                                        <constraint firstAttribute="width" constant="55" id="Ux3-K1-ZEY"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVu-Oc-WxC">
                                                     <rect key="frame" x="88" y="10.999999999999998" width="190" height="21.333333333333329"/>
@@ -921,7 +928,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QY-ma-n6t">
-                                                    <rect key="frame" x="87.999999999999986" y="31.333333333333329" width="145.66666666666663" height="17"/>
+                                                    <rect key="frame" x="87.999999999999986" y="32.333333333333336" width="145.66666666666663" height="17"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -933,7 +940,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22k-xD-19g">
-                                                    <rect key="frame" x="88" y="49.333333333333336" width="63.333333333333343" height="17.000000000000007"/>
+                                                    <rect key="frame" x="88" y="50.333333333333336" width="63.333333333333343" height="17.000000000000007"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Location">
                                                             <attributes>
@@ -967,11 +974,10 @@
                                                 <constraint firstItem="Stc-vj-TGc" firstAttribute="leading" secondItem="uQv-8B-TfU" secondAttribute="leading" constant="15" id="5An-Rp-lIU"/>
                                                 <constraint firstItem="WJv-fO-bRF" firstAttribute="top" secondItem="uQv-8B-TfU" secondAttribute="top" constant="26" id="EK2-rq-IcU"/>
                                                 <constraint firstItem="22k-xD-19g" firstAttribute="leading" secondItem="Stc-vj-TGc" secondAttribute="trailing" constant="18" id="LKQ-1P-Wu2"/>
-                                                <constraint firstItem="3QY-ma-n6t" firstAttribute="top" secondItem="gVu-Oc-WxC" secondAttribute="bottom" constant="-1" id="SI0-jJ-mE3"/>
+                                                <constraint firstItem="3QY-ma-n6t" firstAttribute="top" secondItem="gVu-Oc-WxC" secondAttribute="bottom" id="SI0-jJ-mE3"/>
                                                 <constraint firstItem="3QY-ma-n6t" firstAttribute="leading" secondItem="Stc-vj-TGc" secondAttribute="trailing" constant="18" id="STe-E2-jjJ"/>
                                                 <constraint firstItem="gVu-Oc-WxC" firstAttribute="top" secondItem="uQv-8B-TfU" secondAttribute="top" constant="11" id="ZhH-HK-fLc"/>
                                                 <constraint firstItem="22k-xD-19g" firstAttribute="top" secondItem="3QY-ma-n6t" secondAttribute="bottom" constant="1" id="brf-F4-o5y"/>
-                                                <constraint firstAttribute="trailing" secondItem="gVu-Oc-WxC" secondAttribute="trailing" constant="100" id="maD-nk-gF2"/>
                                                 <constraint firstAttribute="bottom" secondItem="Stc-vj-TGc" secondAttribute="bottom" constant="13.5" id="qp1-so-aja"/>
                                                 <constraint firstItem="Stc-vj-TGc" firstAttribute="top" secondItem="uQv-8B-TfU" secondAttribute="top" constant="11" id="rMh-ze-Mcj"/>
                                                 <constraint firstItem="8r3-Eu-ecX" firstAttribute="top" secondItem="uQv-8B-TfU" secondAttribute="top" constant="27" id="wBz-0n-lSa"/>
@@ -1020,15 +1026,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="378" height="79.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LSr-Cv-0Ns">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LSr-Cv-0Ns" customClass="MatchesImage" customModule="PetPals" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="11.000000000000004" width="55" height="55.333333333333343"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="HAv-M2-YvY"/>
                                                         <constraint firstAttribute="height" constant="55.329999999999998" id="tII-jY-uou"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-dQ-4b5">
-                                                    <rect key="frame" x="88" y="11" width="55" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-dQ-4b5">
+                                                    <rect key="frame" x="88" y="11" width="146" height="21"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Name">
                                                             <attributes>
@@ -1039,7 +1045,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4b-Hz-mJx">
-                                                    <rect key="frame" x="87.999999999999986" y="31" width="145.66666666666663" height="17"/>
+                                                    <rect key="frame" x="87.999999999999986" y="32" width="145.66666666666663" height="17"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -1051,7 +1057,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-4b-DEz">
-                                                    <rect key="frame" x="88" y="49" width="63.333333333333343" height="17"/>
+                                                    <rect key="frame" x="88" y="50" width="63.333333333333343" height="17"/>
                                                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                                     <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1091,7 +1097,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="h4b-Hz-mJx" firstAttribute="leading" secondItem="LSr-Cv-0Ns" secondAttribute="trailing" constant="18" id="8Qz-Dd-Cr2"/>
-                                                <constraint firstItem="h4b-Hz-mJx" firstAttribute="top" secondItem="Y16-dQ-4b5" secondAttribute="bottom" constant="-1" id="92D-dx-I5c"/>
+                                                <constraint firstItem="h4b-Hz-mJx" firstAttribute="top" secondItem="Y16-dQ-4b5" secondAttribute="bottom" id="92D-dx-I5c"/>
                                                 <constraint firstItem="Lb5-4b-DEz" firstAttribute="top" secondItem="h4b-Hz-mJx" secondAttribute="bottom" constant="1" id="9gb-cZ-xd3"/>
                                                 <constraint firstItem="hz5-wX-VLS" firstAttribute="top" secondItem="gIe-k6-oQb" secondAttribute="top" constant="5" id="DrL-wG-THk"/>
                                                 <constraint firstItem="LSr-Cv-0Ns" firstAttribute="leading" secondItem="gIe-k6-oQb" secondAttribute="leading" constant="15" id="IbC-6U-nhI"/>
@@ -1269,7 +1275,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="R3Z-k7-V3k"/>
-        <segue reference="tN8-9J-ccb"/>
+        <segue reference="z59-lB-2LK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
 </document>

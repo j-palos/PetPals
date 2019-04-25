@@ -52,7 +52,7 @@ class CalendarViewController: UIViewController {
         guard let myCustomCell = cell as? CalendarCell else { return }
         
         // Set way want to format date
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "MM/dd/yyyy"
         
         // Decide if dot is hidden or not
         handleCellEvents(cell: myCustomCell, cellState: cellState)
@@ -67,7 +67,7 @@ class CalendarViewController: UIViewController {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
         // Set way want to format date
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "MM/dd/yyyy"
         
         // Get this day
         let chosenDay = formatter.string(from: date)
@@ -119,15 +119,15 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     // Create the calendar
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         // Set way want to format date
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "MM/dd/yyyy"
         
         // Set standards
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
         // Set start & end for the calendar
-        let startDate = formatter.date(from: "2019 04 01")!
-        let endDate = formatter.date(from: "2020 04 30")!
+        let startDate = formatter.date(from: "04/01/2019")!
+        let endDate = formatter.date(from: "04/30/2020")!
         
         // Send in information to be configured for calendar
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
@@ -174,13 +174,13 @@ extension CalendarViewController {
     // Grab dates that are set for this user
     func getDates() -> [Date:String] {
         // Set way want to format date
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "MM/dd/yyyy"
         
         // Return hardcoded data for now
         return [
-            formatter.date(from: "2019 04 02")!: "Date with Emily at 12pm",
-            formatter.date(from: "2019 04 11")!: "Date with Jeffery at 12pm",
-            formatter.date(from: "2019 04 20")!: "Date with Leo at 12pm"
+            formatter.date(from: "04/02/2019")!: "Date with Emily at 12pm",
+            formatter.date(from: "04/11/2019")!: "Date with Jeffery at 12pm",
+            formatter.date(from: "04/20/2019")!: "Date with Leo at 12pm"
         ]
     }
 }

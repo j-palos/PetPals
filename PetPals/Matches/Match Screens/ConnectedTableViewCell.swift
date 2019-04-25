@@ -10,7 +10,7 @@ import UIKit
 
 class ConnectedTableViewCell: UITableViewCell {
     // Connect necessary fields
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImage: MatchesImage!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var meetupLabel: UILabel!
     

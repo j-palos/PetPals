@@ -75,6 +75,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let user:UserProfile = newMatches[indexPath.row]
         
         // Send over information about the user selected
+        destination.userProfile = user
         destination.userName = user.firstName
         // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
         destination.userImage = user.imageURL as NSURL

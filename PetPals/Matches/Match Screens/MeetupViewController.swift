@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MeetupViewController: UIViewController {
     // Connect necessary fields
@@ -21,9 +22,14 @@ class MeetupViewController: UIViewController {
     var datePicker: UIDatePicker!
     var timePicker: UIDatePicker!
     
+    // Date & Time Formatters
+    let dateFormatter = DateFormatter()
+    let timeFormatter = DateFormatter()
+    
     // Variables so this information can be passed in
     var userName = String()
     var userImage = NSURL(fileURLWithPath: "")
+    var userProfile: UserProfile!
     
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
@@ -34,6 +40,10 @@ class MeetupViewController: UIViewController {
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
         chosenUserImage.load(fromURL: userImage as URL)
+        
+        // Setup date & time formatters
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        timeFormatter.dateFormat = "hh:mm a"
         
         // Setup date picker
         datePicker = UIDatePicker()
@@ -51,18 +61,12 @@ class MeetupViewController: UIViewController {
     
     // When the user updates the date picker, update the text field accordingly
     @objc func dateChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         dateTextField.text = dateFormatter.string(from: datePicker.date)
     }
     
     // When the user updates the time picker, update the text field accordingly
     @objc func timeChanged(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm a"
-        
-        timeTextField.text = dateFormatter.string(from: datePicker.date)
+        timeTextField.text = timeFormatter.string(from: datePicker.date)
     }
     
     // code to dismiss keyboard when user clicks on background
@@ -79,13 +83,13 @@ class MeetupViewController: UIViewController {
     // When the user is done, create the meetup
     @IBAction func submitClicked(_ sender: Any) {
         // Ensure all input valid
-        guard let date = dateTextField.text, date.count > 0 else {
-            alertError(message: "The date is required")
+        guard let date = dateTextField.text, date.count > 0, (dateFormatter.date(from: date) != nil) else {
+            alertError(message: "The date is required and must be in \"MM/DD/YYYY\" format")
             return
         }
         
-        guard let time = timeTextField.text, time.count > 0 else {
-            alertError(message: "The time is required")
+        guard let time = timeTextField.text, time.count > 0, (timeFormatter.date(from: time) != nil) else {
+            alertError(message: "The time is required and must be in \"HH:MM A\" format")
             return
         }
         
@@ -94,7 +98,25 @@ class MeetupViewController: UIViewController {
             return
         }
         
-        print("The suggested meetup date: \(date), time: \(time), location: \(location)")
+        print("The suggested meetup is with: \(userProfile.id), on date: \(date), at time: \(time), and location: \(location)")
+        
+        suggestMeetup(otherUser: userProfile, dateGiven: date, timeGiven: time, locationGiven: location)
+        
+//        // Destination will be back to Matches Screen, Present it
+//        // Can't just do automatic storyboard segue as must make sure information valid & sent
+//        let destination = self.storyboard!.instantiateViewController(withIdentifier: "MatchesVC") as! MatchesViewController
+//        self.navigationController?.pushViewController(destination, animated: false)
+    }
+    
+    // Send the sugggested meetup to the database, and then go back to main Matches view
+    func suggestMeetup(otherUser: UserProfile, dateGiven: String, timeGiven: String, locationGiven: String) {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                user.suggestMeetup(withUser: otherUser, onDate: dateGiven, atTime: timeGiven, atLocation: locationGiven, completion: { (error) in
+                        print("Error suggesting meetup")
+                })
+            })
+        }
     }
     
     private func alertError(message: String) {

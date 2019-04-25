@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
-// Hard coded data for invites users
-var invites:[User] = [User(name: "Bailey", picture: "matthew", meetPrior: false, meetup: "MAR 16", meetupTime: "12pm", meetupLoc: "Zilker Park"), User(name: "Ann", picture: "chris", meetPrior: false, meetup: "APR 1", meetupTime: "2pm", meetupLoc: "Zilker Park"), User(name: "Mike", picture: "bastian", meetPrior: false, meetup: "APR 1", meetupTime: "4pm", meetupLoc: "Zilker Park")]
+import FirebaseAuth
 
 class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,17 +17,23 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var invitesTableViewCellIdentifier = "invitesTableViewCellIdentifier"
     
+    // List to contain all invite meetups for this user
+    var inviteMeetups = [Meetup]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set delegate & data source for tableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Get pending meetups
+        getInvites()
     }
     
     // Required function for tableView; Number of Rows equals number of Invites Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return invites.count
+        return inviteMeetups.count
     }
     
     // Required function for tableView
@@ -37,16 +41,33 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Get this cell
         let cell:InvitesTableViewCell = tableView.dequeueReusableCell(withIdentifier: invitesTableViewCellIdentifier, for: indexPath as IndexPath) as! InvitesTableViewCell
         
-        // Find the associated user to this cell
-        let user:User = invites[indexPath.row]
+        // Find the associated meetup
+        let meetup:Meetup = inviteMeetups[indexPath.row]
         
-        // Update the cell information with this user's info
-        cell.userName.text = user.userName
-        cell.userImage.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
-        cell.meetDate.text = "\(user.date) at \(user.time)"
-        cell.meetLocation.text = user.location
+        // Update the cell information with this meetup's info
+        let otherUser = meetup.fromUser
+        cell.userName.text = otherUser.firstName
+        let imageUrl = otherUser.imageURL
+        cell.userImage.load(fromURL: imageUrl)
+        cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
+        cell.meetLocation.text = meetup.location
         
         return cell as UITableViewCell
+    }
+    
+    // Call database and update list of invite meetups
+    func getInvites() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                user.getMeetups(withType: .invites, completion: { (meetup) in
+                    DispatchQueue.main.async {
+                        self.inviteMeetups.append(meetup)
+                        print("I found an invite")
+                        self.tableView.reloadData()
+                    }
+                })
+            })
+        }
     }
     
 }

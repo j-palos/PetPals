@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
-// Hard coded data for connected users
-var connected:[User] = [User(name: "Matthew", picture: "matthew", meetPrior: false, meetup: "MAR 12", meetupTime: "", meetupLoc: ""), User(name: "Chris", picture: "chris", meetPrior: true, meetup: "JAN 25", meetupTime: "", meetupLoc: ""), User(name: "Bastian", picture: "bastian", meetPrior: true, meetup: "DEC 13", meetupTime: "", meetupLoc: "")]
+import FirebaseAuth
 
 class ConnectedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,17 +17,23 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // Identifier for tableView
     var connectedTableViewCellIdentifier = "connectedTableViewCellIdentifier"
     
+    // List to contain all connected meetups for this user
+    var connectedMeetups = [Meetup]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set delegate & data source for tableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Get connected meetups
+        getConnected()
     }
     
     // Required function for tableView; Number of Rows equals number of Connected Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return connected.count
+        return connectedMeetups.count
     }
     
     // Required function for tableView
@@ -37,19 +41,33 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         // Get this cell
         let cell:ConnectedTableViewCell = tableView.dequeueReusableCell(withIdentifier: connectedTableViewCellIdentifier, for: indexPath as IndexPath) as! ConnectedTableViewCell
         
-        // Find the associated user based on index
-        let user:User = connected[indexPath.row]
+        // Find the associated meetup
+        let meetup:Meetup = connectedMeetups[indexPath.row]
         
-        // Update the cell information with this user's info
-        cell.userName.text = user.userName
-        cell.userImage.image = UIImage(named: "\(user.image)")!.scaleToSize(aSize: CGSize(width: 55.0, height: 55.0))
-        var meetup = ""
-        if user.prevMeet {
-            meetup = "Previous "
-        }
-        cell.meetupLabel.text = meetup + "Meetup on " + user.date
+        // Update the cell information with this meetup's info
+        let otherUser = meetup.fromUser
+        cell.userName.text = otherUser.firstName
+        let imageUrl = otherUser.imageURL
+        cell.userImage.load(fromURL: imageUrl)
+        //previous versus not?
+        cell.meetupLabel.text = "Meetup on \(meetup.date)"        
         
         return cell as UITableViewCell
+    }
+    
+    // Call database and update list of connected meetups
+    func getConnected() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                user.getMeetups(withType: .connected, completion: { (meetup) in
+                    DispatchQueue.main.async {
+                        self.connectedMeetups.append(meetup)
+                        print("I found a connected User")
+                        self.tableView.reloadData()
+                    }
+                })
+            })
+        }
     }
 
 }
