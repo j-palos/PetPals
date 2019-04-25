@@ -669,6 +669,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="submitClicked:" destination="g6g-Ot-jlG" eventType="touchUpInside" id="QUU-bc-emj"/>
                                     <segue destination="1Ts-I7-dUI" kind="show" animates="NO" id="tN8-9J-ccb"/>
                                 </connections>
                             </button>
@@ -762,6 +763,9 @@
                     <connections>
                         <outlet property="chosenUserImage" destination="Axu-Jy-Vn4" id="L2v-zS-De9"/>
                         <outlet property="chosenUserName" destination="P2h-AX-fE0" id="Kdq-Z8-nJD"/>
+                        <outlet property="dateTextField" destination="CbT-kP-6RD" id="bJj-s0-eWt"/>
+                        <outlet property="locationTextField" destination="jos-bi-uIk" id="kGg-QU-2uy"/>
+                        <outlet property="timeTextField" destination="5WP-Sa-Kis" id="KZM-k0-qBR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Buc-mF-nlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1265,7 +1269,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="R3Z-k7-V3k"/>
-        <segue reference="z59-lB-2LK"/>
+        <segue reference="tN8-9J-ccb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
 </document>
