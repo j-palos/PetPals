@@ -14,6 +14,9 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
     // Connect necessary fields
     @IBOutlet weak var tableView: UITableView!
     
+    // Label to show when no upcoming dates
+    @IBOutlet weak var noDatesLabel: UILabel!
+    
     // List to contain all connected meetups for this user
     var connectedMeetups = [Meetup]()
     
@@ -31,6 +34,7 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        checkIfNoMeetups()
         return connectedMeetups.count
     }
     
@@ -64,6 +68,16 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 })
             })
+        }
+    }
+    
+    // If there are no upcoming meetups, do not show table view but instead label
+    // If there are now meetups, show table view and hide label
+    func checkIfNoMeetups() {
+        if connectedMeetups.count == 0 {
+            noDatesLabel.alpha = 1
+        } else {
+            noDatesLabel.alpha = 0
         }
     }
 

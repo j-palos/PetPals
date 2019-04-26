@@ -90,7 +90,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
-    // If there are no meetups pending, do not show table view but instead label
+    // If there are no meetup invites, do not show table view but instead label
     // If there are now meetups, show table view and hide label
     func checkIfNoMeetups() {
         if inviteMeetups.count == 0 {

@@ -90,7 +90,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    // If there are no meetups pending, do not show table view but instead label
+    // If there are no meetups, do not show table view but instead label
     // If there are now meetups, show table view and hide label
     func checkIfNoMeetups() {
         if connectedMeetups.count == 0 {

@@ -1309,13 +1309,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Upcoming Dates" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdO-MS-KI5">
+                                <rect key="frame" x="80.666666666666686" y="111" width="213" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="PVC-EW-u3l"/>
+                                    <constraint firstAttribute="width" constant="213" id="ip7-PR-bvV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="PetPalDarkBlue"/>
                         <color key="tintColor" name="PetPalDarkBlue"/>
                         <constraints>
+                            <constraint firstItem="gdO-MS-KI5" firstAttribute="centerX" secondItem="o8g-GK-Byt" secondAttribute="centerX" id="Al8-wH-ysh"/>
                             <constraint firstItem="bLz-9a-LcX" firstAttribute="top" secondItem="awp-Du-1Kc" secondAttribute="bottom" constant="9" id="GvK-NF-aaN"/>
                             <constraint firstItem="awp-Du-1Kc" firstAttribute="top" secondItem="TbW-97-etY" secondAttribute="top" constant="20" id="Qt1-BQ-OHc"/>
                             <constraint firstItem="bLz-9a-LcX" firstAttribute="leading" secondItem="TbW-97-etY" secondAttribute="leading" constant="16" id="SCL-cO-O1i"/>
+                            <constraint firstItem="gdO-MS-KI5" firstAttribute="centerY" secondItem="o8g-GK-Byt" secondAttribute="centerY" id="Sbw-0Z-jf2"/>
                             <constraint firstItem="TbW-97-etY" firstAttribute="trailing" secondItem="bLz-9a-LcX" secondAttribute="trailing" constant="16" id="cUA-Rh-vJT"/>
                             <constraint firstItem="TbW-97-etY" firstAttribute="trailing" secondItem="awp-Du-1Kc" secondAttribute="trailing" constant="241.33333333333331" id="npM-A0-laj"/>
                             <constraint firstItem="TbW-97-etY" firstAttribute="bottom" secondItem="bLz-9a-LcX" secondAttribute="bottom" constant="20" id="qLG-A6-6V3"/>
@@ -1324,6 +1336,7 @@
                         <viewLayoutGuide key="safeArea" id="TbW-97-etY"/>
                     </view>
                     <connections>
+                        <outlet property="noDatesLabel" destination="gdO-MS-KI5" id="neU-QX-Ai5"/>
                         <outlet property="tableView" destination="bLz-9a-LcX" id="Ipt-a3-kHf"/>
                     </connections>
                 </viewController>
