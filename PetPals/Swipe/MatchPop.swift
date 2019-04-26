@@ -41,9 +41,17 @@ class MatchPop: UIView {
     
     
     func setImages(myImage:UIImage, theirImage:UIImage){
-        self.myImage.image = myImage
-        self.theirImage.image = theirImage
-        setStyles()
+        let mimage:UIImage = myImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        let timage:UIImage = theirImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        self.myImage.image = mimage
+        self.theirImage.image = timage
+//        setStyles()
+        self.myImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5;
+        self.myImage.clipsToBounds = true
+        self.theirImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5;
+        self.theirImage.clipsToBounds = true
+        
+//        setStyles()
     }
     
     func setStyles(){
@@ -58,4 +66,21 @@ class MatchPop: UIView {
         self.theirImage.layer.borderWidth = 0.50
         self.theirImage.layer.borderColor = UIColor.black.cgColor
     }
+    
+    
 }
+
+//extension UIImage {
+//
+//    func scaleToSize(aSize:CGSize) -> UIImage {
+//        if (self.size.equalTo(aSize)) {
+//            return self
+//        }
+//
+//        UIGraphicsBeginImageContextWithOptions(aSize, false, 0.0)
+//        self.draw(in: CGRect(x:0.0, y:0.0, width: aSize.width, height:aSize.height))
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image!
+//    }
+//}

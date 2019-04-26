@@ -251,6 +251,7 @@ extension SwipeViewController: KolodaViewDelegate {
         when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
             pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
             pop.layer.zPosition = 3
+            
             self.view.addSubview(pop)
         }
         
@@ -281,3 +282,4 @@ extension SwipeViewController: KolodaViewDelegate {
         return animation
     }
 }
+
