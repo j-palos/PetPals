@@ -41,24 +41,21 @@ class MatchPop: UIView {
     
     
     func setImages(myImage: UIImage, theirImage: UIImage) {
-        let mimage: UIImage = myImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
-        let timage: UIImage = theirImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        let mimage: UIImage = myImage.scaleToSize(aSize: CGSize(width: 145.0, height: 145.0))
+        let timage: UIImage = theirImage.scaleToSize(aSize: CGSize(width: 145.0, height: 145.0))
         self.myImage.image = mimage
         self.theirImage.image = timage
-        self.myImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5
+        self.myImage.layer.cornerRadius = self.myImage.frame.size.width / 2
         self.myImage.clipsToBounds = true
-        self.theirImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5
+        self.theirImage.layer.cornerRadius = self.myImage.frame.size.width / 2
         self.theirImage.clipsToBounds = true
         setStyles()
     }
     
     func setStyles() {
-        self.myImage.layer.borderWidth = 0.50
-        self.myImage.layer.borderColor = UIColor.black.cgColor
-        self.theirImage.layer.borderWidth = 0.50
-        self.theirImage.layer.borderColor = UIColor.black.cgColor
+        self.myImage.layer.borderWidth = 5.0
+        self.myImage.layer.borderColor = UIColor(named: "PetPalYellow")?.cgColor
+        self.theirImage.layer.borderWidth = 5.0
+        self.theirImage.layer.borderColor = UIColor(named: "PetPalYellow")?.cgColor
     }
 }
-
-
-

@@ -229,7 +229,6 @@ extension SwipeViewController: KolodaViewDelegate {
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
                         self.popMatchUp(user: user)
-                        // a match was made
                     }
                 }
             default:
@@ -247,12 +246,12 @@ extension SwipeViewController: KolodaViewDelegate {
             pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
             pop.layer.zPosition = 3
             self.view.addSubview(pop)
-            self.queue.async {
-                sleep(2)
-                DispatchQueue.main.async {
-                    pop.removeFromSuperview()
-                }
-            }
+//            self.queue.async {
+//                sleep(2)
+//                DispatchQueue.main.async {
+//                    pop.removeFromSuperview()
+//                }
+//            }
         }
     }
 
