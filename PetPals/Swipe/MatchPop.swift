@@ -9,24 +9,23 @@
 import UIKit
 
 class MatchPop: UIView {
-    
-    @IBOutlet weak var myImage: UIImageView!
-    @IBOutlet weak var theirImage: UIImageView!
-   
+    @IBOutlet var myImage: UIImageView!
+    @IBOutlet var theirImage: UIImageView!
+    var view : UIView = UIView()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadViewFromNib()
+        self.loadViewFromNib()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        loadViewFromNib()
+        self.loadViewFromNib()
     }
-
+    
     func commonInit() {
         Bundle.main.loadNibNamed("MatchPop", owner: self, options: nil)
     }
-
+    
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
@@ -36,51 +35,30 @@ class MatchPop: UIView {
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-        addSubview(view)
+        self.view = view
+        self.addSubview(view)
     }
     
     
-    func setImages(myImage:UIImage, theirImage:UIImage){
-        let mimage:UIImage = myImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
-        let timage:UIImage = theirImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+    func setImages(myImage: UIImage, theirImage: UIImage) {
+        let mimage: UIImage = myImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
+        let timage: UIImage = theirImage.scaleToSize(aSize: CGSize(width: 200.0, height: 200.0))
         self.myImage.image = mimage
         self.theirImage.image = timage
-//        setStyles()
-        self.myImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5;
+        self.myImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5
         self.myImage.clipsToBounds = true
-        self.theirImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5;
+        self.theirImage.layer.cornerRadius = self.myImage.frame.size.width / 2.5
         self.theirImage.clipsToBounds = true
-        
-//        setStyles()
+        setStyles()
     }
     
-    func setStyles(){
-        self.myImage.layer.cornerRadius = self.frame.size.height / 2
-        self.myImage.clipsToBounds = true
-        self.myImage.layer.masksToBounds = true
+    func setStyles() {
         self.myImage.layer.borderWidth = 0.50
         self.myImage.layer.borderColor = UIColor.black.cgColor
-        self.theirImage.layer.cornerRadius = self.frame.size.height / 2
-        self.theirImage.clipsToBounds = true
-        self.theirImage.layer.masksToBounds = true
         self.theirImage.layer.borderWidth = 0.50
         self.theirImage.layer.borderColor = UIColor.black.cgColor
     }
-    
-    
 }
 
-//extension UIImage {
-//
-//    func scaleToSize(aSize:CGSize) -> UIImage {
-//        if (self.size.equalTo(aSize)) {
-//            return self
-//        }
-//
-//        UIGraphicsBeginImageContextWithOptions(aSize, false, 0.0)
-//        self.draw(in: CGRect(x:0.0, y:0.0, width: aSize.width, height:aSize.height))
-//        let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        return image!
-//    }
-//}
+
+

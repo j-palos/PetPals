@@ -54,7 +54,6 @@ class SwipeViewController: UIViewController {
 
         // initially don't show that
         removeOutOfCards()
-
         // startup the user gathering
 
         getUsers()
@@ -241,20 +240,20 @@ extension SwipeViewController: KolodaViewDelegate {
 
     // pops up the view for our new match
     private func popMatchUp(user: UserProfile) {
-        self.removeOutOfCards()
+        removeOutOfCards()
         let pop: MatchPop = MatchPop()
-        
-        
         let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
-//        var theirImage:UIImage = UIImage()
-//        var myImage:UIImage = UIImage()
         when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
             pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
             pop.layer.zPosition = 3
-            
             self.view.addSubview(pop)
+            self.queue.async {
+                sleep(2)
+                DispatchQueue.main.async {
+                    pop.removeFromSuperview()
+                }
+            }
         }
-        
     }
 
     func setTheirImage(url: URL) -> Promise<Void> {
@@ -266,7 +265,7 @@ extension SwipeViewController: KolodaViewDelegate {
     func setMyImage(url: URL) -> Promise<Void> {
         return avatar(url: url).done {
             self.myImage = $0
-        }.done {}
+        }
     }
 
     // for now, we reset the cards so we can tests better
@@ -282,4 +281,3 @@ extension SwipeViewController: KolodaViewDelegate {
         return animation
     }
 }
-
