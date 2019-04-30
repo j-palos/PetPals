@@ -41,10 +41,15 @@
                                     <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="out_of_profiles" translatesAutoresizingMaskIntoConstraints="NO" id="UGV-58-7Xn">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="out_of_profiles" translatesAutoresizingMaskIntoConstraints="NO" id="UGV-58-7Xn">
                                 <rect key="frame" x="9" y="29" width="396" height="687"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q1k-dv-TEv" customClass="MatchPop" customModule="PetPals" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
@@ -54,6 +59,7 @@
                         <outlet property="kolodaView" destination="aiH-pp-vij" id="0Yg-rs-Uif"/>
                         <outlet property="noButton" destination="RM2-1I-oKq" id="BJk-pq-UCa"/>
                         <outlet property="outOfProfilesImageView" destination="UGV-58-7Xn" id="lJV-u4-3VX"/>
+                        <outlet property="popView" destination="q1k-dv-TEv" id="sEE-3O-zEw"/>
                         <outlet property="yesButton" destination="B7Z-nc-fLE" id="ymj-Sm-7Jn"/>
                     </connections>
                 </viewController>

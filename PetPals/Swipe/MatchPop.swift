@@ -39,51 +39,12 @@ class MatchPop: UIView {
         ]
         self.view = view
         self.addSubview(view)
-        
-        let buttonX = 150
-        let buttonY = 150
-        let buttonWidth = 100
-        let buttonHeight = 50
-        
-        let button = UIButton(type: .system)
-        button.setTitle("Click here", for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .red
-        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        
-        button.frame = CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight)
-        
-        self.view.addSubview(button)
-        self.view.addSubview(dismissButton)
-        self.view.bringSubviewToFront(dismissButton)
-    }
-    
-    @objc func buttonClicked(sender : UIButton){
-        UIView.animate(
-            withDuration: 1.0,
-            delay: 0.0,
-            options: .curveEaseOut,
-            animations: {
-                self.alpha = 0.0
-        }
-        )
-        self.removeFromSuperview()
     }
     
     
-    
+    //Todo: Maybe do different entrance/exit
     @IBAction func dismissButton(_ sender: Any) {
-        
-        
-        UIView.animate(
-            withDuration: 1.0,
-            delay: 0.0,
-            options: .curveEaseOut,
-            animations: {
-                self.alpha = 0.0
-        }
-        )
-        self.removeFromSuperview()
+        self.isHidden = true
     }
     
     func setImages(myImage: UIImage, theirImage: UIImage) {

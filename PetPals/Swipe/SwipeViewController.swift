@@ -21,6 +21,7 @@ private let kolodaCountOfVisibleCards = 4
 class SwipeViewController: UIViewController {
     @IBOutlet var kolodaView: KolodaView!
 
+    @IBOutlet weak var popView: MatchPop!
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
     @IBOutlet var noButton: UIButton!
@@ -28,7 +29,7 @@ class SwipeViewController: UIViewController {
     var theirImage: UIImage = UIImage()
     var myImage: UIImage = UIImage()
     @IBOutlet var outOfProfilesImageView: UIImageView!
-    var pop: MatchPop = MatchPop()
+//    var pop: MatchPop = MatchPop()
 
     var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
@@ -46,12 +47,7 @@ class SwipeViewController: UIViewController {
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
 
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { user in
-                self.profile = user
-                self.popMatchUp(user: user)
-            })
-        }
+      
 
         // initially don't show that
         removeOutOfCards()
@@ -125,6 +121,16 @@ class SwipeViewController: UIViewController {
 
     @IBAction func yesButtonTapped(_ sender: Any) {
         kolodaView.swipe(.right)
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { user in
+                self.profile = user
+                self.popMatchUp(user: user)
+            })
+        }
     }
 
     // Retrieve users within the desired radius of the user
@@ -240,20 +246,11 @@ extension SwipeViewController: KolodaViewDelegate {
 
     // pops up the view for our new match
     private func popMatchUp(user: UserProfile) {
-        removeOutOfCards()
         let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
         when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
-            self.pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
-//            pop.layer.zPosition = 3
-            self.view.addSubview(self.pop)
-            self.view.bringSubviewToFront(self.pop)
-            
-//            self.queue.async {
-//                sleep(2)
-//                DispatchQueue.main.async {
-//                    pop.removeFromSuperview()
-//                }
-//            }
+            self.popView.setImages(myImage: self.myImage, theirImage: self.theirImage)
+            print(type(of: self.popView))
+            self.popView.isHidden = false
         }
     }
 
