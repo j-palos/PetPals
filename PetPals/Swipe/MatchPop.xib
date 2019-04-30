@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchPop" customModule="PetPals" customModuleProvider="target">
             <connections>
+                <outlet property="dismissButton" destination="0g8-Ob-2ez" id="LpQ-NL-0mq"/>
                 <outlet property="myImage" destination="Y4E-In-IsB" id="4v2-Cp-cMb"/>
                 <outlet property="theirImage" destination="qpY-C9-Wrr" id="ogo-1x-oTl"/>
             </connections>
@@ -26,7 +27,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="260" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-oT-Kv7">
-                    <rect key="frame" x="35" y="187" width="345" height="435"/>
+                    <rect key="frame" x="35" y="187" width="345" height="145"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="i9Y-pR-qIR">
@@ -48,12 +49,16 @@
                                 </imageView>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0g8-Ob-2ez">
-                            <rect key="frame" x="145.66666666666666" y="405" width="54" height="30"/>
-                            <state key="normal" title="Dismiss"/>
-                        </button>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0g8-Ob-2ez">
+                    <rect key="frame" x="180" y="597" width="54" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Dismiss"/>
+                    <connections>
+                        <action selector="dismissButton:" destination="-1" eventType="touchUpInside" id="fnC-t6-D0V"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

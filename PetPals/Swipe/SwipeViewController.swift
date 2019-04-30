@@ -28,6 +28,7 @@ class SwipeViewController: UIViewController {
     var theirImage: UIImage = UIImage()
     var myImage: UIImage = UIImage()
     @IBOutlet var outOfProfilesImageView: UIImageView!
+    var pop: MatchPop = MatchPop()
 
     var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
@@ -240,12 +241,13 @@ extension SwipeViewController: KolodaViewDelegate {
     // pops up the view for our new match
     private func popMatchUp(user: UserProfile) {
         removeOutOfCards()
-        let pop: MatchPop = MatchPop()
         let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
         when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
-            pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
-            pop.layer.zPosition = 3
-            self.view.addSubview(pop)
+            self.pop.setImages(myImage: self.myImage, theirImage: self.theirImage)
+//            pop.layer.zPosition = 3
+            self.view.addSubview(self.pop)
+            self.view.bringSubviewToFront(self.pop)
+            
 //            self.queue.async {
 //                sleep(2)
 //                DispatchQueue.main.async {
