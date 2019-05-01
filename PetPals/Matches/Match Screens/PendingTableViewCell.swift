@@ -10,10 +10,16 @@ import UIKit
 
 class PendingTableViewCell: UITableViewCell {
     // Connect necessary fields
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImage: MatchesImage!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var meetDate: UILabel!
     @IBOutlet weak var meetLocation: UILabel!
+    
+    // Know what meetup this is
+    var meetup: Meetup!
+    
+    // Parent for reload
+    var parent: PendingViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,4 +33,12 @@ class PendingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    // ***ISSUE in UI: the sent 3 days ago thing: I went ahead and deleted since we didn't include in DB
+    
+    // User wants to cancel this meetup
+    @IBAction func cancelClicked(_ sender: Any) {
+        meetup.cancel(completion: { (error) in
+        })
+        parent.reloadMeetups(meetupToDelete: meetup)
+    }
 }

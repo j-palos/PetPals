@@ -21,6 +21,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var invitesButton: UIButton!
     @IBOutlet weak var pendingButton: UIButton!
     
+    // Label for when there are no matches
+    @IBOutlet weak var noMatchAvailLabel: UILabel!
+    
     // Connect the collection view for New Matches
     @IBOutlet weak var newMatchesCollectionView: UICollectionView!
     
@@ -42,7 +45,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("NUMBER OF MATCHES: \(newMatches.count)")
+        checkIfNoMatches()
         return newMatches.count
     }
     
@@ -75,6 +78,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let user:UserProfile = newMatches[indexPath.row]
         
         // Send over information about the user selected
+        destination.userProfile = user
         destination.userName = user.firstName
         // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
         destination.userImage = user.imageURL as NSURL
@@ -85,6 +89,15 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // If connected is clicked, show that view
     @IBAction func connectedButtonPressed(_ sender: Any) {
+        if invitesContainerView.alpha == 1 {
+            // If came from invites, connected data needs to be updated
+            // Since can't share infomration between views of same parent VC, just reload this VC
+            let destination = self.storyboard!.instantiateViewController(withIdentifier: "MatchesVC") as! MatchesViewController
+            
+            // Present the screen
+            self.navigationController?.pushViewController(destination, animated: false)
+        }
+        
         // Animate the connected view, and hide the others
         UIView.animate(withDuration: 0.5, animations: {
             self.connectedContainerView.alpha = 1
@@ -139,6 +152,18 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 })
             })
+        }
+    }
+    
+    // If there are no matches, do not show collection view but instead label
+    // If there are now matches, show collection view and hide label
+    func checkIfNoMatches() {
+        if newMatches.count == 0 {
+            newMatchesCollectionView.alpha = 0
+            noMatchAvailLabel.alpha = 1
+        } else {
+            newMatchesCollectionView.alpha = 1
+            noMatchAvailLabel.alpha = 0
         }
     }
     

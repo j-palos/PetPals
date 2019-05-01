@@ -38,7 +38,6 @@
 		CB3C4BDF2241C7D400CA629D /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */; };
 		CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */; };
 		CB3C4BE32241C7ED00CA629D /* PendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */; };
-		CB3C4BE72241C88600CA629D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE62241C88600CA629D /* User.swift */; };
 		CB3C4BE92241CAB700CA629D /* ConnectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BE82241CAB700CA629D /* ConnectedTableViewCell.swift */; };
 		CB3C4BEB2241CAC700CA629D /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */; };
 		CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */; };
@@ -98,7 +97,6 @@
 		CB3C4BDE2241C7D400CA629D /* ConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		CB3C4BE02241C7DF00CA629D /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
 		CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewController.swift; sourceTree = "<group>"; };
-		CB3C4BE62241C88600CA629D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CB3C4BE82241CAB700CA629D /* ConnectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedTableViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
 		CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTableViewCell.swift; sourceTree = "<group>"; };
@@ -243,11 +241,10 @@
 				CB3C4BEA2241CAC700CA629D /* InvitesTableViewCell.swift */,
 				CB3C4BE22241C7ED00CA629D /* PendingViewController.swift */,
 				CB3C4BEC2241CAD700CA629D /* PendingTableViewCell.swift */,
-				CB3C4BE62241C88600CA629D /* User.swift */,
 				CB2E52AA2248ABF300217A94 /* MeetupViewController.swift */,
 				CB3C4BCF2241AA8C00CA629D /* MatchesViewController.swift */,
-				CBF295CD225E20E000EAAC5E /* MatchesImage.swift */,
 				CB2E52AC2248ADB400217A94 /* NewMatchCollectionViewCell.swift */,
+				CBF295CD225E20E000EAAC5E /* MatchesImage.swift */,
 			);
 			path = "Match Screens";
 			sourceTree = "<group>";
@@ -509,7 +506,6 @@
 				CB3C4BE12241C7DF00CA629D /* InvitesViewController.swift in Sources */,
 				0D00AB6D2239567900F467B7 /* RegisterViewController.swift in Sources */,
 				0D00AB6C2239567900F467B7 /* GradientLRButton.swift in Sources */,
-				CB3C4BE72241C88600CA629D /* User.swift in Sources */,
 				CB3C4BF62242057700CA629D /* CalendarCell.swift in Sources */,
 				CB3C4BD02241AA8C00CA629D /* MatchesViewController.swift in Sources */,
 				CB3C4BED2241CAD700CA629D /* PendingTableViewCell.swift in Sources */,
