@@ -16,16 +16,20 @@ import UIKit
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 4
+private let kolodaCountOfVisibleCards = 3
 
 class SwipeViewController: UIViewController {
+    @IBOutlet var dismissButton: UIButton!
     @IBOutlet var kolodaView: KolodaView!
 
+    @IBOutlet var toMatchesButton: UIButton!
+    @IBOutlet var popView: MatchPop!
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
     @IBOutlet var noButton: UIButton!
     @IBOutlet var yesButton: UIButton!
-
+    var theirImage: UIImage = UIImage()
+    var myImage: UIImage = UIImage()
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
     var profile: UserProfile?
@@ -35,6 +39,16 @@ class SwipeViewController: UIViewController {
     var geoFire: GeoFire?
     var geoQuery: GFCircleQuery?
 
+    // will dismiss the matches view thing
+    @IBAction func didDismiss(_ sender: Any) {
+        popView.isHidden = true
+    }
+
+    @IBAction func didTapGo(_ sender: Any) {
+        // it's literally this simple wow
+        tabBarController?.selectedIndex = 2
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -43,18 +57,10 @@ class SwipeViewController: UIViewController {
 
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
-        
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { user in
-                self.profile = user
-            })
-        }
 
-        
-        //initially don't show that
+        // initially don't show that
         removeOutOfCards()
-
-        //startup the user gathering
+        // startup the user gathering
 
         getUsers()
 
@@ -63,38 +69,32 @@ class SwipeViewController: UIViewController {
         UserDefaults.standard.addObserver(self, forKeyPath: "current_longitude", options: .new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: "distance", options: .new, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: "petTypes", options: .new, context: nil)
-
     }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if object is UserDefaults {
             // Here you can grab the values or just respond to it with an action.
             switch keyPath {
-                
             case "current_latitude", "current_longitude":
-                //users location updated so refresh the users based on that
+                // users location updated so refresh the users based on that
                 geoQuery?.removeAllObservers()
                 getUsers()
-            
+
             case "distance":
-                //updated the search radius so refresh the users based on that
+                // updated the search radius so refresh the users based on that
                 geoQuery?.removeAllObservers()
                 getUsers()
             case "petTypes":
-                //pet type was changed so we need to kill all observers and create new one with updated pets
+                // pet type was changed so we need to kill all observers and create new one with updated pets
                 geoQuery?.removeAllObservers()
                 getUsers()
             default: break
-
             }
         }
-        
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
-        //geoQuery?.removeAllObservers()
+//         geoQuery?.removeAllObservers()
     }
 
     // Create the gradient we want for our background
@@ -113,7 +113,7 @@ class SwipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createGradientLayer()
-        //wait for a second, if we don't have potentials show out of cards
+        // wait for a second, if we don't have potentials show out of cards
         queue.async {
             sleep(1)
             if self.users.isEmpty {
@@ -124,13 +124,15 @@ class SwipeViewController: UIViewController {
         }
     }
 
-    
     @IBAction func noButtonTapped(_ sender: Any) {
         kolodaView.swipe(.left)
     }
 
     @IBAction func yesButtonTapped(_ sender: Any) {
         kolodaView.swipe(.right)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
     }
 
     // Retrieve users within the desired radius of the user
@@ -164,7 +166,7 @@ class SwipeViewController: UIViewController {
         }
     }
 
-    //show the out of cards image
+    // show the out of cards image
     private func displayOutOfCards() {
         UIView.animate(
             withDuration: 2.0,
@@ -172,35 +174,36 @@ class SwipeViewController: UIViewController {
             options: .curveEaseIn,
             animations: {
                 self.outOfProfilesImageView.alpha = 1.0
+                self.outOfProfilesImageView.layer.zPosition = 1
             }
         )
     }
 
-    //remove the out of cards image from view
+    // remove the out of cards image from view
     private func removeOutOfCards() {
         outOfProfilesImageView.alpha = 0.0
+        outOfProfilesImageView.layer.zPosition = -3
     }
 }
 
 extension SwipeViewController: KolodaViewDataSource {
-    
     // Generates a stack of user cards
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let card: CardView = CardView()
         initCard(index: index, card: card)
         return card
     }
-    
-    //wrapper function to init our card
+
+    // wrapper function to init our card
     //the point of using promises here is
-    //so that our card comes into view with an image already loaded
+    // so that our card comes into view with an image already loaded
     func initCard(index: Int, card: CardView) {
         let user = users[index]
         card.setName(user.firstName, user.lastName)
         card.setBio(bio: user.bio)
         card.setPetType(user.petType)
         card.setDistance(String(UserProfile.getDistanceInMiles(fromUsersLocation: user.location!)))
-        avatar(url: user.imageURL, user: user).done {
+        avatar(url: user.imageURL).done {
             card.setImage($0)
             return
         }.catch { _ in
@@ -208,8 +211,8 @@ extension SwipeViewController: KolodaViewDataSource {
         }
     }
 
-    //promise function for obtaining our card avatage image
-    func avatar(url: URL, user: UserProfile) -> Promise<UIImage> {
+    // promise function for obtaining our card avatage image
+    func avatar(url: URL) -> Promise<UIImage> {
         return firstly {
             URLSession.shared.dataTask(.promise, with: url)
         }.compactMap {
@@ -234,10 +237,7 @@ extension SwipeViewController: KolodaViewDelegate {
             case .right:
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
-
-                        self.popMatchUp()
-                        // a match was made
-
+                        self.popMatchUp(user: user)
                     }
                 }
             default:
@@ -247,7 +247,30 @@ extension SwipeViewController: KolodaViewDelegate {
     }
 
     // pops up the view for our new match
-    private func popMatchUp() {}
+    private func popMatchUp(user: UserProfile) {
+        let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
+        when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
+            self.popView.setImages(myImage: self.myImage, theirImage: self.theirImage)
+            // necessary to put our buttons on top
+            self.popView.bringSubviewToFront(self.dismissButton)
+            self.popView.bringSubviewToFront(self.toMatchesButton)
+            self.popView.isHidden = false
+        }
+    }
+
+    // sets the image for the other
+    func setTheirImage(url: URL) -> Promise<Void> {
+        return avatar(url: url).done {
+            self.theirImage = $0
+        }
+    }
+
+    // sets image for ourself
+    func setMyImage(url: URL) -> Promise<Void> {
+        return avatar(url: url).done {
+            self.myImage = $0
+        }
+    }
 
     // for now, we reset the cards so we can tests better
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
