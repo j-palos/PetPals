@@ -42,7 +42,7 @@
                                     <action selector="noButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="q89-Re-qLv"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="out_of_profiles" translatesAutoresizingMaskIntoConstraints="NO" id="UGV-58-7Xn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="out_of_profiles" translatesAutoresizingMaskIntoConstraints="NO" id="UGV-58-7Xn">
                                 <rect key="frame" x="9" y="29" width="396" height="687"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
