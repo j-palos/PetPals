@@ -431,7 +431,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date_oval" translatesAutoresizingMaskIntoConstraints="NO" id="KPI-hl-tpb">
-                                                            <rect key="frame" x="54" y="16" width="8" height="8"/>
+                                                            <rect key="frame" x="50" y="16" width="16" height="16"/>
                                                             <color key="tintColor" name="PetPalDarkBlue"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkc-Lt-blL">
@@ -879,7 +879,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-OS-uj9">
-                                                    <rect key="frame" x="88" y="39" width="149" height="20"/>
+                                                    <rect key="frame" x="87.999999999999986" y="39" width="145.66666666666663" height="17"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -942,7 +942,7 @@
             <objects>
                 <viewController storyboardIdentifier="InvitesVC" id="i5c-aa-EQR" userLabel="InvitesVC" customClass="InvitesViewController" customModule="PetPals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E1l-QJ-6N4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="440.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="446.33333333333337"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9ln-MI-AhT">
@@ -1052,7 +1052,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Invites for Meetups Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwu-Xj-Q4D">
-                                <rect key="frame" x="37" y="208.33333333333334" width="340" height="24"/>
+                                <rect key="frame" x="37" y="211.33333333333334" width="340" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="340" id="5jJ-qr-29a"/>
                                     <constraint firstAttribute="height" constant="24" id="xLx-Q6-efb"/>
@@ -1187,7 +1187,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Pending Meetups Available" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRQ-gd-RqF">
-                                <rect key="frame" x="45" y="208.33333333333334" width="324" height="24"/>
+                                <rect key="frame" x="45" y="211.33333333333334" width="324" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="cen-O9-huW"/>
                                     <constraint firstAttribute="width" constant="324" id="ihq-ka-zqZ"/>

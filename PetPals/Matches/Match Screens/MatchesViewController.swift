@@ -89,6 +89,15 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // If connected is clicked, show that view
     @IBAction func connectedButtonPressed(_ sender: Any) {
+        if invitesContainerView.alpha == 1 {
+            // If came from invites, connected data needs to be updated
+            // Since can't share infomration between views of same parent VC, just reload this VC
+            let destination = self.storyboard!.instantiateViewController(withIdentifier: "MatchesVC") as! MatchesViewController
+            
+            // Present the screen
+            self.navigationController?.pushViewController(destination, animated: false)
+        }
+        
         // Animate the connected view, and hide the others
         UIView.animate(withDuration: 0.5, animations: {
             self.connectedContainerView.alpha = 1
