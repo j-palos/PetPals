@@ -16,12 +16,14 @@ import UIKit
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 4
+private let kolodaCountOfVisibleCards = 3
 
 class SwipeViewController: UIViewController {
+    @IBOutlet var dismissButton: UIButton!
     @IBOutlet var kolodaView: KolodaView!
 
-    @IBOutlet weak var popView: MatchPop!
+    @IBOutlet var toMatchesButton: UIButton!
+    @IBOutlet var popView: MatchPop!
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
     @IBOutlet var noButton: UIButton!
@@ -29,7 +31,6 @@ class SwipeViewController: UIViewController {
     var theirImage: UIImage = UIImage()
     var myImage: UIImage = UIImage()
     @IBOutlet var outOfProfilesImageView: UIImageView!
-//    var pop: MatchPop = MatchPop()
 
     var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
@@ -37,6 +38,16 @@ class SwipeViewController: UIViewController {
     var geoFireRef: DatabaseReference?
     var geoFire: GeoFire?
     var geoQuery: GFCircleQuery?
+
+    // will dismiss the matches view thing
+    @IBAction func didDismiss(_ sender: Any) {
+        popView.isHidden = true
+    }
+
+    @IBAction func didTapGo(_ sender: Any) {
+        // it's literally this simple wow
+        tabBarController?.selectedIndex = 2
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +57,6 @@ class SwipeViewController: UIViewController {
 
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
-
-      
 
         // initially don't show that
         removeOutOfCards()
@@ -85,7 +94,7 @@ class SwipeViewController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        // geoQuery?.removeAllObservers()
+//         geoQuery?.removeAllObservers()
     }
 
     // Create the gradient we want for our background
@@ -107,11 +116,11 @@ class SwipeViewController: UIViewController {
         // wait for a second, if we don't have potentials show out of cards
         queue.async {
             sleep(1)
-//            if self.users.isEmpty {
-//                DispatchQueue.main.async {
-//                    self.displayOutOfCards()
-//                }
-//            }
+            if self.users.isEmpty {
+                DispatchQueue.main.async {
+                    self.displayOutOfCards()
+                }
+            }
         }
     }
 
@@ -122,15 +131,8 @@ class SwipeViewController: UIViewController {
     @IBAction func yesButtonTapped(_ sender: Any) {
         kolodaView.swipe(.right)
     }
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { user in
-                self.profile = user
-                self.popMatchUp(user: user)
-            })
-        }
     }
 
     // Retrieve users within the desired radius of the user
@@ -249,17 +251,21 @@ extension SwipeViewController: KolodaViewDelegate {
         let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
         when(resolved: setMyImage(url: url), setTheirImage(url: user.imageURL)).done { _ in
             self.popView.setImages(myImage: self.myImage, theirImage: self.theirImage)
-            print(type(of: self.popView))
+            // necessary to put our buttons on top
+            self.popView.bringSubviewToFront(self.dismissButton)
+            self.popView.bringSubviewToFront(self.toMatchesButton)
             self.popView.isHidden = false
         }
     }
 
+    // sets the image for the other
     func setTheirImage(url: URL) -> Promise<Void> {
         return avatar(url: url).done {
             self.theirImage = $0
         }
     }
 
+    // sets image for ourself
     func setMyImage(url: URL) -> Promise<Void> {
         return avatar(url: url).done {
             self.myImage = $0

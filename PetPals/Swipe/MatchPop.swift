@@ -11,11 +11,16 @@ import UIKit
 class MatchPop: UIView {
     @IBOutlet var myImage: UIImageView!
     @IBOutlet var theirImage: UIImageView!
+    
+    var delegate: GoToTapped!
+    
     var view : UIView = UIView()
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.loadViewFromNib()
     }
+    
+    
     
     @IBOutlet weak var dismissButton: UIButton!
     
@@ -41,11 +46,7 @@ class MatchPop: UIView {
         self.addSubview(view)
     }
     
-    
-    //Todo: Maybe do different entrance/exit
-    @IBAction func dismissButton(_ sender: Any) {
-        self.isHidden = true
-    }
+
     
     func setImages(myImage: UIImage, theirImage: UIImage) {
         let mimage: UIImage = myImage.scaleToSize(aSize: CGSize(width: 145.0, height: 145.0))
@@ -65,4 +66,10 @@ class MatchPop: UIView {
         self.theirImage.layer.borderWidth = 5.0
         self.theirImage.layer.borderColor = UIColor(named: "PetPalYellow")?.cgColor
     }
+}
+
+
+protocol GoToTapped: class {
+    /// Method
+    func goToTapped()
 }

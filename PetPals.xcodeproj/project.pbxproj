@@ -57,6 +57,7 @@
 		EA953553225461D400958051 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA953552225461D400958051 /* Profile.storyboard */; };
 		EA9535552254629D00958051 /* Matches.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA9535542254629D00958051 /* Matches.storyboard */; };
 		EA953557225462F000958051 /* Swipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA953556225462F000958051 /* Swipe.storyboard */; };
+		EA98826A22797756009977CD /* MyTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98826922797756009977CD /* MyTabController.swift */; };
 		EA9CC163225290F40034E714 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9CC162225290F40034E714 /* CardImage.swift */; };
 		EAB65741224A685600D1E29A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB65740224A685600D1E29A /* CardView.swift */; };
 		EAD100402249CE4B007BA4D6 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD1003F2249CE4B007BA4D6 /* CardView.xib */; };
@@ -120,6 +121,7 @@
 		EA953552225461D400958051 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		EA9535542254629D00958051 /* Matches.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Matches.storyboard; sourceTree = "<group>"; };
 		EA953556225462F000958051 /* Swipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Swipe.storyboard; sourceTree = "<group>"; };
+		EA98826922797756009977CD /* MyTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabController.swift; sourceTree = "<group>"; };
 		EA9CC162225290F40034E714 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		EAB65740224A685600D1E29A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		EAD1003F2249CE4B007BA4D6 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				EADB998E222633F500F349CB /* AppDelegate.swift */,
 				0DDF92C52243897300C58A1B /* Auth */,
 				EADB9992222633F500F349CB /* Main.storyboard */,
+				EA98826922797756009977CD /* MyTabController.swift */,
 				CB3C4BDD2241C72400CA629D /* Matches */,
 				EADB999A222633F700F349CB /* LaunchScreen.storyboard */,
 				EADB999D222633F700F349CB /* Info.plist */,
@@ -524,6 +527,7 @@
 				EA5DC011227127F80028BDBE /* MatchPop.swift in Sources */,
 				0D0D01602239758A000D594D /* SwipeViewButton.swift in Sources */,
 				CB348689226EBA8F001BD500 /* AlwaysPresentAsPopover.swift in Sources */,
+				EA98826A22797756009977CD /* MyTabController.swift in Sources */,
 				EADB9991222633F500F349CB /* ViewController.swift in Sources */,
 				CB2E52AD2248ADB400217A94 /* NewMatchCollectionViewCell.swift in Sources */,
 				CB34868B226EBB27001BD500 /* PopoverTableViewController.swift in Sources */,
