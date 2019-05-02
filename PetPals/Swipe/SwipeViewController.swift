@@ -54,6 +54,13 @@ class SwipeViewController: UIViewController {
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { user in
+                self.profile = user
+            })
+        }
+
 
         geoFireRef = Database.database().reference().child("Geolocations")
         geoFire = GeoFire(firebaseRef: geoFireRef!)
@@ -244,6 +251,7 @@ extension SwipeViewController: KolodaViewDelegate {
                 print("User swiped neither left or right")
             }
         }
+        
     }
 
     // pops up the view for our new match
