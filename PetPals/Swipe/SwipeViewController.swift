@@ -147,9 +147,13 @@ class SwipeViewController: UIViewController {
             let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lon)!))
             // We want users within the specified radius
             // if user hasn't specified a dearch radius set to 5 initially?
-            let searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
+            var searchRadius = UserDefaults.standard.value(forKey: "distance") as? Double ?? 5.0
             // search radius is in miles but geofire takes in KM so convert from miles to KM
+            if searchRadius < 1.0{
+                searchRadius = 1
+            }
             let radiusInKM = searchRadius * 1.60934
+            
             geoQuery = geoFire!.query(at: location, withRadius: radiusInKM)
             users.removeAll()
             kolodaView.reloadData()

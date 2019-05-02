@@ -103,6 +103,10 @@ class SettingsTableViewController: UITableViewController {
     
     // If the distance slider updates, update label at same time
     @IBAction func distanceSliderUpdate(_ sender: Any) {
+        if distanceSlider.value < 1{
+            distanceSlider.setValue(1, animated: false)
+        }
+
         let newDistance = Int(distanceSlider.value)
         distanceValueLabel.text = "\(newDistance)mi."
         usrDefaults.set(newDistance, forKey: "distance")

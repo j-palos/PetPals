@@ -205,7 +205,6 @@ class UserProfile: NSObject {
         let swipesRef = Database.database().reference().child("Swipes").child(userid)
         
         let petTypes = UserDefaults.standard.stringArray(forKey: "petTypes") ?? AppConstants.petOptions
-        
         geoQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!)  in
             if key != userid {
                 let ref = Database.database().reference().child("Users").child(key!).child("user_details")
