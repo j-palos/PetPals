@@ -20,9 +20,6 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var invitesTableViewCellIdentifier = "invitesTableViewCellIdentifier"
     
-    // List to contain all invite meetups for this user
-    var inviteMeetups = [Meetup]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,14 +43,14 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell:InvitesTableViewCell = tableView.dequeueReusableCell(withIdentifier: invitesTableViewCellIdentifier, for: indexPath as IndexPath) as! InvitesTableViewCell
         
         // Find the associated meetup
-        let meetup:Meetup = inviteMeetups[indexPath.row]
+        let meetupID:String = Array(inviteMeetups.keys)[indexPath.row]
+        let (meetup, userImage):(Meetup, MatchesImage) = inviteMeetups[meetupID]!
         
         // Update the cell information with this meetup's info
         cell.meetup = meetup
         let otherUser = meetup.fromUser
         cell.userName.text = otherUser.firstName
-        let imageUrl = otherUser.imageURL
-        cell.userImage.load(fromURL: imageUrl)
+        cell.userImage.image = userImage.image
         cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
         cell.meetLocation.text = meetup.location
         
@@ -74,8 +71,20 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
             UserProfile.getProfile(forUserID: id, completion: { (user) in
                 user.getMeetups(withType: .invites, completion: { (meetup) in
                     DispatchQueue.main.async {
-                        self.inviteMeetups.append(meetup)
-                        self.tableView.reloadData()
+                        if inviteMeetups[meetup.id!] == nil {
+                            let otherUser = meetup.fromUser
+                            // Create a blank Match Image
+                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                            // Perform promise to ensure picture gets loaded properly
+                            matchPicture(url: otherUser.imageURL).done {
+                                matchImage.setMatchesImage(image: $0)
+                                inviteMeetups[meetup.id!] =  (meetup, matchImage)
+                                //reload data
+                                self.tableView.reloadData()
+                                } .catch { _ in
+                                    print("I resulted in an error")
+                            }
+                        }
                     }
                 })
             })
@@ -84,9 +93,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Reload when a meetup is declined or accepted
     func reloadMeetups(meetupToDelete: Meetup) {
-        if let idx = inviteMeetups.firstIndex(where: { $0 === meetupToDelete }) {
-            inviteMeetups.remove(at: idx)
-        }
+        inviteMeetups.removeValue(forKey: meetupToDelete.id!)
         tableView.reloadData()
     }
     

@@ -20,9 +20,6 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var pendingTableViewCellIdentifier = "pendingTableViewCellIdentifier"
     
-    // List to contain all pending meetups for this user
-    var pendingMeetups = [Meetup]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,14 +43,15 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell:PendingTableViewCell = tableView.dequeueReusableCell(withIdentifier: pendingTableViewCellIdentifier, for: indexPath as IndexPath) as! PendingTableViewCell
         
         // Find the associated meetup
-        let meetup:Meetup = pendingMeetups[indexPath.row]
+        // Find the associated meetup
+        let meetupID:String = Array(pendingMeetups.keys)[indexPath.row]
+        let (meetup, userImage):(Meetup, MatchesImage) = pendingMeetups[meetupID]!
         
         // Update the cell information with this meetup's info
         cell.meetup = meetup
         let otherUser = meetup.toUser
         cell.userName.text = otherUser.firstName
-        let imageUrl = otherUser.imageURL
-        cell.userImage.load(fromURL: imageUrl)
+        cell.userImage.image = userImage.image
         cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
         cell.meetLocation.text = meetup.location
         
@@ -74,8 +72,20 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
             UserProfile.getProfile(forUserID: id, completion: { (user) in
                 user.getMeetups(withType: .pending, completion: { (meetup) in
                     DispatchQueue.main.async {
-                        self.pendingMeetups.append(meetup)
-                        self.tableView.reloadData()
+                        if pendingMeetups[meetup.id!] == nil {
+                            let otherUser = meetup.toUser
+                            // Create a blank Match Image
+                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                            // Perform promise to ensure picture gets loaded properly
+                            matchPicture(url: otherUser.imageURL).done {
+                                matchImage.setMatchesImage(image: $0)
+                                pendingMeetups[meetup.id!] =  (meetup, matchImage)
+                                //reload data
+                                self.tableView.reloadData()
+                                } .catch { _ in
+                                    print("I resulted in an error")
+                            }
+                        }
                     }
                 })
             })
@@ -84,9 +94,7 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Reload when a meetup is canceled
     func reloadMeetups(meetupToDelete: Meetup) {
-        if let idx = pendingMeetups.firstIndex(where: { $0 === meetupToDelete }) {
-            pendingMeetups.remove(at: idx)
-        }
+        pendingMeetups.removeValue(forKey: meetupToDelete.id!)
         tableView.reloadData()
     }
     

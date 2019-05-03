@@ -20,15 +20,13 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // Identifier for tableView
     var connectedTableViewCellIdentifier = "connectedTableViewCellIdentifier"
     
-    // List to contain all connected meetups for this user
-    var connectedMeetups = [Meetup]()
-    
     // This user's ID to know which user the date is with
     var thisUser: UserProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Set delegate & data source for tableView
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,7 +47,8 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell:ConnectedTableViewCell = tableView.dequeueReusableCell(withIdentifier: connectedTableViewCellIdentifier, for: indexPath as IndexPath) as! ConnectedTableViewCell
         
         // Find the associated meetup
-        let meetup:Meetup = connectedMeetups[indexPath.row]
+        let meetupID:String = Array(connectedMeetups.keys)[indexPath.row]
+        let (meetup, userImage):(Meetup, MatchesImage) = connectedMeetups[meetupID]!
         
         // Update the cell information with this meetup's info
         cell.meetup = meetup
@@ -61,8 +60,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
             otherUser = meetup.toUser
         }
         cell.userName.text = otherUser.firstName
-        let imageUrl = otherUser.imageURL
-        cell.userImage.load(fromURL: imageUrl)
+        cell.userImage.image = userImage.image
         //previous versus not?
         cell.meetupLabel.text = "Meetup on \(meetup.date)"        
         
@@ -81,9 +79,27 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.thisUser = user
                 user.getMeetups(withType: .connected, completion: { (meetup) in
                     DispatchQueue.main.async {
-                        self.connectedMeetups.append(meetup)
-                        print("I found a connected User")
-                        self.tableView.reloadData()
+                        if connectedMeetups[meetup.id!] == nil {
+                            let otherUser: UserProfile!
+                            // Determine who the other user is
+                            if meetup.fromUser != self.thisUser {
+                                otherUser = meetup.fromUser
+                            } else {
+                                otherUser = meetup.toUser
+                            }
+                            
+                            // Create a blank Match Image
+                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                            // Perform promise to ensure picture gets loaded properly
+                            matchPicture(url: otherUser.imageURL).done {
+                                matchImage.setMatchesImage(image: $0)
+                                connectedMeetups[meetup.id!] =  (meetup, matchImage)
+                                //reload data
+                                self.tableView.reloadData()
+                            } .catch { _ in
+                                print("I resulted in an error")
+                            }
+                        }
                     }
                 })
             })

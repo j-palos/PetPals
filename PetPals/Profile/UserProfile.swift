@@ -145,6 +145,11 @@ class UserProfile: NSObject {
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.window!.rootViewController = storyBoard.instantiateInitialViewController()
             
+            connectedMeetups.removeAll()
+            inviteMeetups.removeAll()
+            pendingMeetups.removeAll()
+            matches.removeAll()
+            
             completion(nil)
         }
         catch let signOutError as NSError {

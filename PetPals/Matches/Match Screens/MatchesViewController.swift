@@ -11,11 +11,22 @@ import FirebaseAuth
 import PromiseKit
 
 // Global to represent all the meetups for this user; Caches data locally on load of app
-var meetups:[(Meetup, MatchesImage)] = []
+var connectedMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
+var inviteMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
+var pendingMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
 
 // Global to represent all matches for this user; Caches data locally on load of app
 // Still need to update this as new matches created while in-app
-var matches:[UserProfile: MatchesImage] = [UserProfile: MatchesImage]()
+var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
+
+// promise function for obtaining our match image
+func matchPicture(url: URL) -> Promise<UIImage> {
+    return firstly {
+        URLSession.shared.dataTask(.promise, with: url)
+        }.compactMap {
+            UIImage(data: $0.data)
+    }
+}
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -44,9 +55,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if matches.count == 0 {
-            getMatches()
-        }
+
+        
+        getMatches()
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
@@ -61,8 +72,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
     
         // Find the associated User
-        let user:UserProfile = Array(matches.keys)[indexPath.row]
-        let userImage:MatchesImage = matches[user]!
+        let userID:String = Array(matches.keys)[indexPath.row]
+        let (user, userImage):(UserProfile, MatchesImage) = matches[userID]!
+
         
         // Update the cell information with this user's info
         cell.nameLabel.text = user.firstName
@@ -81,8 +93,8 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
         // Find the associated User
-        let user:UserProfile = Array(matches.keys)[0]
-        let userImage:MatchesImage = matches[user]!
+        let userID:String = Array(matches.keys)[indexPath.row]
+        let (user, userImage):(UserProfile, MatchesImage) = matches[userID]!
         
         // Send over information about the user selected
         destination.userProfile = user
@@ -153,13 +165,13 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
                 user.getMatches(completion: { (match) in
                     DispatchQueue.main.async {
                         // Only add the match if it's not already in global
-                        if matches[match] == nil {
+                        if matches[match.id] == nil {
                             // Create a blank Match Image
                             let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
                             // Perform promise to ensure picture gets loaded properly
-                            self.matchPicture(url: match.imageURL).done{
+                            matchPicture(url: match.imageURL).done{
                                 matchImage.setMatchesImage(image: $0)
-                                matches[match] =  matchImage
+                                matches[match.id] =  (match, matchImage)
                                 //reload data
                                 self.newMatchesCollectionView.reloadData()
                             } .catch{ _ in
@@ -169,15 +181,6 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 })
             })
-        }
-    }
-
-    // promise function for obtaining our match image
-    func matchPicture(url: URL) -> Promise<UIImage> {
-        return firstly {
-            URLSession.shared.dataTask(.promise, with: url)
-            }.compactMap {
-                UIImage(data: $0.data)
         }
     }
     
