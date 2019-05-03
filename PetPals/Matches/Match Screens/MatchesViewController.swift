@@ -8,6 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import PromiseKit
+
+// Global to represent all the meetups for this user; Caches data locally on load of app
+var meetups:[(Meetup, MatchesImage)] = []
+
+// Global to represent all matches for this user; Caches data locally on load of app
+// Still need to update this as new matches created while in-app
+var matches:[UserProfile: MatchesImage] = [UserProfile: MatchesImage]()
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -34,19 +42,17 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
     
-    // List to contain all new matches for this user
-    var newMatches = [UserProfile]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getMatches()
+        if matches.count == 0 {
+            getMatches()
+        }
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         checkIfNoMatches()
-        return newMatches.count
+        return matches.count
     }
     
     // Required function for CollectionView
@@ -55,12 +61,12 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
     
         // Find the associated User
-        let user:UserProfile = newMatches[indexPath.row]
+        let user:UserProfile = Array(matches.keys)[indexPath.row]
+        let userImage:MatchesImage = matches[user]!
         
         // Update the cell information with this user's info
         cell.nameLabel.text = user.firstName
-        let imageUrl = user.imageURL
-        cell.image.load(fromURL: imageUrl)
+        cell.image.image = userImage.image
         
         return cell as UICollectionViewCell
     }
@@ -75,13 +81,13 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
         // Find the associated User
-        let user:UserProfile = newMatches[indexPath.row]
+        let user:UserProfile = Array(matches.keys)[0]
+        let userImage:MatchesImage = matches[user]!
         
         // Send over information about the user selected
         destination.userProfile = user
         destination.userName = user.firstName
-        // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
-        destination.userImage = user.imageURL as NSURL
+        destination.userImage = userImage
         
         // Present the screen
         self.navigationController?.pushViewController(destination, animated: false)
@@ -146,19 +152,39 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
             UserProfile.getProfile(forUserID: id, completion: { (user) in
                 user.getMatches(completion: { (match) in
                     DispatchQueue.main.async {
-                        self.newMatches.append(match)
-                        //reload data
-                        self.newMatchesCollectionView.reloadData()
+                        // Only add the match if it's not already in global
+                        if matches[match] == nil {
+                            // Create a blank Match Image
+                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                            // Perform promise to ensure picture gets loaded properly
+                            self.matchPicture(url: match.imageURL).done{
+                                matchImage.setMatchesImage(image: $0)
+                                matches[match] =  matchImage
+                                //reload data
+                                self.newMatchesCollectionView.reloadData()
+                            } .catch{ _ in
+                                print("I resulted in an error")
+                            }
+                        }
                     }
                 })
             })
+        }
+    }
+
+    // promise function for obtaining our match image
+    func matchPicture(url: URL) -> Promise<UIImage> {
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: url)
+            }.compactMap {
+                UIImage(data: $0.data)
         }
     }
     
     // If there are no matches, do not show collection view but instead label
     // If there are now matches, show collection view and hide label
     func checkIfNoMatches() {
-        if newMatches.count == 0 {
+        if matches.count == 0 {
             newMatchesCollectionView.alpha = 0
             noMatchAvailLabel.alpha = 1
         } else {

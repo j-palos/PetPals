@@ -28,7 +28,7 @@ class MeetupViewController: UIViewController {
     
     // Variables so this information can be passed in
     var userName = String()
-    var userImage = NSURL(fileURLWithPath: "")
+    var userImage: MatchesImage!
     var userProfile: UserProfile!
     
     // Variable to connect to Overall Matches VC
@@ -39,7 +39,7 @@ class MeetupViewController: UIViewController {
         
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
-        chosenUserImage.load(fromURL: userImage as URL)
+        chosenUserImage.image = userImage.image
         
         // Setup date & time formatters
         dateFormatter.dateFormat = "MM/dd/yyyy"
