@@ -39,6 +39,11 @@ class InvitesTableViewCell: UITableViewCell {
     @IBAction func acceptClicked(_ sender: Any) {
         meetup.accept(completion: { (error) in
         })
+        
+        // Find the associated meetup
+        let (_, userImage):(Meetup, MatchesImage) = inviteMeetups[meetup.id!]!
+        connectedMeetups[meetup.id!] = (meetup, userImage)
+        
         parent.reloadMeetups(meetupToDelete: meetup)
     }
     
