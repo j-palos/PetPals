@@ -22,18 +22,22 @@ class SwipeViewController: UIViewController {
     @IBOutlet var dismissButton: UIButton!
     @IBOutlet var kolodaView: KolodaView!
 
+    
     @IBOutlet var toMatchesButton: UIButton!
     @IBOutlet var popView: MatchPop!
     var gradientLayer: CAGradientLayer!
     var users: [UserProfile] = []
     @IBOutlet var noButton: UIButton!
     @IBOutlet var yesButton: UIButton!
+    
     var theirImage: UIImage = UIImage()
     var myImage: UIImage = UIImage()
+    
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
     var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     // for getting users locations
     var geoFireRef: DatabaseReference?
     var geoFire: GeoFire?
@@ -46,7 +50,10 @@ class SwipeViewController: UIViewController {
 
     @IBAction func didTapGo(_ sender: Any) {
         // it's literally this simple wow
+        popView.isHidden = true
         tabBarController?.selectedIndex = 2
+//        destinatio
+        
     }
 
     override func viewDidLoad() {
@@ -55,11 +62,11 @@ class SwipeViewController: UIViewController {
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { user in
-                self.profile = user
-            })
-        }
+//        if let id = Auth.auth().currentUser?.uid {
+//            UserProfile.getProfile(forUserID: id, completion: { user in
+//                self.profile = user
+//            })
+//        }
 
 
         geoFireRef = Database.database().reference().child("Geolocations")
@@ -140,6 +147,8 @@ class SwipeViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        
+
     }
 
     // Retrieve users within the desired radius of the user
@@ -176,6 +185,7 @@ class SwipeViewController: UIViewController {
             })
         }
     }
+
 
     // show the out of cards image
     private func displayOutOfCards() {
@@ -258,6 +268,8 @@ extension SwipeViewController: KolodaViewDelegate {
         
     }
 
+    
+    
     // pops up the view for our new match
     private func popMatchUp(user: UserProfile) {
         let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
@@ -288,7 +300,9 @@ extension SwipeViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         displayOutOfCards()
     }
-
+    
+    
+    
     // This is just the animation for background card
     func koloda(kolodaBackgroundCardAnimation koloda: KolodaView) -> POPPropertyAnimation? {
         let animation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
