@@ -56,6 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 self.window?.rootViewController = storyBoard.instantiateInitialViewController()
             }
         }
+        if let tabBarController = self.window!.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = 2
+        }
         return true
     }
     

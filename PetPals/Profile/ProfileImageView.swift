@@ -62,6 +62,29 @@ class ProfileImageView: UIImageView {
             }
         }
     }
+    
+    func setImageFromImage(image : UIImage){
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    activityIndicator.startAnimating()
+    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    
+    let leftSpaceConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
+    
+    let topSpaceConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+    
+    let widthConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
+    
+    let heightConstraint = NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20)
+    
+    self.addSubview(activityIndicator)
+    
+    self.addConstraints([leftSpaceConstraint, topSpaceConstraint, widthConstraint, heightConstraint])
+    activityIndicator.stopAnimating()
+        self.image = image
+    }
+    
+    
+    
 }
 
 

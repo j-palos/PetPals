@@ -7,37 +7,77 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class UpcomingDatesViewController: UIViewController {
+class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // Connect necessary fields
-    @IBOutlet weak var firstUpcoming: UIView!
-    @IBOutlet weak var secondUpcoming: UIView!
-    @IBOutlet weak var thirdUpcoming: UIView!
-
+    @IBOutlet weak var tableView: UITableView!
+    
+    // Label to show when no upcoming dates
+    @IBOutlet weak var noDatesLabel: UILabel!
+    
+    // List to contain all connected meetups for this user
+    var connectedMeetups = [Meetup]()
+    
+    // This user's ID to know which user the date is with
+    var thisUser: UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        
+        getMeetups()
     }
     
-    // Depending on which embedded view, send in hard-coded data
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "firstUpcomingIdentifier" {
-            if let firstVC = segue.destination as? SpecificUpcomingDateViewController{
-                firstVC.name = "Emily"
-                firstVC.date = "March 02"
-                firstVC.time = "12 pm"
-            }
-        } else if segue.identifier == "secondUpcomingIdentifier" {
-            if let secondVC = segue.destination as? SpecificUpcomingDateViewController {
-                secondVC.name = "Jeffery"
-                secondVC.date = "March 11"
-                secondVC.time = "12 pm"
-            }
-         } else if segue.identifier == "thirdUpcomingIdentifier" {
-            if let thirdVC = segue.destination as? SpecificUpcomingDateViewController {
-                thirdVC.name = "Leo"
-                thirdVC.date = "March 20"
-                thirdVC.time = "12 pm"
-            }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        checkIfNoMeetups()
+        return connectedMeetups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UpcomingDateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "upcomingDateTableViewCellIdentifier", for: indexPath as IndexPath) as! UpcomingDateTableViewCell
+        let currDate = connectedMeetups[indexPath.row]
+        
+        let otherUser: UserProfile!
+        if currDate.fromUser != thisUser {
+            otherUser = currDate.fromUser
+        } else {
+            otherUser = currDate.toUser
+        }
+        
+        cell.nameLabel.text = otherUser.firstName
+        cell.dateLabel.text = currDate.date
+        cell.timeLabel.text = currDate.time
+        
+        return cell
+    }
+    
+    // Call database and update list of connected meetups
+    func getMeetups() {
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                self.thisUser = user
+                user.getMeetups(withType: .connected, completion: { (meetup) in
+                    DispatchQueue.main.async {
+                        self.connectedMeetups.append(meetup)
+                        self.tableView.reloadData()
+                    }
+                })
+            })
+        }
+    }
+    
+    // If there are no upcoming meetups, do not show table view but instead label
+    // If there are now meetups, show table view and hide label
+    func checkIfNoMeetups() {
+        if connectedMeetups.count == 0 {
+            noDatesLabel.alpha = 1
+        } else {
+            noDatesLabel.alpha = 0
         }
     }
 
