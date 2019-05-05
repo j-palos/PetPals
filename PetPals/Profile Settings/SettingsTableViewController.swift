@@ -86,7 +86,6 @@ class SettingsTableViewController: UITableViewController {
     
     // Update discoverable depending on value of switch
     @IBAction func discovarableSwitched(_ sender: Any) {
-        print("before update : \(profile?.active)")
         //save value to the database
         profile?.active = discoverableSwitch.isOn
         profile?.update(completion: { success in
@@ -95,7 +94,6 @@ class SettingsTableViewController: UITableViewController {
                 self.alertError(message: "We were unable to update your active status")
             }
         })
-        print("after update : \(profile?.active)")
     }
     
     // Update User Default of notification for new match depending on value of switch

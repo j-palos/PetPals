@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Foundation
 import GeoFire
+import PromiseKit
 
 class UserProfile: NSObject {
     var id: String
@@ -18,22 +19,12 @@ class UserProfile: NSObject {
     var firstName: String
     var bio: String
     var imageURL: URL
+    var image: UIImage
     var petType: String
     var location: CLLocation?
     var active: Bool
     
-//    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, active: Bool) {
-//        self.bio = bio
-//        self.id = id
-//        self.imageURL = profilePic
-//        self.petType = petType
-//        self.lastName = lastName
-//        self.firstName = firstName
-//        self.location = nil
-//        self.active = active
-//    }
-    
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool) {
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool, image: UIImage) {
         self.bio = bio
         self.id = id
         self.imageURL = profilePic
@@ -42,6 +33,7 @@ class UserProfile: NSObject {
         self.firstName = firstName
         self.location = location
         self.active = active
+        self.image = image
     }
     
     class func registerUser(email: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
@@ -169,7 +161,11 @@ class UserProfile: NSObject {
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
                 let isActive = data["is_active"] as! Bool
-                print("load: \(isActive)")
+                var image:UIImage?
+                //load image
+                avatar(url:link).done{
+                    image = $0
+                
                 
                 //load location
                 //Geofire references
@@ -185,13 +181,13 @@ class UserProfile: NSObject {
                         //load data into the global user profile
                         user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
                                                id: uid, profilePic: link, petType: pettype,
-                                               location: location!, active: isActive)
+                                               location: location!, active: isActive, image: image!)
                     } else {
                         print("GeoFire does not contain a location for \(uid)")
                     }
                     completion(user!)
                 })
-                
+                }
             }
         })
     }
@@ -205,28 +201,6 @@ class UserProfile: NSObject {
         let distance = myLocation.distance(from: userLocation) * 0.000621371
         return Int(round(distance))
     }
-    
-//    class func getAllUsers(exceptID: String, completion: @escaping (UserProfile) -> Swift.Void) {
-//        Database.database().reference().child("Users").observe(.childAdded, with: { snapshot in
-//            let id = snapshot.key
-//            let snap = snapshot.value as! [String: Any]
-//            let data = snap["user_details"] as! [String: Any]
-//
-//            if id != exceptID && data["is_active"] as! Bool == true {
-//
-//                let bio = data["bio"] as! String
-//                let firstname = data["first_name"] as! String
-//                let lastname = data["last_name"] as! String
-//                let link = URL(string: data["profile_pic_url"] as! String)!
-//                let pettype = data["pet_type"] as! String
-//                let isActive = data["is_active"] as! Bool
-//
-//                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-//                                       id: id, profilePic: link, petType: pettype, active: isActive)
-//                completion(user)
-//            }
-//        })
-//    }
     
     class func getAllUsersWithinRadius(geoQuery: GFQuery?, completion: @escaping (UserProfile) -> Swift.Void) {
         let userid = Auth.auth().currentUser!.uid
@@ -256,12 +230,17 @@ class UserProfile: NSObject {
                                 let lastname = data["last_name"] as! String
                                 let link = URL(string: data["profile_pic_url"] as! String)!
                                 let isActive = data["is_active"] as! Bool
+                                var image:UIImage?
+                                //load image
+                                avatar(url:link).done{
+                                    image = $0
+                                
                                 
                                 let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                       id: key!, profilePic: link, petType: pettype, location: location, active: isActive)
+                                                       id: key!, profilePic: link, petType: pettype, location: location, active: isActive, image: image!)
                                 completion(user)
                             }
-                            
+                            }
                         }
                     })
                     }
@@ -329,7 +308,6 @@ class UserProfile: NSObject {
                       "profile_pic_url": self.imageURL.absoluteString,
                       "pet_type": self.petType,
                       "is_active": self.active] as [String : Any]
-        print("update: \(self.active)")
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
             
@@ -492,6 +470,15 @@ class UserProfile: NSObject {
         
         Meetup(location: loc, date: date, time: time, from: self, with: user).suggest { (error) in
             completion(error)
+        }
+    }
+    
+    // promise function for obtaining our card avatage image
+    static func avatar(url: URL) -> Promise<UIImage> {
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: url)
+            }.compactMap {
+                UIImage(data: $0.data)
         }
     }
     

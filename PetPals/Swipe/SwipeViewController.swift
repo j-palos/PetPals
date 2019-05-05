@@ -22,6 +22,7 @@ class SwipeViewController: UIViewController {
     @IBOutlet var dismissButton: UIButton!
     @IBOutlet var kolodaView: KolodaView!
 
+    
     @IBOutlet var toMatchesButton: UIButton!
     @IBOutlet var popView: MatchPop!
     var gradientLayer: CAGradientLayer!
@@ -32,7 +33,7 @@ class SwipeViewController: UIViewController {
     var myImage: UIImage = UIImage()
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
-    var profile: UserProfile?
+//    var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
     // for getting users locations
     var geoFireRef: DatabaseReference?
@@ -55,11 +56,11 @@ class SwipeViewController: UIViewController {
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { user in
-                self.profile = user
-            })
-        }
+//        if let id = Auth.auth().currentUser?.uid {
+//            UserProfile.getProfile(forUserID: id, completion: { user in
+//                self.profile = user
+//            })
+//        }
 
 
         geoFireRef = Database.database().reference().child("Geolocations")
