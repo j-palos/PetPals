@@ -44,6 +44,8 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var invitesTableViewCellIdentifier = "invitesTableViewCellIdentifier"
     
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,9 +60,22 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if inviteMeetups.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMeetups()
+                }
+            }
+        }
+    }
+    
     // Required function for tableView; Number of Rows equals number of Invites Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        checkIfNoMeetups()
+        checkIfUpdate()
         return inviteMeetups.count
     }
     
@@ -110,4 +125,11 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func checkIfUpdate() {
+        if noAvailInvLabel.alpha == 1 {
+            if inviteMeetups.count > 0 {
+                noAvailInvLabel.alpha = 0
+            }
+        }
+    }
 }

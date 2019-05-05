@@ -61,6 +61,8 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Connect the collection view for New Matches
     @IBOutlet weak var newMatchesCollectionView: UICollectionView!
     
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     // Set colors for text
     let blueColor:UIColor = UIColor(red: 0.44, green:0.78, blue:0.78, alpha: 1)
     let grayColor:UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
@@ -75,9 +77,22 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.newMatchesCollectionView.reloadData()
     }
     
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if matches.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMatches()
+                }
+            }
+        }
+    }
+    
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        checkIfNoMatches()
+        checkIfUpdate()
         return matches.count
     }
     
@@ -183,6 +198,14 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         } else {
             newMatchesCollectionView.alpha = 1
             noMatchAvailLabel.alpha = 0
+        }
+    }
+    
+    func checkIfUpdate() {
+        if noMatchAvailLabel.alpha == 1 {
+            if matches.count > 0 {
+                noMatchAvailLabel.alpha = 0
+            }
         }
     }
     

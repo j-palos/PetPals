@@ -44,6 +44,8 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var pendingTableViewCellIdentifier = "pendingTableViewCellIdentifier"
     
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,9 +60,22 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if pendingMeetups.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMeetups()
+                }
+            }
+        }
+    }
+    
     // Required function for tableView; Number of Rows equals number of Pending Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        checkIfNoMeetups()
+        checkIfUpdate()
         return pendingMeetups.count
     }
     
@@ -108,6 +123,14 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             tableView.alpha = 1
             noAvailPendLabel.alpha = 0
+        }
+    }
+    
+    func checkIfUpdate() {
+        if noAvailPendLabel.alpha == 1 {
+            if pendingMeetups.count > 0 {
+                noAvailPendLabel.alpha = 0
+            }
         }
     }
 

@@ -9,22 +9,24 @@
 import UIKit
 import FirebaseAuth
 
+var thisUser: UserProfile?
+
 // Call database and update list of connected meetups
 func getConnected() {
     if let id = Auth.auth().currentUser?.uid {
         UserProfile.getProfile(forUserID: id, completion: { (user) in
+            thisUser = user
             user.getMeetups(withType: .connected, completion: { (meetup) in
                 DispatchQueue.main.async {
                     if connectedMeetups[meetup.id!] == nil {
                         let otherUser: UserProfile!
                         // Determine who the other user is
                         // compare to global for this user
-//                        if meetup.fromUser != thisUser {
-//                            otherUser = meetup.fromUser
-//                        } else {
-//                            otherUser = meetup.toUser
-//                        }
-                        otherUser = meetup.fromUser
+                        if meetup.fromUser.id != user.id {
+                            otherUser = meetup.fromUser
+                        } else {
+                            otherUser = meetup.toUser
+                        }
                         
                         // Create a blank Match Image
                         let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
@@ -57,9 +59,10 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // This user's ID to know which user the date is with
     var thisUser: UserProfile?
     
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         // Set delegate & data source for tableView
         tableView.delegate = self
@@ -72,9 +75,22 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         self.tableView.reloadData()
     }
     
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if connectedMeetups.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMeetups()
+                }
+            }
+        }
+    }
+    
     // Required function for tableView; Number of Rows equals number of Connected Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        checkIfNoMeetups()
+        checkIfUpdate()
         return connectedMeetups.count
     }
     
@@ -118,6 +134,14 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             tableView.alpha = 1
             noAvailConLabel.alpha = 0
+        }
+    }
+    
+    func checkIfUpdate() {
+        if noAvailConLabel.alpha == 1 {
+            if connectedMeetups.count > 0 {
+                noAvailConLabel.alpha = 0
+            }
         }
     }
 
