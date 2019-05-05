@@ -16,6 +16,9 @@ import UIKit
 let mainVCAfterAuthIdentifier = "Home"
 let createProfileVCIdenfifier = "CreateProfile"
 
+//global user profile
+var profile : UserProfile?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?

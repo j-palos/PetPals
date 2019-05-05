@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftOverlays
+import FirebaseAuth
 
 class SettingsTableViewController: UITableViewController {
     
@@ -25,8 +26,17 @@ class SettingsTableViewController: UITableViewController {
     // Connect to User Defaults
     let usrDefaults:UserDefaults = UserDefaults.standard
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //load user profile
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                profile = user
+            })
+        }
         
         // Update all settings from the User Defaults
         if usrDefaults.object(forKey: "distance") as? Int != nil {
@@ -35,10 +45,10 @@ class SettingsTableViewController: UITableViewController {
             distanceSlider.setValue(Float(distance), animated: false)
         }
         
-        if usrDefaults.object(forKey: "discoverable") as? Bool != nil {
-            let discoverable = UserDefaults.standard.value(forKey: "discoverable") as! Bool
-            discoverableSwitch.setOn(discoverable, animated: false)
-        }
+        // Update discoverable switch based on database
+            let discoverable = profile?.active
+        discoverableSwitch.setOn(discoverable!, animated: false)
+        
         
         if usrDefaults.object(forKey: "notifyNewMatch") as? Bool != nil {
             let notifyNewMatch = UserDefaults.standard.value(forKey: "notifyNewMatch") as! Bool
@@ -70,11 +80,27 @@ class SettingsTableViewController: UITableViewController {
         // If select a row, automatically deselect it
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    // Display error message
+    private func alertError(message: String) {
+        let alertController = UIAlertController(title: "An Error Occured", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     // Update User Default of discoverable depending on value of switch
     @IBAction func discovarableSwitched(_ sender: Any) {
         let result = discoverableSwitch.isOn
         usrDefaults.set(result, forKey: "discoverable")
+        //save value to the database
+        profile?.active = discoverableSwitch.isOn
+        profile?.update(completion: { success in
+            if !success {
+                //error occured
+                self.alertError(message: "We were unable to update your active status")
+            }
+        })
     }
     
     // Update User Default of notification for new match depending on value of switch

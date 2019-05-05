@@ -431,7 +431,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date_oval" translatesAutoresizingMaskIntoConstraints="NO" id="KPI-hl-tpb">
-                                                            <rect key="frame" x="50" y="16" width="16" height="16"/>
+                                                            <rect key="frame" x="54" y="16" width="8" height="8"/>
                                                             <color key="tintColor" name="PetPalDarkBlue"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkc-Lt-blL">

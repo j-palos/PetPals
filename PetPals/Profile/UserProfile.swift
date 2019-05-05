@@ -20,8 +20,9 @@ class UserProfile: NSObject {
     var imageURL: URL
     var petType: String
     var location: CLLocation?
+    var active: Bool
     
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String) {
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, active: Bool) {
         self.bio = bio
         self.id = id
         self.imageURL = profilePic
@@ -29,9 +30,10 @@ class UserProfile: NSObject {
         self.lastName = lastName
         self.firstName = firstName
         self.location = nil
+        self.active = active
     }
     
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation) {
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool) {
         self.bio = bio
         self.id = id
         self.imageURL = profilePic
@@ -39,6 +41,7 @@ class UserProfile: NSObject {
         self.lastName = lastName
         self.firstName = firstName
         self.location = location
+        self.active = active
     }
     
     class func registerUser(email: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
@@ -161,9 +164,10 @@ class UserProfile: NSObject {
                 let lastname = data["last_name"] as! String
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
+                let isActive = data["is_active"] as! Bool
                 
                 let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                       id: uid, profilePic: link, petType: pettype)
+                                       id: uid, profilePic: link, petType: pettype, active: isActive)
                 completion(user)
             }
         })
@@ -192,9 +196,10 @@ class UserProfile: NSObject {
                 let lastname = data["last_name"] as! String
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
+                let isActive = data["is_active"] as! Bool
             
                 let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                       id: id, profilePic: link, petType: pettype)
+                                       id: id, profilePic: link, petType: pettype, active: isActive)
                 completion(user)
             }
         })
@@ -227,9 +232,10 @@ class UserProfile: NSObject {
                                 let firstname = data["first_name"] as! String
                                 let lastname = data["last_name"] as! String
                                 let link = URL(string: data["profile_pic_url"] as! String)!
+                                let isActive = data["is_active"] as! Bool
                                 
                                 let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                       id: key!, profilePic: link, petType: pettype, location: location)
+                                                       id: key!, profilePic: link, petType: pettype, location: location, active: isActive)
                                 completion(user)
                             }
                             
@@ -299,7 +305,7 @@ class UserProfile: NSObject {
                       "last_name": self.lastName,
                       "profile_pic_url": self.imageURL.absoluteString,
                       "pet_type": self.petType,
-                      "is_active": true] as [String : Any]
+                      "is_active": self.active] as [String : Any]
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
             
@@ -333,7 +339,7 @@ class UserProfile: NSObject {
                                   "last_name": self.lastName,
                                   "profile_pic_url": path,
                                   "pet_type": self.petType,
-                                  "is_active": true] as [String : Any]
+                                  "is_active": self.active] as [String : Any]
                     let usersRef = Database.database().reference().child("Users")
                     usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
                         
