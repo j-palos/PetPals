@@ -9,6 +9,30 @@
 import UIKit
 import FirebaseAuth
 
+// Call database and update list of pending meetups
+func getPending() {
+    if let id = Auth.auth().currentUser?.uid {
+        UserProfile.getProfile(forUserID: id, completion: { (user) in
+            user.getMeetups(withType: .pending, completion: { (meetup) in
+                DispatchQueue.main.async {
+                    if pendingMeetups[meetup.id!] == nil {
+                        let otherUser = meetup.toUser
+                        // Create a blank Match Image
+                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                        // Perform promise to ensure picture gets loaded properly
+                        matchPicture(url: otherUser.imageURL).done {
+                            matchImage.setMatchesImage(image: $0)
+                            pendingMeetups[meetup.id!] =  (meetup, matchImage)
+                            } .catch { _ in
+                                print("I resulted in an error")
+                        }
+                    }
+                }
+            })
+        })
+    }
+}
+
 class PendingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Connect to tableView
@@ -29,6 +53,9 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Get pending meetups
         getPending()
+        
+        //reload data
+        self.tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Pending Users
@@ -64,32 +91,6 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Don't allow users to click on cells
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
-    }
-    
-    // Call database and update list of pending meetups
-    func getPending() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.getMeetups(withType: .pending, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        if pendingMeetups[meetup.id!] == nil {
-                            let otherUser = meetup.toUser
-                            // Create a blank Match Image
-                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                            // Perform promise to ensure picture gets loaded properly
-                            matchPicture(url: otherUser.imageURL).done {
-                                matchImage.setMatchesImage(image: $0)
-                                pendingMeetups[meetup.id!] =  (meetup, matchImage)
-                                //reload data
-                                self.tableView.reloadData()
-                                } .catch { _ in
-                                    print("I resulted in an error")
-                            }
-                        }
-                    }
-                })
-            })
-        }
     }
     
     // Reload when a meetup is canceled

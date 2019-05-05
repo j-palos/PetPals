@@ -9,6 +9,40 @@
 import UIKit
 import FirebaseAuth
 
+// Call database and update list of connected meetups
+func getConnected() {
+    if let id = Auth.auth().currentUser?.uid {
+        UserProfile.getProfile(forUserID: id, completion: { (user) in
+            user.getMeetups(withType: .connected, completion: { (meetup) in
+                DispatchQueue.main.async {
+                    if connectedMeetups[meetup.id!] == nil {
+                        let otherUser: UserProfile!
+                        // Determine who the other user is
+                        // compare to global for this user
+//                        if meetup.fromUser != thisUser {
+//                            otherUser = meetup.fromUser
+//                        } else {
+//                            otherUser = meetup.toUser
+//                        }
+                        otherUser = meetup.fromUser
+                        
+                        // Create a blank Match Image
+                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                        // Perform promise to ensure picture gets loaded properly
+                        matchPicture(url: otherUser.imageURL).done {
+                            matchImage.setMatchesImage(image: $0)
+                            connectedMeetups[meetup.id!] =  (meetup, matchImage)
+                            } .catch { _ in
+                                print("I resulted in an error")
+                        }
+                    }
+                }
+            })
+        })
+    }
+}
+
+
 class ConnectedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Connect to tableView
@@ -33,6 +67,9 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Get connected meetups
         getConnected()
+        
+        //reload data
+        self.tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Connected Users
@@ -70,40 +107,6 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
     // Don't allow users to click on cells
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
-    }
-    
-    // Call database and update list of connected meetups
-    func getConnected() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                self.thisUser = user
-                user.getMeetups(withType: .connected, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        if connectedMeetups[meetup.id!] == nil {
-                            let otherUser: UserProfile!
-                            // Determine who the other user is
-                            if meetup.fromUser != self.thisUser {
-                                otherUser = meetup.fromUser
-                            } else {
-                                otherUser = meetup.toUser
-                            }
-                            
-                            // Create a blank Match Image
-                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                            // Perform promise to ensure picture gets loaded properly
-                            matchPicture(url: otherUser.imageURL).done {
-                                matchImage.setMatchesImage(image: $0)
-                                connectedMeetups[meetup.id!] =  (meetup, matchImage)
-                                //reload data
-                                self.tableView.reloadData()
-                            } .catch { _ in
-                                print("I resulted in an error")
-                            }
-                        }
-                    }
-                })
-            })
-        }
     }
     
     // If there are no meetups, do not show table view but instead label

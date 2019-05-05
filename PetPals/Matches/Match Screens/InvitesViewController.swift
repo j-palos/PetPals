@@ -9,6 +9,30 @@
 import UIKit
 import FirebaseAuth
 
+// Call database and update list of invite meetups
+func getInvites() {
+    if let id = Auth.auth().currentUser?.uid {
+        UserProfile.getProfile(forUserID: id, completion: { (user) in
+            user.getMeetups(withType: .invites, completion: { (meetup) in
+                DispatchQueue.main.async {
+                    if inviteMeetups[meetup.id!] == nil {
+                        let otherUser = meetup.fromUser
+                        // Create a blank Match Image
+                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                        // Perform promise to ensure picture gets loaded properly
+                        matchPicture(url: otherUser.imageURL).done {
+                            matchImage.setMatchesImage(image: $0)
+                            inviteMeetups[meetup.id!] =  (meetup, matchImage)
+                            } .catch { _ in
+                                print("I resulted in an error")
+                        }
+                    }
+                }
+            })
+        })
+    }
+}
+
 class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Connect to tableView
@@ -29,6 +53,9 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Get pending meetups
         getInvites()
+        
+        //reload data
+        self.tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Invites Users
@@ -63,32 +90,6 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Don't allow users to click on cells
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
-    }
-    
-    // Call database and update list of invite meetups
-    func getInvites() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.getMeetups(withType: .invites, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        if inviteMeetups[meetup.id!] == nil {
-                            let otherUser = meetup.fromUser
-                            // Create a blank Match Image
-                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                            // Perform promise to ensure picture gets loaded properly
-                            matchPicture(url: otherUser.imageURL).done {
-                                matchImage.setMatchesImage(image: $0)
-                                inviteMeetups[meetup.id!] =  (meetup, matchImage)
-                                //reload data
-                                self.tableView.reloadData()
-                                } .catch { _ in
-                                    print("I resulted in an error")
-                            }
-                        }
-                    }
-                })
-            })
-        }
     }
     
     // Reload when a meetup is declined or accepted

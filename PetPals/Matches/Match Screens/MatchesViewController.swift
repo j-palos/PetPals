@@ -10,21 +10,36 @@ import UIKit
 import FirebaseAuth
 import PromiseKit
 
-// Global to represent all the meetups for this user; Caches data locally on load of app
-var connectedMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
-var inviteMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
-var pendingMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesImage)]()
-
-// Global to represent all matches for this user; Caches data locally on load of app
-// Still need to update this as new matches created while in-app
-var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
-
 // promise function for obtaining our match image
 func matchPicture(url: URL) -> Promise<UIImage> {
     return firstly {
         URLSession.shared.dataTask(.promise, with: url)
         }.compactMap {
             UIImage(data: $0.data)
+    }
+}
+
+func getMatches() {
+    if let id = Auth.auth().currentUser?.uid {
+        UserProfile.getProfile(forUserID: id, completion: { (user) in
+            user.getMatches(completion: { (match) in
+                DispatchQueue.main.async {
+                    // Only add the match if it's not already in global
+                    if !matchIDs.contains(match.id) {
+                        matchIDs.insert(match.id)
+                        // Create a blank Match Image
+                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                        // Perform promise to ensure picture gets loaded properly
+                        matchPicture(url: match.imageURL).done{
+                            matchImage.setMatchesImage(image: $0)
+                            matches[match.id] =  (match, matchImage)
+                            } .catch { _ in
+                                print("I resulted in an error")
+                        }
+                    }
+                }
+            })
+        })
     }
 }
 
@@ -55,9 +70,9 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         getMatches()
+        self.newMatchesCollectionView.reloadData()
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
@@ -157,31 +172,6 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         pendingButton.setTitleColor(blueColor, for: .normal)
         connectedButton.setTitleColor(grayColor, for: .normal)
         invitesButton.setTitleColor(grayColor, for: .normal)
-    }
-    
-    func getMatches() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.getMatches(completion: { (match) in
-                    DispatchQueue.main.async {
-                        // Only add the match if it's not already in global
-                        if matches[match.id] == nil {
-                            // Create a blank Match Image
-                            let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                            // Perform promise to ensure picture gets loaded properly
-                            matchPicture(url: match.imageURL).done{
-                                matchImage.setMatchesImage(image: $0)
-                                matches[match.id] =  (match, matchImage)
-                                //reload data
-                                self.newMatchesCollectionView.reloadData()
-                            } .catch{ _ in
-                                print("I resulted in an error")
-                            }
-                        }
-                    }
-                })
-            })
-        }
     }
     
     // If there are no matches, do not show collection view but instead label
