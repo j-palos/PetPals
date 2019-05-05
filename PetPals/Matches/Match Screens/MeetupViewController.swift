@@ -110,13 +110,9 @@ class MeetupViewController: UIViewController {
     
     // Send the sugggested meetup to the database, and then go back to main Matches view
     func suggestMeetup(otherUser: UserProfile, dateGiven: String, timeGiven: String, locationGiven: String) {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.suggestMeetup(withUser: otherUser, onDate: dateGiven, atTime: timeGiven, atLocation: locationGiven, completion: { (error) in
-                        print("Error suggesting meetup")
-                })
-            })
-        }
+        profile!.suggestMeetup(withUser: otherUser, onDate: dateGiven, atTime: timeGiven, atLocation: locationGiven, completion: { (error) in
+            print("Error suggesting meetup")
+        })
     }
     
     private func alertError(message: String) {
