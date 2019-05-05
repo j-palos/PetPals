@@ -20,9 +20,6 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
     // List to contain all connected meetups for this user
     var connectedMeetups = [Meetup]()
     
-    // This user's ID to know which user the date is with
-    var thisUser: UserProfile?
-    
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
     
     override func viewDidLoad() {
@@ -59,7 +56,7 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
         let currDate = connectedMeetups[indexPath.row]
         
         let otherUser: UserProfile!
-        if currDate.fromUser != thisUser {
+        if currDate.fromUser.id != profile!.id {
             otherUser = currDate.fromUser
         } else {
             otherUser = currDate.toUser
@@ -74,17 +71,12 @@ class UpcomingDatesViewController: UIViewController, UITableViewDelegate, UITabl
     
     // Call database and update list of connected meetups
     func getMeetups() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                self.thisUser = user
-                user.getMeetups(withType: .connected, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        self.connectedMeetups.append(meetup)
-                        self.tableView.reloadData()
-                    }
-                })
-            })
-        }
+        profile!.getMeetups(withType: .connected, completion: { (meetup) in
+            DispatchQueue.main.async {
+                self.connectedMeetups.append(meetup)
+                self.tableView.reloadData()
+            }
+        })
     }
     
     // If there are no upcoming meetups, do not show table view but instead label
