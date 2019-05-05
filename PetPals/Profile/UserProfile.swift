@@ -20,18 +20,20 @@ class UserProfile: NSObject {
     var imageURL: URL
     var petType: String
     var location: CLLocation?
+    var active: Bool
     
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String) {
-        self.bio = bio
-        self.id = id
-        self.imageURL = profilePic
-        self.petType = petType
-        self.lastName = lastName
-        self.firstName = firstName
-        self.location = nil
-    }
+//    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, active: Bool) {
+//        self.bio = bio
+//        self.id = id
+//        self.imageURL = profilePic
+//        self.petType = petType
+//        self.lastName = lastName
+//        self.firstName = firstName
+//        self.location = nil
+//        self.active = active
+//    }
     
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation) {
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool) {
         self.bio = bio
         self.id = id
         self.imageURL = profilePic
@@ -39,6 +41,7 @@ class UserProfile: NSObject {
         self.lastName = lastName
         self.firstName = firstName
         self.location = location
+        self.active = active
     }
     
     class func registerUser(email: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
@@ -70,7 +73,7 @@ class UserProfile: NSObject {
                                   "last_name": last,
                                   "profile_pic_url": path,
                                   "pet_type": pet,
-                                  "is_active": true] as [String: Any]
+                                  "is_active": true] as [String: Any] //active is true by default
                     let usersRef = Database.database().reference().child("Users")
                     usersRef.child(uid).child("user_details").updateChildValues(values, withCompletionBlock: { err, _ in
                         
@@ -157,19 +160,43 @@ class UserProfile: NSObject {
         }
     }
     
+    //TO DO: should really only be called at login and at app load
     class func getProfile(forUserID uid: String, completion: @escaping (UserProfile) -> Swift.Void) {
+        //load values from the database
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(uid).child("user_details").observeSingleEvent(of: .value, with: { snapshot in
             if let data = snapshot.value as? [String: Any] {
+                var user:UserProfile? //will set this variable once all values are loaded in
+                
                 let bio = data["bio"] as! String
                 let firstname = data["first_name"] as! String
                 let lastname = data["last_name"] as! String
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
+                let isActive = data["is_active"] as! Bool
+                print("load: \(isActive)")
                 
-                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                       id: uid, profilePic: link, petType: pettype)
-                completion(user)
+                //load location
+                //Geofire references
+                let geofireRef = Database.database().reference().child("Geolocations")
+                let geoFire = GeoFire(firebaseRef: geofireRef)
+                geoFire.getLocationForKey(uid, withCallback: { (location: CLLocation?, error: Error?) in
+                    if let error = error {
+                        print("An error occurred getting the location for \(uid): \(error.localizedDescription)")
+                        return
+                    }
+                    if location != nil{
+                        print("Location for \(uid) is [\(location!.coordinate.latitude), \(location!.coordinate.longitude)]")
+                        //load data into the global user profile
+                        user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                               id: uid, profilePic: link, petType: pettype,
+                                               location: location!, active: isActive)
+                    } else {
+                        print("GeoFire does not contain a location for \(uid)")
+                    }
+                    completion(user!)
+                })
+                
             }
         })
     }
@@ -184,26 +211,27 @@ class UserProfile: NSObject {
         return Int(round(distance))
     }
     
-    class func getAllUsers(exceptID: String, completion: @escaping (UserProfile) -> Swift.Void) {
-        Database.database().reference().child("Users").observe(.childAdded, with: { snapshot in
-            let id = snapshot.key
-            let snap = snapshot.value as! [String: Any]
-            let data = snap["user_details"] as! [String: Any]
-
-            if id != exceptID && data["is_active"] as! Bool == true {
-
-                let bio = data["bio"] as! String
-                let firstname = data["first_name"] as! String
-                let lastname = data["last_name"] as! String
-                let link = URL(string: data["profile_pic_url"] as! String)!
-                let pettype = data["pet_type"] as! String
-            
-                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                       id: id, profilePic: link, petType: pettype)
-                completion(user)
-            }
-        })
-    }
+//    class func getAllUsers(exceptID: String, completion: @escaping (UserProfile) -> Swift.Void) {
+//        Database.database().reference().child("Users").observe(.childAdded, with: { snapshot in
+//            let id = snapshot.key
+//            let snap = snapshot.value as! [String: Any]
+//            let data = snap["user_details"] as! [String: Any]
+//
+//            if id != exceptID && data["is_active"] as! Bool == true {
+//
+//                let bio = data["bio"] as! String
+//                let firstname = data["first_name"] as! String
+//                let lastname = data["last_name"] as! String
+//                let link = URL(string: data["profile_pic_url"] as! String)!
+//                let pettype = data["pet_type"] as! String
+//                let isActive = data["is_active"] as! Bool
+//
+//                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+//                                       id: id, profilePic: link, petType: pettype, active: isActive)
+//                completion(user)
+//            }
+//        })
+//    }
     
     class func getAllUsersWithinRadius(geoQuery: GFQuery?, completion: @escaping (UserProfile) -> Swift.Void) {
         let userid = Auth.auth().currentUser!.uid
@@ -232,9 +260,10 @@ class UserProfile: NSObject {
                                 let firstname = data["first_name"] as! String
                                 let lastname = data["last_name"] as! String
                                 let link = URL(string: data["profile_pic_url"] as! String)!
+                                let isActive = data["is_active"] as! Bool
                                 
                                 let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                       id: key!, profilePic: link, petType: pettype, location: location)
+                                                       id: key!, profilePic: link, petType: pettype, location: location, active: isActive)
                                 completion(user)
                             }
                             
@@ -304,7 +333,8 @@ class UserProfile: NSObject {
                       "last_name": self.lastName,
                       "profile_pic_url": self.imageURL.absoluteString,
                       "pet_type": self.petType,
-                      "is_active": true] as [String : Any]
+                      "is_active": self.active] as [String : Any]
+        print("update: \(self.active)")
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
             
@@ -318,7 +348,6 @@ class UserProfile: NSObject {
             }
         })
     }
-    
      //updates the profiles data in database when called, including image
     func update(toHaveImage profilePic: UIImage, completion: @escaping (Bool) -> Swift.Void) {
         let storageRef = Storage.storage().reference().child("usersPics").child(self.id)
@@ -338,7 +367,7 @@ class UserProfile: NSObject {
                                   "last_name": self.lastName,
                                   "profile_pic_url": path,
                                   "pet_type": self.petType,
-                                  "is_active": true] as [String : Any]
+                                  "is_active": self.active] as [String : Any]
                     let usersRef = Database.database().reference().child("Users")
                     usersRef.child(self.id).child("user_details").updateChildValues(values, withCompletionBlock: { (err, _) in
                         

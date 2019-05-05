@@ -27,8 +27,6 @@ class ProfileViewController: UIViewController {
     var imagePicker: UIImagePickerController!
     var count = 0
     
-    var profile : UserProfile?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,19 +36,12 @@ class ProfileViewController: UIViewController {
         self.profilePicture.clipsToBounds = true
 
         // Display this user's information
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                self.profile = user
-                DispatchQueue.main.async {
-                    self.profileName.text = user.firstName
-                    self.profilePetType.text = user.petType
-                    self.profileBio.text = user.bio
-                    
-                    let url = UserDefaults.standard.url(forKey: "profile_image") ?? user.imageURL
-                    self.profilePicture.load(fromURL: url)
-                }
-            })
-        }
+        self.profileName.text = profile?.firstName
+        self.profilePetType.text = profile?.petType
+        self.profileBio.text = profile?.bio
+        
+        let url = profile?.imageURL
+        self.profilePicture.load(fromURL: url!)
         
         // Set up picker
         let picker: UIPickerView
