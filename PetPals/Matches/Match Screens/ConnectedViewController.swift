@@ -13,35 +13,27 @@ var thisUser: UserProfile?
 
 // Call database and update list of connected meetups
 func getConnected() {
-    if let id = Auth.auth().currentUser?.uid {
-        UserProfile.getProfile(forUserID: id, completion: { (user) in
-            thisUser = user
-            user.getMeetups(withType: .connected, completion: { (meetup) in
-                DispatchQueue.main.async {
-                    if connectedMeetups[meetup.id!] == nil {
-                        let otherUser: UserProfile!
-                        // Determine who the other user is
-                        // compare to global for this user
-                        if meetup.fromUser.id != user.id {
-                            otherUser = meetup.fromUser
-                        } else {
-                            otherUser = meetup.toUser
-                        }
-                        
-                        // Create a blank Match Image
-                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                        // Perform promise to ensure picture gets loaded properly
-                        matchPicture(url: otherUser.imageURL).done {
-                            matchImage.setMatchesImage(image: $0)
-                            connectedMeetups[meetup.id!] =  (meetup, matchImage)
-                            } .catch { _ in
-                                print("I resulted in an error")
-                        }
-                    }
+    profile!.getMeetups(withType: .connected, completion: { (meetup) in
+        DispatchQueue.main.async {
+            if connectedMeetups[meetup.id!] == nil {
+                let otherUser: UserProfile!
+                if meetup.fromUser.id != profile!.id {
+                    otherUser = meetup.fromUser
+                } else {
+                    otherUser = meetup.toUser
                 }
-            })
-        })
-    }
+                // Create a blank Match Image
+                let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                // Perform promise to ensure picture gets loaded properly
+                matchPicture(url: otherUser.imageURL).done {
+                    matchImage.setMatchesImage(image: $0)
+                    connectedMeetups[meetup.id!] =  (meetup, matchImage)
+                } .catch { _ in
+                    print("I resulted in an error")
+                }
+            }
+        }
+    })
 }
 
 
@@ -107,7 +99,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.meetup = meetup
         let otherUser: UserProfile!
         // Determine who the other user is
-        if meetup.fromUser != thisUser {
+        if meetup.fromUser.id != profile!.id {
             otherUser = meetup.fromUser
         } else {
             otherUser = meetup.toUser

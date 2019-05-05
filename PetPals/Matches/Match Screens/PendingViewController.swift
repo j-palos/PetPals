@@ -11,26 +11,22 @@ import FirebaseAuth
 
 // Call database and update list of pending meetups
 func getPending() {
-    if let id = Auth.auth().currentUser?.uid {
-        UserProfile.getProfile(forUserID: id, completion: { (user) in
-            user.getMeetups(withType: .pending, completion: { (meetup) in
-                DispatchQueue.main.async {
-                    if pendingMeetups[meetup.id!] == nil {
-                        let otherUser = meetup.toUser
-                        // Create a blank Match Image
-                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                        // Perform promise to ensure picture gets loaded properly
-                        matchPicture(url: otherUser.imageURL).done {
-                            matchImage.setMatchesImage(image: $0)
-                            pendingMeetups[meetup.id!] =  (meetup, matchImage)
-                            } .catch { _ in
-                                print("I resulted in an error")
-                        }
-                    }
+    profile!.getMeetups(withType: .pending, completion: { (meetup) in
+        DispatchQueue.main.async {
+            if pendingMeetups[meetup.id!] == nil {
+                let otherUser = meetup.toUser
+                // Create a blank Match Image
+                let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                // Perform promise to ensure picture gets loaded properly
+                matchPicture(url: otherUser.imageURL).done {
+                    matchImage.setMatchesImage(image: $0)
+                    pendingMeetups[meetup.id!] =  (meetup, matchImage)
+                } .catch { _ in
+                    print("I resulted in an error")
                 }
-            })
-        })
-    }
+            }
+        }
+    })
 }
 
 class PendingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

@@ -20,27 +20,23 @@ func matchPicture(url: URL) -> Promise<UIImage> {
 }
 
 func getMatches() {
-    if let id = Auth.auth().currentUser?.uid {
-        UserProfile.getProfile(forUserID: id, completion: { (user) in
-            user.getMatches(completion: { (match) in
-                DispatchQueue.main.async {
-                    // Only add the match if it's not already in global
-                    if !matchIDs.contains(match.id) {
-                        matchIDs.insert(match.id)
-                        // Create a blank Match Image
-                        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
-                        // Perform promise to ensure picture gets loaded properly
-                        matchPicture(url: match.imageURL).done{
-                            matchImage.setMatchesImage(image: $0)
-                            matches[match.id] =  (match, matchImage)
-                            } .catch { _ in
-                                print("I resulted in an error")
-                        }
-                    }
+    profile!.getMatches(completion: { (match) in
+        DispatchQueue.main.async {
+            // Only add the match if it's not already in global
+            if !matchIDs.contains(match.id) {
+                matchIDs.insert(match.id)
+                // Create a blank Match Image
+                let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                // Perform promise to ensure picture gets loaded properly
+                matchPicture(url: match.imageURL).done{
+                    matchImage.setMatchesImage(image: $0)
+                    matches[match.id] =  (match, matchImage)
+                } .catch { _ in
+                    print("I resulted in an error")
                 }
-            })
-        })
-    }
+            }
+        }
+    })
 }
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
