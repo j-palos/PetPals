@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -203,8 +203,8 @@
                                     <constraint firstItem="Cju-fN-6z5" firstAttribute="top" secondItem="0VW-in-68d" secondAttribute="topMargin" id="wVL-Ic-yFt"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
-                                <rect key="frame" x="16" y="77" width="95.666666666666671" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRQ-8Y-aeZ">
+                                <rect key="frame" x="16.000000000000004" y="77" width="59.333333333333343" height="16"/>
                                 <color key="tintColor" name="PetPalDarkBlue"/>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="16"/>
                                 <color key="textColor" name="PetPalDarkBlue"/>
@@ -1106,7 +1106,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-dQ-4b5">
-                                                    <rect key="frame" x="88" y="11" width="150" height="21"/>
+                                                    <rect key="frame" x="88" y="10.999999999999998" width="150" height="21.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="iYp-aq-tBv"/>
                                                     </constraints>
@@ -1120,7 +1120,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4b-Hz-mJx">
-                                                    <rect key="frame" x="87.999999999999986" y="32" width="145.66666666666663" height="17"/>
+                                                    <rect key="frame" x="87.999999999999986" y="32.333333333333336" width="145.66666666666663" height="17"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Meetup Information">
                                                             <attributes>
@@ -1132,7 +1132,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-4b-DEz">
-                                                    <rect key="frame" x="88" y="50" width="63.333333333333343" height="17"/>
+                                                    <rect key="frame" x="88" y="50.333333333333336" width="63.333333333333343" height="17.000000000000007"/>
                                                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                                                     <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1354,7 +1354,7 @@
         <image name="Matches_Cancel" width="27" height="28"/>
         <image name="arrow-point-to-left" width="32" height="32"/>
         <image name="arrow-point-to-right" width="32" height="32"/>
-        <image name="calendar-bar" width="25" height="25"/>
+        <image name="calendar-bar" width="25.333333969116211" height="25.333333969116211"/>
         <image name="date_oval" width="8" height="8"/>
         <namedColor name="PetPalDarkBlue">
             <color red="0.44313725490196076" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
