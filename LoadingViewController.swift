@@ -15,8 +15,6 @@ class LoadingViewController: UIViewController {
     
     @IBOutlet weak var circle: UIImageView!
     
-    //    var window: UIWindow?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIView.animate(withDuration: 4.0, animations: { () -> Void in

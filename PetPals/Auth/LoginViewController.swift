@@ -38,6 +38,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         UserProfile.loginUser(withEmail: email, password: password) { (error, nextVC) in
             
             if error == nil {
+                //load user profile
+                if let id = Auth.auth().currentUser?.uid {
+                    UserProfile.getProfile(forUserID: id, completion: { (user) in
+                        profile = user
+                    })
+                }
                 self.present(nextVC!, animated: true, completion: nil)
             }
             else {
