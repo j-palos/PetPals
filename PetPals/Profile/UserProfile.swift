@@ -13,6 +13,17 @@ import Foundation
 import GeoFire
 import PromiseKit
 
+struct CustomError : LocalizedError {
+    var errorDescription: String? { return errorMsg }
+    var failureReason: String? { return errorMsg }
+
+    private var errorMsg : String
+    
+    init(_ description: String) {
+        errorMsg = description
+    }
+}
+
 class UserProfile: NSObject {
     var id: String
     var lastName: String
@@ -23,8 +34,9 @@ class UserProfile: NSObject {
     var petType: String
     var location: CLLocation?
     var active: Bool
-    
-    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool, image: UIImage) {
+    var deleted: Bool
+
+    init(bio: String, firstName: String, lastName: String, id: String, profilePic: URL, petType: String, location: CLLocation, active: Bool, deleted: Bool, image: UIImage) {
         self.bio = bio
         self.id = id
         self.imageURL = profilePic
@@ -32,8 +44,10 @@ class UserProfile: NSObject {
         self.lastName = lastName
         self.firstName = firstName
         self.location = location
-        self.active = active
         self.image = image
+        self.active = active
+        self.deleted = deleted
+    
     }
     
     class func registerUser(email: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
@@ -65,9 +79,11 @@ class UserProfile: NSObject {
                                   "last_name": last,
                                   "profile_pic_url": path,
                                   "pet_type": pet,
-                                  "is_active": true] as [String: Any] //active is true by default
+                                  "is_active": true,
+                                  "is_deleted": false] as [String: Any]
                     let usersRef = Database.database().reference().child("Users")
-                    usersRef.child(uid).child("user_details").updateChildValues(values, withCompletionBlock: { err, _ in
+                    let userDetailsRef = usersRef.child(uid).child("user_details")
+                    userDetailsRef.updateChildValues(values, withCompletionBlock: { err, _ in
                         
                         if err == nil {
                             completion(true)
@@ -83,33 +99,74 @@ class UserProfile: NSObject {
         }
     }
     
-    class func checkIfProfileCreated(forUserWithId uid: String, completion: @escaping (Error?, UIViewController?) -> Swift.Void) {
+    class func checkIfProfileCreated(forUserWithId uid: String, completion: @escaping (Error?, UserProfile?, UIViewController?) -> Swift.Void) {
         let usersRef = Database.database().reference().child("Users")
         usersRef.child(uid).child("user_details").observeSingleEvent(of: .value, with: { snapshot in
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var viewController: UIViewController
             if !snapshot.exists() {
                 viewController = storyboard.instantiateViewController(withIdentifier: createProfileVCIdenfifier)
+                completion(nil, nil, viewController)
             }
             else {
+                viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
                 if let data = snapshot.value as? [String: Any] {
                     let usrDefaults: UserDefaults = .standard
                     let url = data["profile_pic_url"] as! String
                     usrDefaults.set(URL(string: url), forKey: "profile_image")
+                    
+                    var user:UserProfile? //will set this variable once all values are loaded in
+                    
+                    let bio = data["bio"] as! String
+                    let firstname = data["first_name"] as! String
+                    let lastname = data["last_name"] as! String
+                    let link = URL(string: data["profile_pic_url"] as! String)!
+                    let pettype = data["pet_type"] as! String
+                    let isActive = data["is_active"] as! Bool
+                    var deleted = false
+                    if let is_deleted = data["is_deleted"] as! Bool? {
+                        deleted = is_deleted
+                    }
+                    var image:UIImage?
+                    //load image
+                    avatar(url:link).done {
+                        image = $0
+                        
+                        //load location
+                        //Geofire references
+                        let geofireRef = Database.database().reference().child("Geolocations")
+                        let geoFire = GeoFire(firebaseRef: geofireRef)
+                        geoFire.getLocationForKey(uid, withCallback: { (location: CLLocation?, error: Error?) in
+                            if let error = error {
+                                print("An error occurred getting the location for \(uid): \(error.localizedDescription)")
+                                completion(error, nil, viewController)
+                                return
+                            }
+                            if location != nil {
+                                print("Location for \(uid) is [\(location!.coordinate.latitude), \(location!.coordinate.longitude)]")
+                                //load data into the global user profile
+                                user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                                   id: uid, profilePic: link, petType: pettype,
+                                                   location: location!, active: isActive, deleted: deleted, image: image!)
+                                completion(nil, user, viewController)
+                            } else {
+                                print("GeoFire does not contain a location for \(uid)")
+                                completion(nil, nil, viewController)
+                            }
+                        })
+                    }
                 }
-                viewController = storyboard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
             }
-            
-            completion(nil, viewController as UIViewController)
         }) { error in
-            completion(error, nil)
+            completion(error, nil, nil)
         }
     }
     
     class func loginUser(withEmail: String, password: String, completion: @escaping (Error?, UIViewController?) -> Swift.Void) {
         Auth.auth().signIn(withEmail: withEmail, password: password, completion: { user, error in
             if error == nil, let user = user?.user {
-                UserProfile.checkIfProfileCreated(forUserWithId: user.uid, completion: { err, nextVC in
+                UserProfile.checkIfProfileCreated(forUserWithId: user.uid, completion: { err, currentUser, nextVC in
+                    profile = currentUser
                     completion(err, nextVC)
                 })
             }
@@ -126,7 +183,8 @@ class UserProfile: NSObject {
             }
             if let user = user?.user {
                 UserDefaults.standard.set(user.uid, forKey: "user_uid")
-                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, nextVC in
+                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, currentUser, nextVC in
+                    profile = currentUser
                     completion(error, nextVC)
                 }
             }
@@ -161,33 +219,38 @@ class UserProfile: NSObject {
                 let link = URL(string: data["profile_pic_url"] as! String)!
                 let pettype = data["pet_type"] as! String
                 let isActive = data["is_active"] as! Bool
+                var deleted = false
+                if let is_deleted = data["is_deleted"] as! Bool? {
+                    deleted = is_deleted
+                }
                 var image:UIImage?
                 //load image
-                avatar(url:link).done{
+                avatar(url:link).done {
                     image = $0
-                
-                
-                //load location
-                //Geofire references
-                let geofireRef = Database.database().reference().child("Geolocations")
-                let geoFire = GeoFire(firebaseRef: geofireRef)
-                geoFire.getLocationForKey(uid, withCallback: { (location: CLLocation?, error: Error?) in
-                    if let error = error {
-                        print("An error occurred getting the location for \(uid): \(error.localizedDescription)")
-                        return
-                    }
-                    if location != nil{
-                        print("Location for \(uid) is [\(location!.coordinate.latitude), \(location!.coordinate.longitude)]")
-                        //load data into the global user profile
-                        user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                    
+                    //load location
+                    //Geofire references
+                    let geofireRef = Database.database().reference().child("Geolocations")
+                    let geoFire = GeoFire(firebaseRef: geofireRef)
+                    geoFire.getLocationForKey(uid, withCallback: { (location: CLLocation?, error: Error?) in
+                        if let error = error {
+                            print("An error occurred getting the location for \(uid): \(error.localizedDescription)")
+                            return
+                        }
+                        if location != nil{
+                            print("Location for \(uid) is [\(location!.coordinate.latitude), \(location!.coordinate.longitude)]")
+                            //load data into the global user profile
+                            user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
                                                id: uid, profilePic: link, petType: pettype,
-                                               location: location!, active: isActive, image: image!)
-                    } else {
-                        print("GeoFire does not contain a location for \(uid)")
-                    }
-                    completion(user!)
-                })
+                                               location: location!, active: isActive, deleted: deleted, image: image!)
+                            completion(user!)
+                        } else {
+                            print("GeoFire does not contain a location for \(uid)")
+                        }
+                    })
                 }
+                
+                
             }
         })
     }
@@ -220,28 +283,32 @@ class UserProfile: NSObject {
                             let data = snapshot.value as! [String: Any]
                             
                             let pettype = data["pet_type"] as! String
-                            let active = data["is_active"] as! Bool
+                            let isActive = data["is_active"] as! Bool
+                            var deleted = false
+                            if let isDeleted = data["is_deleted"] as! Bool? {
+                                deleted = isDeleted
+                            }
                             
                             //check if they have desired pet type and are active
-                            if petTypes.contains(pettype) && active == true {
+                            if deleted == false && isActive == true && petTypes.contains(pettype) {
                                 //get the rest of the profile info
                                 let bio = data["bio"] as! String
                                 let firstname = data["first_name"] as! String
                                 let lastname = data["last_name"] as! String
                                 let link = URL(string: data["profile_pic_url"] as! String)!
-                                let isActive = data["is_active"] as! Bool
                                 var image:UIImage?
                                 //load image
-                                avatar(url:link).done{
+                                avatar(url:link).done {
                                     image = $0
-                                
-                                
-                                let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
-                                                       id: key!, profilePic: link, petType: pettype, location: location, active: isActive, image: image!)
-                                completion(user)
-                            }
+                                    let user = UserProfile(bio: bio, firstName: firstname, lastName: lastname,
+                                                           id: key!, profilePic: link, petType: pettype, location: location,
+                                                           active: isActive, deleted: deleted, image: image!)
+                                    
+                                    completion(user)
+                                }
                             }
                         }
+ 
                     })
                     }
                 })
@@ -290,9 +357,13 @@ class UserProfile: NSObject {
         let ref = Database.database().reference().child("Matches").child("\(self.id)/users")
         ref.observe(.childAdded) { (snapshot) in
             if snapshot.exists() {
-                UserProfile.getProfile(forUserID: snapshot.key, completion: { (match) in
-                    print("I found another match")
-                    completion(match)
+                UserProfile.getProfile(forUserID: snapshot.key, completion: { (match: UserProfile?) in
+                    if let match = match {
+                        print("I found another match")
+                        if !match.deleted && match.active {
+                            completion(match)
+                        }
+                    }
                 })
             }
         }
@@ -369,6 +440,7 @@ class UserProfile: NSObject {
         
         switch meetupType {
         case .connected:
+            //Connected meetups are those where both parties accepted so could be receved or sent
             userMeetupRef.child("received").observe(.childAdded, with: { (snapshot: DataSnapshot) in
                 
                 let meetupId = snapshot.key
@@ -386,7 +458,10 @@ class UserProfile: NSObject {
                     
                     if status == .accepted || status == .past {
                         UserProfile.getProfile(forUserID: fromId, completion: { (fromUser: UserProfile) in
-                            completion(Meetup(id: id, location: location, date: date, time: time, from: fromUser, with: self, status: status))
+                            if !fromUser.deleted && fromUser.active {
+                                completion(Meetup(id: id, location: location, date: date,
+                                                  time: time, from: fromUser, with: self, status: status))
+                            }
                         })
                     }
                 })
@@ -407,7 +482,10 @@ class UserProfile: NSObject {
                     
                     if status == .accepted || status == .past {
                         UserProfile.getProfile(forUserID: toId, completion: { (toUser: UserProfile) in
-                            completion(Meetup(id: id, location: location, date: date, time: time, from: self, with: toUser, status: status))
+                            if !toUser.deleted && toUser.active {
+                                completion(Meetup(id: id, location: location, date: date,
+                                                  time: time, from: self, with: toUser, status: status))
+                            }
                         })
                     }
                 })
@@ -432,7 +510,10 @@ class UserProfile: NSObject {
 
                     if status == .pending {
                         UserProfile.getProfile(forUserID: fromId, completion: { (fromUser: UserProfile) in
-                            completion(Meetup(id: id, location: location, date: date, time: time, from: fromUser, with: self, status: status))
+                            if !fromUser.deleted && fromUser.active {
+                                completion(Meetup(id: id, location: location, date: date,
+                                                  time: time, from: fromUser, with: self, status: status))
+                            }
                         })
                     }
                 })
@@ -455,7 +536,10 @@ class UserProfile: NSObject {
                     
                     if status == .pending {
                         UserProfile.getProfile(forUserID: toId, completion: { (toUser: UserProfile) in
-                            completion(Meetup(id: id, location: location, date: date, time: time, from: self, with: toUser, status: status))
+                            if !toUser.deleted && toUser.active {
+                                completion(Meetup(id: id, location: location, date: date,
+                                                  time: time, from: self, with: toUser, status: status))
+                            }
                         })
                     }
                 })
@@ -465,10 +549,24 @@ class UserProfile: NSObject {
     }
     
     
-    func suggestMeetup(withUser user: UserProfile, onDate date: String, atTime time: String, atLocation loc: String,
-                       completion: @escaping (Error?) -> Swift.Void) {
+    func suggestMeetup(withUser user: UserProfile, onDate date: String, atTime time: String,
+                       atLocation loc: String, completion: @escaping (Error?) -> Swift.Void) {
         
+        //Make usre that a user is active before we suggest any meetups with them
+        guard user.active else {
+            completion(CustomError("User is not active"))
+            return
+        }
+        
+        //Make sure user isn't deleted before suggesting meetup
+        guard !user.deleted else {
+            completion(CustomError("User is deleted"))
+            return
+        }
+        
+        //Create a meetup and suggest
         Meetup(location: loc, date: date, time: time, from: self, with: user).suggest { (error) in
+            //Return any error
             completion(error)
         }
     }
@@ -482,4 +580,40 @@ class UserProfile: NSObject {
         }
     }
     
+    func deleteAccount(completion: @escaping (Error?) -> Swift.Void) {
+        //Geofire references
+        //let geofireRef = Database.database().reference()
+        //let geoFire = GeoFire(firebaseRef: geofireRef)
+        
+        //Make sure user is authenticated
+        if let user = Auth.auth().currentUser {
+            print("HERE")
+            let userId = user.uid
+            print("\(userId)")
+            //if they are then try to delete the login credentials
+            user.delete { (error: Error?) in
+                if let error = error {
+                    // An error happened.
+                
+                    completion(error)
+                    
+                } else {
+                    // Account deleted.
+                    
+                    //Delete geofire location
+                    //geoFire.removeKey(userId)
+                    
+                    //Set profile to deleted?
+                    let values = ["is_active": false, "is_deleted": true] as [String : Any]
+                    let usersRef = Database.database().reference().child("Users")
+                    let userDetailsRef = usersRef.child(userId).child("user_details")
+                    userDetailsRef.updateChildValues(values, withCompletionBlock: { (err, _) in
+                        completion(err)
+                    })
+                }
+            }
+        } else {
+            completion(CustomError("Not currently logged in"))
+        }
+    }
 }
