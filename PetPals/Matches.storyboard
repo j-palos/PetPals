@@ -613,7 +613,10 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2h-AX-fE0">
-                                <rect key="frame" x="226.33333333333334" y="214.66666666666666" width="64.666666666666657" height="29"/>
+                                <rect key="frame" x="226.33333333333337" y="214.66666666666666" width="138" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="138" id="XbI-0a-gMG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNovaSoft-Semibold" family="Proxima Nova Soft" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -633,6 +636,7 @@
                                 <rect key="frame" x="153.33333333333337" y="318.66666666666669" width="210.66666666666663" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="joh-dm-4Zp"/>
+                                    <constraint firstAttribute="width" constant="210.66999999999999" id="n1X-Xa-rnD"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -663,6 +667,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WP-Sa-Kis">
                                 <rect key="frame" x="153.33333333333337" y="401.66666666666669" width="210.66666666666663" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="210.66999999999999" id="sCY-4K-H5Y"/>
                                     <constraint firstAttribute="height" constant="30" id="uln-BZ-Sh8"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -672,6 +677,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jos-bi-uIk">
                                 <rect key="frame" x="153.33333333333337" y="488.66666666666669" width="210.66666666666663" height="30.000000000000057"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="210.66999999999999" id="3mc-kC-6Lx"/>
                                     <constraint firstAttribute="height" constant="30" id="Pez-hB-gtk"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -762,7 +768,6 @@
                             <constraint firstItem="a5H-yl-nCR" firstAttribute="leading" secondItem="XeG-Nb-vR4" secondAttribute="leading" constant="60" id="9al-9h-bbe"/>
                             <constraint firstItem="Axu-Jy-Vn4" firstAttribute="top" secondItem="tHV-uD-cf0" secondAttribute="bottom" constant="36" id="9uw-Ka-JLo"/>
                             <constraint firstItem="tHV-uD-cf0" firstAttribute="centerX" secondItem="5p8-ki-uWy" secondAttribute="centerX" id="ALn-Bn-y00"/>
-                            <constraint firstItem="CbT-kP-6RD" firstAttribute="centerX" secondItem="P2h-AX-fE0" secondAttribute="centerX" id="BZ7-cB-sQi"/>
                             <constraint firstItem="CbT-kP-6RD" firstAttribute="leading" secondItem="5WP-Sa-Kis" secondAttribute="leading" id="Bq3-LZ-ARF"/>
                             <constraint firstItem="sPF-PX-Wje" firstAttribute="top" secondItem="jos-bi-uIk" secondAttribute="bottom" constant="48.333333333333258" id="Enr-gb-iqa"/>
                             <constraint firstItem="CbT-kP-6RD" firstAttribute="top" secondItem="Axu-Jy-Vn4" secondAttribute="bottom" constant="52" id="HIV-Bk-HEB"/>
@@ -805,7 +810,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Buc-mF-nlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3010" y="-2558"/>
+            <point key="canvasLocation" x="3008.6956521739135" y="-2558.1521739130435"/>
         </scene>
         <!--Meetup Background View-->
         <scene sceneID="Tez-BL-zuh">
@@ -1367,7 +1372,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="58t-p3-lzk"/>
+        <segue reference="R3Z-k7-V3k"/>
         <segue reference="z59-lB-2LK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="PetPalDarkBlue"/>
