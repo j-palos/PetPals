@@ -35,7 +35,7 @@ class SwipeViewController: UIViewController {
     
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
-    var profile: UserProfile?
+//    var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
     
     // for getting users locations

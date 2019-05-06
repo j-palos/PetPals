@@ -16,6 +16,9 @@ import UIKit
 let mainVCAfterAuthIdentifier = "Home"
 let createProfileVCIdenfifier = "CreateProfile"
 
+//global user profile
+var profile : UserProfile?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
@@ -107,6 +110,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         configureLocationManager()
+        
+        //load user profile
+        if let id = Auth.auth().currentUser?.uid {
+            UserProfile.getProfile(forUserID: id, completion: { (user) in
+                profile = user
+            })
+        }
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
