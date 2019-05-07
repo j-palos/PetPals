@@ -67,6 +67,7 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
+        tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Pending Users
