@@ -133,28 +133,70 @@ class SettingsTableViewController: UITableViewController {
     
     // Logout user
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        UserProfile.logOutUser(completion: { (error) in
-            if error != nil {
-                let alertController = UIAlertController(title: "Error", message: "Logout Failed", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+        let alertController = UIAlertController(title: "Sign out",
+                                                message: "Are you sure that you want to sign out?",
+                                                preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: { (action: UIAlertAction) in
+            UserProfile.logOutUser(completion: { (error) in
+                if error != nil {
+                    let alertController = UIAlertController(title: "Error", message: "Logout Failed", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            })
         })
+        //present alert to continue with delete
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // Delete this user's account
     @IBAction func deleteAccountButtonPressed(_ sender: Any) {
-        UserProfile.logOutUser(completion: { (error) in
-            if error != nil {
-                let alertController = UIAlertController(title: "Error", message: "Logout Failed", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+        let alertController = UIAlertController(title: "Delete Account",
+                                                message: "Are you sure you want to continue? Your account will be deleted and you won't be able to access it.",
+                                                preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: { (action: UIAlertAction) in
+            profile?.deleteAccount(completion: { (error: Error?) in
+                if error == nil {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Initial", bundle: nil)
+                    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                    appdelegate.window!.rootViewController = storyBoard.instantiateInitialViewController()
+                    
+                } else {
+                    //Error occurred deleting, possibly due to being signed in too long must reauthenticate
+                    //prompt whether to continue
+                    let alertController = UIAlertController(title: "Authentication Required",
+                                                            message: "If you want to continue you need to login again...",
+                                                            preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+                        //user said to continue so log them out and send them to login view on success
+                        UserProfile.logOutUser(completion: { (error: NSError?) in
+                            if error == nil {
+                                profile = nil
+                                let storyBoard: UIStoryboard = UIStoryboard(name: "Initial", bundle: nil)
+                                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                                appdelegate.window!.rootViewController = storyBoard.instantiateInitialViewController()
+                            }
+                        })
+                    })
+                    //present alert to reauthenticate
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            })
         })
+        //present alert to continue with delete
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 
 }

@@ -8,6 +8,36 @@
 
 import UIKit
 import FirebaseAuth
+import PromiseKit
+
+// promise function for obtaining our match image
+func matchPicture(url: URL) -> Promise<UIImage> {
+    return firstly {
+        URLSession.shared.dataTask(.promise, with: url)
+        }.compactMap {
+            UIImage(data: $0.data)
+    }
+}
+
+func getMatches() {
+    profile!.getMatches(completion: { (match) in
+        DispatchQueue.main.async {
+            // Only add the match if it's not already in global
+            if !matchIDs.contains(match.id) {
+                matchIDs.insert(match.id)
+                // Create a blank Match Image
+                let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                // Perform promise to ensure picture gets loaded properly
+                matchPicture(url: match.imageURL).done{
+                    matchImage.setMatchesImage(image: $0)
+                    matches[match.id] =  (match, matchImage)
+                } .catch { _ in
+                    print("I resulted in an error")
+                }
+            }
+        }
+    })
+}
 
 class MatchesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -27,6 +57,8 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Connect the collection view for New Matches
     @IBOutlet weak var newMatchesCollectionView: UICollectionView!
     
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
+    
     // Set colors for text
     let blueColor:UIColor = UIColor(red: 0.44, green:0.78, blue:0.78, alpha: 1)
     let grayColor:UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
@@ -34,19 +66,30 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
     // Variable to connect to Overall Matches VC
     var parentVC: OverallMatchesViewController?
     
-    // List to contain all new matches for this user
-    var newMatches = [UserProfile]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getMatches()
+        self.newMatchesCollectionView.reloadData()
+    }
+    
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if matches.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMatches()
+                }
+            }
+        }
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        checkIfNoMatches()
-        return newMatches.count
+        checkIfUpdate()
+        return matches.count
     }
     
     // Required function for CollectionView
@@ -55,12 +98,13 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newMatchCollectionViewCell", for: indexPath) as! NewMatchCollectionViewCell
     
         // Find the associated User
-        let user:UserProfile = newMatches[indexPath.row]
+        let userID:String = Array(matches.keys)[indexPath.row]
+        let (user, userImage):(UserProfile, MatchesImage) = matches[userID]!
+
         
         // Update the cell information with this user's info
         cell.nameLabel.text = user.firstName
-        let imageUrl = user.imageURL
-        cell.image.load(fromURL: imageUrl)
+        cell.image.image = userImage.image
         
         return cell as UICollectionViewCell
     }
@@ -75,13 +119,13 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "meetupVCIdentifier") as! MeetupViewController
         
         // Find the associated User
-        let user:UserProfile = newMatches[indexPath.row]
+        let userID:String = Array(matches.keys)[indexPath.row]
+        let (user, userImage):(UserProfile, MatchesImage) = matches[userID]!
         
         // Send over information about the user selected
         destination.userProfile = user
         destination.userName = user.firstName
-        // Send as an NSURL just so can initialize variable in that file (it'll be converted back over)
-        destination.userImage = user.imageURL as NSURL
+        destination.userImage = userImage
         
         // Present the screen
         self.navigationController?.pushViewController(destination, animated: false)
@@ -141,29 +185,23 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
         invitesButton.setTitleColor(grayColor, for: .normal)
     }
     
-    func getMatches() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.getMatches(completion: { (match) in
-                    DispatchQueue.main.async {
-                        self.newMatches.append(match)
-                        //reload data
-                        self.newMatchesCollectionView.reloadData()
-                    }
-                })
-            })
-        }
-    }
-    
     // If there are no matches, do not show collection view but instead label
     // If there are now matches, show collection view and hide label
     func checkIfNoMatches() {
-        if newMatches.count == 0 {
+        if matches.count == 0 {
             newMatchesCollectionView.alpha = 0
             noMatchAvailLabel.alpha = 1
         } else {
             newMatchesCollectionView.alpha = 1
             noMatchAvailLabel.alpha = 0
+        }
+    }
+    
+    func checkIfUpdate() {
+        if noMatchAvailLabel.alpha == 1 {
+            if matches.count > 0 {
+                noMatchAvailLabel.alpha = 0
+            }
         }
     }
     

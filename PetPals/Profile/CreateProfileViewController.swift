@@ -138,10 +138,15 @@ class CreateProfileViewController: UIViewController {
                 self.geoFire?.setLocation(location, forKey:user.uid)
                 UserDefaults.standard.set(user.uid, forKey: "user_uid")
                 
-                //go to main app
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
-                self.present(newViewController, animated: true, completion: nil)
+                UserProfile.getProfile(forUserID: user.uid, completion: { (user: UserProfile) in
+                    profile = user
+                    
+                    //go to main app
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: mainVCAfterAuthIdentifier)
+                    self.present(newViewController, animated: true, completion: nil)
+                })
+            
             }
             else {
                 //error creating profile
