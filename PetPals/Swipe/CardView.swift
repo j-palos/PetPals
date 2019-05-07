@@ -14,11 +14,11 @@ class CardView: UIView {
     let kCONTENT_XIB_NAME = "CardView"
     
     // Outlet Variables
-    @IBOutlet var bioLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var cardImage: CardImage!
     @IBOutlet var petTypeLabel: UILabel!
+    @IBOutlet var bioBox: UITextView!
     
     // vars to set up the view
     var name = String()
@@ -60,21 +60,22 @@ class CardView: UIView {
         layer.shadowOpacity = 0.5
         // shadow radius should be same as corner radius
         layer.shadowRadius = 10.0
-        
         addSubview(view)
         self.view = view
     }
     
     func setBio(bio: String) {
-        bioLabel.text = "Bio: \(bio)"
+        bioBox.text = "Bio: \(bio)"
     }
     
     func setName(_ first: String, _ second: String) {
-        nameLabel.text = "\(first) \(second)"
+        nameLabel.text = "\(first)"
+        nameLabel.sizeToFit()
     }
     
     func setDistance(_ distance: String) {
-        distanceLabel.text = "Distance: \(distance) miles"
+        distanceLabel.text = "\(distance) Miles Away"
+        distanceLabel.sizeToFit()
     }
     
     func setPetType(_ type: String) {
@@ -85,36 +86,7 @@ class CardView: UIView {
         cardImage.load(fromURL: URL(string: name)!)
     }
     
-    func setImage(_ pic :UIImage){
+    func setImage(_ pic: UIImage) {
         cardImage.image = pic
-    }
-    
-    // I think I can take these out
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        layer.borderColor = borderColor?.cgColor
-        layer.borderWidth = borderWidth
-        layer.cornerRadius = cornerRadius
-    }
-    
-    @IBInspectable var borderColor: UIColor? {
-        didSet {
-            layer.borderColor = borderColor?.cgColor
-            setNeedsLayout()
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat = 0.0 {
-        didSet {
-            layer.borderWidth = borderWidth
-            setNeedsLayout()
-        }
-    }
-    
-    @IBInspectable var cornerRadius: CGFloat = 0.0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            setNeedsLayout()
-        }
     }
 }

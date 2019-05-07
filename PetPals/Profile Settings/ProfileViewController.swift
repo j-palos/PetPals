@@ -40,9 +40,7 @@ class ProfileViewController: UIViewController {
         self.profilePetType.text = profile?.petType
         self.profileBio.text = profile?.bio
         
-        let url = profile?.imageURL
-        self.profilePicture.load(fromURL: url!)
-        
+        self.profilePicture.image = profile?.image
         // Set up picker
         let picker: UIPickerView
         picker = UIPickerView(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: 300))

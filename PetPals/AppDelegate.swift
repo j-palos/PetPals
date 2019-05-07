@@ -9,15 +9,15 @@
 import CoreData
 import CoreLocation
 import Firebase
-import GoogleSignIn
 import GeoFire
+import GoogleSignIn
 import UIKit
 
 let mainVCAfterAuthIdentifier = "Home"
 let createProfileVCIdenfifier = "CreateProfile"
 
-//global user profile
-var profile : UserProfile?
+// global user profile
+var profile: UserProfile?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     private func configureLocationManager() {
         if #available(iOS 9.0, *) {
-            manager.allowsBackgroundLocationUpdates = true
+            manager.allowsBackgroundLocationUpdates = false
         } else {
             // Fallback on earlier versions
         }
@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         configureLocationManager()
         // Give time for the load animation to occur, then set up firebase & check if user logged in
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            
             GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
             GIDSignIn.sharedInstance().delegate = self
             if let user = Auth.auth().currentUser {
@@ -111,9 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         configureLocationManager()
         
-        //load user profile
+        // load user profile
         if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
+            UserProfile.getProfile(forUserID: id, completion: { user in
                 profile = user
             })
         }
@@ -191,14 +190,13 @@ extension AppDelegate: CLLocationManagerDelegate {
         let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
         let usrDefaults: UserDefaults = UserDefaults.standard
         
-        //location has changed so we should update geofire
+        // location has changed so we should update geofire
         let geoFire = GeoFire(firebaseRef: Database.database().reference().child("Geolocations"))
         if let uid = UserDefaults.standard.string(forKey: "user_uid") {
-            //make sure we have users uid to update
+            // make sure we have users uid to update
             let location = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
             geoFire.setLocation(location, forKey: uid)
         }
-        
         usrDefaults.set("\(newCoordinate.latitude)", forKey: "current_latitude")
         usrDefaults.set("\(newCoordinate.longitude)", forKey: "current_longitude")
         usrDefaults.synchronize()
