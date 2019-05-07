@@ -29,9 +29,6 @@ class CalendarViewController: UIViewController {
     // List to contain all connected meetups for this user
     var connectedMeetups = [Meetup]()
     
-    // This user's ID to know which user the date is with
-    var thisUser: UserProfile?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -190,7 +187,7 @@ extension CalendarViewController {
             let meetupDate = meetup.date
             let meetupTime = meetup.time
             let otherUser: UserProfile!
-            if meetup.fromUser != thisUser {
+            if meetup.fromUser.id != profile!.id {
                 otherUser = meetup.fromUser
             } else {
                 otherUser = meetup.toUser
@@ -206,18 +203,13 @@ extension CalendarViewController {
 
     // Call database and update list of connected meetups
     func getMeetups() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                self.thisUser = user
-                user.getMeetups(withType: .connected, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        self.connectedMeetups.append(meetup)
-                        self.updateDatesGiven()
-                        self.calendarView.reloadData()
-                    }
-                })
-            })
-        }
+        profile!.getMeetups(withType: .connected, completion: { (meetup) in
+            DispatchQueue.main.async {
+                self.connectedMeetups.append(meetup)
+                self.updateDatesGiven()
+                self.calendarView.reloadData()
+            }
+        })
     }
 }
 

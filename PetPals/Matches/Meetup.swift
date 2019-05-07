@@ -21,8 +21,7 @@ enum MeetupType {
     case pending
 }
 
-class Meetup {
-    
+class Meetup: Hashable {
     var id: String?
     var location: String
     var date: String
@@ -118,5 +117,12 @@ class Meetup {
             }
             
         }
+    }
+    static func == (lhs: Meetup, rhs: Meetup) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

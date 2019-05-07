@@ -28,7 +28,7 @@ class MeetupViewController: UIViewController {
     
     // Variables so this information can be passed in
     var userName = String()
-    var userImage = NSURL(fileURLWithPath: "")
+    var userImage: MatchesImage!
     var userProfile: UserProfile!
     
     // Variable to connect to Overall Matches VC
@@ -39,7 +39,7 @@ class MeetupViewController: UIViewController {
         
         // Set label and image to variables passed over from MatchesVC
         chosenUserName.text = userName
-        chosenUserImage.load(fromURL: userImage as URL)
+        chosenUserImage.image = userImage.image
         
         // Setup date & time formatters
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -110,13 +110,9 @@ class MeetupViewController: UIViewController {
     
     // Send the sugggested meetup to the database, and then go back to main Matches view
     func suggestMeetup(otherUser: UserProfile, dateGiven: String, timeGiven: String, locationGiven: String) {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.suggestMeetup(withUser: otherUser, onDate: dateGiven, atTime: timeGiven, atLocation: locationGiven, completion: { (error) in
-                        print("Error suggesting meetup")
-                })
-            })
-        }
+        profile!.suggestMeetup(withUser: otherUser, onDate: dateGiven, atTime: timeGiven, atLocation: locationGiven, completion: { (error) in
+            print("Error suggesting meetup")
+        })
     }
     
     private func alertError(message: String) {

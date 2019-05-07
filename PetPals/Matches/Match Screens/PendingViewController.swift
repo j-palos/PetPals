@@ -9,6 +9,26 @@
 import UIKit
 import FirebaseAuth
 
+// Call database and update list of pending meetups
+func getPending() {
+    profile!.getMeetups(withType: .pending, completion: { (meetup) in
+        DispatchQueue.main.async {
+            if pendingMeetups[meetup.id!] == nil {
+                let otherUser = meetup.toUser
+                // Create a blank Match Image
+                let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+                // Perform promise to ensure picture gets loaded properly
+                matchPicture(url: otherUser.imageURL).done {
+                    matchImage.setMatchesImage(image: $0)
+                    pendingMeetups[meetup.id!] =  (meetup, matchImage)
+                } .catch { _ in
+                    print("I resulted in an error")
+                }
+            }
+        }
+    })
+}
+
 class PendingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Connect to tableView
@@ -20,8 +40,7 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Identifier for tableView
     var pendingTableViewCellIdentifier = "pendingTableViewCellIdentifier"
     
-    // List to contain all pending meetups for this user
-    var pendingMeetups = [Meetup]()
+    let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +51,27 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Get pending meetups
         getPending()
+        
+        //reload data
+        self.tableView.reloadData()
+    }
+    
+    // All this is doing is waiting to display none
+    override func viewWillAppear(_ animated: Bool) {
+        // wait for a second, if we don't have potentials show out of cards
+        queue.async {
+            sleep(1)
+            if pendingMeetups.isEmpty {
+                DispatchQueue.main.async {
+                    self.checkIfNoMeetups()
+                }
+            }
+        }
     }
     
     // Required function for tableView; Number of Rows equals number of Pending Users
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        checkIfNoMeetups()
+        checkIfUpdate()
         return pendingMeetups.count
     }
     
@@ -46,14 +81,15 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell:PendingTableViewCell = tableView.dequeueReusableCell(withIdentifier: pendingTableViewCellIdentifier, for: indexPath as IndexPath) as! PendingTableViewCell
         
         // Find the associated meetup
-        let meetup:Meetup = pendingMeetups[indexPath.row]
+        // Find the associated meetup
+        let meetupID:String = Array(pendingMeetups.keys)[indexPath.row]
+        let (meetup, userImage):(Meetup, MatchesImage) = pendingMeetups[meetupID]!
         
         // Update the cell information with this meetup's info
         cell.meetup = meetup
         let otherUser = meetup.toUser
         cell.userName.text = otherUser.firstName
-        let imageUrl = otherUser.imageURL
-        cell.userImage.load(fromURL: imageUrl)
+        cell.userImage.image = userImage.image
         cell.meetDate.text = "\(meetup.date) at \(meetup.time)"
         cell.meetLocation.text = meetup.location
         
@@ -68,25 +104,9 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return nil
     }
     
-    // Call database and update list of pending meetups
-    func getPending() {
-        if let id = Auth.auth().currentUser?.uid {
-            UserProfile.getProfile(forUserID: id, completion: { (user) in
-                user.getMeetups(withType: .pending, completion: { (meetup) in
-                    DispatchQueue.main.async {
-                        self.pendingMeetups.append(meetup)
-                        self.tableView.reloadData()
-                    }
-                })
-            })
-        }
-    }
-    
     // Reload when a meetup is canceled
     func reloadMeetups(meetupToDelete: Meetup) {
-        if let idx = pendingMeetups.firstIndex(where: { $0 === meetupToDelete }) {
-            pendingMeetups.remove(at: idx)
-        }
+        pendingMeetups.removeValue(forKey: meetupToDelete.id!)
         tableView.reloadData()
     }
     
@@ -99,6 +119,14 @@ class PendingViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             tableView.alpha = 1
             noAvailPendLabel.alpha = 0
+        }
+    }
+    
+    func checkIfUpdate() {
+        if noAvailPendLabel.alpha == 1 {
+            if pendingMeetups.count > 0 {
+                noAvailPendLabel.alpha = 0
+            }
         }
     }
 
