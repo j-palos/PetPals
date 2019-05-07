@@ -43,6 +43,7 @@ class SwipeViewController: UIViewController {
 
     @IBOutlet var outOfProfilesImageView: UIImageView!
 
+    
 //    var profile: UserProfile?
     let queue = DispatchQueue(label: "sleepQueue", qos: .userInitiated, attributes: .concurrent)
 
@@ -259,7 +260,7 @@ extension SwipeViewController: KolodaViewDelegate {
     private func popMatchUp(user: UserProfile) {
         // Global to represent all matches for this user; Caches data locally on load of app
         // Still need to update this as new matches created while in-app
-        var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
+//        var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
         if(!matchIDs.contains(user.id)){
         matchIDs.insert(user.id)
         let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
