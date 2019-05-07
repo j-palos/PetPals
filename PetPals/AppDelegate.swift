@@ -47,8 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
             GIDSignIn.sharedInstance().delegate = self
             if let user = Auth.auth().currentUser {
-                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, startVC in
+                UserProfile.checkIfProfileCreated(forUserWithId: user.uid) { error, currentUser, startVC in
                     if error == nil {
+                        profile = currentUser
                         self.window?.rootViewController = startVC
                         UserDefaults.standard.set(user.uid, forKey: "user_uid")
                     }
