@@ -67,6 +67,7 @@ class InvitesViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
+        tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Invites Users

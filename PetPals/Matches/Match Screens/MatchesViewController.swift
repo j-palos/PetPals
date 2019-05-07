@@ -84,6 +84,7 @@ class MatchesViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }
             }
         }
+        newMatchesCollectionView.reloadData()
     }
     
     // Required function for CollectionView; New Matches row should have same number as new match users

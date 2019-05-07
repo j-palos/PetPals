@@ -78,6 +78,7 @@ class ConnectedViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
+        tableView.reloadData()
     }
     
     // Required function for tableView; Number of Rows equals number of Connected Users
