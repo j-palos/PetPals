@@ -22,6 +22,7 @@ var pendingMeetups:[String:(Meetup, MatchesImage)] = [String:(Meetup, MatchesIma
 // Global to represent all matches for this user; Caches data locally on load of app
 // Still need to update this as new matches created while in-app
 var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
+
 // Global to have all IDs of matches
 var matchIDs:Set<String> = Set<String>()
 
@@ -244,6 +245,7 @@ extension SwipeViewController: KolodaViewDelegate {
             case .right:
                 profile.swipeRight(onUserProfile: user) { matchMade in
                     if matchMade {
+                        
                         self.popMatchUp(user: user)
                     }
                 }
@@ -255,6 +257,15 @@ extension SwipeViewController: KolodaViewDelegate {
 
     // pops up the view for our new match
     private func popMatchUp(user: UserProfile) {
+        // Global to represent all matches for this user; Caches data locally on load of app
+        // Still need to update this as new matches created while in-app
+        var matches:[String:(UserProfile, MatchesImage)] = [String:(UserProfile, MatchesImage)]()
+        if(!matchIDs.contains(user.id)){
+        matchIDs.insert(user.id)
+        let matchImage = MatchesImage(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
+            matchImage.setMatchesImage(image: user.image)
+            matches[user.id] =  (user, matchImage)
+        }
         popView.setImages(myImage: (profile?.image)!, theirImage: user.image)
         // necessary to put our buttons on top
         popView.bringSubviewToFront(dismissButton)
