@@ -19,23 +19,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7Z-nc-fLE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7Z-nc-fLE">
                                 <rect key="frame" x="242" y="575" width="85" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" backgroundImage="Like"/>
                                 <connections>
                                     <action selector="yesButtonTapped:" destination="ftX-l8-KLE" eventType="touchUpInside" id="Vl9-nm-g5B"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-pp-vij" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="20" y="41" width="374" height="526"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-1I-oKq">
                                 <rect key="frame" x="94" y="575" width="85" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="0Wl-Qe-86l"/>
+                                    <constraint firstAttribute="height" constant="85" id="Nd5-WW-h1b"/>
+                                </constraints>
                                 <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" backgroundImage="Nope"/>
                                 <connections>
@@ -75,6 +76,18 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RM2-1I-oKq" firstAttribute="leading" secondItem="xWy-AQ-i9L" secondAttribute="leading" constant="94" id="V2N-yS-1hu"/>
+                            <constraint firstItem="aiH-pp-vij" firstAttribute="leading" secondItem="3xb-ey-Uhp" secondAttribute="leadingMargin" id="Wz1-zn-ifZ"/>
+                            <constraint firstItem="RM2-1I-oKq" firstAttribute="top" secondItem="B7Z-nc-fLE" secondAttribute="top" id="XKH-ZD-IXp"/>
+                            <constraint firstItem="aiH-pp-vij" firstAttribute="top" secondItem="xWy-AQ-i9L" secondAttribute="top" constant="21" id="aOv-pC-Eyd"/>
+                            <constraint firstItem="RM2-1I-oKq" firstAttribute="top" secondItem="aiH-pp-vij" secondAttribute="bottom" constant="8" symbolic="YES" id="fRR-O7-zQh"/>
+                            <constraint firstItem="aiH-pp-vij" firstAttribute="trailing" secondItem="3xb-ey-Uhp" secondAttribute="trailingMargin" id="igb-lB-Znj"/>
+                            <constraint firstItem="xWy-AQ-i9L" firstAttribute="trailing" secondItem="B7Z-nc-fLE" secondAttribute="trailing" constant="87" id="jfQ-Xn-pFa"/>
+                            <constraint firstItem="B7Z-nc-fLE" firstAttribute="leading" secondItem="RM2-1I-oKq" secondAttribute="trailing" constant="63" id="qhj-EV-Vho"/>
+                            <constraint firstItem="RM2-1I-oKq" firstAttribute="bottom" secondItem="B7Z-nc-fLE" secondAttribute="bottom" id="tea-fs-q2V"/>
+                            <constraint firstItem="xWy-AQ-i9L" firstAttribute="bottom" secondItem="RM2-1I-oKq" secondAttribute="bottom" constant="76" id="uMs-t0-JGl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xWy-AQ-i9L"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="paw-bar" selectedImage="paw-bar" id="YQE-Gj-D3S"/>
